@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { shopContext } from "../../contexts/shopContext.jsx";
+import { shortcodeContext } from "../../contexts/shortcodeContext.jsx";
 import Select from "react-select";
 
 const FontFamily = ({ name }) => {
   const { defaultSettings, setDefaultSettings, fontsOptions } =
-    useContext(shopContext);
+    useContext(shortcodeContext);
 
   return (
     <div className="afx-ap-form-field flex-col !items-start">

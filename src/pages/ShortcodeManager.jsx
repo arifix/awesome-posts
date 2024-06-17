@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import { appContext } from "../contexts/appContext";
+import { appContext } from "../contexts/appContext.jsx";
 import axios from "axios";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import toast from "react-hot-toast";
-import Modal from "../components/global/Modal";
+import Modal from "../components/global/Modal.jsx";
 import { insertUrlParam } from "../utils/const.js";
 import Divider from "../components/global/Divider.jsx";
 
-const ShopManager = () => {
+const ShortcodeManager = () => {
   const { activeTab, setActiveTab, settings } = useContext(appContext);
   const [loading, setLoading] = useState(true);
   const [shops, setShops] = useState([]);
@@ -19,8 +19,8 @@ const ShopManager = () => {
     useContext(appContext);
 
   useEffect(() => {
-    if (activeTab == "shop-manager") {
-      axios.get(baseUrl + "shop/all").then((res) => {
+    if (activeTab == "shortcode-manager") {
+      axios.get(baseUrl + "shortcode/all").then((res) => {
         if (res.data) {
           setShops(res.data);
           setLoading(false);
@@ -57,8 +57,8 @@ const ShopManager = () => {
 
   return (
     <div
-      className={`afx-ap-shop-manager ${
-        activeTab != "shop-manager" ? "hidden" : ""
+      className={`afx-ap-shortcode-manager ${
+        activeTab != "shortcode-manager" ? "hidden" : ""
       }`}
     >
       {loading ? (
@@ -73,29 +73,29 @@ const ShopManager = () => {
       ) : (
         <>
           <div className="flex justify-between items-center pr-5">
-            <h2 className="heading-primary">Shops</h2>
+            <h2 className="heading-primary">Shortcodes</h2>
             <button
               type="button"
               className="action-button primary"
               onClick={() => {
-                setActiveTab("shop-new");
-                insertUrlParam("tab", "shop-new");
+                setActiveTab("shortcode-new");
+                insertUrlParam("tab", "shortcode-new");
               }}
             >
-              <i className="dashicons-before dashicons-plus"></i> New Shop
+              <i className="dashicons-before dashicons-plus"></i> New Shortcode
             </button>
           </div>
 
           <Divider />
 
-          <div className="afx-ap-shops">
+          <div className="afx-ap-shortcodes">
             {shops.map((s, key) => (
-              <div className="afx-ap-single-shop" key={key}>
+              <div className="afx-ap-single-shortcode" key={key}>
                 <h4
                   onClick={() => {
-                    setActiveTab("shop-new");
-                    insertUrlParam("tab", "shop-new");
-                    insertUrlParam("shop_id", s.id);
+                    setActiveTab("shortcode-new");
+                    insertUrlParam("tab", "shortcode-new");
+                    insertUrlParam("shortcode_id", s.id);
                   }}
                 >
                   {s.title}
@@ -104,12 +104,12 @@ const ShopManager = () => {
                   <button
                     type="button"
                     onClick={() => {
-                      setActiveTab("shop-new");
-                      insertUrlParam("tab", "shop-new");
-                      insertUrlParam("shop_id", s.id);
+                      setActiveTab("shortcode-new");
+                      insertUrlParam("tab", "shortcode-new");
+                      insertUrlParam("shortcode_id", s.id);
                     }}
                     data-tooltip-id="afx-ap-tooltip"
-                    data-tooltip-content="Edit Shop"
+                    data-tooltip-content="Edit Shortcode"
                   >
                     <i className="dashicons-before dashicons-edit hover:text-ap-primary"></i>
                   </button>
@@ -167,4 +167,4 @@ const ShopManager = () => {
   );
 };
 
-export default ShopManager;
+export default ShortcodeManager;

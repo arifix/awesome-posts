@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, useMemo } from "react";
 import { appContext } from "../contexts/appContext.jsx";
-import { shopContext } from "../contexts/shopContext.jsx";
+import { shortcodeContext } from "../contexts/shortcodeContext.jsx";
 import Divider from "../components/global/Divider.jsx";
 import ShopMain from "../components/parts/ShopMain.jsx";
 import ShopHeader from "../components/parts/ShopHeader.jsx";
@@ -28,7 +28,7 @@ import Select from "react-select";
 import Input from "../components/elements/Input.jsx";
 import Toggle from "../components/elements/Toggle.jsx";
 
-const ShopNew = () => {
+const ShortcodeNew = () => {
   const [loader, setLoader] = useState("Save Shop");
   const [fonts, setFonts] = useState({});
   const [pickerColors, setPickerColors] = useState([]);
@@ -63,15 +63,15 @@ const ShopNew = () => {
   }, [settings]);
 
   useEffect(() => {
-    if (activeTab == "shop-new") {
+    if (activeTab == "shortcode-new") {
       const queryParameters = new URLSearchParams(window.location.search);
-      const shop_id = queryParameters.get("shop_id");
-      if (shop_id) {
+      const shortcode_id = queryParameters.get("shortcode_id");
+      if (shortcode_id) {
         axios
           .post(
-            baseUrl + "shop/get",
+            baseUrl + "shortcode/get",
             {
-              shop_id,
+              shortcode_id,
             },
             {
               headers: {
@@ -163,15 +163,15 @@ const ShopNew = () => {
       delete settings.shopTitle;
 
       const queryParameters = new URLSearchParams(window.location.search);
-      const shop_id = queryParameters.get("shop_id");
+      const shortcode_id = queryParameters.get("shortcode_id");
 
       axios
         .post(
-          baseUrl + "shop/new",
+          baseUrl + "shortcode/new",
           {
-            shop_id: shop_id,
-            shop_title: shopSettings.shopTitle,
-            shop_settings: JSON.stringify(settings),
+            shortcode_id: shortcode_id,
+            shortcode_title: shopSettings.shopTitle,
+            shortcode_settings: JSON.stringify(settings),
           },
           {
             headers: {
@@ -181,9 +181,9 @@ const ShopNew = () => {
           }
         )
         .then((res) => {
-          setShopId(res.data.shop_id);
+          setShopId(res.data.shortcode_id);
           toast.success(res.data.message);
-          insertUrlParam("shop_id", res.data.shop_id);
+          insertUrlParam("shortcode_id", res.data.shortcode_id);
           setRefreshSettings(true);
           setLoader("Save Shop");
         });
@@ -274,9 +274,9 @@ const ShopNew = () => {
   styles += `</style>`;
 
   return (
-    <shopContext.Provider value={shopValues}>
+    <shortcodeContext.Provider value={shopValues}>
       <div
-        className={`afx-ap-shop-new ${activeTab != "shop-new" ? "hidden" : ""}`}
+        className={`afx-ap-shortcode-new ${activeTab != "shortcode-new" ? "hidden" : ""}`}
       >
         {loading ? (
           <SkeletonTheme baseColor="#CCC" highlightColor="#DDD">
@@ -546,8 +546,8 @@ const ShopNew = () => {
           />
         </ModalPreview>
       </div>
-    </shopContext.Provider>
+    </shortcodeContext.Provider>
   );
 };
 
-export default ShopNew;
+export default ShortcodeNew;

@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { shopContext } from "../../contexts/shopContext.jsx";
+import { shortcodeContext } from "../../contexts/shortcodeContext.jsx";
 
 const Toggle = ({ title = "Show Button", name }) => {
-  const { defaultSettings, setDefaultSettings } = useContext(shopContext);
+  const { defaultSettings, setDefaultSettings } = useContext(shortcodeContext);
 
   return (
     <div className="afx-ap-form-field">

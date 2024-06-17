@@ -21,14 +21,14 @@ const NavSidebar = () => {
             <a
               href="javascript:void(0);"
               onClick={() => {
-                setActiveTab("shop-manager");
-                insertUrlParam("tab", "shop-manager");
-                removeUrlParam("shop_id");
+                setActiveTab("shortcode-manager");
+                insertUrlParam("tab", "shortcode-manager");
+                removeUrlParam("shortcode_id");
                 setShopSettings({ ...initialSettings });
                 setShopId(null);
               }}
               className={`${
-                activeTab == "shop-manager" || activeTab == "shop-new"
+                activeTab == "shortcode-manager" || activeTab == "shortcode-new"
                   ? "active"
                   : ""
               }`}
@@ -41,13 +41,13 @@ const NavSidebar = () => {
                 <a
                   href="javascript:void(0);"
                   onClick={() => {
-                    setActiveTab("shop-manager");
-                    insertUrlParam("tab", "shop-manager");
-                    removeUrlParam("shop_id");
+                    setActiveTab("shortcode-manager");
+                    insertUrlParam("tab", "shortcode-manager");
+                    removeUrlParam("shortcode_id");
                     setShopSettings({ ...shopSettings });
                     setShopId(null);
                   }}
-                  className={`${activeTab == "shop-manager" ? "active" : ""}`}
+                  className={`${activeTab == "shortcode-manager" ? "active" : ""}`}
                 >
                   <i className="dashicons-before dashicons-screenoptions"></i>
                   <span>My Shortcodes</span>
@@ -57,13 +57,13 @@ const NavSidebar = () => {
                 <a
                   href="javascript:void(0);"
                   onClick={() => {
-                    setActiveTab("shop-new");
-                    insertUrlParam("tab", "shop-new");
-                    removeUrlParam("shop_id");
+                    setActiveTab("shortcode-new");
+                    insertUrlParam("tab", "shortcode-new");
+                    removeUrlParam("shortcode_id");
                     setShopSettings({ ...initialSettings });
                     setShopId(null);
                   }}
-                  className={`${activeTab == "shop-new" ? "active" : ""}`}
+                  className={`${activeTab == "shortcode-new" ? "active" : ""}`}
                 >
                   <i className="dashicons-before dashicons-insert"></i>
                   <span>New Shortcode</span>
@@ -77,7 +77,7 @@ const NavSidebar = () => {
               onClick={() => {
                 setActiveTab("settings");
                 insertUrlParam("tab", "settings");
-                removeUrlParam("shop_id");
+                removeUrlParam("shortcode_id");
                 setShopSettings({ ...initialSettings });
                 setShopId(null);
               }}

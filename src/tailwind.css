@@ -174,19 +174,19 @@
     @apply w-8 h-8 absolute top-0 right-0 cursor-pointer;
   }
 
-  .afx-ap-shops {
+  .afx-ap-shortcodes {
     @apply flex flex-col gap-3 mx-0 lg:mx-5 lg:my-3 p-5 divide-y-2 divide-gray-300;
   }
 
-  .afx-ap-single-shop {
+  .afx-ap-single-shortcode {
     @apply flex justify-between items-center p-5;
   }
 
-  .afx-ap-single-shop h4 {
+  .afx-ap-single-shortcode h4 {
     @apply text-xl font-medium cursor-pointer hover:text-ap-primary;
   }
 
-  .afx-ap-single-shop div button {
+  .afx-ap-single-shortcode div button {
     @apply w-10;
   }
 

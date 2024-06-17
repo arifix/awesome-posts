@@ -8,7 +8,7 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={`sidebar w-1/6 h-screen p-3 lg:p-5 lg:pt-6 sticky inset-0 border-r-[1px] border-r-gray-300 ${
+      className={`sidebar w-1/6 h-screen p-3 lg:p-5 lg:pt-6 border-r-[1px] border-r-gray-300 ${
         !showSidebar ? "hidden" : ""
       }`}
     >
@@ -17,7 +17,7 @@ const Sidebar = () => {
         title="Awesome Posts"
         className="flex flex-col mt-5 lg:mt-0"
       >
-        <img src={icon} alt="Awesome Posts" className="w-16" />
+        <img src={icon} alt="Awesome Posts" className="w-14" />
         <span className="uppercase font-bold tracking-widest lg:tracking-[5px] mt-2 text-lg hidden md:block">
           Awesome Posts
         </span>

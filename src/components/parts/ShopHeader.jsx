@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { shopContext } from "../../contexts/shopContext.jsx";
+import { shortcodeContext } from "../../contexts/shortcodeContext.jsx";
 
 const ShopHeader = ({ loader, saveShop, error }) => {
-  const { shopSettings, setShopSettings } = useContext(shopContext);
+  const { shopSettings, setShopSettings } = useContext(shortcodeContext);
 
   return (
     <div className="flex justify-between items-center lg:pr-5">

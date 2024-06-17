@@ -45,27 +45,27 @@ class AFX_Rest_Routes
             'permission_callback' => [$this, 'afx_get_settings_permission']
         ]);
 
-        register_rest_route('afx-ap/v1', '/shop/all', [
+        register_rest_route('afx-ap/v1', '/shortcode/all', [
             'methods' => 'GET',
-            'callback' => [$this, 'afx_get_shop_all'],
+            'callback' => [$this, 'afx_get_shortcode_all'],
             'permission_callback' => [$this, 'afx_get_settings_permission']
         ]);
 
-        register_rest_route('afx-ap/v1', '/shop/get', [
+        register_rest_route('afx-ap/v1', '/shortcode/get', [
             'methods' => 'POST',
-            'callback' => [$this, 'afx_get_shop_single'],
+            'callback' => [$this, 'afx_get_shortcode_single'],
             'permission_callback' => [$this, 'afx_get_settings_permission']
         ]);
 
-        register_rest_route('afx-ap/v1', '/shop/new', [
+        register_rest_route('afx-ap/v1', '/shortcode/new', [
             'methods' => 'POST',
-            'callback' => [$this, 'afx_create_shop'],
+            'callback' => [$this, 'afx_create_shortcode'],
             'permission_callback' => [$this, 'afx_get_settings_permission']
         ]);
 
-        register_rest_route('afx-ap/v1', '/shop/delete', [
+        register_rest_route('afx-ap/v1', '/shortcode/delete', [
             'methods' => 'POST',
-            'callback' => [$this, 'afx_delete_shop'],
+            'callback' => [$this, 'afx_delete_shortcode'],
             'permission_callback' => [$this, 'afx_get_settings_permission']
         ]);
 
@@ -78,7 +78,7 @@ class AFX_Rest_Routes
 
     public function afx_get_settings()
     {
-        $settings = get_option('afx_shop_settings');
+        $settings = get_option('afx_shortcode_settings');
         $response = [
             'settings' => $settings
         ];
@@ -108,7 +108,7 @@ class AFX_Rest_Routes
             $new_settings = $settings;
         }
 
-        update_option('afx_shop_settings', $new_settings);
+        update_option('afx_shortcode_settings', $new_settings);
 
         return ['message' => 'Setting Saved Successfully'];
     }
@@ -119,7 +119,7 @@ class AFX_Rest_Routes
         $table_name = $wpdb->prefix . AFX_AP_TABLE_NAME;
 
         $wpdb->query("TRUNCATE TABLE $table_name");
-        update_option('afx_shop_settings', "");
+        update_option('afx_shortcode_settings', "");
 
         return ['message' => 'Setting Reset Successfully'];
     }
@@ -128,7 +128,7 @@ class AFX_Rest_Routes
     {
         global $wpdb;
 
-        $settings = get_option('afx_shop_settings');
+        $settings = get_option('afx_shortcode_settings');
         $setting_obj = json_decode($settings);
 
         $fonts = [];
@@ -145,17 +145,17 @@ class AFX_Rest_Routes
         $table_name = $wpdb->prefix . AFX_AP_TABLE_NAME;
         $results = $wpdb->get_results("SELECT * FROM `$table_name` WHERE 1");
 
-        $shops = [];
+        $shortcodes = [];
         if (count($results) > 0) {
             foreach ($results as $res) {
-                $shops[$res->title] = $res->settings;
+                $shortcodes[$res->title] = $res->settings;
             }
         }
 
-        $setting_obj->shops = json_encode($shops);
+        $setting_obj->shortcodes = json_encode($shortcodes);
 
         $upload_dir = wp_get_upload_dir();
-        $file_name = 'afx_shop_backup.json';
+        $file_name = 'awesome_posts_backup.json';
         $upload_url = $upload_dir['basedir'] . '/' . $file_name;
         file_put_contents($upload_url, json_encode($setting_obj));
 
@@ -174,14 +174,14 @@ class AFX_Rest_Routes
         $new_settings =  wp_remote_retrieve_body($request);
 
         $settings_obj = json_decode($new_settings);
-        $shops = $settings_obj->shops;
-        unset($settings_obj->shops);
+        $shortcodes = $settings_obj->shortcodes;
+        unset($settings_obj->shortcodes);
 
-        $shop_obj = json_decode($shops);
-        if (count((array) $shop_obj) > 0) {
+        $shortcode_obj = json_decode($shortcodes);
+        if (count((array) $shortcode_obj) > 0) {
             $wpdb->query("TRUNCATE TABLE $table_name");
 
-            foreach ($shop_obj as $key => $val) {
+            foreach ($shortcode_obj as $key => $val) {
                 $wpdb->insert($table_name, array(
                     'title' => $key,
                     'settings' => $val,
@@ -190,7 +190,7 @@ class AFX_Rest_Routes
             }
         }
 
-        update_option('afx_shop_settings', json_encode($settings_obj));
+        update_option('afx_shortcode_settings', json_encode($settings_obj));
 
         wp_delete_attachment($file_id);
         return ['message' => 'Setting Restored Successfully'];
@@ -222,7 +222,7 @@ class AFX_Rest_Routes
         return $pro_cats;
     }
 
-    public function afx_get_shop_all()
+    public function afx_get_shortcode_all()
     {
         global $wpdb;
 
@@ -232,29 +232,29 @@ class AFX_Rest_Routes
         return $results;
     }
 
-    public function afx_get_shop_single($req)
+    public function afx_get_shortcode_single($req)
     {
         global $wpdb;
 
-        $shop_id = $req['shop_id'];
+        $shortcode_id = $req['shortcode_id'];
 
         $table_name = $wpdb->prefix . AFX_AP_TABLE_NAME;
-        $results = $wpdb->get_results("SELECT * FROM `$table_name` WHERE `id`='$shop_id'");
+        $results = $wpdb->get_results("SELECT * FROM `$table_name` WHERE `id`='$shortcode_id'");
 
         return $results[0];
     }
 
-    public function afx_create_shop($req)
+    public function afx_create_shortcode($req)
     {
         global $wpdb;
 
         $table_name = $wpdb->prefix . AFX_AP_TABLE_NAME;
 
-        $shop_id = $req['shop_id'];
-        $title = $req['shop_title'];
-        $settings = $req['shop_settings'];
+        $shortcode_id = $req['shortcode_id'];
+        $title = $req['shortcode_title'];
+        $settings = $req['shortcode_settings'];
 
-        if ($shop_id) {
+        if ($shortcode_id) {
             $wpdb->update(
                 $table_name,
                 array(
@@ -262,10 +262,10 @@ class AFX_Rest_Routes
                     'settings' => $settings,
                 ),
                 array(
-                    "id" => $shop_id
+                    "id" => $shortcode_id
                 )
             );
-            $message = 'Shop Updated Successfully';
+            $message = 'Shortcode Updated Successfully';
         } else {
             $wpdb->insert($table_name, array(
                 'title' => $title,
@@ -273,21 +273,21 @@ class AFX_Rest_Routes
                 'timestamp' => time(),
             ));
 
-            $shop_id = $wpdb->insert_id;
-            $message = 'Shop Created Successfully';
+            $shortcode_id = $wpdb->insert_id;
+            $message = 'Shortcode Created Successfully';
         }
 
-        return ['shop_id' => $shop_id, 'message' => $message];
+        return ['shortcode_id' => $shortcode_id, 'message' => $message];
     }
 
-    public function afx_delete_shop($req)
+    public function afx_delete_shortcode($req)
     {
         global $wpdb;
 
         $table_name = $wpdb->prefix . AFX_AP_TABLE_NAME;
         $wpdb->delete($table_name, array('id' => $req['del_id']));
 
-        return ['message' => 'Shop Deleted Successfully'];
+        return ['message' => 'Shortcode Deleted Successfully'];
     }
 
     public function afx_get_products()

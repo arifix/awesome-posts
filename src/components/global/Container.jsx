@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
-import ShopManager from "../../pages/ShopManager";
-import ShopNew from "../../pages/ShopNew";
+import ShortcodeManager from "../../pages/ShortcodeManager";
+import ShortcodeNew from "../../pages/ShortcodeNew";
 import Settings from "../../pages/Settings";
 import { appContext } from "../../contexts/appContext";
 
@@ -9,8 +9,8 @@ const Container = () => {
 
   return (
     <div className="afx-ap-container">
-      {activeTab === "shop-manager" ? <ShopManager /> : ""}
-      {activeTab === "shop-new" ? <ShopNew /> : ""}
+      {activeTab === "shortcode-manager" ? <ShortcodeManager /> : ""}
+      {activeTab === "shortcode-new" ? <ShortcodeNew /> : ""}
       {activeTab === "settings" ? <Settings /> : ""}
     </div>
   );

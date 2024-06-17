@@ -11,7 +11,7 @@ import { Tooltip } from "react-tooltip";
 const App = () => {
   const [refreshSettings, setRefreshSettings] = useState(false);
   const [showSidebar, setShowSidebar] = useState(true);
-  const [activeTab, setActiveTab] = useState("shop-manager");
+  const [activeTab, setActiveTab] = useState("shortcode-manager");
   const [settings, setSettings] = useState({});
   const [loading, setLoading] = useState(true);
   const [shopId, setShopId] = useState(null);
@@ -91,9 +91,8 @@ const App = () => {
   const mediaUrl = `${afxApApp.apiUrl}/wp/v2/media/`;
 
   const pages = [
-    "shop-manager",
-    "shop-new",
-    "product",
+    "shortcode-manager",
+    "shortcode-new",
     "settings",
   ];
 

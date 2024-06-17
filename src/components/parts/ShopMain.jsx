@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { appContext } from "../../contexts/appContext.jsx";
-import { shopContext } from "../../contexts/shopContext.jsx";
+import { shortcodeContext } from "../../contexts/shortcodeContext.jsx";
 import Select from "react-select";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -11,7 +11,7 @@ const ShopMain = () => {
   const [categories, setCategories] = useState({});
 
   const { shopSettings, setShopSettings, orderOptions } =
-    useContext(shopContext);
+    useContext(shortcodeContext);
 
   const { baseUrl } = useContext(appContext);
   useEffect(() => {

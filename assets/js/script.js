@@ -41,7 +41,7 @@
 
     sendAjax(
       admin_url,
-      "get-posts-data",
+      "get_awesome-posts",
       { categories, posts_per_page, order },
       function (data) {
         $(".product-grid .product").remove();
@@ -71,7 +71,7 @@
 
     sendAjax(
       admin_url,
-      "get-posts-data",
+      "get_awesome-posts",
       { categories, posts_per_page, offset, order },
       function (data) {
         $(".product-grid .product").last().after(data.result);
