@@ -6,7 +6,7 @@ class AFX_Helper
     {
         add_filter('upload_mimes', [$this, 'afx_add_font_upload_mimes']);
         add_filter('wp_check_filetype_and_ext', [$this, 'afx_add_allow_upload_extension_exception'], 99, 4);
-        add_filter('wp_head', [$this, 'afx_print_shop_styles']);
+        add_filter('wp_head', [$this, 'afx_print_shortcode_styles']);
         add_filter('wp_head', [$this, 'afx_print_product_styles']);
         add_filter('wp_footer', [$this, 'afx_showit_add_product_title_on_single_page']);
     }
@@ -41,53 +41,53 @@ class AFX_Helper
         return $types;
     }
 
-    function afx_print_shop_styles()
+    function afx_print_shortcode_styles()
     {
         if (is_shop()) {
-            $settings = json_decode(get_option('afx_shop_settings'));
-            $default_shop = $settings->default_shop ?? '';
-            $shop_toggle = $default_shop->shopStyleToggle ?? false;
+            $settings = json_decode(get_option('afx_shortcode_settings'));
+            $default_shortcode = $settings->default_shortcode ?? '';
+            $shortcode_toggle = $default_shortcode->shortcodeStyleToggle ?? false;
 
-            if ($shop_toggle) {
+            if ($shortcode_toggle) {
                 $style = '<style>';
 
-                if ($default_shop->sdOnSaleBadgeFont) {
-                    $font = str_contains($default_shop->sdOnSaleBadgeFont, 'http')
-                        ? AFX_Helper::fonts_url_to_name($default_shop->sdOnSaleBadgeFont)
-                        : $default_shop->sdOnSaleBadgeFont;
-                    $font_url = str_contains($default_shop->sdOnSaleBadgeFont, 'http')
-                        ? $default_shop->sdOnSaleBadgeFont
-                        : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $default_shop->sdOnSaleBadgeFont) . '&display=swap';
+                if ($default_shortcode->sdOnSaleBadgeFont) {
+                    $font = str_contains($default_shortcode->sdOnSaleBadgeFont, 'http')
+                        ? AFX_Helper::fonts_url_to_name($default_shortcode->sdOnSaleBadgeFont)
+                        : $default_shortcode->sdOnSaleBadgeFont;
+                    $font_url = str_contains($default_shortcode->sdOnSaleBadgeFont, 'http')
+                        ? $default_shortcode->sdOnSaleBadgeFont
+                        : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $default_shortcode->sdOnSaleBadgeFont) . '&display=swap';
                     $style .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}.woocommerce ul.products li.product .onsale{font-family: "' . $font . '" !important;}';
                 }
 
-                if ($default_shop->sdProductTitleFont) {
-                    $font = str_contains($default_shop->sdProductTitleFont, 'http')
-                        ? AFX_Helper::fonts_url_to_name($default_shop->sdProductTitleFont)
-                        : $default_shop->sdProductTitleFont;
-                    $font_url = str_contains($default_shop->sdProductTitleFont, 'http')
-                        ? $default_shop->sdProductTitleFont
-                        : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $default_shop->sdProductTitleFont) . '&display=swap';
+                if ($default_shortcode->sdProductTitleFont) {
+                    $font = str_contains($default_shortcode->sdProductTitleFont, 'http')
+                        ? AFX_Helper::fonts_url_to_name($default_shortcode->sdProductTitleFont)
+                        : $default_shortcode->sdProductTitleFont;
+                    $font_url = str_contains($default_shortcode->sdProductTitleFont, 'http')
+                        ? $default_shortcode->sdProductTitleFont
+                        : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $default_shortcode->sdProductTitleFont) . '&display=swap';
                     $style .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}.woocommerce ul.products li.product .woocommerce-loop-product__title{font-family: "' . $font . '" !important;}';
                 }
 
-                if ($default_shop->sdProductPriceFont) {
-                    $font = str_contains($default_shop->sdProductPriceFont, 'http')
-                        ? AFX_Helper::fonts_url_to_name($default_shop->sdProductPriceFont)
-                        : $default_shop->sdProductPriceFont;
-                    $font_url = str_contains($default_shop->sdProductPriceFont, 'http')
-                        ? $default_shop->sdProductPriceFont
-                        : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $default_shop->sdProductPriceFont) . '&display=swap';
+                if ($default_shortcode->sdProductPriceFont) {
+                    $font = str_contains($default_shortcode->sdProductPriceFont, 'http')
+                        ? AFX_Helper::fonts_url_to_name($default_shortcode->sdProductPriceFont)
+                        : $default_shortcode->sdProductPriceFont;
+                    $font_url = str_contains($default_shortcode->sdProductPriceFont, 'http')
+                        ? $default_shortcode->sdProductPriceFont
+                        : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $default_shortcode->sdProductPriceFont) . '&display=swap';
                     $style .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}.woocommerce ul.products li.product .price{font-family: "' . $font . '" !important;}';
                 }
 
-                if ($default_shop->sdAddToCartBtnFont) {
-                    $font = str_contains($default_shop->sdAddToCartBtnFont, 'http')
-                        ? AFX_Helper::fonts_url_to_name($default_shop->sdAddToCartBtnFont)
-                        : $default_shop->sdAddToCartBtnFont;
-                    $font_url = str_contains($default_shop->sdAddToCartBtnFont, 'http')
-                        ? $default_shop->sdAddToCartBtnFont
-                        : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $default_shop->sdAddToCartBtnFont) . '&display=swap';
+                if ($default_shortcode->sdAddToCartBtnFont) {
+                    $font = str_contains($default_shortcode->sdAddToCartBtnFont, 'http')
+                        ? AFX_Helper::fonts_url_to_name($default_shortcode->sdAddToCartBtnFont)
+                        : $default_shortcode->sdAddToCartBtnFont;
+                    $font_url = str_contains($default_shortcode->sdAddToCartBtnFont, 'http')
+                        ? $default_shortcode->sdAddToCartBtnFont
+                        : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $default_shortcode->sdAddToCartBtnFont) . '&display=swap';
                     $style .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}.woocommerce ul.products li.product .button{font-family: "' . $font . '" !important;}';
                 }
 
@@ -106,36 +106,36 @@ class AFX_Helper
                         /* === SALE BADGE === */
                         .woocommerce ul.products li.product .onsale {
                             font-family: sans-serif;
-                            background-color: ' . $default_shop->sdOnSaleBadgeBgColor . ';
-                            color: ' . $default_shop->sdOnSaleBadgeColor . ';
-                            font-weight: ' . $default_shop->sdOnSaleBadgeWeight . ';
-                            font-size: ' . $default_shop->sdOnSaleBadgeSize . 'px;
-                            letter-spacing: ' . $default_shop->sdOnSaleBadgeLetterSpacing . 'px;
-                            text-transform: ' . $default_shop->sdOnSaleBadgeTextTransform . ';
+                            background-color: ' . $default_shortcode->sdOnSaleBadgeBgColor . ';
+                            color: ' . $default_shortcode->sdOnSaleBadgeColor . ';
+                            font-weight: ' . $default_shortcode->sdOnSaleBadgeWeight . ';
+                            font-size: ' . $default_shortcode->sdOnSaleBadgeSize . 'px;
+                            letter-spacing: ' . $default_shortcode->sdOnSaleBadgeLetterSpacing . 'px;
+                            text-transform: ' . $default_shortcode->sdOnSaleBadgeTextTransform . ';
                             padding: 0.4em;
                         }
 
                         /* === PRODUCT TITLE === */
                         .woocommerce ul.products li.product .woocommerce-loop-product__title {
                             font-family: sans-serif;
-                            color: ' . $default_shop->sdProductTitleColor . ';
-                            font-weight: ' . $default_shop->sdProductTitleWeight . ';
-                            font-size: ' . $default_shop->sdProductTitleSize . 'px;
-                            letter-spacing: ' . $default_shop->sdProductTitleLetterSpacing . 'px;
-                            line-height: ' . $default_shop->sdProductTitleLineHeight . 'px;
-                            text-transform: ' . $default_shop->sdProductTitleTextTransform . ';
+                            color: ' . $default_shortcode->sdProductTitleColor . ';
+                            font-weight: ' . $default_shortcode->sdProductTitleWeight . ';
+                            font-size: ' . $default_shortcode->sdProductTitleSize . 'px;
+                            letter-spacing: ' . $default_shortcode->sdProductTitleLetterSpacing . 'px;
+                            line-height: ' . $default_shortcode->sdProductTitleLineHeight . 'px;
+                            text-transform: ' . $default_shortcode->sdProductTitleTextTransform . ';
                             text-align: left;
                         }
 
                         /* === PRODUCT PRICE === */
                         .woocommerce ul.products li.product .price {
                             font-family: sans-serif;
-                            color: ' . $default_shop->sdProductPriceColor . ';
-                            font-size: ' . $default_shop->sdProductPriceSize . 'px;
-                            font-weight: ' . $default_shop->sdProductPriceWeight . ';
-                            letter-spacing: ' . $default_shop->sdProductPriceLetterSpacing . 'px;
-                            line-height: ' . $default_shop->sdProductPriceLineHeight . 'px;
-                            text-transform: ' . $default_shop->sdProductPriceTextTransform . ';
+                            color: ' . $default_shortcode->sdProductPriceColor . ';
+                            font-size: ' . $default_shortcode->sdProductPriceSize . 'px;
+                            font-weight: ' . $default_shortcode->sdProductPriceWeight . ';
+                            letter-spacing: ' . $default_shortcode->sdProductPriceLetterSpacing . 'px;
+                            line-height: ' . $default_shortcode->sdProductPriceLineHeight . 'px;
+                            text-transform: ' . $default_shortcode->sdProductPriceTextTransform . ';
                         }
 
                         .woocommerce ul.products li.product .price del {
@@ -151,11 +151,11 @@ class AFX_Helper
                         /* === PRODUCT BUTTON === */
                         .woocommerce ul.products li.product .button {
                             font-family: sans-serif;
-                            background-color: ' . $default_shop->sdAddToCartBtnBgColor . ' !important;
-                            color: ' . $default_shop->sdAddToCartBtnColor . ' !important;
-                            font-size: ' . $default_shop->sdAddToCartBtnSize . 'px;
-                            letter-spacing: ' . $default_shop->sdAddToCartBtnLetterSpacing . 'px;
-                            text-transform: ' . $default_shop->sdAddToCartBtnTextTransform . ';
+                            background-color: ' . $default_shortcode->sdAddToCartBtnBgColor . ' !important;
+                            color: ' . $default_shortcode->sdAddToCartBtnColor . ' !important;
+                            font-size: ' . $default_shortcode->sdAddToCartBtnSize . 'px;
+                            letter-spacing: ' . $default_shortcode->sdAddToCartBtnLetterSpacing . 'px;
+                            text-transform: ' . $default_shortcode->sdAddToCartBtnTextTransform . ';
                             font-weight: normal;
                             padding: 12px 25px;
                             border-radius: 100px;
@@ -173,23 +173,23 @@ class AFX_Helper
     function afx_print_product_styles()
     {
         if (is_product()) {
-            $settings = json_decode(get_option('afx_shop_settings'));
-            $default_shop = $settings->default_shop ?? '';
+            $settings = json_decode(get_option('afx_shortcode_settings'));
+            $default_shortcode = $settings->default_shortcode ?? '';
             $default_product = $settings->default_product ?? '';
 
-            $shop_toggle = $default_shop->shopStyleToggle ?? false;
+            $shortcode_toggle = $default_shortcode->shortcodeStyleToggle ?? false;
             $product_toggle = $default_product->productStyleToggle ?? false;
 
             if ($product_toggle) {
                 $style = '<style>';
-                if ($shop_toggle) {
-                    if ($default_shop->sdOnSaleBadgeFont) {
-                        $font = str_contains($default_shop->sdOnSaleBadgeFont, 'http')
-                            ? AFX_Helper::fonts_url_to_name($default_shop->sdOnSaleBadgeFont)
-                            : $default_shop->sdOnSaleBadgeFont;
-                        $font_url = str_contains($default_shop->sdOnSaleBadgeFont, 'http')
-                            ? $default_shop->sdOnSaleBadgeFont
-                            : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $default_shop->sdOnSaleBadgeFont) . '&display=swap';
+                if ($shortcode_toggle) {
+                    if ($default_shortcode->sdOnSaleBadgeFont) {
+                        $font = str_contains($default_shortcode->sdOnSaleBadgeFont, 'http')
+                            ? AFX_Helper::fonts_url_to_name($default_shortcode->sdOnSaleBadgeFont)
+                            : $default_shortcode->sdOnSaleBadgeFont;
+                        $font_url = str_contains($default_shortcode->sdOnSaleBadgeFont, 'http')
+                            ? $default_shortcode->sdOnSaleBadgeFont
+                            : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $default_shortcode->sdOnSaleBadgeFont) . '&display=swap';
                         $style .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}.woocommerce span.onsale{font-family: "' . $font . '" !important;}';
                     }
                 }
@@ -285,16 +285,16 @@ class AFX_Helper
                     $style .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}section.related.products h2{font-family: "' . $font . '" !important;}';
                 }
 
-                if ($shop_toggle) {
+                if ($shortcode_toggle) {
                     $style .= '
                         /* === SALE BANNER === */
                         .woocommerce span.onsale {
-                            background-color: ' . $default_shop->sdOnSaleBadgeBgColor . ';
-                            color: ' . $default_shop->sdOnSaleBadgeColor . ';
-                            font-weight: ' . $default_shop->sdOnSaleBadgeWeight . ';
-                            font-size: ' . $default_shop->sdOnSaleBadgeSize . 'px;
-                            letter-spacing: ' . $default_shop->sdOnSaleBadgeLetterSpacing . 'px;
-                            text-transform: ' . $default_shop->sdOnSaleBadgeTextTransform . ';
+                            background-color: ' . $default_shortcode->sdOnSaleBadgeBgColor . ';
+                            color: ' . $default_shortcode->sdOnSaleBadgeColor . ';
+                            font-weight: ' . $default_shortcode->sdOnSaleBadgeWeight . ';
+                            font-size: ' . $default_shortcode->sdOnSaleBadgeSize . 'px;
+                            letter-spacing: ' . $default_shortcode->sdOnSaleBadgeLetterSpacing . 'px;
+                            text-transform: ' . $default_shortcode->sdOnSaleBadgeTextTransform . ';
                             padding: 0.4em;
                         }
                     ';

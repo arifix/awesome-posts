@@ -1,14 +1,4 @@
 (function ($) {
-  function init() {
-    const shop_count = $("#afx-ap-wrapper").length;
-    if (shop_count && $("body").hasClass("woocommerce-shop")) {
-      $(
-        ".woocommerce-notices-wrapper, p.woocommerce-result-count, form.woocommerce-ordering, ul.products"
-      ).hide();
-    }
-  }
-  init();
-
   function sendAjax(admin_ajax, action, params, successFun, beforeFun) {
     return new Promise(function (resolve, reject) {
       $.ajax({

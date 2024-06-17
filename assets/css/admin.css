@@ -985,10 +985,6 @@ video {
   position: relative;
 }
 
-#afx-ap-app :is(.sticky) {
-  position: sticky;
-}
-
 #afx-ap-app :is(.inset-0) {
   inset: 0px;
 }
