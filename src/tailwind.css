@@ -5,7 +5,7 @@
 @layer components {
   @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap");
 
-  #tss-app {
+  #afx-ap-app {
     font-family: "Outfit", sans-serif;
     width: 100%;
     max-width: 100%;
@@ -20,7 +20,7 @@
   }
 
   .heading-sub {
-    @apply text-lg mb-3 text-tonic-text mt-1;
+    @apply text-lg mb-3 text-ap-text mt-1;
   }
 
   .action-button {
@@ -32,19 +32,19 @@
   }
 
   .action-button.primary {
-    @apply border-tonic-primary bg-tonic-primary text-white hover:text-tonic-primary hover:bg-white;
+    @apply border-ap-primary bg-ap-primary text-white hover:text-ap-primary hover:bg-white;
   }
 
   .action-button.primary.active {
-    @apply bg-tonic-primary text-white;
+    @apply bg-ap-primary text-white;
   }
 
   .action-button.secondary {
-    @apply border-tonic-secondary text-tonic-secondary hover:bg-tonic-secondary hover:text-white;
+    @apply border-ap-secondary text-ap-secondary hover:bg-ap-secondary hover:text-white;
   }
 
   .action-button.secondary.active {
-    @apply bg-tonic-secondary text-white;
+    @apply bg-ap-secondary text-white;
   }
 
   .navigation li {
@@ -52,7 +52,7 @@
   }
 
   .navigation a {
-    @apply w-full items-center text-lg lg:inline-flex py-2 px-3 hover:text-tonic-primary focus:shadow-none;
+    @apply w-full items-center text-lg lg:inline-flex py-2 px-3 hover:text-ap-primary focus:shadow-none;
   }
 
   .navigation a span {
@@ -60,7 +60,7 @@
   }
 
   .navigation a.active {
-    @apply text-tonic-primary;
+    @apply text-ap-primary;
   }
 
   .navigation a i {
@@ -88,33 +88,33 @@
   }
 
   .filters a {
-    @apply text-lg text-tonic-text px-5 py-3 relative bottom-2.5 hover:text-tonic-primary hover:border-b-4 hover:border-b-tonic-primary focus:shadow-none;
+    @apply text-lg text-ap-text px-5 py-3 relative bottom-2.5 hover:text-ap-primary hover:border-b-4 hover:border-b-ap-primary focus:shadow-none;
   }
   .filters li a i {
     @apply relative top-1 mr-2;
   }
 
   .filters li.active a {
-    @apply text-tonic-primary border-b-4 border-b-tonic-primary;
+    @apply text-ap-primary border-b-4 border-b-ap-primary;
   }
 
-  .tss-form-field {
+  .afx-ap-form-field {
     @apply flex justify-start items-center gap-3 mb-5;
   }
 
-  .tss-form-field label {
+  .afx-ap-form-field label {
     @apply block text-lg font-medium w-36;
   }
 
-  .tss-input {
-    @apply w-full max-w-[300px] h-11 rounded-md border border-gray-100 bg-white py-3 px-6 text-base text-gray-400 outline-none focus:border-tonic-primary focus:shadow-md;
+  .afx-ap-input {
+    @apply w-full max-w-[300px] h-11 rounded-md border border-gray-100 bg-white py-3 px-6 text-base text-gray-400 outline-none focus:border-ap-primary focus:shadow-md;
   }
 
-  .tss-switch:checked ~ .dot {
-    @apply !bg-tonic-primary translate-x-full;
+  .afx-ap-switch:checked ~ .dot {
+    @apply !bg-ap-primary translate-x-full;
   }
 
-  .tss-color-picker {
+  .afx-ap-color-picker {
     @apply w-[40px] h-[40px] bg-gray-500 transition-all rounded-full block ring-gray-500 hover:ring-2 ring-offset-1 cursor-pointer;
   }
 
@@ -122,23 +122,23 @@
     @apply grid grid-cols-4 lg:flex;
   }
 
-  .tss-btngroup {
+  .afx-ap-btngroup {
     @apply flex gap-2;
   }
 
-  .tss-backup {
+  .afx-ap-backup {
     @apply w-full max-w-[100%] h-40 text-gray-700 text-sm font-thin border-gray-700;
   }
 
-  .tss-form-section {
+  .afx-ap-form-section {
     @apply grid grid-cols-3 gap-10 mb-3;
   }
 
-  .tss-style-group {
+  .afx-ap-style-group {
     @apply bg-gray-300 p-3 mb-5 rounded;
   }
 
-  .tss-shortcode {
+  .afx-ap-shortcode {
     @apply mt-5 mb-5 text-base overflow-scroll break-words block p-5 w-full h-auto min-h-[100px] rounded;
   }
 
@@ -174,23 +174,23 @@
     @apply w-8 h-8 absolute top-0 right-0 cursor-pointer;
   }
 
-  .tss-shops {
+  .afx-ap-shops {
     @apply flex flex-col gap-3 mx-0 lg:mx-5 lg:my-3 p-5 divide-y-2 divide-gray-300;
   }
 
-  .tss-single-shop {
+  .afx-ap-single-shop {
     @apply flex justify-between items-center p-5;
   }
 
-  .tss-single-shop h4 {
-    @apply text-xl font-medium cursor-pointer hover:text-tonic-primary;
+  .afx-ap-single-shop h4 {
+    @apply text-xl font-medium cursor-pointer hover:text-ap-primary;
   }
 
-  .tss-single-shop div button {
+  .afx-ap-single-shop div button {
     @apply w-10;
   }
 
-  .tss-input-error {
+  .afx-ap-input-error {
     @apply !border-2 !border-red-500;
   }
 
@@ -279,13 +279,13 @@ input[id^="rc-editable-input"] {
 
 /* Plugin Page Config */
 @media screen and (min-width: 961px) {
-  .toplevel_page_tss-shop #wpcontent {
+  .toplevel_page_awesome-posts #wpcontent {
     margin-left: 140px;
   }
 }
 
 @media screen and (max-width: 960px) {
-  .toplevel_page_tss-shop #wpcontent {
+  .toplevel_page_awesome-posts #wpcontent {
     padding-left: 0;
   }
 }

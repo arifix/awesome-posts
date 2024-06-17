@@ -10,11 +10,11 @@ const BrandColors = ({ brandColors, setBrandColors }) => {
   });
 
   return (
-    <div className="tss-brand-colors p-5">
+    <div className="afx-ap-brand-colors p-5">
       <h3 className="heading-secondary">Brand Colors</h3>
-      <div className="tss-form-field gap-5 color-groups">
+      <div className="afx-ap-form-field gap-5 color-groups">
         <div
-          className="tss-color-picker"
+          className="afx-ap-color-picker"
           onClick={() => setPickers({ ...pickers, picker1: !pickers.picker1 })}
           style={{ backgroundColor: brandColors.color1, height: 50, width: 50 }}
         ></div>
@@ -34,7 +34,7 @@ const BrandColors = ({ brandColors, setBrandColors }) => {
         ) : null}
 
         <div
-          className="tss-color-picker"
+          className="afx-ap-color-picker"
           onClick={() => setPickers({ ...pickers, picker2: !pickers.picker2 })}
           style={{ backgroundColor: brandColors.color2, height: 50, width: 50 }}
         ></div>
@@ -54,7 +54,7 @@ const BrandColors = ({ brandColors, setBrandColors }) => {
         ) : null}
 
         <div
-          className="tss-color-picker"
+          className="afx-ap-color-picker"
           onClick={() => setPickers({ ...pickers, picker3: !pickers.picker3 })}
           style={{ backgroundColor: brandColors.color3, height: 50, width: 50 }}
         ></div>
@@ -73,7 +73,7 @@ const BrandColors = ({ brandColors, setBrandColors }) => {
           </div>
         ) : null}
         <div
-          className="tss-color-picker"
+          className="afx-ap-color-picker"
           onClick={() => setPickers({ ...pickers, picker4: !pickers.picker4 })}
           style={{ backgroundColor: brandColors.color4, height: 50, width: 50 }}
         ></div>

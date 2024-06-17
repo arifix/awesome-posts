@@ -32,7 +32,7 @@ const Activation = ({ saveText, saveAllSettings }) => {
           {
             headers: {
               "content-type": "application/json",
-              "X-WP-NONCE": tssApp.nonce,
+              "X-WP-NONCE": afxApApp.nonce,
             },
           }
         )
@@ -45,7 +45,7 @@ const Activation = ({ saveText, saveAllSettings }) => {
   };
 
   return (
-    <div className="tss-activation p-5">
+    <div className="afx-ap-activation p-5">
       <div className="flex justify-between items-center pr-5 mb-5">
         <h3 className="heading-secondary pb-0">Activation</h3>
         {activation ? (
@@ -60,14 +60,14 @@ const Activation = ({ saveText, saveAllSettings }) => {
           ""
         )}
       </div>
-      <div className="tss-form-field flex-col !items-start">
+      <div className="afx-ap-form-field flex-col !items-start">
         <label htmlFor="activation">Activation Key</label>
         <input
           type="text"
           minlength="24"
           maxlength="24"
           placeholder="XXXX-XXXX-XXXX-XXXX-XXXX"
-          className={`tss-input ${error ? "tss-input-error" : ""}`}
+          className={`afx-ap-input ${error ? "afx-ap-input-error" : ""}`}
           required=""
           value={activationKey}
           onChange={(e) => setActivationKey(e.target.value)}

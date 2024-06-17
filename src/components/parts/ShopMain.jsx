@@ -24,7 +24,7 @@ const ShopMain = () => {
 
   return (
     <div>
-      <div className="tss-form-field flex-col !items-start">
+      <div className="afx-ap-form-field flex-col !items-start">
         <label htmlFor="">Grid Columns:</label>
         <div className="w-full flex flex-wrap gap-5">
           <label
@@ -311,7 +311,7 @@ const ShopMain = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-10 mt-10">
-        <div className="tss-form-field flex-col !items-start">
+        <div className="afx-ap-form-field flex-col !items-start">
           <label htmlFor="">Categories:</label>
           {categories.length > 0 ? (
             <Select
@@ -349,7 +349,7 @@ const ShopMain = () => {
           settings={shopSettings}
           setSettings={setShopSettings}
         />
-        <div className="tss-form-field flex-col !items-start">
+        <div className="afx-ap-form-field flex-col !items-start">
           <label htmlFor="">Default Order:</label>
           <Select
             options={orderOptions}

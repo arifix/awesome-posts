@@ -87,8 +87,8 @@ const App = () => {
     productButtonBorderRadius: 10,
   });
 
-  const baseUrl = `${tssApp.apiUrl}/tss-shop/v1/`;
-  const mediaUrl = `${tssApp.apiUrl}/wp/v2/media/`;
+  const baseUrl = `${afxApApp.apiUrl}/afx-ap/v1/`;
+  const mediaUrl = `${afxApApp.apiUrl}/wp/v2/media/`;
 
   const pages = [
     "shop-default",
@@ -153,11 +153,11 @@ const App = () => {
 
         <div className={`${showSidebar ? "w-5/6" : "w-full"}`}>
           <SidebarToggle />
-          <div className="tss-container">
+          <div className="afx-ap-container">
             <Container />
           </div>
 
-          <Tooltip id="tss-tooltip" />
+          <Tooltip id="afx-ap-tooltip" />
           <Toaster
             position="bottom-right"
             reverseOrder={false}

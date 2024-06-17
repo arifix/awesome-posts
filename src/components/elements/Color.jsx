@@ -8,10 +8,10 @@ const Color = ({ title = "Text", name }) => {
     useContext(shopContext);
 
   return (
-    <div className="tss-form-field flex-col !items-start">
+    <div className="afx-ap-form-field flex-col !items-start">
       <label htmlFor="">{title}&nbsp;Color:</label>
       <div
-        className="tss-color-picker"
+        className="afx-ap-color-picker"
         onClick={() => setPicker(!showPicker)}
         style={{ backgroundColor: defaultSettings[name] }}
       ></div>

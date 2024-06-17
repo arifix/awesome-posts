@@ -123,7 +123,7 @@ const ShopDefault = () => {
         {
           headers: {
             "content-type": "application/json",
-            "X-WP-NONCE": tssApp.nonce,
+            "X-WP-NONCE": afxApApp.nonce,
           },
         }
       )
@@ -153,7 +153,7 @@ const ShopDefault = () => {
       : `https://fonts.googleapis.com/css?family=${defaultSettings.sdOnSaleBadgeFont
           .split(" ")
           .join("+")}&display=swap`;
-    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.tss-product-sale{font-family: '${font}';}`;
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.afx-ap-product-sale{font-family: '${font}';}`;
   }
 
   if (defaultSettings.sdProductTitleFont) {
@@ -165,7 +165,7 @@ const ShopDefault = () => {
       : `https://fonts.googleapis.com/css?family=${defaultSettings.sdProductTitleFont
           .split(" ")
           .join("+")}&display=swap`;
-    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.tss-product-title{font-family: '${font}';}`;
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.afx-ap-product-title{font-family: '${font}';}`;
   }
 
   if (defaultSettings.sdProductPriceFont) {
@@ -177,7 +177,7 @@ const ShopDefault = () => {
       : `https://fonts.googleapis.com/css?family=${defaultSettings.sdProductPriceFont
           .split(" ")
           .join("+")}&display=swap`;
-    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.tss-product-price{font-family: '${font}';}`;
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.afx-ap-product-price{font-family: '${font}';}`;
   }
 
   if (defaultSettings.sdAddToCartBtnFont) {
@@ -189,7 +189,7 @@ const ShopDefault = () => {
       : `https://fonts.googleapis.com/css?family=${defaultSettings.sdAddToCartBtnFont
           .split(" ")
           .join("+")}&display=swap`;
-    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.tss-product-btn{font-family: '${font}';}`;
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.afx-ap-product-btn{font-family: '${font}';}`;
   }
 
   styles += `</style>`;
@@ -197,7 +197,7 @@ const ShopDefault = () => {
   return (
     <shopContext.Provider value={shopValues}>
       <div
-        className={`tss-shop-default ${
+        className={`afx-ap-shop-default ${
           activeTab != "shop-default" ? "hidden" : ""
         }`}
       >
@@ -218,7 +218,7 @@ const ShopDefault = () => {
 
             <Divider />
 
-            <div className="tss-default-shop p-5">
+            <div className="afx-ap-default-shop p-5">
               <div dangerouslySetInnerHTML={{ __html: styles }}></div>
               <div className="flex justify-between items-center pr-5 gap-5">
                 <h3 className="heading-secondary text-2xl pb-0">
@@ -226,7 +226,7 @@ const ShopDefault = () => {
                   <p>&nbsp;</p>
                   <Toggle title="Use Custom Styling" name="shopStyleToggle" />
                 </h3>
-                <div className="tss-btngroup">
+                <div className="afx-ap-btngroup">
                   <button
                     type="button"
                     className="action-button secondary"
@@ -313,7 +313,7 @@ const ShopDefault = () => {
 
                     <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7 text-center">
                       <div
-                        className="tss-product-sale mx-auto text-lg flex justify-center items-center"
+                        className="afx-ap-product-sale mx-auto text-lg flex justify-center items-center"
                         style={{
                           backgroundColor: defaultSettings.sdOnSaleBadgeBgColor,
                           color: defaultSettings.sdOnSaleBadgeColor,
@@ -371,7 +371,7 @@ const ShopDefault = () => {
 
                     <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
                       <h4
-                        className="tss-product-title text-center text-xl"
+                        className="afx-ap-product-title text-center text-xl"
                         style={{
                           color: defaultSettings.sdProductTitleColor,
                           fontWeight: defaultSettings.sdProductTitleWeight,
@@ -426,7 +426,7 @@ const ShopDefault = () => {
 
                     <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
                       <h4
-                        className="tss-product-price text-center text-xl"
+                        className="afx-ap-product-price text-center text-xl"
                         style={{
                           color: defaultSettings.sdProductPriceColor,
                           fontWeight: defaultSettings.sdProductPriceWeight,
@@ -474,7 +474,7 @@ const ShopDefault = () => {
                     </div>
                     <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7 text-center">
                       <button
-                        className="tss-product-btn mx-auto text-xl"
+                        className="afx-ap-product-btn mx-auto text-xl"
                         style={{
                           backgroundColor:
                             defaultSettings.sdAddToCartBtnBgColor,

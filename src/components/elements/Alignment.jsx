@@ -5,7 +5,7 @@ const Alignment = ({ name }) => {
   const { defaultSettings, setDefaultSettings } = useContext(shopContext);
 
   return (
-    <div className="tss-form-field flex-col !items-start">
+    <div className="afx-ap-form-field flex-col !items-start">
       <label htmlFor="">Text Alignment:</label>
       <div className="grid w-48 grid-cols-3 gap-2 rounded p-1">
         <div>
@@ -18,7 +18,7 @@ const Alignment = ({ name }) => {
           />
           <label
             htmlFor=""
-            className="block !w-auto !text-base cursor-pointer select-none rounded p-2 text-center peer-checked:bg-tonic-primary peer-checked:font-bold peer-checked:text-white"
+            className="block !w-auto !text-base cursor-pointer select-none rounded p-2 text-center peer-checked:bg-ap-primary peer-checked:font-bold peer-checked:text-white"
             onClick={(e) =>
               setDefaultSettings({
                 ...defaultSettings,
@@ -51,7 +51,7 @@ const Alignment = ({ name }) => {
           />
           <label
             htmlFor=""
-            className="block !w-auto !text-base cursor-pointer select-none rounded p-2 text-center peer-checked:bg-tonic-primary peer-checked:font-bold peer-checked:text-white"
+            className="block !w-auto !text-base cursor-pointer select-none rounded p-2 text-center peer-checked:bg-ap-primary peer-checked:font-bold peer-checked:text-white"
             onClick={(e) =>
               setDefaultSettings({
                 ...defaultSettings,
@@ -84,7 +84,7 @@ const Alignment = ({ name }) => {
           />
           <label
             htmlFor=""
-            className="block !w-auto !text-base cursor-pointer select-none rounded p-2 text-center peer-checked:bg-tonic-primary peer-checked:font-bold peer-checked:text-white"
+            className="block !w-auto !text-base cursor-pointer select-none rounded p-2 text-center peer-checked:bg-ap-primary peer-checked:font-bold peer-checked:text-white"
             onClick={(e) =>
               setDefaultSettings({
                 ...defaultSettings,

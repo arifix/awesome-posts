@@ -54,7 +54,7 @@ const Settings = () => {
         {
           headers: {
             "content-type": "application/json",
-            "X-WP-NONCE": tssApp.nonce,
+            "X-WP-NONCE": afxApApp.nonce,
           },
         }
       )
@@ -78,7 +78,7 @@ const Settings = () => {
         {
           headers: {
             "content-type": "application/json",
-            "X-WP-NONCE": tssApp.nonce,
+            "X-WP-NONCE": afxApApp.nonce,
           },
         }
       )
@@ -93,7 +93,7 @@ const Settings = () => {
   };
 
   return (
-    <div className={`tss-settings ${activeTab != "settings" ? "hidden" : ""}`}>
+    <div className={`afx-ap-settings ${activeTab != "settings" ? "hidden" : ""}`}>
       <h2 className="heading-primary">Settings</h2>
 
       <Divider />

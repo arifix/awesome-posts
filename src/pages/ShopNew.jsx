@@ -79,7 +79,7 @@ const ShopNew = () => {
             {
               headers: {
                 "content-type": "application/json",
-                "X-WP-NONCE": tssApp.nonce,
+                "X-WP-NONCE": afxApApp.nonce,
               },
             }
           )
@@ -179,7 +179,7 @@ const ShopNew = () => {
           {
             headers: {
               "content-type": "application/json",
-              "X-WP-NONCE": tssApp.nonce,
+              "X-WP-NONCE": afxApApp.nonce,
             },
           }
         )
@@ -235,7 +235,7 @@ const ShopNew = () => {
       : `https://fonts.googleapis.com/css?family=${shopSettings.productTitleFont
           .split(" ")
           .join("+")}&display=swap`;
-    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.tss-product-title{font-family: '${font}';}`;
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.afx-ap-product-title{font-family: '${font}';}`;
   }
 
   if (shopSettings.productDesFont) {
@@ -247,7 +247,7 @@ const ShopNew = () => {
       : `https://fonts.googleapis.com/css?family=${shopSettings.productDesFont
           .split(" ")
           .join("+")}&display=swap`;
-    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.tss-product-des{font-family: '${font}';}`;
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.afx-ap-product-des{font-family: '${font}';}`;
   }
 
   if (shopSettings.productPriceFont) {
@@ -259,7 +259,7 @@ const ShopNew = () => {
       : `https://fonts.googleapis.com/css?family=${shopSettings.productPriceFont
           .split(" ")
           .join("+")}&display=swap`;
-    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.tss-product-price{font-family: '${font}';}`;
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.afx-ap-product-price{font-family: '${font}';}`;
   }
 
   if (shopSettings.productButtonFont) {
@@ -271,7 +271,7 @@ const ShopNew = () => {
       : `https://fonts.googleapis.com/css?family=${shopSettings.productButtonFont
           .split(" ")
           .join("+")}&display=swap`;
-    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.tss-product-btn{font-family: '${font}';}`;
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.afx-ap-product-btn{font-family: '${font}';}`;
   }
 
   styles += `</style>`;
@@ -279,7 +279,7 @@ const ShopNew = () => {
   return (
     <shopContext.Provider value={shopValues}>
       <div
-        className={`tss-shop-new ${activeTab != "shop-new" ? "hidden" : ""}`}
+        className={`afx-ap-shop-new ${activeTab != "shop-new" ? "hidden" : ""}`}
       >
         {loading ? (
           <SkeletonTheme baseColor="#CCC" highlightColor="#DDD">
@@ -295,7 +295,7 @@ const ShopNew = () => {
             <ShopHeader loader={loader} saveShop={saveShop} error={error} />
             <Divider />
 
-            <div className="tss-add-shop p-5">
+            <div className="afx-ap-add-shop p-5">
               <div dangerouslySetInnerHTML={{ __html: styles }}></div>
               <ShopNewSetting
                 shopId={shopId}
@@ -334,7 +334,7 @@ const ShopNew = () => {
                       </div>
                       <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
                         <h4
-                          className="tss-product-title text-center text-xl"
+                          className="afx-ap-product-title text-center text-xl"
                           style={{
                             fontSize: shopSettings.productTitleSize + "px",
                             textAlign: shopSettings.productTitleAlignment,
@@ -378,7 +378,7 @@ const ShopNew = () => {
 
                       <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
                         <h4
-                          className="tss-product-des text-center text-xl"
+                          className="afx-ap-product-des text-center text-xl"
                           style={{
                             fontSize: shopSettings.productDesSize + "px",
                             textAlign: shopSettings.productDesAlignment,
@@ -422,7 +422,7 @@ const ShopNew = () => {
                       </div>
                       <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
                         <h4
-                          className="tss-product-price text-center text-xl"
+                          className="afx-ap-product-price text-center text-xl"
                           style={{
                             fontSize: shopSettings.productPriceSize + "px",
                             textAlign: shopSettings.productPriceAlignment,
@@ -468,7 +468,7 @@ const ShopNew = () => {
                       <div className="grid grid-cols-1 lg:grid-cols-4 gap-5 lg:gap-10 mt-5">
                         <Input name="productButtonText" />
 
-                        <div className="tss-form-field flex-col !items-start">
+                        <div className="afx-ap-form-field flex-col !items-start">
                           <label htmlFor="">Button Size:</label>
                           <Select
                             options={btnSizeOptions}
@@ -504,7 +504,7 @@ const ShopNew = () => {
 
                       <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7 text-center">
                         <button
-                          className="tss-product-btn mx-auto text-xl"
+                          className="afx-ap-product-btn mx-auto text-xl"
                           style={{
                             fontSize: shopSettings.productButtonSize + "px",
                             textAlign: shopSettings.productButtonAlignment,

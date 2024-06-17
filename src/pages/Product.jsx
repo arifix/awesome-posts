@@ -163,7 +163,7 @@ const Product = () => {
         {
           headers: {
             "content-type": "application/json",
-            "X-WP-NONCE": tssApp.nonce,
+            "X-WP-NONCE": afxApApp.nonce,
           },
         }
       )
@@ -193,7 +193,7 @@ const Product = () => {
       : `https://fonts.googleapis.com/css?family=${defaultSettings.proProductTitleFont
           .split(" ")
           .join("+")}&display=swap`;
-    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.tss-product-title{font-family: '${font}';}`;
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.afx-ap-product-title{font-family: '${font}';}`;
   }
 
   if (defaultSettings.proProductPriceFont) {
@@ -205,7 +205,7 @@ const Product = () => {
       : `https://fonts.googleapis.com/css?family=${defaultSettings.proProductPriceFont
           .split(" ")
           .join("+")}&display=swap`;
-    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.tss-product-price{font-family: '${font}';}`;
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.afx-ap-product-price{font-family: '${font}';}`;
   }
 
   if (defaultSettings.proProductShortDesFont) {
@@ -217,7 +217,7 @@ const Product = () => {
       : `https://fonts.googleapis.com/css?family=${defaultSettings.proProductShortDesFont
           .split(" ")
           .join("+")}&display=swap`;
-    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.tss-product-des{font-family: '${font}';}`;
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.afx-ap-product-des{font-family: '${font}';}`;
   }
 
   if (defaultSettings.proAddToCartBtnFont) {
@@ -229,7 +229,7 @@ const Product = () => {
       : `https://fonts.googleapis.com/css?family=${defaultSettings.proAddToCartBtnFont
           .split(" ")
           .join("+")}&display=swap`;
-    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.tss-product-btn{font-family: '${font}';}`;
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.afx-ap-product-btn{font-family: '${font}';}`;
   }
 
   if (defaultSettings.proProductMetaFont) {
@@ -241,7 +241,7 @@ const Product = () => {
       : `https://fonts.googleapis.com/css?family=${defaultSettings.proProductMetaFont
           .split(" ")
           .join("+")}&display=swap`;
-    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.tss-product-meta{font-family: '${font}';}`;
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.afx-ap-product-meta{font-family: '${font}';}`;
   }
 
   if (defaultSettings.proTabHeadingsFont) {
@@ -253,7 +253,7 @@ const Product = () => {
       : `https://fonts.googleapis.com/css?family=${defaultSettings.proTabHeadingsFont
           .split(" ")
           .join("+")}&display=swap`;
-    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.tss-product-tab-h{font-family: '${font}';}`;
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.afx-ap-product-tab-h{font-family: '${font}';}`;
   }
 
   if (defaultSettings.proTabContentH2Font) {
@@ -265,7 +265,7 @@ const Product = () => {
       : `https://fonts.googleapis.com/css?family=${defaultSettings.proTabContentH2Font
           .split(" ")
           .join("+")}&display=swap`;
-    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.tss-product-tab-h2{font-family: '${font}';}`;
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.afx-ap-product-tab-h2{font-family: '${font}';}`;
   }
 
   if (defaultSettings.proTabContentParaFont) {
@@ -277,7 +277,7 @@ const Product = () => {
       : `https://fonts.googleapis.com/css?family=${defaultSettings.proTabContentParaFont
           .split(" ")
           .join("+")}&display=swap`;
-    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.tss-product-tab-p{font-family: '${font}';}`;
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.afx-ap-product-tab-p{font-family: '${font}';}`;
   }
 
   if (defaultSettings.proRelatedProductTitleFont) {
@@ -289,14 +289,14 @@ const Product = () => {
       : `https://fonts.googleapis.com/css?family=${defaultSettings.proRelatedProductTitleFont
           .split(" ")
           .join("+")}&display=swap`;
-    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.tss-product-related{font-family: '${font}';}`;
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.afx-ap-product-related{font-family: '${font}';}`;
   }
 
   styles += `</style>`;
 
   return (
     <shopContext.Provider value={shopValues}>
-      <div className={`tss-product ${activeTab != "product" ? "hidden" : ""}`}>
+      <div className={`afx-ap-product ${activeTab != "product" ? "hidden" : ""}`}>
         {loading ? (
           <SkeletonTheme baseColor="#CCC" highlightColor="#DDD">
             <p>
@@ -314,7 +314,7 @@ const Product = () => {
 
             <Divider />
 
-            <div className="tss-product p-5">
+            <div className="afx-ap-product p-5">
               <div dangerouslySetInnerHTML={{ __html: styles }}></div>
               <div className="flex justify-between items-center pr-5 gap-5">
                 <h3 className="heading-secondary text-2xl pb-0">
@@ -325,7 +325,7 @@ const Product = () => {
                     name="productStyleToggle"
                   />
                 </h3>
-                <div className="tss-btngroup">
+                <div className="afx-ap-btngroup">
                   <button
                     type="button"
                     className="action-button secondary"
@@ -443,7 +443,7 @@ const Product = () => {
 
                     <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
                       <h4
-                        className="tss-product-title text-center text-xl"
+                        className="afx-ap-product-title text-center text-xl"
                         style={{
                           color: defaultSettings.proProductTitleColor,
                           fontWeight: defaultSettings.proProductTitleWeight,
@@ -498,7 +498,7 @@ const Product = () => {
 
                     <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
                       <h4
-                        className="tss-product-price text-center text-xl"
+                        className="afx-ap-product-price text-center text-xl"
                         style={{
                           color: defaultSettings.proProductPriceColor,
                           fontWeight: defaultSettings.proProductPriceWeight,
@@ -551,7 +551,7 @@ const Product = () => {
 
                     <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
                       <h4
-                        className="tss-product-des text-center text-xl"
+                        className="afx-ap-product-des text-center text-xl"
                         style={{
                           color: defaultSettings.proProductShortDesColor,
                           fontWeight: defaultSettings.proProductShortDesWeight,
@@ -602,7 +602,7 @@ const Product = () => {
 
                     <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7 text-center">
                       <button
-                        className="tss-product-btn mx-auto text-xl"
+                        className="afx-ap-product-btn mx-auto text-xl"
                         style={{
                           backgroundColor:
                             defaultSettings.proAddToCartBtnBgColor,
@@ -659,7 +659,7 @@ const Product = () => {
 
                     <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
                       <h4
-                        className="tss-product-meta text-center text-xl"
+                        className="afx-ap-product-meta text-center text-xl"
                         style={{
                           color: defaultSettings.proProductMetaColor,
                           fontWeight: defaultSettings.proProductMetaWeight,
@@ -716,7 +716,7 @@ const Product = () => {
 
                     <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
                       <h4
-                        className="tss-product-tab-h text-center text-xl"
+                        className="afx-ap-product-tab-h text-center text-xl"
                         style={{
                           color: defaultSettings.proTabHeadingsColor,
                           fontWeight: defaultSettings.proTabHeadingsWeight,
@@ -762,7 +762,7 @@ const Product = () => {
 
                     <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
                       <h4
-                        className="tss-product-tab-h2 text-center text-xl"
+                        className="afx-ap-product-tab-h2 text-center text-xl"
                         style={{
                           color: defaultSettings.proTabContentH2Color,
                           fontWeight: defaultSettings.proTabContentH2Weight,
@@ -810,7 +810,7 @@ const Product = () => {
 
                     <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
                       <h4
-                        className="tss-product-tab-p text-center text-xl"
+                        className="afx-ap-product-tab-p text-center text-xl"
                         style={{
                           color: defaultSettings.proTabContentParaColor,
                           fontWeight: defaultSettings.proTabContentParaWeight,
@@ -867,7 +867,7 @@ const Product = () => {
 
                     <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
                       <h4
-                        className="tss-product-related text-center text-xl"
+                        className="afx-ap-product-related text-center text-xl"
                         style={{
                           color: defaultSettings.proRelatedProductTitleColor,
                           fontWeight:

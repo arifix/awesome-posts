@@ -6,7 +6,7 @@ const Range = ({ title, min = 14, max = 50, name }) => {
 
   return (
     <>
-      <div className="tss-form-field flex-col !items-start">
+      <div className="afx-ap-form-field flex-col !items-start">
         <label htmlFor="">{title}:</label>
         <div style={{ minWidth: 275 }}>
           <div className="flex justify-between w-full">

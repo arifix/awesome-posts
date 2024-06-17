@@ -5,12 +5,12 @@ const Input = ({ title = "Button Text", name, type = "text" }) => {
   const { defaultSettings, setDefaultSettings } = useContext(shopContext);
 
   return (
-    <div className="tss-form-field flex-col !items-start">
+    <div className="afx-ap-form-field flex-col !items-start">
       <label htmlFor="">{title}:</label>
       <input
         type={type}
         placeholder={title}
-        className="tss-input"
+        className="afx-ap-input"
         value={defaultSettings[name]}
         onChange={(e) =>
           setDefaultSettings({

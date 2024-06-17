@@ -28,7 +28,7 @@ const FontsManager = () => {
       .post(mediaUrl, formData, {
         headers: {
           "Content-Disposition": "form-data; filename='" + file.name + "'",
-          "X-WP-NONCE": tssApp.nonce,
+          "X-WP-NONCE": afxApApp.nonce,
         },
       })
       .then((res) => {
@@ -46,7 +46,7 @@ const FontsManager = () => {
             {
               headers: {
                 "content-type": "application/json",
-                "X-WP-NONCE": tssApp.nonce,
+                "X-WP-NONCE": afxApApp.nonce,
               },
             }
           )
@@ -90,7 +90,7 @@ const FontsManager = () => {
             {
               headers: {
                 "content-type": "application/json",
-                "X-WP-NONCE": tssApp.nonce,
+                "X-WP-NONCE": afxApApp.nonce,
               },
             }
           )
@@ -126,7 +126,7 @@ const FontsManager = () => {
         {
           headers: {
             "content-type": "application/json",
-            "X-WP-NONCE": tssApp.nonce,
+            "X-WP-NONCE": afxApApp.nonce,
           },
         }
       )
@@ -143,7 +143,7 @@ const FontsManager = () => {
               {
                 headers: {
                   "content-type": "application/json",
-                  "X-WP-NONCE": tssApp.nonce,
+                  "X-WP-NONCE": afxApApp.nonce,
                   "X-HTTP-Method-Override": "DELETE",
                 },
               }
@@ -166,9 +166,9 @@ const FontsManager = () => {
   }, [settings]);
 
   return (
-    <div className="tss-fonts-manager p-5">
+    <div className="afx-ap-fonts-manager p-5">
       <h3 className="heading-secondary">Fonts Manager</h3>
-      <form className="tss-form">
+      <form className="afx-ap-form">
         <div className="flex flex-col w-full items-center bg-grey-lighter mb-5 bg-white rounded-lg shadow-lg p-10">
           <label className="w-full flex flex-col items-center px-4 py-10 text-primary tracking-wide uppercase cursor-pointer hover:bg-gray-100 hover:text-primary-500">
             <svg
@@ -201,8 +201,8 @@ const FontsManager = () => {
             <input
               type="url"
               placeholder="Paste Font URL"
-              className={`tss-input max-w-full lg:max-w-[75%] !rounded-2xl !pl-5 ${
-                error ? "tss-input-error" : ""
+              className={`afx-ap-input max-w-full lg:max-w-[75%] !rounded-2xl !pl-5 ${
+                error ? "afx-ap-input-error" : ""
               }`}
               value={fontUrl}
               onChange={(e) => setFontUrl(e.target.value)}
@@ -220,7 +220,7 @@ const FontsManager = () => {
       <p>&nbsp;</p>
       <h4 className="heading-sub">Custom Fonts</h4>
       <div className="overflow-x-auto">
-        <table className="tss-table w-full">
+        <table className="afx-ap-table w-full">
           <thead className="bg-white border-b">
             <tr>
               <th

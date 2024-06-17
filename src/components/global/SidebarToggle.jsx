@@ -10,7 +10,7 @@ const SidebarToggle = () => {
       onClick={() => {
         setShowSidebar(!showSidebar);
       }}
-      data-tooltip-id="tss-tooltip"
+      data-tooltip-id="afx-ap-tooltip"
       data-tooltip-content="Show/Hide Sidebar"
       data-tooltip-place="right"
     >

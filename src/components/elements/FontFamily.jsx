@@ -7,7 +7,7 @@ const FontFamily = ({ name }) => {
     useContext(shopContext);
 
   return (
-    <div className="tss-form-field flex-col !items-start">
+    <div className="afx-ap-form-field flex-col !items-start">
       <label htmlFor="">Font:</label>
       <Select
         options={fontsOptions}

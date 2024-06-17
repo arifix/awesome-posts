@@ -1,10 +1,10 @@
-#tss-wrapper {
+#afx-ap-wrapper {
   width: 100%;
   max-width: 100%;
   padding: 20px;
 }
 
-#tss-wrapper .product-grid {
+#afx-ap-wrapper .product-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 40px;
@@ -12,12 +12,12 @@
   row-gap: 60px;
 }
 
-#tss-wrapper .product {
+#afx-ap-wrapper .product {
   display: flex;
   flex-direction: column;
 }
 
-#tss-wrapper .product img {
+#afx-ap-wrapper .product img {
   max-width: 100%;
   height: auto;
   max-height: 350px;
@@ -25,20 +25,20 @@
   object-fit: cover;
 }
 
-#tss-wrapper .product h2 {
+#afx-ap-wrapper .product h2 {
   margin: 0.5rem 0;
 }
 
-#tss-wrapper .product p {
+#afx-ap-wrapper .product p {
   flex-grow: 1;
 }
 
-#tss-wrapper .product .price {
+#afx-ap-wrapper .product .price {
   margin: 0.5rem 0;
   font-weight: bold;
 }
 
-#tss-wrapper .product a {
+#afx-ap-wrapper .product a {
   background: #333;
   color: #fff;
   border: 0;
@@ -49,16 +49,16 @@
   text-decoration: none;
 }
 
-#tss-wrapper .product a:hover {
+#afx-ap-wrapper .product a:hover {
   background: #555;
 }
 
-#tss-wrapper .tss-filter {
+#afx-ap-wrapper .afx-ap-filter {
   display: flex;
   justify-content: space-between;
 }
 
-#tss-wrapper .tss-select {
+#afx-ap-wrapper .afx-ap-select {
   width: 190px;
   height: 45px;
   padding: 10px;
@@ -69,7 +69,7 @@
   margin-left: auto;
 }
 
-#tss-loader {
+#afx-ap-loader {
   margin-left: 0 !important;
   display: none;
   position: relative;
@@ -77,11 +77,11 @@
   height: 80px;
 }
 
-#tss-loader.is-active {
+#afx-ap-loader.is-active {
   display: inline-block;
 }
 
-#tss-loader div {
+#afx-ap-loader div {
   display: inline-block;
   position: absolute;
   left: 8px;
@@ -90,22 +90,22 @@
   animation: posts-loader 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 }
 
-#tss-loader div:nth-child(1) {
+#afx-ap-loader div:nth-child(1) {
   left: 8px;
   animation-delay: -0.24s;
 }
 
-#tss-loader div:nth-child(2) {
+#afx-ap-loader div:nth-child(2) {
   left: 32px;
   animation-delay: -0.12s;
 }
 
-#tss-loader div:nth-child(3) {
+#afx-ap-loader div:nth-child(3) {
   left: 56px;
   animation-delay: 0;
 }
 
-#tss-load-more {
+#afx-ap-load-more {
   width: 200px;
   background-color: #1f1f1f;
   color: #ffffff;
@@ -123,7 +123,7 @@
   margin-top: 30px;
 }
 
-#tss-wrapper .spinner {
+#afx-ap-wrapper .spinner {
   width: 20px;
   height: 20px;
   border: 3px solid rgba(255, 255, 255, 0.3);
@@ -134,13 +134,13 @@
 }
 
 @media (max-width: 960px) {
-  #tss-wrapper .product-grid {
+  #afx-ap-wrapper .product-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 600px) {
-  #tss-wrapper .product-grid {
+  #afx-ap-wrapper .product-grid {
     grid-template-columns: 1fr;
   }
 }

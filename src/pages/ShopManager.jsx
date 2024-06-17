@@ -50,7 +50,7 @@ const ShopManager = () => {
         {
           headers: {
             "content-type": "application/json",
-            "X-WP-NONCE": tssApp.nonce,
+            "X-WP-NONCE": afxApApp.nonce,
           },
         }
       )
@@ -67,7 +67,7 @@ const ShopManager = () => {
 
   return (
     <div
-      className={`tss-shop-manager ${
+      className={`afx-ap-shop-manager ${
         activeTab != "shop-manager" ? "hidden" : ""
       }`}
     >
@@ -98,9 +98,9 @@ const ShopManager = () => {
 
           <Divider />
 
-          <div className="tss-shops">
+          <div className="afx-ap-shops">
             {shops.map((s, key) => (
-              <div className="tss-single-shop" key={key}>
+              <div className="afx-ap-single-shop" key={key}>
                 <h4
                   onClick={() => {
                     setActiveTab("shop-new");
@@ -118,23 +118,23 @@ const ShopManager = () => {
                       insertUrlParam("tab", "shop-new");
                       insertUrlParam("shop_id", s.id);
                     }}
-                    data-tooltip-id="tss-tooltip"
+                    data-tooltip-id="afx-ap-tooltip"
                     data-tooltip-content="Edit Shop"
                   >
-                    <i className="dashicons-before dashicons-edit hover:text-tonic-primary"></i>
+                    <i className="dashicons-before dashicons-edit hover:text-ap-primary"></i>
                   </button>
                   <button
                     type="button"
                     onClick={() => {
                       navigator.clipboard.writeText(
-                        `[tonic-shop id="${s.id}"]`
+                        `[awesome-posts id="${s.id}"]`
                       );
                       toast.success("Shortcode Copied Successfully");
                     }}
-                    data-tooltip-id="tss-tooltip"
+                    data-tooltip-id="afx-ap-tooltip"
                     data-tooltip-content="Copy Shortcode"
                   >
-                    <i className="dashicons-before dashicons-shortcode hover:text-tonic-primary"></i>
+                    <i className="dashicons-before dashicons-shortcode hover:text-ap-primary"></i>
                   </button>
                   <button
                     type="button"
@@ -142,10 +142,10 @@ const ShopManager = () => {
                       setDelId(s.id);
                       setShowModal(true);
                     }}
-                    data-tooltip-id="tss-tooltip"
+                    data-tooltip-id="afx-ap-tooltip"
                     data-tooltip-content="Delete Shop"
                   >
-                    <i className="dashicons-before dashicons-trash hover:text-tonic-primary"></i>
+                    <i className="dashicons-before dashicons-trash hover:text-ap-primary"></i>
                   </button>
                 </div>
               </div>

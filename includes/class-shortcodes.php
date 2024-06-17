@@ -4,9 +4,9 @@ class AFX_Shortcodes
 {
     public function __construct()
     {
-        add_shortcode('tonic-shop', [$this, 'afx_shop_products']);
-        add_action('wp_ajax_get_tonic-shop', [$this, 'afx_shop_products_ajax']);
-        add_action('wp_ajax_nopriv_get_tonic-shop', [$this, 'afx_shop_products_ajax']);
+        add_shortcode('awesome-posts', [$this, 'afx_posts']);
+        add_action('wp_ajax_get_awesome-posts', [$this, 'afx_posts_ajax']);
+        add_action('wp_ajax_nopriv_get_awesome-posts', [$this, 'afx_posts_ajax']);
     }
 
     function fonts_url_to_name($font_url)
@@ -16,7 +16,7 @@ class AFX_Shortcodes
         return $font_name[0];
     }
 
-    function afx_shop_products($atts)
+    function afx_posts($atts)
     {
         global $wpdb;
 
@@ -24,7 +24,7 @@ class AFX_Shortcodes
 
         $atts = shortcode_atts(array(
             'id' => ""
-        ), $atts, 'tss-shop');
+        ), $atts, 'awesome-posts');
 
         $id = $atts['id'];
         $results = $wpdb->get_results("SELECT * FROM `$table_name` WHERE `id`='$id' ORDER BY `id` DESC LIMIT 1");
@@ -89,10 +89,10 @@ class AFX_Shortcodes
             $posts_query = new WP_Query($posts_args);
 
             $style = '<style>';
-            $style .= '@media(min-width: 961px){#tss-wrapper .product-grid{grid-template-columns: repeat(' . $set->gridColumns . ', 1fr);}}';
+            $style .= '@media(min-width: 961px){#afx-ap-wrapper .product-grid{grid-template-columns: repeat(' . $set->gridColumns . ', 1fr);}}';
 
             if (!$set->showProductTitle) {
-                $style .= '#tss-wrapper .product-grid .product h2{display: none;}';
+                $style .= '#afx-ap-wrapper .product-grid .product h2{display: none;}';
             }
             if ($set->productTitleFont) {
                 $font = str_contains($set->productTitleFont, 'http')
@@ -101,20 +101,20 @@ class AFX_Shortcodes
                 $font_url = str_contains($set->productTitleFont, 'http')
                     ? $set->productTitleFont
                     : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->productTitleFont) . '&display=swap';
-                $style .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}#tss-wrapper .product-grid .product h2{font-family: "' . $font . '";}';
+                $style .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}#afx-ap-wrapper .product-grid .product h2{font-family: "' . $font . '";}';
             }
             if ($set->productTitleSize) {
-                $style .= '#tss-wrapper .product-grid .product h2{font-size: ' . $set->productTitleSize . 'px;}';
+                $style .= '#afx-ap-wrapper .product-grid .product h2{font-size: ' . $set->productTitleSize . 'px;}';
             }
             if ($set->productTitleColor) {
-                $style .= '#tss-wrapper .product-grid .product h2{color: ' . $set->productTitleColor . ';}';
+                $style .= '#afx-ap-wrapper .product-grid .product h2{color: ' . $set->productTitleColor . ';}';
             }
             if ($set->productTitleAlignment) {
-                $style .= '#tss-wrapper .product-grid .product h2{text-align: ' . $set->productTitleAlignment . ';}';
+                $style .= '#afx-ap-wrapper .product-grid .product h2{text-align: ' . $set->productTitleAlignment . ';}';
             }
 
             if (!$set->showProductDes) {
-                $style .= '#tss-wrapper .product-grid .product p:not(.price){display: none;}';
+                $style .= '#afx-ap-wrapper .product-grid .product p:not(.price){display: none;}';
             }
             if ($set->productDesFont) {
                 $font = str_contains($set->productDesFont, 'http')
@@ -123,20 +123,20 @@ class AFX_Shortcodes
                 $font_url = str_contains($set->productDesFont, 'http')
                     ? $set->productDesFont
                     : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->productDesFont) . '&display=swap';
-                $style .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}#tss-wrapper .product-grid .product p:not(.price){font-family: "' . $font . '";}';
+                $style .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}#afx-ap-wrapper .product-grid .product p:not(.price){font-family: "' . $font . '";}';
             }
             if ($set->productDesSize) {
-                $style .= '#tss-wrapper .product-grid .product p:not(.price){font-size: ' . $set->productDesSize . 'px;}';
+                $style .= '#afx-ap-wrapper .product-grid .product p:not(.price){font-size: ' . $set->productDesSize . 'px;}';
             }
             if ($set->productDesColor) {
-                $style .= '#tss-wrapper .product-grid .product p:not(.price){color: ' . $set->productDesColor . ';}';
+                $style .= '#afx-ap-wrapper .product-grid .product p:not(.price){color: ' . $set->productDesColor . ';}';
             }
             if ($set->productDesAlignment) {
-                $style .= '#tss-wrapper .product-grid .product p:not(.price){text-align: ' . $set->productDesAlignment . ';}';
+                $style .= '#afx-ap-wrapper .product-grid .product p:not(.price){text-align: ' . $set->productDesAlignment . ';}';
             }
 
             if (!$set->showProductPrice) {
-                $style .= '#tss-wrapper .product-grid .product .price{display: none;}';
+                $style .= '#afx-ap-wrapper .product-grid .product .price{display: none;}';
             }
             if ($set->productPriceFont) {
                 $font = str_contains($set->productPriceFont, 'http')
@@ -145,20 +145,20 @@ class AFX_Shortcodes
                 $font_url = str_contains($set->productPriceFont, 'http')
                     ? $set->productPriceFont
                     : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->productPriceFont) . '&display=swap';
-                $style .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}#tss-wrapper .product-grid .product .price{font-family: "' . $font . '";}';
+                $style .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}#afx-ap-wrapper .product-grid .product .price{font-family: "' . $font . '";}';
             }
             if ($set->productPriceSize) {
-                $style .= '#tss-wrapper .product-grid .product .price{font-size: ' . $set->productPriceSize . 'px;}';
+                $style .= '#afx-ap-wrapper .product-grid .product .price{font-size: ' . $set->productPriceSize . 'px;}';
             }
             if ($set->productPriceColor) {
-                $style .= '#tss-wrapper .product-grid .product .price{color: ' . $set->productPriceColor . ';}';
+                $style .= '#afx-ap-wrapper .product-grid .product .price{color: ' . $set->productPriceColor . ';}';
             }
             if ($set->productPriceAlignment) {
-                $style .= '#tss-wrapper .product-grid .product .price{text-align: ' . $set->productPriceAlignment . ';}';
+                $style .= '#afx-ap-wrapper .product-grid .product .price{text-align: ' . $set->productPriceAlignment . ';}';
             }
 
             if (!$set->showProductButton) {
-                $style .= '#tss-wrapper .product-grid .product a{display: none;}';
+                $style .= '#afx-ap-wrapper .product-grid .product a{display: none;}';
             }
             if ($set->productButtonFont) {
                 $font = str_contains($set->productButtonFont, 'http')
@@ -167,37 +167,37 @@ class AFX_Shortcodes
                 $font_url = str_contains($set->productButtonFont, 'http')
                     ? $set->productButtonFont
                     : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->productButtonFont) . '&display=swap';
-                $style .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}#tss-wrapper .product-grid .product a{font-family: "' . $font . '";}';
+                $style .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}#afx-ap-wrapper .product-grid .product a{font-family: "' . $font . '";}';
             }
             if ($set->productButtonSize) {
-                $style .= '#tss-wrapper .product-grid .product a{font-size: ' . $set->productButtonSize . 'px;}';
+                $style .= '#afx-ap-wrapper .product-grid .product a{font-size: ' . $set->productButtonSize . 'px;}';
             }
             if ($set->productButtonColor) {
-                $style .= '#tss-wrapper .product-grid .product a{color: ' . $set->productButtonColor . ';}';
+                $style .= '#afx-ap-wrapper .product-grid .product a{color: ' . $set->productButtonColor . ';}';
             }
             if ($set->productButtonAlignment) {
-                $style .= '#tss-wrapper .product-grid .product a{text-align: ' . $set->productButtonAlignment . ';}';
+                $style .= '#afx-ap-wrapper .product-grid .product a{text-align: ' . $set->productButtonAlignment . ';}';
             }
             if ($set->productButtonBgColor) {
-                $style .= '#tss-wrapper .product-grid .product a{background-color: ' . $set->productButtonBgColor . ';}';
+                $style .= '#afx-ap-wrapper .product-grid .product a{background-color: ' . $set->productButtonBgColor . ';}';
             }
             if ($set->productButtonBorderRadius) {
-                $style .= '#tss-wrapper .product-grid .product a{border-radius: ' . $set->productButtonBorderRadius . 'px;}';
+                $style .= '#afx-ap-wrapper .product-grid .product a{border-radius: ' . $set->productButtonBorderRadius . 'px;}';
             }
 
             $style .= ' </style>';
 
             $html = $style;
-            $html .= '<div id="tss-wrapper">';
+            $html .= '<div id="afx-ap-wrapper">';
             if ($posts_query->have_posts()) {
-                $html .= '<div class="tss-filter">
-                <div id="tss-loader">
+                $html .= '<div class="afx-ap-filter">
+                <div id="afx-ap-loader">
                     <div></div>
                     <div></div>
                     <div></div>
                 </div>
 
-                <select class="tss-posts-order tss-select" name="order">
+                <select class="afx-ap-posts-order afx-ap-select" name="order">
                     <option value="date:DESC" ' . ($set->postsOrder == 'date:DESC' ? 'selected' : "") . '>Most Recent</option>
                     <option value="date:ASC" ' . ($set->postsOrder == 'date:ASC' ? 'selected' : "") . '>Oldest First</option>
                     <option value="title:ASC" ' . ($set->postsOrder == 'title:ASC' ? 'selected' : "") . '>Title A-Z</option>
@@ -223,7 +223,7 @@ class AFX_Shortcodes
                 }
 
                 $html .= '</div>';
-                $html .= '<button type="button" id="tss-load-more" data-admin-ajax="' . admin_url("admin-ajax.php") . '"  data-categories="' . join(",", $posts_cats) . '" data-posts-per-page="' . $set->postsPerPage . '" data-total-posts="' . $total_posts . '" 
+                $html .= '<button type="button" id="afx-ap-load-more" data-admin-ajax="' . admin_url("admin-ajax.php") . '"  data-categories="' . join(",", $posts_cats) . '" data-posts-per-page="' . $set->postsPerPage . '" data-total-posts="' . $total_posts . '" 
             ' . ($set->postsPerPage >= $total_posts ? 'style="display: none;"' : '') . '>Load More</button>';
             }
             $html .= '</div>';
@@ -234,7 +234,7 @@ class AFX_Shortcodes
         return "";
     }
 
-    function afx_shop_products_ajax()
+    function afx_posts_ajax()
     {
         $categories = !empty($_REQUEST['categories']) ? $_REQUEST['categories'] : 'all';
         $order = isset($_REQUEST['order']) ? $_REQUEST['order'] : 'date:DESC';

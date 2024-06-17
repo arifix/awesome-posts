@@ -7,7 +7,7 @@ const TextTransform = ({ name }) => {
   const { defaultSettings, setDefaultSettings } = useContext(shopContext);
 
   return (
-    <div className="tss-form-field flex-col !items-start">
+    <div className="afx-ap-form-field flex-col !items-start">
       <label htmlFor="">Text Transform:</label>
       <Select
         options={textTransformOptions}

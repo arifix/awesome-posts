@@ -22,7 +22,7 @@ const BackupRestore = () => {
         {
           headers: {
             "content-type": "application/json",
-            "X-WP-NONCE": tssApp.nonce,
+            "X-WP-NONCE": afxApApp.nonce,
           },
         }
       )
@@ -57,7 +57,7 @@ const BackupRestore = () => {
         .post(mediaUrl, formData, {
           headers: {
             "Content-Disposition": "form-data; filename='" + file.name + "'",
-            "X-WP-NONCE": tssApp.nonce,
+            "X-WP-NONCE": afxApApp.nonce,
           },
         })
         .then((res) => {
@@ -74,7 +74,7 @@ const BackupRestore = () => {
               {
                 headers: {
                   "content-type": "application/json",
-                  "X-WP-NONCE": tssApp.nonce,
+                  "X-WP-NONCE": afxApApp.nonce,
                 },
               }
             )
@@ -90,7 +90,7 @@ const BackupRestore = () => {
   };
 
   return (
-    <div className="tss-backup-restore p-5">
+    <div className="afx-ap-backup-restore p-5">
       <h3 className="heading-secondary">Backup &amp; Restore</h3>
       <div className="flex flex-col lg:flex-row justify-center items-center gap-20 lg:gap-16 bg-white rounded-lg shadow-lg p-5 lg:p-10">
         <div className="w-1/2 flex justify-center items-center">

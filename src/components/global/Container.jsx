@@ -21,7 +21,7 @@ const Container = () => {
   }, [settings]);
 
   return (
-    <div className="tss-container">
+    <div className="afx-ap-container">
       {activation && new Date() < new Date(activation?.expiry_date) ? (
         <>
           {activeTab === "shop-default" ? <ShopDefault /> : ""}
