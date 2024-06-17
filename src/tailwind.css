@@ -1,0 +1,291 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap");
+
+  #tss-app {
+    font-family: "Outfit", sans-serif;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .heading-primary {
+    @apply text-2xl mb-5 pt-6 pl-16;
+  }
+
+  .heading-secondary {
+    @apply text-xl font-medium pb-8;
+  }
+
+  .heading-sub {
+    @apply text-lg mb-3 text-tonic-text mt-1;
+  }
+
+  .action-button {
+    @apply border-2 rounded-md px-5 py-1 text-lg hover:text-white flex justify-center items-center gap-2;
+  }
+
+  .action-button i {
+    @apply relative top-1;
+  }
+
+  .action-button.primary {
+    @apply border-tonic-primary bg-tonic-primary text-white hover:text-tonic-primary hover:bg-white;
+  }
+
+  .action-button.primary.active {
+    @apply bg-tonic-primary text-white;
+  }
+
+  .action-button.secondary {
+    @apply border-tonic-secondary text-tonic-secondary hover:bg-tonic-secondary hover:text-white;
+  }
+
+  .action-button.secondary.active {
+    @apply bg-tonic-secondary text-white;
+  }
+
+  .navigation li {
+    @apply mb-7 lg:mb-1.5 relative rounded-lg hover:cursor-pointer;
+  }
+
+  .navigation a {
+    @apply w-full items-center text-lg lg:inline-flex py-2 px-3 hover:text-tonic-primary focus:shadow-none;
+  }
+
+  .navigation a span {
+    @apply hidden lg:block;
+  }
+
+  .navigation a.active {
+    @apply text-tonic-primary;
+  }
+
+  .navigation a i {
+    @apply mr-2 relative top-1;
+  }
+
+  .navigation .sub-menu {
+    @apply ml-7 mt-1 hidden lg:block;
+  }
+
+  .navigation .sub-menu li {
+    @apply mb-1.5;
+  }
+
+  .navigation .sub-menu a {
+    @apply py-1;
+  }
+
+  .filters {
+    @apply mt-5 lg:mt-10;
+  }
+
+  .filters li {
+    @apply text-center w-auto p-3  mb-0;
+  }
+
+  .filters a {
+    @apply text-lg text-tonic-text px-5 py-3 relative bottom-2.5 hover:text-tonic-primary hover:border-b-4 hover:border-b-tonic-primary focus:shadow-none;
+  }
+  .filters li a i {
+    @apply relative top-1 mr-2;
+  }
+
+  .filters li.active a {
+    @apply text-tonic-primary border-b-4 border-b-tonic-primary;
+  }
+
+  .tss-form-field {
+    @apply flex justify-start items-center gap-3 mb-5;
+  }
+
+  .tss-form-field label {
+    @apply block text-lg font-medium w-36;
+  }
+
+  .tss-input {
+    @apply w-full max-w-[300px] h-11 rounded-md border border-gray-100 bg-white py-3 px-6 text-base text-gray-400 outline-none focus:border-tonic-primary focus:shadow-md;
+  }
+
+  .tss-switch:checked ~ .dot {
+    @apply !bg-tonic-primary translate-x-full;
+  }
+
+  .tss-color-picker {
+    @apply w-[40px] h-[40px] bg-gray-500 transition-all rounded-full block ring-gray-500 hover:ring-2 ring-offset-1 cursor-pointer;
+  }
+
+  .color-groups {
+    @apply grid grid-cols-4 lg:flex;
+  }
+
+  .tss-btngroup {
+    @apply flex gap-2;
+  }
+
+  .tss-backup {
+    @apply w-full max-w-[100%] h-40 text-gray-700 text-sm font-thin border-gray-700;
+  }
+
+  .tss-form-section {
+    @apply grid grid-cols-3 gap-10 mb-3;
+  }
+
+  .tss-style-group {
+    @apply bg-gray-300 p-3 mb-5 rounded;
+  }
+
+  .tss-shortcode {
+    @apply mt-5 mb-5 text-base overflow-scroll break-words block p-5 w-full h-auto min-h-[100px] rounded;
+  }
+
+  .shortcode-preview {
+    @apply mt-5;
+  }
+
+  .display-block {
+    @apply block;
+  }
+
+  .display-none {
+    @apply hidden;
+  }
+
+  .modal {
+    @apply fixed top-0 left-0 w-full h-full bg-black bg-opacity-60 z-[9999];
+  }
+
+  .modal-main {
+    @apply fixed bg-gray-200 w-full h-auto top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] p-5 max-w-[1300px] max-h-[700px] overflow-y-scroll;
+  }
+
+  .modal-main::-webkit-scrollbar {
+    @apply bg-gray-600 rounded-lg w-3 h-5;
+  }
+
+  .modal-main::-webkit-scrollbar-thumb {
+    @apply bg-gray-100 rounded-lg;
+  }
+
+  .cancel-modal {
+    @apply w-8 h-8 absolute top-0 right-0 cursor-pointer;
+  }
+
+  .tss-shops {
+    @apply flex flex-col gap-3 mx-0 lg:mx-5 lg:my-3 p-5 divide-y-2 divide-gray-300;
+  }
+
+  .tss-single-shop {
+    @apply flex justify-between items-center p-5;
+  }
+
+  .tss-single-shop h4 {
+    @apply text-xl font-medium cursor-pointer hover:text-tonic-primary;
+  }
+
+  .tss-single-shop div button {
+    @apply w-10;
+  }
+
+  .tss-input-error {
+    @apply !border-2 !border-red-500;
+  }
+
+  .block-section {
+    @apply blur-md pointer-events-none select-none;
+  }
+}
+
+/* Tools */
+.cp-popover {
+  position: absolute;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.cp-cover {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.css-b62m3t-container {
+  max-width: 400px;
+}
+
+input[id^="rc-editable-input"] {
+  display: none !important;
+}
+
+#rc-editable-input-1 {
+  display: block !important;
+}
+
+/* Preview */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 40px;
+  margin-top: 20px;
+  row-gap: 60px;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+}
+
+.product img {
+  max-width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ddd;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+}
+
+.product h2 {
+  margin: 0.5rem 0;
+}
+
+.product p {
+  flex-grow: 1;
+}
+
+.product .price {
+  margin: 0.5rem 0;
+  font-weight: bold;
+}
+
+.product a {
+  background: #333;
+  color: #fff;
+  border: 0;
+  padding: 15px 40px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  border-radius: 100px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.product a:hover {
+  background: #555;
+}
+
+/* Plugin Page Config */
+@media screen and (min-width: 961px) {
+  .toplevel_page_tss-shop #wpcontent {
+    margin-left: 140px;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .toplevel_page_tss-shop #wpcontent {
+    padding-left: 0;
+  }
+}
