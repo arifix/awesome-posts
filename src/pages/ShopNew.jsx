@@ -29,7 +29,6 @@ import Input from "../components/elements/Input.jsx";
 import Toggle from "../components/elements/Toggle.jsx";
 
 const ShopNew = () => {
-  const [activation, setActivation] = useState("");
   const [loader, setLoader] = useState("Save Shop");
   const [fonts, setFonts] = useState({});
   const [pickerColors, setPickerColors] = useState([]);
@@ -50,8 +49,6 @@ const ShopNew = () => {
   } = useContext(appContext);
 
   useEffect(() => {
-    setActivation(settings.activation);
-
     if (settings?.colors) {
       const color_array = [];
       Object.keys(settings.colors).forEach(function (key, index) {

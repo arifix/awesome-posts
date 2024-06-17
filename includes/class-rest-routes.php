@@ -39,12 +39,6 @@ class AFX_Rest_Routes
             'permission_callback' => [$this, 'afx_save_settings_permission']
         ]);
 
-        register_rest_route('afx-ap/v1', '/activation', [
-            'methods' => 'POST',
-            'callback' => [$this, 'afx_check_activation'],
-            'permission_callback' => [$this, 'afx_save_settings_permission']
-        ]);
-
         register_rest_route('afx-ap/v1', '/categories', [
             'methods' => 'GET',
             'callback' => [$this, 'afx_get_categories'],
@@ -205,40 +199,6 @@ class AFX_Rest_Routes
     public function afx_save_settings_permission()
     {
         return current_user_can('manage_options');
-    }
-
-    public function afx_check_activation($req)
-    {
-        $activation_key = sanitize_text_field($req['activation_key']);
-
-        $from_site = rtrim(str_replace(array('http://', 'https://', 'www.'), array(''), site_url()), '/');
-
-        $response = wp_remote_get(VERIFICATION_URL . 'verify_purchase.php?activationKey=' . $activation_key . '&fromSite=' . $from_site);
-        $body = wp_remote_retrieve_body($response);
-        $res = json_decode($body);
-
-        if ($res->status == 'success') {
-            if (date('Y-m-d') > $res->expiry_date) {
-                return ['message' => 'Activation Key Expired', 'status' => false];
-            } else {
-                $activation = [
-                    'customer_name' => $res->customer_name,
-                    'customer_email' => $res->customer_email,
-                    'purchase_date' => $res->purchase_date,
-                    'expiry_date' => $res->expiry_date,
-                    'activation_key' => $res->activation_key,
-                    'status' => true
-                ];
-
-                $this->afx_save_settings(json_encode(['settings' => ['activation' => $activation]]));
-
-                return [
-                    'message' => 'Valid Activation Key',
-                ];
-            }
-        } else {
-            return ['message' => 'Invalid Activation Key', 'status' => false];
-        }
     }
 
     public function afx_get_categories()

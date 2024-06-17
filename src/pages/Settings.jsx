@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import { appContext } from "../contexts/appContext";
-import Activation from "../components/parts/Activation";
 import BrandColors from "../components/parts/BrandColors";
 import FontsManager from "../components/parts/FontsManager";
 import BackupRestore from "../components/parts/BackupRestore";
@@ -11,7 +10,6 @@ import { removeUrlParam } from "../utils/const.js";
 import Divider from "../components/global/Divider.jsx";
 
 const Settings = () => {
-  const [activation, setActivation] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [saveText, setSaveText] = useState("Save All Settings");
   const [reset, setReset] = useState("Reset Settings");
@@ -26,8 +24,6 @@ const Settings = () => {
   });
 
   useEffect(() => {
-    setActivation(settings.activation);
-
     if (settings?.colors) {
       let color_obj = {};
       Object.keys(settings.colors).forEach(function (key, index) {
@@ -93,63 +89,54 @@ const Settings = () => {
   };
 
   return (
-    <div className={`afx-ap-settings ${activeTab != "settings" ? "hidden" : ""}`}>
+    <div
+      className={`afx-ap-settings ${activeTab != "settings" ? "hidden" : ""}`}
+    >
       <h2 className="heading-primary">Settings</h2>
 
       <Divider />
 
-      <Activation saveText={saveText} saveAllSettings={saveAllSettings} />
+      <BrandColors brandColors={brandColors} setBrandColors={setBrandColors} />
+      <FontsManager />
+      <BackupRestore />
 
-      {activation && new Date() < new Date(activation?.expiry_date) ? (
-        <>
-          <BrandColors
-            brandColors={brandColors}
-            setBrandColors={setBrandColors}
-          />
-          <FontsManager />
-          <BackupRestore />
+      <div className="flex justify-center items-center gap-5 mt-5 pb-6">
+        <button
+          type="button"
+          className="action-button primary"
+          onClick={() => saveAllSettings()}
+        >
+          <i className="dashicons-before dashicons-yes"></i> {saveText}
+        </button>
 
-          <div className="flex justify-center items-center gap-5 mt-5 pb-6">
-            <button
-              type="button"
-              className="action-button primary"
-              onClick={() => saveAllSettings()}
-            >
-              <i className="dashicons-before dashicons-yes"></i> {saveText}
-            </button>
+        <button
+          type="button"
+          onClick={() => setShowModal(true)}
+          className="action-button secondary"
+        >
+          <i className="dashicons-before dashicons-warning"></i> {reset}
+        </button>
+      </div>
 
-            <button
-              type="button"
-              onClick={() => setShowModal(true)}
-              className="action-button secondary"
-            >
-              <i className="dashicons-before dashicons-warning"></i> {reset}
-            </button>
+      <Modal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        handleClose={() => {
+          setShowModal(false);
+        }}
+        handleAction={resetSettings}
+      >
+        <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+          <h3 className="text-lg leading-6 font-medium text-gray-900">
+            Reset Settings
+          </h3>
+          <div className="mt-2">
+            <p className="text-sm leading-5 text-gray-500">
+              Are you sure to reset all of the settings?
+            </p>
           </div>
-
-          <Modal
-            showModal={showModal}
-            setShowModal={setShowModal}
-            handleClose={() => {
-              setShowModal(false);
-            }}
-            handleAction={resetSettings}
-          >
-            <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-              <h3 className="text-lg leading-6 font-medium text-gray-900">
-                Reset Settings
-              </h3>
-              <div className="mt-2">
-                <p className="text-sm leading-5 text-gray-500">
-                  Are you sure to reset all of the settings?
-                </p>
-              </div>
-            </div>
-          </Modal>
-        </>
-      ) : (
-        ""
-      )}
+        </div>
+      </Modal>
     </div>
   );
 };

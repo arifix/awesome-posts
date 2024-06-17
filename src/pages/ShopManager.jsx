@@ -9,7 +9,6 @@ import { insertUrlParam } from "../utils/const.js";
 import Divider from "../components/global/Divider.jsx";
 
 const ShopManager = () => {
-  const [activation, setActivation] = useState("");
   const { activeTab, setActiveTab, settings } = useContext(appContext);
   const [loading, setLoading] = useState(true);
   const [shops, setShops] = useState([]);
@@ -18,15 +17,6 @@ const ShopManager = () => {
 
   const { baseUrl, refreshSettings, setRefreshSettings } =
     useContext(appContext);
-
-  useEffect(() => {
-    setActivation(settings.activation);
-
-    if (settings == "") {
-      setActiveTab("settings");
-      insertUrlParam("tab", "settings");
-    }
-  }, [settings]);
 
   useEffect(() => {
     if (activeTab == "shop-manager") {

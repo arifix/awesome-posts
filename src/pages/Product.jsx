@@ -16,7 +16,6 @@ import toast from "react-hot-toast";
 import { fontsUrlToName } from "../utils/const.js";
 
 const Product = () => {
-  const [activation, setActivation] = useState("");
   const [loading, setLoading] = useState(true);
   const [loader, setLoader] = useState("Save Settings");
   const [fonts, setFonts] = useState({});
@@ -102,8 +101,6 @@ const Product = () => {
     useContext(appContext);
 
   useEffect(() => {
-    setActivation(settings.activation);
-
     if (settings?.colors) {
       const color_array = [];
       Object.keys(settings.colors).forEach(function (key, index) {

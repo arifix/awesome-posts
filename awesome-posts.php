@@ -14,7 +14,7 @@
  */
 
 define('AFX_AP_PATH', trailingslashit(plugin_dir_path(__FILE__)));
-define('AFX_AP_TABLE_NAME', 'afx_shop_data');
+define('AFX_AP_TABLE_NAME', 'afx_ap_data');
 
 require_once AFX_AP_PATH . 'includes/class-rest-routes.php';
 require_once AFX_AP_PATH . 'includes/class-admin-menu.php';

@@ -91,7 +91,6 @@ const App = () => {
   const mediaUrl = `${afxApApp.apiUrl}/wp/v2/media/`;
 
   const pages = [
-    "shop-default",
     "shop-manager",
     "shop-new",
     "product",
