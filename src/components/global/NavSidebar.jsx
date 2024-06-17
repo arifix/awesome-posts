@@ -34,7 +34,7 @@ const NavSidebar = () => {
               }`}
             >
               <i className="dashicons-before dashicons-buddicons-topics"></i>
-              <span>Shop Designer</span>
+              <span>Shortcode Manager</span>
             </a>
             <ul className="sub-menu">
               <li>
@@ -50,7 +50,7 @@ const NavSidebar = () => {
                   className={`${activeTab == "shop-manager" ? "active" : ""}`}
                 >
                   <i className="dashicons-before dashicons-screenoptions"></i>
-                  <span>My Shops</span>
+                  <span>My Shortcodes</span>
                 </a>
               </li>
               <li>
@@ -66,41 +66,12 @@ const NavSidebar = () => {
                   className={`${activeTab == "shop-new" ? "active" : ""}`}
                 >
                   <i className="dashicons-before dashicons-insert"></i>
-                  <span>New Shop</span>
+                  <span>New Shortcode</span>
                 </a>
               </li>
             </ul>
           </li>
-          <li className="hidden lg:block">&nbsp;</li>
           <li>
-            <a
-              href="javascript:void(0);"
-              onClick={() => {
-                setActiveTab("product");
-                insertUrlParam("tab", "product");
-                removeUrlParam("shop_id");
-                setShopSettings({ ...initialSettings });
-                setShopId(null);
-              }}
-              className={`${activeTab == "product" ? "active" : ""}`}
-            >
-              <i className="dashicons-before dashicons-schedule"></i>
-              <span>Product Page</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);" className="">
-              <i className="dashicons-before dashicons-cart"></i>
-              <span>Cart &amp; Checkout</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);" className="">
-              <i className="dashicons-before dashicons-admin-users"></i>
-              <span>My Account Page</span>
-            </a>
-          </li>
-          <li className="mt-20">
             <a
               href="javascript:void(0);"
               onClick={() => {
