@@ -1151,6 +1151,14 @@ video {
   width: 100%;
 }
 
+#afx-ap-app :is(.w-1\/2) {
+  width: 50%;
+}
+
+#afx-ap-app :is(.w-64) {
+  width: 16rem;
+}
+
 #afx-ap-app :is(.min-w-\[300px\]) {
   min-width: 300px;
 }
@@ -1249,6 +1257,10 @@ video {
 
 #afx-ap-app :is(.gap-5) {
   gap: 1.25rem;
+}
+
+#afx-ap-app :is(.gap-20) {
+  gap: 5rem;
 }
 
 #afx-ap-app :is(.overflow-hidden) {
@@ -1461,6 +1473,11 @@ video {
 #afx-ap-app :is(.py-4) {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+#afx-ap-app :is(.py-6) {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 #afx-ap-app :is(.\!pl-5) {
@@ -2002,8 +2019,16 @@ input[id^="rc-editable-input"] {
     gap: 2.5rem;
   }
 
+  #afx-ap-app :is(.lg\:gap-16) {
+    gap: 4rem;
+  }
+
   #afx-ap-app :is(.lg\:p-5) {
     padding: 1.25rem;
+  }
+
+  #afx-ap-app :is(.lg\:p-10) {
+    padding: 2.5rem;
   }
 
   #afx-ap-app :is(.lg\:pr-5) {

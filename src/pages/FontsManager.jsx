@@ -174,7 +174,7 @@ const FontsManager = () => {
 
       <Divider />
 
-      <div className="afx-ap-fonts-manager p-5">
+      <div className="p-5">
         <h3 className="heading-secondary">Fonts Manager</h3>
         <form className="afx-ap-form">
           <div className="flex flex-col w-full items-center bg-grey-lighter mb-5 bg-white rounded-lg shadow-lg p-10">
