@@ -190,7 +190,7 @@
     @apply w-10;
   }
 
-  .afx-ap-input-error {
+  .afx-input-error {
     @apply !border-2 !border-red-500;
   }
 

@@ -9,8 +9,8 @@ const ShopHeader = ({ loader, saveShop, error }) => {
       <h2 className="heading-primary flex justify-between items-center">
         <input
           type="text"
-          className={`afx-ap-input lg:min-w-[300px] !bg-transparent !border-t-0 !border-l-0 !border-r-0 border-b-2 !rounded-none border-b-gray-400 text-xl ${
-            error ? "afx-ap-input-error" : ""
+          className={`afx-input lg:min-w-[300px] !bg-transparent !border-t-0 !border-l-0 !border-r-0 border-b-2 !rounded-none border-b-gray-400 text-xl ${
+            error ? "afx-input-error" : ""
           }`}
           placeholder="Shop Title Here..."
           value={shopSettings.shopTitle}

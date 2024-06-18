@@ -201,8 +201,8 @@ const FontsManager = () => {
             <input
               type="url"
               placeholder="Paste Font URL"
-              className={`afx-ap-input max-w-full lg:max-w-[75%] !rounded-2xl !pl-5 ${
-                error ? "afx-ap-input-error" : ""
+              className={`afx-input max-w-full lg:max-w-[75%] !rounded-2xl !pl-5 ${
+                error ? "afx-input-error" : ""
               }`}
               value={fontUrl}
               onChange={(e) => setFontUrl(e.target.value)}
