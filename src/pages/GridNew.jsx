@@ -1,15 +1,16 @@
 import React from "react";
 import Divider from "../components/global/Divider.jsx";
 
-const FontsManager = () => {
+const GridNew = () => {
   return (
     <div>
       <div className="flex justify-between items-center pr-5">
-        <h2 className="heading-primary">Fonts Manager</h2>
+        <h2 className="heading-primary">New Grid</h2>
       </div>
 
       <Divider />
     </div>
   );
 };
-export default FontsManager;
+
+export default GridNew;

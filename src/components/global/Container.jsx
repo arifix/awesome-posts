@@ -1,17 +1,21 @@
 import React, { useContext, useState, useEffect } from "react";
-import ShortcodeManager from "../../pages/ShortcodeManager";
-import ShortcodeNew from "../../pages/ShortcodeNew";
-import Settings from "../../pages/Settings";
 import { appContext } from "../../contexts/appContext";
+import GridManager from "../../pages/GridManager";
+import GridNew from "../../pages/GridNew";
+import BrandColors from "../../pages/BrandColors";
+import FontsManager from "../../pages/FontsManager";
+import BackupRestore from "../../pages/BackupRestore";
 
 const Container = () => {
-  const { settings, activeTab, setActiveTab } = useContext(appContext);
+  const { activeTab } = useContext(appContext);
 
   return (
     <div className="afx-ap-container">
-      {activeTab === "shortcode-manager" ? <ShortcodeManager /> : ""}
-      {activeTab === "shortcode-new" ? <ShortcodeNew /> : ""}
-      {activeTab === "settings" ? <Settings /> : ""}
+      {activeTab === "grid-manager" ? <GridManager /> : ""}
+      {activeTab === "grid-new" ? <GridNew /> : ""}
+      {activeTab === "brand-colors" ? <BrandColors /> : ""}
+      {activeTab === "fonts-manager" ? <FontsManager /> : ""}
+      {activeTab === "backup-restore" ? <BackupRestore /> : ""}
     </div>
   );
 };

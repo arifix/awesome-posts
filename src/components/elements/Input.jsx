@@ -5,12 +5,12 @@ const Input = ({ title = "Button Text", name, type = "text" }) => {
   const { defaultSettings, setDefaultSettings } = useContext(shortcodeContext);
 
   return (
-    <div className="afx-ap-form-field flex-col !items-start">
+    <div className="afx-form-field flex-col !items-start">
       <label htmlFor="">{title}:</label>
       <input
         type={type}
         placeholder={title}
-        className="afx-ap-input"
+        className="afx-input"
         value={defaultSettings[name]}
         onChange={(e) =>
           setDefaultSettings({

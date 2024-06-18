@@ -465,7 +465,7 @@ const ShortcodeNew = () => {
                       <div className="grid grid-cols-1 lg:grid-cols-4 gap-5 lg:gap-10 mt-5">
                         <Input name="productButtonText" />
 
-                        <div className="afx-ap-form-field flex-col !items-start">
+                        <div className="afx-form-field flex-col !items-start">
                           <label htmlFor="">Button Size:</label>
                           <Select
                             options={btnSizeOptions}

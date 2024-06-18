@@ -8,10 +8,10 @@ const Color = ({ title = "Text", name }) => {
     useContext(shortcodeContext);
 
   return (
-    <div className="afx-ap-form-field flex-col !items-start">
+    <div className="afx-form-field flex-col !items-start">
       <label htmlFor="">{title}&nbsp;Color:</label>
       <div
-        className="afx-ap-color-picker"
+        className="afx-color-picker"
         onClick={() => setPicker(!showPicker)}
         style={{ backgroundColor: defaultSettings[name] }}
       ></div>

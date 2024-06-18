@@ -6,7 +6,7 @@ const Range = ({ title, min = 14, max = 50, name }) => {
 
   return (
     <>
-      <div className="afx-ap-form-field flex-col !items-start">
+      <div className="afx-form-field flex-col !items-start">
         <label htmlFor="">{title}:</label>
         <div className="min-w-[300px]">
           <div className="flex justify-between w-full">
@@ -21,7 +21,7 @@ const Range = ({ title, min = 14, max = 50, name }) => {
             value={defaultSettings[name]}
             min={min}
             max={max}
-            className="h-2 w-full cursor-ew-resize appearance-none rounded-full bg-gray-300 disabled:cursor-not-allowed accent-brand-primary"
+            className="h-2 w-full cursor-ew-resize appearance-none rounded-full bg-gray-300 disabled:cursor-not-allowed accent-ap-primary"
           />
           <div className="text-sm mt-2">
             Selected Value:{" "}

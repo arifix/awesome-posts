@@ -17,21 +17,6 @@ export const orderOptions = [
   },
 ];
 
-export const fontSizeOptions = [
-  {
-    value: "14px",
-    label: "Small",
-  },
-  {
-    value: "18px",
-    label: "Medium",
-  },
-  {
-    value: "22px",
-    label: "Large",
-  },
-];
-
 export const fontWeightOptions = [
   {
     value: "lighter",

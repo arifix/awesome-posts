@@ -5,7 +5,7 @@ const Toggle = ({ title = "Show Button", name }) => {
   const { defaultSettings, setDefaultSettings } = useContext(shortcodeContext);
 
   return (
-    <div className="afx-ap-form-field">
+    <div className="afx-form-field">
       <label
         htmlFor={name}
         className="!flex items-center flex-1 gap-5 !w-full cursor-pointer"
@@ -15,7 +15,7 @@ const Toggle = ({ title = "Show Button", name }) => {
           <input
             id={name}
             type="checkbox"
-            className="sr-only afx-ap-switch"
+            className="sr-only afx-switch"
             onChange={(e) => {
               setDefaultSettings({
                 ...defaultSettings,

@@ -7,7 +7,7 @@ const FontStyle = ({ name }) => {
   const { defaultSettings, setDefaultSettings } = useContext(shortcodeContext);
 
   return (
-    <div className="afx-ap-form-field flex-col !items-start">
+    <div className="afx-form-field flex-col !items-start">
       <label htmlFor="">Font Style:</label>
       <Select
         options={fontStyleOptions}

@@ -98,23 +98,23 @@
     @apply text-ap-primary border-b-4 border-b-ap-primary;
   }
 
-  .afx-ap-form-field {
+  .afx-form-field {
     @apply flex justify-start items-center gap-3 mb-5;
   }
 
-  .afx-ap-form-field label {
+  .afx-form-field label {
     @apply block text-lg font-medium w-36;
   }
 
-  .afx-ap-input {
+  .afx-input {
     @apply w-full max-w-[300px] h-11 rounded-md border border-gray-100 bg-white py-3 px-6 text-base text-gray-400 outline-none focus:border-ap-primary focus:shadow-md;
   }
 
-  .afx-ap-switch:checked ~ .dot {
+  .afx-switch:checked ~ .dot {
     @apply !bg-ap-primary translate-x-full;
   }
 
-  .afx-ap-color-picker {
+  .afx-color-picker {
     @apply w-[40px] h-[40px] bg-gray-500 transition-all rounded-full block ring-gray-500 hover:ring-2 ring-offset-1 cursor-pointer;
   }
 

@@ -577,15 +577,6 @@ video {
   font-weight: 500;
 }
 
-.heading-sub {
-  margin-bottom: 0.75rem;
-  margin-top: 0.25rem;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  --tw-text-opacity: 1;
-  color: rgb(129 129 129 / var(--tw-text-opacity));
-}
-
 .action-button {
   display: flex;
   align-items: center;
@@ -636,21 +627,21 @@ video {
 
 .action-button.secondary {
   --tw-border-opacity: 1;
-  border-color: rgb(136 0 33 / var(--tw-border-opacity));
+  border-color: rgb(13 168 233 / var(--tw-border-opacity));
   --tw-text-opacity: 1;
-  color: rgb(136 0 33 / var(--tw-text-opacity));
+  color: rgb(13 168 233 / var(--tw-text-opacity));
 }
 
 .action-button.secondary:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(136 0 33 / var(--tw-bg-opacity));
+  background-color: rgb(13 168 233 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .action-button.secondary.active {
   --tw-bg-opacity: 1;
-  background-color: rgb(136 0 33 / var(--tw-bg-opacity));
+  background-color: rgb(13 168 233 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
@@ -749,7 +740,7 @@ video {
   color: rgb(116 95 241 / var(--tw-text-opacity));
 }
 
-.afx-ap-form-field {
+.afx-form-field {
   margin-bottom: 1.25rem;
   display: flex;
   align-items: center;
@@ -757,7 +748,7 @@ video {
   gap: 0.75rem;
 }
 
-.afx-ap-form-field label {
+.afx-form-field label {
   display: block;
   width: 9rem;
   font-size: 1.125rem;
@@ -765,7 +756,7 @@ video {
   font-weight: 500;
 }
 
-.afx-ap-input {
+.afx-input {
   height: 2.75rem;
   width: 100%;
   max-width: 300px;
@@ -787,7 +778,7 @@ video {
   outline-offset: 2px;
 }
 
-.afx-ap-input:focus {
+.afx-input:focus {
   --tw-border-opacity: 1;
   border-color: rgb(116 95 241 / var(--tw-border-opacity));
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -795,14 +786,14 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.afx-ap-switch:checked ~ .dot {
+.afx-switch:checked ~ .dot {
   --tw-translate-x: 100%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   --tw-bg-opacity: 1 !important;
   background-color: rgb(116 95 241 / var(--tw-bg-opacity)) !important;
 }
 
-.afx-ap-color-picker {
+.afx-color-picker {
   display: block;
   height: 40px;
   width: 40px;
@@ -818,21 +809,10 @@ video {
   transition-duration: 150ms;
 }
 
-.afx-ap-color-picker:hover {
+.afx-color-picker:hover {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
-}
-
-.color-groups {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-@media (min-width: 1024px) {
-  .color-groups {
-    display: flex;
-  }
 }
 
 .afx-ap-btngroup {
@@ -901,58 +881,6 @@ video {
   height: 2rem;
   width: 2rem;
   cursor: pointer;
-}
-
-.afx-ap-shortcodes {
-  margin-left: 0px;
-  margin-right: 0px;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.afx-ap-shortcodes > :not([hidden]) ~ :not([hidden]) {
-  --tw-divide-y-reverse: 0;
-  border-top-width: calc(2px * calc(1 - var(--tw-divide-y-reverse)));
-  border-bottom-width: calc(2px * var(--tw-divide-y-reverse));
-  --tw-divide-opacity: 1;
-  border-color: rgb(209 213 219 / var(--tw-divide-opacity));
-}
-
-.afx-ap-shortcodes {
-  padding: 1.25rem;
-}
-
-@media (min-width: 1024px) {
-  .afx-ap-shortcodes {
-    margin-left: 1.25rem;
-    margin-right: 1.25rem;
-    margin-top: 0.75rem;
-    margin-bottom: 0.75rem;
-  }
-}
-
-.afx-ap-single-shortcode {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.25rem;
-}
-
-.afx-ap-single-shortcode h4 {
-  cursor: pointer;
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-  font-weight: 500;
-}
-
-.afx-ap-single-shortcode h4:hover {
-  --tw-text-opacity: 1;
-  color: rgb(116 95 241 / var(--tw-text-opacity));
-}
-
-.afx-ap-single-shortcode div button {
-  width: 2.5rem;
 }
 
 .afx-ap-input-error {
@@ -1045,26 +973,13 @@ video {
   z-index: 50;
 }
 
-#afx-ap-app :is(.mx-3) {
-  margin-left: 0.75rem;
-  margin-right: 0.75rem;
-}
-
 #afx-ap-app :is(.mx-auto) {
   margin-left: auto;
   margin-right: auto;
 }
 
-#afx-ap-app :is(.mb-2) {
-  margin-bottom: 0.5rem;
-}
-
 #afx-ap-app :is(.mb-4) {
   margin-bottom: 1rem;
-}
-
-#afx-ap-app :is(.mb-5) {
-  margin-bottom: 1.25rem;
 }
 
 #afx-ap-app :is(.ml-5) {
@@ -1073,10 +988,6 @@ video {
 
 #afx-ap-app :is(.mt-10) {
   margin-top: 2.5rem;
-}
-
-#afx-ap-app :is(.mt-16) {
-  margin-top: 4rem;
 }
 
 #afx-ap-app :is(.mt-2) {
@@ -1111,10 +1022,6 @@ video {
   display: inline-flex;
 }
 
-#afx-ap-app :is(.table) {
-  display: table;
-}
-
 #afx-ap-app :is(.grid) {
   display: grid;
 }
@@ -1125,14 +1032,6 @@ video {
 
 #afx-ap-app :is(.hidden) {
   display: none;
-}
-
-#afx-ap-app :is(.h-0) {
-  height: 0px;
-}
-
-#afx-ap-app :is(.h-0\.5) {
-  height: 0.125rem;
 }
 
 #afx-ap-app :is(.h-12) {
@@ -1151,10 +1050,6 @@ video {
   height: 1.5rem;
 }
 
-#afx-ap-app :is(.h-8) {
-  height: 2rem;
-}
-
 #afx-ap-app :is(.h-screen) {
   height: 100vh;
 }
@@ -1169,10 +1064,6 @@ video {
 
 #afx-ap-app :is(.\!w-full) {
   width: 100% !important;
-}
-
-#afx-ap-app :is(.w-1\/2) {
-  width: 50%;
 }
 
 #afx-ap-app :is(.w-1\/6) {
@@ -1207,14 +1098,6 @@ video {
   width: 15rem;
 }
 
-#afx-ap-app :is(.w-64) {
-  width: 16rem;
-}
-
-#afx-ap-app :is(.w-8) {
-  width: 2rem;
-}
-
 #afx-ap-app :is(.w-full) {
   width: 100%;
 }
@@ -1223,20 +1106,8 @@ video {
   min-width: 300px;
 }
 
-#afx-ap-app :is(.max-w-2xl) {
-  max-width: 42rem;
-}
-
 #afx-ap-app :is(.max-w-60) {
   max-width: 15rem;
-}
-
-#afx-ap-app :is(.max-w-\[1175px\]) {
-  max-width: 1175px;
-}
-
-#afx-ap-app :is(.max-w-full) {
-  max-width: 100%;
 }
 
 #afx-ap-app :is(.max-w-xl) {
@@ -1249,10 +1120,6 @@ video {
 
 #afx-ap-app :is(.flex-shrink-0) {
   flex-shrink: 0;
-}
-
-#afx-ap-app :is(.flex-grow) {
-  flex-grow: 1;
 }
 
 #afx-ap-app :is(.transform) {
@@ -1323,10 +1190,6 @@ video {
   gap: 0.5rem;
 }
 
-#afx-ap-app :is(.gap-20) {
-  gap: 5rem;
-}
-
 #afx-ap-app :is(.gap-5) {
   gap: 1.25rem;
 }
@@ -1335,20 +1198,8 @@ video {
   overflow: hidden;
 }
 
-#afx-ap-app :is(.overflow-x-auto) {
-  overflow-x: auto;
-}
-
 #afx-ap-app :is(.overflow-y-auto) {
   overflow-y: auto;
-}
-
-#afx-ap-app :is(.whitespace-nowrap) {
-  white-space: nowrap;
-}
-
-#afx-ap-app :is(.\!rounded-2xl) {
-  border-radius: 1rem !important;
 }
 
 #afx-ap-app :is(.\!rounded-none) {
@@ -1389,10 +1240,6 @@ video {
 
 #afx-ap-app :is(.\!border-t-0) {
   border-top-width: 0px !important;
-}
-
-#afx-ap-app :is(.border-b) {
-  border-bottom-width: 1px;
 }
 
 #afx-ap-app :is(.border-b-2) {
@@ -1445,14 +1292,14 @@ video {
   background-color: transparent !important;
 }
 
-#afx-ap-app :is(.bg-ap-secondary) {
+#afx-ap-app :is(.bg-ap-primary) {
   --tw-bg-opacity: 1;
-  background-color: rgb(136 0 33 / var(--tw-bg-opacity));
+  background-color: rgb(116 95 241 / var(--tw-bg-opacity));
 }
 
-#afx-ap-app :is(.bg-gray-100) {
+#afx-ap-app :is(.bg-ap-secondary) {
   --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+  background-color: rgb(13 168 233 / var(--tw-bg-opacity));
 }
 
 #afx-ap-app :is(.bg-gray-300) {
@@ -1468,11 +1315,6 @@ video {
 #afx-ap-app :is(.bg-gray-900) {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-}
-
-#afx-ap-app :is(.bg-slate-200) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
 }
 
 #afx-ap-app :is(.bg-slate-900) {
@@ -1497,10 +1339,6 @@ video {
   padding: 0.25rem;
 }
 
-#afx-ap-app :is(.p-10) {
-  padding: 2.5rem;
-}
-
 #afx-ap-app :is(.p-2) {
   padding: 0.5rem;
 }
@@ -1513,23 +1351,9 @@ video {
   padding: 1.25rem;
 }
 
-#afx-ap-app :is(.p-7) {
-  padding: 1.75rem;
-}
-
 #afx-ap-app :is(.px-4) {
   padding-left: 1rem;
   padding-right: 1rem;
-}
-
-#afx-ap-app :is(.px-5) {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-}
-
-#afx-ap-app :is(.px-6) {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
 }
 
 #afx-ap-app :is(.py-1) {
@@ -1537,28 +1361,9 @@ video {
   padding-bottom: 0.25rem;
 }
 
-#afx-ap-app :is(.py-10) {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-}
-
 #afx-ap-app :is(.py-2) {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-}
-
-#afx-ap-app :is(.py-4) {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
-#afx-ap-app :is(.py-6) {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}
-
-#afx-ap-app :is(.\!pl-5) {
-  padding-left: 1.25rem !important;
 }
 
 #afx-ap-app :is(.pb-0) {
@@ -1571,10 +1376,6 @@ video {
 
 #afx-ap-app :is(.pb-4) {
   padding-bottom: 1rem;
-}
-
-#afx-ap-app :is(.pb-6) {
-  padding-bottom: 1.5rem;
 }
 
 #afx-ap-app :is(.pl-7) {
@@ -1639,10 +1440,6 @@ video {
   font-weight: 700;
 }
 
-#afx-ap-app :is(.font-light) {
-  font-weight: 300;
-}
-
 #afx-ap-app :is(.font-medium) {
   font-weight: 500;
 }
@@ -1663,29 +1460,12 @@ video {
   text-transform: capitalize;
 }
 
-#afx-ap-app :is(.leading-5) {
-  line-height: 1.25rem;
-}
-
 #afx-ap-app :is(.leading-6) {
   line-height: 1.5rem;
 }
 
-#afx-ap-app :is(.leading-normal) {
-  line-height: 1.5;
-}
-
-#afx-ap-app :is(.tracking-wide) {
-  letter-spacing: 0.025em;
-}
-
 #afx-ap-app :is(.tracking-widest) {
   letter-spacing: 0.1em;
-}
-
-#afx-ap-app :is(.text-gray-500) {
-  --tw-text-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
 #afx-ap-app :is(.text-gray-600) {
@@ -1698,11 +1478,6 @@ video {
   color: rgb(55 65 81 / var(--tw-text-opacity));
 }
 
-#afx-ap-app :is(.text-gray-900) {
-  --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity));
-}
-
 #afx-ap-app :is(.text-slate-500) {
   --tw-text-opacity: 1;
   color: rgb(100 116 139 / var(--tw-text-opacity));
@@ -1711,6 +1486,10 @@ video {
 #afx-ap-app :is(.text-white) {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+#afx-ap-app :is(.accent-ap-primary) {
+  accent-color: #745FF1;
 }
 
 #afx-ap-app :is(.opacity-75) {
@@ -1730,12 +1509,6 @@ video {
 #afx-ap-app :is(.shadow-inner) {
   --tw-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: inset 0 2px 4px 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-#afx-ap-app :is(.shadow-lg) {
-  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -1902,16 +1675,6 @@ input[id^="rc-editable-input"] {
   background-color: rgb(116 95 241 / var(--tw-bg-opacity));
 }
 
-#afx-ap-app :is(.hover\:bg-gray-100:hover) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-}
-
-#afx-ap-app :is(.hover\:text-ap-primary:hover) {
-  --tw-text-opacity: 1;
-  color: rgb(116 95 241 / var(--tw-text-opacity));
-}
-
 #afx-ap-app :is(.hover\:text-gray-500:hover) {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
@@ -1939,6 +1702,11 @@ input[id^="rc-editable-input"] {
 
 #afx-ap-app :is(.group:hover .group-hover\:fill-white) {
   fill: #fff;
+}
+
+#afx-ap-app :is(.peer:checked ~ .peer-checked\:bg-ap-primary) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(116 95 241 / var(--tw-bg-opacity));
 }
 
 #afx-ap-app :is(.peer:checked ~ .peer-checked\:font-bold) {
@@ -1977,10 +1745,6 @@ input[id^="rc-editable-input"] {
 
   #afx-ap-app :is(.sm\:ml-3) {
     margin-left: 0.75rem;
-  }
-
-  #afx-ap-app :is(.sm\:ml-4) {
-    margin-left: 1rem;
   }
 
   #afx-ap-app :is(.sm\:mt-0) {
@@ -2043,10 +1807,6 @@ input[id^="rc-editable-input"] {
     padding: 1.5rem;
   }
 
-  #afx-ap-app :is(.sm\:text-left) {
-    text-align: left;
-  }
-
   #afx-ap-app :is(.sm\:align-middle) {
     vertical-align: middle;
   }
@@ -2080,32 +1840,12 @@ input[id^="rc-editable-input"] {
     min-width: 300px;
   }
 
-  #afx-ap-app :is(.lg\:max-w-\[75\%\]) {
-    max-width: 75%;
-  }
-
   #afx-ap-app :is(.lg\:grid-cols-3) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  #afx-ap-app :is(.lg\:grid-cols-4) {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  #afx-ap-app :is(.lg\:flex-row) {
-    flex-direction: row;
-  }
-
   #afx-ap-app :is(.lg\:gap-10) {
     gap: 2.5rem;
-  }
-
-  #afx-ap-app :is(.lg\:gap-16) {
-    gap: 4rem;
-  }
-
-  #afx-ap-app :is(.lg\:p-10) {
-    padding: 2.5rem;
   }
 
   #afx-ap-app :is(.lg\:p-5) {

@@ -11,12 +11,13 @@ import { Tooltip } from "react-tooltip";
 const App = () => {
   const [refreshSettings, setRefreshSettings] = useState(false);
   const [showSidebar, setShowSidebar] = useState(true);
-  const [activeTab, setActiveTab] = useState("shortcode-manager");
+  const [activeTab, setActiveTab] = useState("grid-manager");
   const [settings, setSettings] = useState({});
   const [loading, setLoading] = useState(true);
-  const [shopId, setShopId] = useState(null);
+  const [gridId, setGridId] = useState(null);
+
   const initialSettings = {
-    shopTitle: "",
+    gridTitle: "",
     gridColumns: 3,
     categories: {},
     postsPerPage: 9,
@@ -51,8 +52,8 @@ const App = () => {
     productButtonBorderRadius: 10,
   };
 
-  const [shopSettings, setShopSettings] = useState({
-    shopTitle: "",
+  const [gridSettings, setGridSettings] = useState({
+    gridTitle: "",
     gridColumns: 3,
     categories: {},
     postsPerPage: 9,
@@ -91,9 +92,11 @@ const App = () => {
   const mediaUrl = `${afxApApp.apiUrl}/wp/v2/media/`;
 
   const pages = [
-    "shortcode-manager",
-    "shortcode-new",
-    "settings",
+    "grid-manager",
+    "grid-new",
+    "brand-colors",
+    "fonts-manager",
+    "backup-restore",
   ];
 
   useEffect(() => {
@@ -126,11 +129,11 @@ const App = () => {
       setRefreshSettings,
       showSidebar,
       setShowSidebar,
-      shopSettings,
-      setShopSettings,
+      gridSettings,
+      setGridSettings,
       initialSettings,
-      shopId,
-      setShopId,
+      gridId,
+      setGridId,
     };
   }, [
     settings,
@@ -138,10 +141,10 @@ const App = () => {
     setActiveTab,
     setRefreshSettings,
     showSidebar,
-    shopSettings,
-    setShopSettings,
-    shopId,
-    setShopId,
+    gridSettings,
+    setGridSettings,
+    gridId,
+    setGridId,
   ]);
 
   return (

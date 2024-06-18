@@ -6,11 +6,10 @@ const NavSidebar = () => {
   const {
     activeTab,
     setActiveTab,
-    settings,
     shopSettings,
-    setShopSettings,
+    setGridSettings,
     initialSettings,
-    setShopId,
+    setGridId,
   } = useContext(appContext);
 
   return (
@@ -21,71 +20,128 @@ const NavSidebar = () => {
             <a
               href="javascript:void(0);"
               onClick={() => {
-                setActiveTab("shortcode-manager");
-                insertUrlParam("tab", "shortcode-manager");
-                removeUrlParam("shortcode_id");
-                setShopSettings({ ...initialSettings });
-                setShopId(null);
+                setActiveTab("grid-manager");
+                insertUrlParam("tab", "grid-manager");
+                removeUrlParam("grid_id");
+                setGridSettings({ ...initialSettings });
+                setGridId(null);
               }}
               className={`${
-                activeTab == "shortcode-manager" || activeTab == "shortcode-new"
+                activeTab == "grid-manager" || activeTab == "grid-new"
                   ? "active"
                   : ""
               }`}
             >
-              <i className="dashicons-before dashicons-buddicons-topics"></i>
-              <span>Shortcode Manager</span>
+              <i className="dashicons-before dashicons-store"></i>
+              <span>Grid Manager</span>
             </a>
             <ul className="sub-menu">
               <li>
                 <a
                   href="javascript:void(0);"
                   onClick={() => {
-                    setActiveTab("shortcode-manager");
-                    insertUrlParam("tab", "shortcode-manager");
-                    removeUrlParam("shortcode_id");
-                    setShopSettings({ ...shopSettings });
-                    setShopId(null);
+                    setActiveTab("grid-manager");
+                    insertUrlParam("tab", "grid-manager");
+                    removeUrlParam("grid_id");
+                    setGridSettings({ ...shopSettings });
+                    setGridId(null);
                   }}
-                  className={`${activeTab == "shortcode-manager" ? "active" : ""}`}
+                  className={`${activeTab == "grid-manager" ? "active" : ""}`}
                 >
                   <i className="dashicons-before dashicons-screenoptions"></i>
-                  <span>My Shortcodes</span>
+                  <span>My Grids</span>
                 </a>
               </li>
               <li>
                 <a
                   href="javascript:void(0);"
                   onClick={() => {
-                    setActiveTab("shortcode-new");
-                    insertUrlParam("tab", "shortcode-new");
-                    removeUrlParam("shortcode_id");
-                    setShopSettings({ ...initialSettings });
-                    setShopId(null);
+                    setActiveTab("grid-new");
+                    insertUrlParam("tab", "grid-new");
+                    removeUrlParam("grid_id");
+                    setGridSettings({ ...initialSettings });
+                    setGridId(null);
                   }}
-                  className={`${activeTab == "shortcode-new" ? "active" : ""}`}
+                  className={`${activeTab == "grid-new" ? "active" : ""}`}
                 >
                   <i className="dashicons-before dashicons-insert"></i>
-                  <span>New Shortcode</span>
+                  <span>New Grid</span>
                 </a>
               </li>
             </ul>
           </li>
+
           <li>
             <a
               href="javascript:void(0);"
               onClick={() => {
-                setActiveTab("settings");
-                insertUrlParam("tab", "settings");
-                removeUrlParam("shortcode_id");
-                setShopSettings({ ...initialSettings });
-                setShopId(null);
+                setActiveTab("brand-colors");
+                insertUrlParam("tab", "brand-colors");
+                removeUrlParam("grid_id");
+                setGridSettings({ ...initialSettings });
+                setGridId(null);
               }}
-              className={`${activeTab == "settings" ? "active" : ""}`}
+              className={`${
+                ["brand-colors", "fonts-manager", "backup-restore"].includes(
+                  activeTab
+                )
+                  ? "active"
+                  : ""
+              }`}
             >
               <i className="dashicons-before dashicons-admin-settings"></i>
               <span>Settings</span>
             </a>
+            <ul className="sub-menu">
+              <li>
+                <a
+                  href="javascript:void(0);"
+                  onClick={() => {
+                    setActiveTab("brand-colors");
+                    insertUrlParam("tab", "brand-colors");
+                    removeUrlParam("grid_id");
+                    setGridSettings({ ...initialSettings });
+                    setGridId(null);
+                  }}
+                  className={`${activeTab == "brand-colors" ? "active" : ""}`}
+                >
+                  <i className="dashicons-before dashicons-buddicons-topics"></i>
+                  <span>Brand Colors</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="javascript:void(0);"
+                  onClick={() => {
+                    setActiveTab("fonts-manager");
+                    insertUrlParam("tab", "fonts-manager");
+                    removeUrlParam("grid_id");
+                    setGridSettings({ ...initialSettings });
+                    setGridId(null);
+                  }}
+                  className={`${activeTab == "fonts-manager" ? "active" : ""}`}
+                >
+                  <i className="dashicons-before dashicons-editor-textcolor"></i>
+                  <span>Fonts Manager</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="javascript:void(0);"
+                  onClick={() => {
+                    setActiveTab("backup-restore");
+                    insertUrlParam("tab", "backup-restore");
+                    removeUrlParam("grid_id");
+                    setGridSettings({ ...initialSettings });
+                    setGridId(null);
+                  }}
+                  className={`${activeTab == "backup-restore" ? "active" : ""}`}
+                >
+                  <i className="dashicons-before dashicons-backup"></i>
+                  <span>Backup &amp; Restore</span>
+                </a>
+              </li>
+            </ul>
           </li>
         </ul>
       </nav>

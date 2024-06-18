@@ -18,8 +18,7 @@ class AFX_Admin_Menu
             $capability,
             $slug,
             [$this, 'afx_menu_page_template'],
-            'dashicons-screenoptions',
-            2
+            'dashicons-screenoptions'
         );
     }
 

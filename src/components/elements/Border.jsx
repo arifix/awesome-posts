@@ -12,7 +12,7 @@ const Border = ({ name, min, max }) => {
     useContext(shortcodeContext);
 
   return (
-    <div className="afx-ap-form-field flex-col !items-start">
+    <div className="afx-form-field flex-col !items-start">
       <label htmlFor="">Border:</label>
       <div className="flex gap-1">
         <div className="relative">
@@ -184,8 +184,8 @@ const Border = ({ name, min, max }) => {
           />
         </div>
         <button
-          className={`afx-ap-input group p-3 border border-gray-400 flex justify-center items-center hover:bg-brand-primary ${
-            grouped ? "bg-brand-primary" : ""
+          className={`afx-ap-input group p-3 border border-gray-400 flex justify-center items-center hover:bg-ap-primary ${
+            grouped ? "bg-ap-primary" : ""
           }`}
           style={{ width: 50 }}
           onClick={() => {
@@ -265,7 +265,7 @@ const Border = ({ name, min, max }) => {
           }}
         />
         <div
-          className="afx-ap-color-picker"
+          className="afx-color-picker"
           onClick={() => setPicker(!showPicker)}
           style={{ backgroundColor: defaultSettings[name].color }}
         ></div>

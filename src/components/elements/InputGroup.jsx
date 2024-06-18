@@ -6,7 +6,7 @@ const InputGroup = ({ title, min, max, name }) => {
   const { defaultSettings, setDefaultSettings } = useContext(shortcodeContext);
 
   return (
-    <div className="afx-ap-form-field flex-col !items-start">
+    <div className="afx-form-field flex-col !items-start">
       <label htmlFor="">{title}:</label>
       <div className="flex gap-1">
         <div className="relative">
@@ -29,7 +29,7 @@ const InputGroup = ({ title, min, max, name }) => {
             name={name}
             min={min}
             max={max}
-            className="afx-ap-input pl-7"
+            className="afx-input pl-7"
             style={{ width: 65 }}
             autoComplete="off"
             value={defaultSettings[name].top}
@@ -71,7 +71,7 @@ const InputGroup = ({ title, min, max, name }) => {
             name={name}
             min={min}
             max={max}
-            className="afx-ap-input pl-7"
+            className="afx-input pl-7"
             style={{ width: 65 }}
             autoComplete="off"
             value={defaultSettings[name].right}
@@ -113,7 +113,7 @@ const InputGroup = ({ title, min, max, name }) => {
             name={name}
             min={min}
             max={max}
-            className="afx-ap-input pl-7"
+            className="afx-input pl-7"
             style={{ width: 65 }}
             autoComplete="off"
             value={defaultSettings[name].bottom}
@@ -155,7 +155,7 @@ const InputGroup = ({ title, min, max, name }) => {
             name={name}
             min={min}
             max={max}
-            className="afx-ap-input pl-7"
+            className="afx-input pl-7"
             style={{ width: 65 }}
             autoComplete="off"
             value={defaultSettings[name].left}
@@ -178,8 +178,8 @@ const InputGroup = ({ title, min, max, name }) => {
           />
         </div>
         <button
-          className={`afx-ap-input group p-3 border border-gray-400 flex justify-center items-center hover:bg-brand-primary ${
-            grouped ? "bg-brand-primary" : ""
+          className={`afx-input group p-3 border border-gray-400 flex justify-center items-center hover:bg-ap-primary ${
+            grouped ? "bg-ap-primary" : ""
           }`}
           style={{ width: 50 }}
           onClick={() => {
@@ -195,7 +195,7 @@ const InputGroup = ({ title, min, max, name }) => {
               },
             });
           }}
-          data-tooltip-id="afx-ap-tooltip"
+          data-tooltip-id="afx-tooltip"
           data-tooltip-content={grouped ? "Ungroup Values" : "Group Values"}
         >
           {grouped ? (
