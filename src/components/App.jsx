@@ -97,6 +97,7 @@ const App = () => {
     "brand-colors",
     "fonts-manager",
     "backup-restore",
+    "about",
   ];
 
   useEffect(() => {

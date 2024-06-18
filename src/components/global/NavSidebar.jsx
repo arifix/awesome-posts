@@ -143,6 +143,22 @@ const NavSidebar = () => {
               </li>
             </ul>
           </li>
+          <li>
+            <a
+              href="javascript:void(0);"
+              onClick={() => {
+                setActiveTab("about");
+                insertUrlParam("tab", "about");
+                removeUrlParam("grid_id");
+                setGridSettings({ ...initialSettings });
+                setGridId(null);
+              }}
+              className={`${activeTab == "about" ? "active" : ""}`}
+            >
+              <i className="dashicons-before dashicons-info"></i>
+              <span>About</span>
+            </a>
+          </li>
         </ul>
       </nav>
     </>
