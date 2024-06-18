@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { shortcodeContext } from "../../contexts/shortcodeContext.jsx";
+import { styleContext } from "../../contexts/styleContext";
 import Select from "react-select";
-import { textTransformOptions } from "../../utils/const.js";
+import { textTransformOptions } from "../../utils/const.ts";
 
 const TextTransform = ({ name }) => {
-  const { defaultSettings, setDefaultSettings } = useContext(shortcodeContext);
+  const { defaultSettings, setDefaultSettings } = useContext(styleContext);
 
   return (
     <div className="afx-ap-form-field flex-col !items-start">
@@ -18,7 +18,7 @@ const TextTransform = ({ name }) => {
         styles={{
           control: (baseStyles) => ({
             ...baseStyles,
-            width: 275,
+            width: 300,
           }),
         }}
         onChange={(newValue) => {

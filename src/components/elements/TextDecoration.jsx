@@ -1,18 +1,18 @@
 import React, { useContext } from "react";
 import { styleContext } from "../../contexts/styleContext";
 import Select from "react-select";
-import { fontWeightOptions } from "../../utils/const.ts";
+import { textDecorationOptions } from "../../utils/const.ts";
 
-const FontWeight = ({ name }) => {
+const TextDecoration = ({ name }) => {
   const { defaultSettings, setDefaultSettings } = useContext(styleContext);
 
   return (
     <div className="afx-ap-form-field flex-col !items-start">
-      <label htmlFor="">Font Weight:</label>
+      <label htmlFor="">Text Decoration:</label>
       <Select
-        options={fontWeightOptions}
+        options={textDecorationOptions}
         placeholder="Large"
-        value={fontWeightOptions.filter(
+        value={textDecorationOptions.filter(
           (option) => option.value === defaultSettings[name]
         )}
         styles={{
@@ -32,4 +32,4 @@ const FontWeight = ({ name }) => {
   );
 };
 
-export default FontWeight;
+export default TextDecoration;

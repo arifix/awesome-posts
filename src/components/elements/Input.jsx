@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { shortcodeContext } from "../../contexts/shortcodeContext.jsx";
+import { styleContext } from "../../contexts/styleContext";
 
 const Input = ({ title = "Button Text", name, type = "text" }) => {
-  const { defaultSettings, setDefaultSettings } = useContext(shortcodeContext);
+  const { defaultSettings, setDefaultSettings } = useContext(styleContext);
 
   return (
     <div className="afx-ap-form-field flex-col !items-start">

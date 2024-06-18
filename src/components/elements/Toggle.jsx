@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
-import { shortcodeContext } from "../../contexts/shortcodeContext.jsx";
+import { styleContext } from "../../contexts/styleContext";
 
 const Toggle = ({ title = "Show Button", name }) => {
-  const { defaultSettings, setDefaultSettings } = useContext(shortcodeContext);
+  const { defaultSettings, setDefaultSettings } = useContext(styleContext);
 
   return (
     <div className="afx-ap-form-field">
       <label
         htmlFor={name}
-        className="!flex items-center flex-1 gap-5 !w-full cursor-pointer text-gray-500"
+        className="!flex items-center flex-1 gap-5 !w-full cursor-pointer"
       >
         {title}:
         <div className="relative">

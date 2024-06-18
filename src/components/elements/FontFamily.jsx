@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { shortcodeContext } from "../../contexts/shortcodeContext.jsx";
+import { styleContext } from "../../contexts/styleContext";
 import Select from "react-select";
 
 const FontFamily = ({ name }) => {
   const { defaultSettings, setDefaultSettings, fontsOptions } =
-    useContext(shortcodeContext);
+    useContext(styleContext);
 
   return (
     <div className="afx-ap-form-field flex-col !items-start">
@@ -12,11 +12,13 @@ const FontFamily = ({ name }) => {
       <Select
         options={fontsOptions}
         placeholder="Select One"
-        value={fontsOptions.filter((option) => option.value === defaultSettings[name])}
+        value={fontsOptions.filter(
+          (option) => option.value === defaultSettings[name]
+        )}
         styles={{
           control: (baseStyles) => ({
             ...baseStyles,
-            width: 275,
+            width: 300,
           }),
         }}
         onChange={(newValue) => {
