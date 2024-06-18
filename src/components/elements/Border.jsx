@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { styleContext } from "../../contexts/styleContext";
+import { shortcodeContext } from "../../contexts/shortcodeContext";
 import { SketchPicker } from "react-color";
 import Select from "react-select";
 import { borderOptions } from "../../utils/const.ts";
@@ -9,7 +9,7 @@ const Border = ({ name, min, max }) => {
   const [grouped, setGrouped] = useState(true);
 
   const { defaultSettings, setDefaultSettings, pickerColors } =
-    useContext(styleContext);
+    useContext(shortcodeContext);
 
   return (
     <div className="afx-ap-form-field flex-col !items-start">

@@ -1,8 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import { appContext } from "../contexts/appContext";
-import BrandColors from "../components/parts/BrandColors";
-import FontsManager from "../components/parts/FontsManager";
-import BackupRestore from "../components/parts/BackupRestore";
 import Modal from "../components/global/Modal";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -95,10 +92,6 @@ const Settings = () => {
       <h2 className="heading-primary">Settings</h2>
 
       <Divider />
-
-      <BrandColors brandColors={brandColors} setBrandColors={setBrandColors} />
-      <FontsManager />
-      <BackupRestore />
 
       <div className="flex justify-center items-center gap-5 mt-5 pb-6">
         <button

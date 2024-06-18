@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { styleContext } from "../../contexts/styleContext";
+import { shortcodeContext } from "../../contexts/shortcodeContext";
 
 const Range = ({ title, min = 14, max = 50, name }) => {
-  const { defaultSettings, setDefaultSettings } = useContext(styleContext);
+  const { defaultSettings, setDefaultSettings } = useContext(shortcodeContext);
 
   return (
     <>
