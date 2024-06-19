@@ -99,6 +99,9 @@ const GridNew = () => {
     textDecoration: "none",
     textTransform: "none",
     showSection: true,
+
+    showPostTitle: false,
+    showPostDes: false,
   });
 
   const fontsOptions = getGoogleFonts(fonts);
@@ -261,7 +264,7 @@ const GridNew = () => {
             {Object.values(postTypes).length > 0 ? (
               <Select
                 options={postTypes}
-                placeholder="Post"
+                placeholder="Post Type"
                 value={
                   Object.values(defaultSettings.postTypes).length > 0
                     ? defaultSettings.postTypes
@@ -291,6 +294,34 @@ const GridNew = () => {
             )}
           </div>
 
+          <Input title="Posts Per Page" name="postsPerPage" type="number" />
+
+          <div className="afx-form-field flex-col !items-start">
+            <label htmlFor="">Default Order:</label>
+            <Select
+              options={orderOptions}
+              placeholder="Most Recent"
+              value={orderOptions.filter(
+                (option) => option.value === defaultSettings.postsOrder
+              )}
+              styles={{
+                control: (baseStyles) => ({
+                  ...baseStyles,
+                  width: 275,
+                  height: 42,
+                }),
+              }}
+              onChange={(newValue) => {
+                setDefaultSettings({
+                  ...defaultSettings,
+                  postsOrder: newValue.value,
+                });
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 px-5 py-2">
           <div className="afx-form-field flex-col !items-start">
             <label htmlFor="">Taxonomy:</label>
             <Select
@@ -435,32 +466,6 @@ const GridNew = () => {
               placeholder="End Date"
             />
           </div>
-
-          <Input title="Posts Per Page" name="postsPerPage" type="number" />
-
-          <div className="afx-form-field flex-col !items-start">
-            <label htmlFor="">Default Order:</label>
-            <Select
-              options={orderOptions}
-              placeholder="Most Recent"
-              value={orderOptions.filter(
-                (option) => option.value === defaultSettings.postsOrder
-              )}
-              styles={{
-                control: (baseStyles) => ({
-                  ...baseStyles,
-                  width: 275,
-                  height: 42,
-                }),
-              }}
-              onChange={(newValue) => {
-                setDefaultSettings({
-                  ...defaultSettings,
-                  postsOrder: newValue.value,
-                });
-              }}
-            />
-          </div>
         </div>
 
         <div className="px-5 py-2">
@@ -556,6 +561,70 @@ const GridNew = () => {
           <Color title="Background" name="bgColor" />
           <Range title="Border Radius" name="borderRadius" min={0} max={50} />
           <Toggle title="Show Section" name="showSection" />
+        </div>
+
+        <div className="px-5 py-2">
+          <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+            <h3 className="heading-secondary text-2xl pb-0">Title Settings</h3>
+            <Toggle title="Show Post Title" name="showPostTitle" />
+          </div>
+          {defaultSettings.showPostTitle ? (
+            <>
+              <div className="grid grid-cols-1 lg:grid-cols-4 gap-5 lg:gap-10 mt-10">
+                <FontFamily name="productTitleFont" />
+
+                <Range
+                  title="Font Size"
+                  min={14}
+                  max={50}
+                  name="productTitleSize"
+                />
+
+                <Alignment name="productTitleAlignment" />
+
+                <Color name="productTitleColor" />
+              </div>
+              <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
+                <h4 className="tss-product-title text-center text-xl">
+                  This is a simple product
+                </h4>
+              </div>
+            </>
+          ) : (
+            ""
+          )}
+        </div>
+
+        <div className="px-5 py-2 mt-10">
+          <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+            <h3 className="heading-secondary text-2xl pb-0">Description Settings</h3>
+            <Toggle title="Show Post Description" name="showPostDes" />
+          </div>
+          {defaultSettings.showPostDes ? (
+            <>
+              <div className="grid grid-cols-1 lg:grid-cols-4 gap-5 lg:gap-10 mt-10">
+                <FontFamily name="productTitleFont" />
+
+                <Range
+                  title="Font Size"
+                  min={14}
+                  max={50}
+                  name="productTitleSize"
+                />
+
+                <Alignment name="productTitleAlignment" />
+
+                <Color name="productTitleColor" />
+              </div>
+              <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
+                <h4 className="tss-product-title text-center text-xl">
+                  This is a simple product
+                </h4>
+              </div>
+            </>
+          ) : (
+            ""
+          )}
         </div>
       </div>
 
