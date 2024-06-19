@@ -1169,14 +1169,6 @@ video {
   margin-top: 1.25rem;
 }
 
-#afx-ap-app :is(.mb-10) {
-  margin-bottom: 2.5rem;
-}
-
-#afx-ap-app :is(.mb-20) {
-  margin-bottom: 5rem;
-}
-
 #afx-ap-app :is(.block) {
   display: block;
 }
@@ -1371,10 +1363,6 @@ video {
 
 #afx-ap-app :is(.grid-cols-4) {
   grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-#afx-ap-app :is(.flex-row) {
-  flex-direction: row;
 }
 
 #afx-ap-app :is(.flex-col) {
@@ -1605,6 +1593,11 @@ video {
   padding-right: 1.5rem;
 }
 
+#afx-ap-app :is(.py-1) {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
 #afx-ap-app :is(.py-10) {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
@@ -1625,16 +1618,6 @@ video {
   padding-bottom: 1.5rem;
 }
 
-#afx-ap-app :is(.px-2) {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
-
-#afx-ap-app :is(.py-1) {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-}
-
 #afx-ap-app :is(.\!pl-5) {
   padding-left: 1.25rem !important;
 }
@@ -1649,6 +1632,10 @@ video {
 
 #afx-ap-app :is(.pb-4) {
   padding-bottom: 1rem;
+}
+
+#afx-ap-app :is(.pb-5) {
+  padding-bottom: 1.25rem;
 }
 
 #afx-ap-app :is(.pb-6) {
@@ -1669,10 +1656,6 @@ video {
 
 #afx-ap-app :is(.pt-5) {
   padding-top: 1.25rem;
-}
-
-#afx-ap-app :is(.pb-5) {
-  padding-bottom: 1.25rem;
 }
 
 #afx-ap-app :is(.text-left) {
@@ -2217,12 +2200,12 @@ input[id^="rc-editable-input"] {
     justify-content: space-between;
   }
 
-  #afx-ap-app :is(.lg\:gap-16) {
-    gap: 4rem;
-  }
-
   #afx-ap-app :is(.lg\:gap-0) {
     gap: 0px;
+  }
+
+  #afx-ap-app :is(.lg\:gap-16) {
+    gap: 4rem;
   }
 
   #afx-ap-app :is(.lg\:p-10) {
