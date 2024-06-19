@@ -35,7 +35,7 @@ const Border = ({ name, min, max }) => {
             name={name}
             min={min}
             max={max}
-            className="afx-input pl-7"
+            className="afx-input arrow-hidden pl-7"
             style={{ width: 65 }}
             autoComplete="off"
             value={defaultSettings[name].top}
@@ -77,7 +77,7 @@ const Border = ({ name, min, max }) => {
             name={name}
             min={min}
             max={max}
-            className="afx-input  pl-7"
+            className="afx-input arrow-hidden pl-7"
             style={{ width: 65 }}
             autoComplete="off"
             value={defaultSettings[name].right}
@@ -119,7 +119,7 @@ const Border = ({ name, min, max }) => {
             name={name}
             min={min}
             max={max}
-            className="afx-input  pl-7"
+            className="afx-input arrow-hidden pl-7"
             style={{ width: 65 }}
             autoComplete="off"
             value={defaultSettings[name].bottom}
@@ -161,7 +161,7 @@ const Border = ({ name, min, max }) => {
             name={name}
             min={min}
             max={max}
-            className="afx-input  pl-7"
+            className="afx-input arrow-hidden pl-7"
             style={{ width: 65 }}
             autoComplete="off"
             value={defaultSettings[name].left}

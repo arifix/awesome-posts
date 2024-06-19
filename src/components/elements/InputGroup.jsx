@@ -29,7 +29,7 @@ const InputGroup = ({ title, min, max, name }) => {
             name={name}
             min={min}
             max={max}
-            className="afx-input pl-7"
+            className="afx-input arrow-hidden pl-7"
             style={{ width: 65 }}
             autoComplete="off"
             value={defaultSettings[name].top}
@@ -71,7 +71,7 @@ const InputGroup = ({ title, min, max, name }) => {
             name={name}
             min={min}
             max={max}
-            className="afx-input pl-7"
+            className="afx-input arrow-hidden pl-7"
             style={{ width: 65 }}
             autoComplete="off"
             value={defaultSettings[name].right}
@@ -113,7 +113,7 @@ const InputGroup = ({ title, min, max, name }) => {
             name={name}
             min={min}
             max={max}
-            className="afx-input pl-7"
+            className="afx-input arrow-hidden pl-7"
             style={{ width: 65 }}
             autoComplete="off"
             value={defaultSettings[name].bottom}
@@ -155,7 +155,7 @@ const InputGroup = ({ title, min, max, name }) => {
             name={name}
             min={min}
             max={max}
-            className="afx-input pl-7"
+            className="afx-input arrow-hidden pl-7"
             style={{ width: 65 }}
             autoComplete="off"
             value={defaultSettings[name].left}

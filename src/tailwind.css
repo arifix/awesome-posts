@@ -119,6 +119,10 @@
     @apply w-full max-w-[300px] h-11 rounded-md border border-gray-100 bg-white py-3 px-6 text-base text-gray-400 outline-none focus:border-ap-primary focus:shadow-md;
   }
 
+  .arrow-hidden {
+    @apply [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none;
+  }
+
   .afx-switch:checked ~ .dot {
     @apply !bg-ap-primary translate-x-full;
   }
