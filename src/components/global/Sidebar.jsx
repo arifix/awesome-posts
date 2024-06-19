@@ -8,7 +8,7 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={`sidebar w-1/6 h-screen p-3 lg:p-5 lg:pt-6 border-r-[1px] border-r-gray-300 ${
+      className={`sidebar w-1/6 min-h-screen p-3 lg:p-5 lg:pt-6 border-r-[1px] border-r-gray-300 ${
         !showSidebar ? "hidden" : ""
       }`}
     >

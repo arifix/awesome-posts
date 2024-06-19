@@ -3,32 +3,13 @@ import { appContext } from "../contexts/appContext.jsx";
 import { gridContext } from "../contexts/gridContext";
 import Divider from "../components/global/Divider.jsx";
 import axios from "axios";
-import Select from "react-select";
-import Alignment from "../components/elements/Alignment";
-import Border from "../components/elements/Border";
-import Color from "../components/elements/Color";
-import FontFamily from "../components/elements/FontFamily";
-import FontStyle from "../components/elements/FontStyle";
-import FontWeight from "../components/elements/FontWeight";
-import Input from "../components/elements/Input.jsx";
-import InputGroup from "../components/elements/InputGroup";
-import Range from "../components/elements/Range";
-import TextDecoration from "../components/elements/TextDecoration";
-import TextTransform from "../components/elements/TextTransform";
-import Toggle from "../components/elements/Toggle";
 import ModalPreview from "../components/global/ModalPreview.jsx";
 import Preview from "../components/parts/Preview.jsx";
-import {
-  getGoogleFonts,
-  fontsUrlToName,
-  orderByOptions,
-  orderOptions,
-  gridStyleOptions,
-  operatorOptions,
-  postStatusOptions,
-} from "../utils/const.js";
+import { getGoogleFonts } from "../utils/const.js";
 import GridSettings from "../components/parts/GridSettings.jsx";
-import QueryFilters from "../components/parts/QueryFilters.jsx";
+import GridQueryFilters from "../components/parts/GridQueryFilters.jsx";
+import GridLayout from "../components/parts/GridLayout.jsx";
+import GridStyling from "../components/parts/GridStyling.jsx";
 
 const GridNew = () => {
   const [postTypes, setPostTypes] = useState([]);
@@ -38,7 +19,7 @@ const GridNew = () => {
   const [pickerColors, setPickerColors] = useState([]);
   const [fonts, setFonts] = useState({});
   const [showModal, setShowModal] = useState(false);
-  const [activeSubTab, setActiveSubTab] = useState("grid_settings");
+  const [activeSubTab, setActiveSubTab] = useState("query_filters");
 
   const {
     baseUrl,
@@ -54,22 +35,23 @@ const GridNew = () => {
 
   const [defaultSettings, setDefaultSettings] = useState({
     gridTitle: "",
-    gridStyle: [],
-
-    postTypes: [],
-    taxonomies: [],
+    gridStyle: "",
     gridColumns: 3,
-    postsPerPage: 9,
-    postsOrderBy: [],
-    postsOrder: [],
-    offset: 0,
 
+    postType: [],
+    limit: "",
+    postsPerPage: 9,
+    offset: 0,
+    taxonomy: [],
     terms: [],
     operator: [],
+    orderBy: [],
+    order: [],
     postsToInclude: [],
     postsToExclude: [],
     startDate: "",
     endDate: "",
+    postStatus: [],
 
     alignment: "left",
     border: {
@@ -106,12 +88,11 @@ const GridNew = () => {
     textTransform: "none",
     showSection: true,
 
-    applyTaxonomyFilter: false,
-    applyOrderFilter: false,
-    applyPostsFilter: false,
-    applyPostsStatusFilter: false,
-
-    postStatus: [],
+    applyTaxonomyFilter: true,
+    applyOrderFilter: true,
+    applyDateFilter: true,
+    applyPostsFilter: true,
+    applyPostsStatusFilter: true,
   });
 
   const fontsOptions = getGoogleFonts(fonts);
@@ -142,7 +123,7 @@ const GridNew = () => {
   }, []);
 
   useEffect(() => {
-    const type = defaultSettings.postTypes?.value;
+    const type = defaultSettings.postType?.value;
 
     if (type) {
       axios.get(baseUrl + "taxonomies?post-type=" + type).then((res) => {
@@ -151,11 +132,11 @@ const GridNew = () => {
         }
       });
     }
-  }, [defaultSettings.postTypes]);
+  }, [defaultSettings.postType]);
 
   useEffect(() => {
-    const type = defaultSettings.postTypes?.value;
-    const taxonomy = defaultSettings.taxonomies?.value;
+    const type = defaultSettings.postType?.value;
+    const taxonomy = defaultSettings.taxonomy?.value;
 
     if (type && taxonomy) {
       axios
@@ -166,11 +147,11 @@ const GridNew = () => {
           }
         });
     }
-  }, [defaultSettings.taxonomies]);
+  }, [defaultSettings.taxonomy]);
 
   useEffect(() => {
-    const type = defaultSettings.postTypes?.value || "";
-    const taxonomy = defaultSettings.taxonomies?.value || "";
+    const type = defaultSettings.postType?.value || "";
+    const taxonomy = defaultSettings.taxonomy?.value || "";
 
     const terms = [];
     Object.values(defaultSettings.terms).map((item) => terms.push(item.value));
@@ -193,8 +174,8 @@ const GridNew = () => {
         });
     }
   }, [
-    defaultSettings.postTypes,
-    defaultSettings.taxonomies,
+    defaultSettings.postType,
+    defaultSettings.taxonomy,
     defaultSettings.terms,
   ]);
 
@@ -292,7 +273,15 @@ const GridNew = () => {
         </div>
 
         <div className={`${activeSubTab == "query_filters" ? "" : "hidden"}`}>
-          <QueryFilters />
+          <GridQueryFilters />
+        </div>
+
+        <div className={`${activeSubTab == "layout" ? "" : "hidden"}`}>
+          <GridLayout />
+        </div>
+
+        <div className={`${activeSubTab == "styling" ? "" : "hidden"}`}>
+          <GridStyling />
         </div>
       </div>
 

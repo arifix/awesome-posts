@@ -7,10 +7,22 @@ import "react-loading-skeleton/dist/skeleton.css";
 import Select from "react-select";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/confetti.css";
-import { operatorOptions, orderByOptions, orderOptions, postStatusOptions } from "../../utils/const.js";
+import {
+  operatorOptions,
+  orderByOptions,
+  orderOptions,
+  postStatusOptions,
+} from "../../utils/const.js";
 
-const QueryFilters = () => {
-  const { postTypes, taxonomies, terms, posts, defaultSettings, setDefaultSettings } = useContext(gridContext);
+const GridQueryFilters = () => {
+  const {
+    postTypes,
+    taxonomies,
+    terms,
+    posts,
+    defaultSettings,
+    setDefaultSettings,
+  } = useContext(gridContext);
 
   return (
     <>
@@ -24,8 +36,8 @@ const QueryFilters = () => {
               options={postTypes}
               placeholder="Post Type"
               value={
-                Object.values(defaultSettings.postTypes).length > 0
-                  ? defaultSettings.postTypes
+                Object.values(defaultSettings.postType).length > 0
+                  ? defaultSettings.postType
                   : ""
               }
               styles={{
@@ -37,8 +49,8 @@ const QueryFilters = () => {
               onChange={(newValue) => {
                 setDefaultSettings({
                   ...defaultSettings,
-                  postTypes: newValue,
-                  taxonomies: [],
+                  postType: newValue,
+                  taxonomy: [],
                   terms: [],
                   postsToInclude: [],
                   postsToExclude: [],
@@ -71,8 +83,8 @@ const QueryFilters = () => {
                 options={taxonomies}
                 placeholder="All Taxonomies"
                 value={
-                  Object.values(defaultSettings.taxonomies).length > 0
-                    ? defaultSettings.taxonomies
+                  Object.values(defaultSettings.taxonomy).length > 0
+                    ? defaultSettings.taxonomy
                     : ""
                 }
                 styles={{
@@ -84,7 +96,7 @@ const QueryFilters = () => {
                 onChange={(newValue) => {
                   setDefaultSettings({
                     ...defaultSettings,
-                    taxonomies: newValue,
+                    taxonomy: newValue,
                     postsToInclude: [],
                     postsToExclude: [],
                   });
@@ -210,66 +222,14 @@ const QueryFilters = () => {
         )}
       </div>
 
-      {/* Posts Filter */}
+      {/* Date Filter */}
       <div className="px-5 py-2 mt-5">
         <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
-          <h3 className="heading-secondary text-2xl pb-0">Posts Filter</h3>
-          <Toggle title="Apply Posts Filter?" name="applyPostsFilter" />
+          <h3 className="heading-secondary text-2xl pb-0">Date Filter</h3>
+          <Toggle title="Apply Posts Date Filter?" name="applyDateFilter" />
         </div>
-        {defaultSettings.applyPostsFilter ? (
+        {defaultSettings.applyDateFilter ? (
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
-            <div className="afx-form-field flex-col !items-start">
-              <label htmlFor="">Posts (Include):</label>
-              <Select
-                options={posts}
-                placeholder="All Posts"
-                value={
-                  Object.values(defaultSettings.postsToInclude).length > 0
-                    ? defaultSettings.postsToInclude
-                    : ""
-                }
-                styles={{
-                  control: (baseStyles) => ({
-                    ...baseStyles,
-                    width: 300,
-                  }),
-                }}
-                onChange={(newValue) => {
-                  setDefaultSettings({
-                    ...defaultSettings,
-                    postsToInclude: newValue,
-                  });
-                }}
-                isMulti
-              />
-            </div>
-
-            <div className="afx-form-field flex-col !items-start">
-              <label htmlFor="">Posts (Exclude):</label>
-              <Select
-                options={posts}
-                placeholder="All Posts"
-                value={
-                  Object.values(defaultSettings.postsToExclude).length > 0
-                    ? defaultSettings.postsToExclude
-                    : ""
-                }
-                styles={{
-                  control: (baseStyles) => ({
-                    ...baseStyles,
-                    width: 300,
-                  }),
-                }}
-                onChange={(newValue) => {
-                  setDefaultSettings({
-                    ...defaultSettings,
-                    postsToExclude: newValue,
-                  });
-                }}
-                isMulti
-              />
-            </div>
-
             <div className="afx-form-field flex-col !items-start">
               <label htmlFor="">Start Date:</label>
               <Flatpickr
@@ -305,6 +265,71 @@ const QueryFilters = () => {
                   });
                 }}
                 placeholder="End Date"
+              />
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
+
+      {/* Posts Filter */}
+      <div className="px-5 py-2 mt-5">
+        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+          <h3 className="heading-secondary text-2xl pb-0">Posts Filter</h3>
+          <Toggle title="Apply Posts Filter?" name="applyPostsFilter" />
+        </div>
+        {defaultSettings.applyPostsFilter ? (
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+            <div className="afx-form-field flex-col !items-start">
+              <label htmlFor="">Include Only:</label>
+              <Select
+                options={posts}
+                placeholder="All Posts"
+                value={
+                  Object.values(defaultSettings.postsToInclude).length > 0
+                    ? defaultSettings.postsToInclude
+                    : ""
+                }
+                styles={{
+                  control: (baseStyles) => ({
+                    ...baseStyles,
+                    width: 300,
+                  }),
+                }}
+                onChange={(newValue) => {
+                  setDefaultSettings({
+                    ...defaultSettings,
+                    postsToInclude: newValue,
+                  });
+                }}
+                isMulti
+              />
+            </div>
+
+            <div className="afx-form-field flex-col !items-start">
+              <label htmlFor="">Exclude:</label>
+              <Select
+                options={posts}
+                placeholder="All Posts"
+                value={
+                  Object.values(defaultSettings.postsToExclude).length > 0
+                    ? defaultSettings.postsToExclude
+                    : ""
+                }
+                styles={{
+                  control: (baseStyles) => ({
+                    ...baseStyles,
+                    width: 300,
+                  }),
+                }}
+                onChange={(newValue) => {
+                  setDefaultSettings({
+                    ...defaultSettings,
+                    postsToExclude: newValue,
+                  });
+                }}
+                isMulti
               />
             </div>
           </div>
@@ -360,4 +385,4 @@ const QueryFilters = () => {
   );
 };
 
-export default QueryFilters;
+export default GridQueryFilters;
