@@ -232,10 +232,10 @@ class AFX_Rest_Routes
         $types = [['value' => 'post', 'label' => 'Post']];
         if (count($post_types) > 0) {
             foreach ($post_types as $pt) {
-                if($pt == 'product'){
+                if ($pt == 'product') {
                     continue;
                 }
-                
+
                 $types[] = ['value' => $pt, 'label' => ucwords(str_replace(array('-', '_'), ' ', $pt))];
             }
         }
@@ -314,6 +314,16 @@ class AFX_Rest_Routes
             if (count($tax_query) > 1) {
                 $posts_args['tax_query'] = $tax_query;
             }
+        }
+
+        if (!empty($_GET['startDate']) && !empty($_GET['endDate'])) {
+            $posts_args['date_query'] = array(
+                array(
+                    'after' => $_GET['startDate'],
+                    'before' => $_GET['endDate'],
+                    'inclusive' => true,
+                )
+            );
         }
 
         $posts_query = new WP_Query($posts_args);

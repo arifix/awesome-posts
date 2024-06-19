@@ -1169,6 +1169,14 @@ video {
   margin-top: 1.25rem;
 }
 
+#afx-ap-app :is(.mb-10) {
+  margin-bottom: 2.5rem;
+}
+
+#afx-ap-app :is(.mb-20) {
+  margin-bottom: 5rem;
+}
+
 #afx-ap-app :is(.block) {
   display: block;
 }
@@ -2205,8 +2213,16 @@ input[id^="rc-editable-input"] {
     flex-wrap: nowrap;
   }
 
+  #afx-ap-app :is(.lg\:justify-between) {
+    justify-content: space-between;
+  }
+
   #afx-ap-app :is(.lg\:gap-16) {
     gap: 4rem;
+  }
+
+  #afx-ap-app :is(.lg\:gap-0) {
+    gap: 0px;
   }
 
   #afx-ap-app :is(.lg\:p-10) {

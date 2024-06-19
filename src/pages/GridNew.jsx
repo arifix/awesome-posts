@@ -92,7 +92,8 @@ const GridNew = () => {
     applyOrderFilter: true,
     applyDateFilter: true,
     applyPostsFilter: true,
-    applyPostsStatusFilter: true,
+    applyStatusFilter: true,
+    applySearchFilter: true,
   });
 
   const fontsOptions = getGoogleFonts(fonts);
@@ -156,6 +157,20 @@ const GridNew = () => {
     const terms = [];
     Object.values(defaultSettings.terms).map((item) => terms.push(item.value));
 
+    const sd = defaultSettings.startDate;
+    const sd_obj = new Date(Date.parse(sd));
+    const sd_year = sd_obj.getFullYear();
+    const sd_month = sd_obj.getMonth() + 1;
+    const sd_day = sd_obj.getDate();
+    const sd_date = sd_year + "-" + sd_month.toString().padStart(2, '0') + "-" + sd_day;
+
+    const ed = defaultSettings.endDate;
+    const ed_obj = new Date(Date.parse(ed));
+    const ed_year = ed_obj.getFullYear();
+    const ed_month = ed_obj.getMonth() + 1;
+    const ed_day = ed_obj.getDate();
+    const ed_date = ed_year + "-" + ed_month.toString().padStart(2, '0') + "-" + ed_day;
+
     if (type != "" || taxonomy != "" || terms.length > 0) {
       axios
         .get(
@@ -165,7 +180,11 @@ const GridNew = () => {
             "&taxonomy=" +
             taxonomy +
             "&terms=" +
-            terms.join(",")
+            terms.join(",") +
+            "&startDate=" +
+            sd_date +
+            "&endDate=" +
+            (ed_date || "")
         )
         .then((res) => {
           if (res.data) {
@@ -177,6 +196,8 @@ const GridNew = () => {
     defaultSettings.postType,
     defaultSettings.taxonomy,
     defaultSettings.terms,
+    defaultSettings.startDate,
+    defaultSettings.endDate,
   ]);
 
   let styles = `<style></style>`;
@@ -189,8 +210,8 @@ const GridNew = () => {
 
       <Divider />
 
-      <div className="flex flex-row justify-between">
-        <ul className="filters flex flex-row flex-wrap lg:flex-nowrap">
+      <div className="flex flex-col gap-5 lg:gap-0 lg:flex-row justify-between">
+        <ul className="filters flex flex-col lg:flex-row flex-wrap lg:flex-nowrap">
           <li className={`${activeSubTab == "grid_settings" ? "active" : ""}`}>
             <a
               href="javascript:void(0);"
@@ -225,8 +246,8 @@ const GridNew = () => {
           </li>
         </ul>
 
-        <div className="flex justify-between items-center pr-5 gap-5">
-          <div className="afx-ap-btngroup">
+        <div className="flex justify-center lg:justify-between items-center pr-5 gap-5">
+          <div className="afx-ap-btngroup flex-col lg:flex-row">
             {gridId ? (
               <button
                 type="button"
@@ -267,7 +288,7 @@ const GridNew = () => {
 
       {/* <div dangerouslySetInnerHTML={{ __html: styles }}></div> */}
 
-      <div className="p-5">
+      <div className="p-5 mt-5 lg:mt-0">
         <div className={`${activeSubTab == "grid_settings" ? "" : "hidden"}`}>
           <GridSettings />
         </div>

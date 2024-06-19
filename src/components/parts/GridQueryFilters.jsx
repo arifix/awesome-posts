@@ -226,7 +226,7 @@ const GridQueryFilters = () => {
       <div className="px-5 py-2 mt-5">
         <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-2xl pb-0">Date Filter</h3>
-          <Toggle title="Apply Posts Date Filter?" name="applyDateFilter" />
+          <Toggle title="Apply Date Filter?" name="applyDateFilter" />
         </div>
         {defaultSettings.applyDateFilter ? (
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
@@ -338,18 +338,13 @@ const GridQueryFilters = () => {
         )}
       </div>
 
-      {/* Posts Status Filter */}
+      {/* Status Filter */}
       <div className="px-5 py-2 mt-5">
         <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
-          <h3 className="heading-secondary text-2xl pb-0">
-            Posts Status Filter
-          </h3>
-          <Toggle
-            title="Apply Posts Status Filter?"
-            name="applyPostsStatusFilter"
-          />
+          <h3 className="heading-secondary text-2xl pb-0">Status Filter</h3>
+          <Toggle title="Apply Status Filter?" name="applyStatusFilter" />
         </div>
-        {defaultSettings.applyPostsStatusFilter ? (
+        {defaultSettings.applyStatusFilter ? (
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
             <div className="afx-form-field flex-col !items-start">
               <label htmlFor="">Posts Status:</label>
@@ -376,6 +371,21 @@ const GridQueryFilters = () => {
                 isMulti
               />
             </div>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
+
+      {/* Search Filter */}
+      <div className="px-5 py-2 mt-5">
+        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+          <h3 className="heading-secondary text-2xl pb-0">Search Filter</h3>
+          <Toggle title="Apply Search Filter?" name="applySearchFilter" />
+        </div>
+        {defaultSettings.applySearchFilter ? (
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+            <Input title="Keyword" name="keyword" />
           </div>
         ) : (
           ""
