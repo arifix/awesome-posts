@@ -3,12 +3,16 @@ import { appContext } from "../contexts/appContext.jsx";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Divider from "../components/global/Divider.jsx";
+import Modal from "../components/global/Modal";
+import { removeUrlParam } from "../utils/const.js";
 
 const BackupRestore = () => {
   const jsonUpload = useRef(null);
   const [loader, setLoader] = useState("Restore Settings");
+  const [reset, setReset] = useState("Reset Settings");
   const [code, setCode] = useState("");
-  const { baseUrl, mediaUrl, setRefreshSettings, settings } =
+  const [showModal, setShowModal] = useState(false);
+  const { baseUrl, mediaUrl, setRefreshSettings, settings, setActiveTab } =
     useContext(appContext);
 
   useEffect(() => {
@@ -90,6 +94,32 @@ const BackupRestore = () => {
     }
   };
 
+  const resetSettings = () => {
+    setReset("Reseting...");
+
+    axios
+      .post(
+        baseUrl + "settings/reset",
+        {
+          settings: "",
+        },
+        {
+          headers: {
+            "content-type": "application/json",
+            "X-WP-NONCE": afxApApp.nonce,
+          },
+        }
+      )
+      .then((res) => {
+        setReset("Reset Settings");
+        removeUrlParam("tab");
+        setActiveTab("grid-manager");
+        setRefreshSettings(true);
+
+        toast.success(res.data.message);
+      });
+  };
+
   return (
     <div>
       <div className="flex justify-between items-center pr-5">
@@ -144,6 +174,36 @@ const BackupRestore = () => {
           </form>
         </div>
       </div>
+
+      <div className="flex justify-center items-center gap-5 mt-5 pb-6">
+        <button
+          type="button"
+          onClick={() => setShowModal(true)}
+          className="action-button secondary"
+        >
+          <i className="dashicons-before dashicons-warning"></i> {reset}
+        </button>
+      </div>
+
+      <Modal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        handleClose={() => {
+          setShowModal(false);
+        }}
+        handleAction={resetSettings}
+      >
+        <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+          <h3 className="text-lg leading-6 font-medium text-gray-900">
+            Reset Settings
+          </h3>
+          <div className="mt-2">
+            <p className="text-sm leading-5 text-gray-500">
+              Are you sure to reset all of the settings?
+            </p>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };
