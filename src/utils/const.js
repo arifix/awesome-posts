@@ -179,6 +179,17 @@ export const textDecorationOptions = [
   },
 ];
 
+export const relationOptions = [
+  {
+    value: "OR",
+    label: "OR",
+  },
+  {
+    value: "AND",
+    label: "AND",
+  },
+];
+
 export const operatorOptions = [
   {
     value: "IN",
@@ -191,6 +202,14 @@ export const operatorOptions = [
   {
     value: "AND",
     label: "AND",
+  },
+  {
+    value: "EXISTS",
+    label: "EXISTS",
+  },
+  {
+    value: "NOT EXISTS",
+    label: "NOT EXISTS",
   },
 ];
 

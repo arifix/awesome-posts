@@ -12,6 +12,7 @@ import {
   orderByOptions,
   orderOptions,
   postStatusOptions,
+  relationOptions
 } from "../../utils/const.js";
 
 const GridQueryFilters = () => {
@@ -133,7 +134,31 @@ const GridQueryFilters = () => {
             </div>
 
             <div className="afx-form-field flex-col !items-start">
-              <label htmlFor="">Opearator:</label>
+              <label htmlFor="">Relation:</label>
+              <Select
+                options={relationOptions}
+                placeholder="OR"
+                value={relationOptions.filter(
+                  (option) => option.value === defaultSettings.relation
+                )}
+                styles={{
+                  control: (baseStyles) => ({
+                    ...baseStyles,
+                    width: 275,
+                    height: 42,
+                  }),
+                }}
+                onChange={(newValue) => {
+                  setDefaultSettings({
+                    ...defaultSettings,
+                    relation: newValue.value,
+                  });
+                }}
+              />
+            </div>
+
+            <div className="afx-form-field flex-col !items-start">
+              <label htmlFor="">Operator:</label>
               <Select
                 options={operatorOptions}
                 placeholder="IN"
@@ -273,6 +298,60 @@ const GridQueryFilters = () => {
         )}
       </div>
 
+      {/* Status Filter */}
+      <div className="px-5 py-2 mt-5">
+        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+          <h3 className="heading-secondary text-2xl pb-0">Status Filter</h3>
+          <Toggle title="Apply Status Filter?" name="applyStatusFilter" />
+        </div>
+        {defaultSettings.applyStatusFilter ? (
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+            <div className="afx-form-field flex-col !items-start">
+              <label htmlFor="">Posts Status:</label>
+              <Select
+                options={postStatusOptions}
+                placeholder="Publish"
+                value={
+                  Object.values(defaultSettings.postStatus).length > 0
+                    ? defaultSettings.postStatus
+                    : ""
+                }
+                styles={{
+                  control: (baseStyles) => ({
+                    ...baseStyles,
+                    width: 300,
+                  }),
+                }}
+                onChange={(newValue) => {
+                  setDefaultSettings({
+                    ...defaultSettings,
+                    postStatus: newValue,
+                  });
+                }}
+                isMulti
+              />
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
+
+      {/* Search Filter */}
+      <div className="px-5 py-2 mt-5">
+        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+          <h3 className="heading-secondary text-2xl pb-0">Search Filter</h3>
+          <Toggle title="Apply Search Filter?" name="applySearchFilter" />
+        </div>
+        {defaultSettings.applySearchFilter ? (
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+            <Input title="Keyword" name="keyword" />
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
+
       {/* Posts Filter */}
       <div className="px-5 py-2 mt-5">
         <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
@@ -332,60 +411,6 @@ const GridQueryFilters = () => {
                 isMulti
               />
             </div>
-          </div>
-        ) : (
-          ""
-        )}
-      </div>
-
-      {/* Status Filter */}
-      <div className="px-5 py-2 mt-5">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
-          <h3 className="heading-secondary text-2xl pb-0">Status Filter</h3>
-          <Toggle title="Apply Status Filter?" name="applyStatusFilter" />
-        </div>
-        {defaultSettings.applyStatusFilter ? (
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
-            <div className="afx-form-field flex-col !items-start">
-              <label htmlFor="">Posts Status:</label>
-              <Select
-                options={postStatusOptions}
-                placeholder="Publish"
-                value={
-                  Object.values(defaultSettings.postStatus).length > 0
-                    ? defaultSettings.postStatus
-                    : ""
-                }
-                styles={{
-                  control: (baseStyles) => ({
-                    ...baseStyles,
-                    width: 300,
-                  }),
-                }}
-                onChange={(newValue) => {
-                  setDefaultSettings({
-                    ...defaultSettings,
-                    postStatus: newValue,
-                  });
-                }}
-                isMulti
-              />
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
-      </div>
-
-      {/* Search Filter */}
-      <div className="px-5 py-2 mt-5">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
-          <h3 className="heading-secondary text-2xl pb-0">Search Filter</h3>
-          <Toggle title="Apply Search Filter?" name="applySearchFilter" />
-        </div>
-        {defaultSettings.applySearchFilter ? (
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
-            <Input title="Keyword" name="keyword" />
           </div>
         ) : (
           ""

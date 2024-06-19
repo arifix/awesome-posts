@@ -298,7 +298,7 @@ class AFX_Rest_Routes
 
         if (!empty($_GET['taxonomy']) && count($terms) > 0) {
             $tax_query = [];
-            $tax_query['relation'] = 'OR';
+            $tax_query['relation'] = $_GET['relation'];
 
             foreach ($terms as $term) {
                 array_push(
@@ -307,6 +307,7 @@ class AFX_Rest_Routes
                         'taxonomy' => $_GET['taxonomy'],
                         'field' => 'slug',
                         'terms' => $term,
+                        'operator' => $_GET['operator']
                     )
                 );
             }
@@ -316,14 +317,18 @@ class AFX_Rest_Routes
             }
         }
 
-        if (!empty($_GET['startDate']) && !empty($_GET['endDate'])) {
+        if (!empty($_GET['startDate'])) {
             $posts_args['date_query'] = array(
                 array(
                     'after' => $_GET['startDate'],
-                    'before' => $_GET['endDate'],
+                    'before' => !empty($_GET['endDate']) ? $_GET['endDate'] : date('Y-m-d'),
                     'inclusive' => true,
                 )
             );
+        }
+
+        if (!empty($_GET['keyword'])) {
+            $posts_args['s'] = $_GET['keyword'];
         }
 
         $posts_query = new WP_Query($posts_args);

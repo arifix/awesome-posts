@@ -44,7 +44,8 @@ const GridNew = () => {
     offset: 0,
     taxonomy: [],
     terms: [],
-    operator: [],
+    relation: "",
+    operator: "",
     orderBy: [],
     order: [],
     postsToInclude: [],
@@ -52,6 +53,7 @@ const GridNew = () => {
     startDate: "",
     endDate: "",
     postStatus: [],
+    keyword: "",
 
     alignment: "left",
     border: {
@@ -153,51 +155,77 @@ const GridNew = () => {
   useEffect(() => {
     const type = defaultSettings.postType?.value || "";
     const taxonomy = defaultSettings.taxonomy?.value || "";
+    const relation = defaultSettings.relation || "OR";
+    const operator = defaultSettings.operator || "IN";
+    const keyword = defaultSettings.keyword || "";
 
     const terms = [];
     Object.values(defaultSettings.terms).map((item) => terms.push(item.value));
 
     const sd = defaultSettings.startDate;
-    const sd_obj = new Date(Date.parse(sd));
-    const sd_year = sd_obj.getFullYear();
-    const sd_month = sd_obj.getMonth() + 1;
-    const sd_day = sd_obj.getDate();
-    const sd_date = sd_year + "-" + sd_month.toString().padStart(2, '0') + "-" + sd_day;
+    let sd_date = "";
+    if (sd) {
+      const sd_obj = new Date(Date.parse(sd));
+      const sd_year = sd_obj.getFullYear();
+      const sd_month = sd_obj.getMonth() + 1;
+      const sd_day = sd_obj.getDate();
+      sd_date =
+        sd_year + "-" + sd_month.toString().padStart(2, "0") + "-" + sd_day;
+    }
 
     const ed = defaultSettings.endDate;
-    const ed_obj = new Date(Date.parse(ed));
-    const ed_year = ed_obj.getFullYear();
-    const ed_month = ed_obj.getMonth() + 1;
-    const ed_day = ed_obj.getDate();
-    const ed_date = ed_year + "-" + ed_month.toString().padStart(2, '0') + "-" + ed_day;
+    let ed_date = "";
+    if (ed) {
+      const ed_obj = new Date(Date.parse(ed));
+      const ed_year = ed_obj.getFullYear();
+      const ed_month = ed_obj.getMonth() + 1;
+      const ed_day = ed_obj.getDate();
+      ed_date =
+        ed_year + "-" + ed_month.toString().padStart(2, "0") + "-" + ed_day;
+    }
 
-    if (type != "" || taxonomy != "" || terms.length > 0) {
-      axios
-        .get(
-          baseUrl +
-            "posts?post-type=" +
-            type +
-            "&taxonomy=" +
-            taxonomy +
-            "&terms=" +
-            terms.join(",") +
-            "&startDate=" +
-            sd_date +
-            "&endDate=" +
-            (ed_date || "")
-        )
-        .then((res) => {
-          if (res.data) {
-            setPosts(res.data);
-          }
-        });
+    let query = "";
+    if (type != "") {
+      query += `post-type=${type}`;
+    }
+    if (taxonomy != "") {
+      query += `&taxonomy=${taxonomy}`;
+    }
+    if (terms.length > 0) {
+      query += `&terms=${terms.join(",")}`;
+    }
+    if (taxonomy != "" && terms.length > 0 && relation != "") {
+      query += `&relation=${relation}`;
+    }
+    if (taxonomy != "" && terms.length > 0 && operator != "") {
+      query += `&operator=${operator}`;
+    }
+    if (sd_date != "") {
+      query += `&startDate=${sd_date}`;
+    }
+    if (ed_date != "") {
+      query += `&endDate=${ed_date}`;
+    }
+    if (keyword != "") {
+      query += `&keyword=${keyword}`;
+    }
+
+    if (type != "" && query) {
+      axios.get(baseUrl + "posts?" + query).then((res) => {
+        if (res.data) {
+          setPosts(res.data);
+        }
+      });
     }
   }, [
     defaultSettings.postType,
     defaultSettings.taxonomy,
     defaultSettings.terms,
+    defaultSettings.relation,
+    defaultSettings.operator,
     defaultSettings.startDate,
     defaultSettings.endDate,
+    defaultSettings.keyword,
   ]);
 
   let styles = `<style></style>`;
@@ -209,6 +237,8 @@ const GridNew = () => {
       </div>
 
       <Divider />
+
+      {/* {JSON.stringify(defaultSettings)} */}
 
       <div className="flex flex-col gap-5 lg:gap-0 lg:flex-row justify-between">
         <ul className="filters flex flex-col lg:flex-row flex-wrap lg:flex-nowrap">
