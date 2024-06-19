@@ -1,3 +1,5 @@
+import GoogleFonts from "./google_fonts.json";
+
 export const orderOptions = [
   {
     value: "date:DESC",
@@ -80,6 +82,33 @@ export const btnSizeOptions = [
     label: "Large",
   },
 ];
+
+export const getGoogleFonts = (fonts) => {
+  const fontsOptions = [];
+  Object.keys(fonts).map((val, index) => {
+    const font_url_ar = fonts[val].split("/");
+    const font_name = font_url_ar[font_url_ar.length - 1].split(".")[0];
+
+    fontsOptions.push({
+      value: fonts[val],
+      label: font_name,
+    });
+  });
+
+  fontsOptions.push({
+    value: "",
+    label: "----- Deafult -----",
+  });
+
+  Object.keys(GoogleFonts).map((key) => {
+    fontsOptions.push({
+      value: GoogleFonts[key],
+      label: key,
+    });
+  });
+
+  return fontsOptions;
+};
 
 export const fontsUrlToName = (fonts_url) => {
   const font_url_ar = fonts_url.split("/");

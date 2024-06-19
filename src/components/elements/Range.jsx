@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { shortcodeContext } from "../../contexts/shortcodeContext";
+import { gridContext } from "../../contexts/gridContext";
 
-const Range = ({ title, min = 14, max = 50, name }) => {
-  const { defaultSettings, setDefaultSettings } = useContext(shortcodeContext);
+const Range = ({ title, min = 14, max = 50, name, unit = "px" }) => {
+  const { defaultSettings, setDefaultSettings } = useContext(gridContext);
 
   return (
     <>
@@ -10,8 +10,14 @@ const Range = ({ title, min = 14, max = 50, name }) => {
         <label htmlFor="">{title}:</label>
         <div className="min-w-[300px]">
           <div className="flex justify-between w-full">
-            <span>{min}px</span>
-            <span>{max}px</span>
+            <span className="text-base">
+              {min}
+              {unit}
+            </span>
+            <span className="text-base">
+              {max}
+              {unit}
+            </span>
           </div>
           <input
             type="range"
@@ -23,9 +29,12 @@ const Range = ({ title, min = 14, max = 50, name }) => {
             max={max}
             className="h-2 w-full cursor-ew-resize appearance-none rounded-full bg-gray-300 disabled:cursor-not-allowed accent-ap-primary"
           />
-          <div className="text-sm mt-2">
+          <div className="text-base mt-2">
             Selected Value:{" "}
-            <span className="font-semibold">{defaultSettings[name]}px</span>
+            <span className="font-semibold">
+              {defaultSettings[name]}
+              {unit}
+            </span>
           </div>
         </div>
       </div>

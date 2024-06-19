@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { shortcodeContext } from "../../contexts/shortcodeContext.jsx";
+import { gridContext } from "../../contexts/gridContext.jsx";
 
 const ShopHeader = ({ loader, saveShop, error }) => {
-  const { shopSettings, setShopSettings } = useContext(shortcodeContext);
+  const { shopSettings, setShopSettings } = useContext(gridContext);
 
   return (
     <div className="flex justify-between items-center lg:pr-5">

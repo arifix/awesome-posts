@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
-import { shortcodeContext } from "../../contexts/shortcodeContext";
+import { gridContext } from "../../contexts/gridContext";
 import { SketchPicker } from "react-color";
 
 const Color = ({ title = "Text", name }) => {
   const [showPicker, setPicker] = useState(false);
   const { defaultSettings, setDefaultSettings, pickerColors } =
-    useContext(shortcodeContext);
+    useContext(gridContext);
 
   return (
     <div className="afx-form-field flex-col !items-start">

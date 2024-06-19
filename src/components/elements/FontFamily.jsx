@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { shortcodeContext } from "../../contexts/shortcodeContext";
+import { gridContext } from "../../contexts/gridContext";
 import Select from "react-select";
 
 const FontFamily = ({ name }) => {
   const { defaultSettings, setDefaultSettings, fontsOptions } =
-    useContext(shortcodeContext);
+    useContext(gridContext);
 
   return (
     <div className="afx-form-field flex-col !items-start">

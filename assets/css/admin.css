@@ -864,6 +864,11 @@ video {
   }
 }
 
+.afx-ap-btngroup {
+  display: flex;
+  gap: 0.5rem;
+}
+
 .shortcode-preview {
   margin-top: 1.25rem;
 }
@@ -1242,6 +1247,10 @@ video {
   width: 100%;
 }
 
+#afx-ap-app :is(.w-60) {
+  width: 15rem;
+}
+
 #afx-ap-app :is(.min-w-\[300px\]) {
   min-width: 300px;
 }
@@ -1252,6 +1261,22 @@ video {
 
 #afx-ap-app :is(.max-w-screen-lg) {
   max-width: 1024px;
+}
+
+#afx-ap-app :is(.max-w-60) {
+  max-width: 15rem;
+}
+
+#afx-ap-app :is(.max-w-xl) {
+  max-width: 36rem;
+}
+
+#afx-ap-app :is(.max-w-48) {
+  max-width: 12rem;
+}
+
+#afx-ap-app :is(.max-w-52) {
+  max-width: 13rem;
 }
 
 #afx-ap-app :is(.flex-1) {
@@ -1302,12 +1327,20 @@ video {
   flex-direction: column;
 }
 
+#afx-ap-app :is(.flex-wrap) {
+  flex-wrap: wrap;
+}
+
 #afx-ap-app :is(.\!items-start) {
   align-items: flex-start !important;
 }
 
 #afx-ap-app :is(.items-start) {
   align-items: flex-start;
+}
+
+#afx-ap-app :is(.items-end) {
+  align-items: flex-end;
 }
 
 #afx-ap-app :is(.items-center) {
@@ -1479,6 +1512,14 @@ video {
   fill: #fff;
 }
 
+#afx-ap-app :is(.fill-ap-text) {
+  fill: #818181;
+}
+
+#afx-ap-app :is(.fill-slate-900) {
+  fill: #0f172a;
+}
+
 #afx-ap-app :is(.p-1) {
   padding: 0.25rem;
 }
@@ -1529,6 +1570,11 @@ video {
   padding-bottom: 1.5rem;
 }
 
+#afx-ap-app :is(.px-5) {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
 #afx-ap-app :is(.\!pl-5) {
   padding-left: 1.25rem !important;
 }
@@ -1559,6 +1605,10 @@ video {
 
 #afx-ap-app :is(.pt-5) {
   padding-top: 1.25rem;
+}
+
+#afx-ap-app :is(.pb-0) {
+  padding-bottom: 0px;
 }
 
 #afx-ap-app :is(.text-left) {
@@ -1686,6 +1736,11 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+#afx-ap-app :is(.text-gray-600) {
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+
 #afx-ap-app :is(.accent-ap-primary) {
   accent-color: #745FF1;
 }
@@ -1726,6 +1781,16 @@ video {
   --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+#afx-ap-app :is(.ring-2) {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+#afx-ap-app :is(.ring-transparent) {
+  --tw-ring-color: transparent;
 }
 
 #afx-ap-app :is(.filter) {
@@ -1884,6 +1949,12 @@ input[id^="rc-editable-input"] {
   color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
+#afx-ap-app :is(.hover\:shadow:hover) {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 #afx-ap-app :is(.focus\:border-blue-300:focus) {
   --tw-border-opacity: 1;
   border-color: rgb(147 197 253 / var(--tw-border-opacity));
@@ -1914,6 +1985,20 @@ input[id^="rc-editable-input"] {
 #afx-ap-app :is(.peer:checked ~ .peer-checked\:text-white) {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+#afx-ap-app :is(.peer:checked ~ .peer-checked\:text-indigo-500) {
+  --tw-text-opacity: 1;
+  color: rgb(99 102 241 / var(--tw-text-opacity));
+}
+
+#afx-ap-app :is(.peer:checked ~ .peer-checked\:ring-indigo-500) {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(99 102 241 / var(--tw-ring-opacity));
+}
+
+#afx-ap-app :is(.peer:checked ~ .peer-checked\:ring-offset-2) {
+  --tw-ring-offset-width: 2px;
 }
 
 @media (min-width: 640px) {

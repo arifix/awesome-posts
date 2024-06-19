@@ -1,12 +1,11 @@
 import React from "react";
 
 const ModalPreview = ({ handleClose, showModal, setShowModal, children }) => {
-  const showHideClassName = showModal
-    ? "modal display-block"
-    : "modal display-none";
-
   return (
-    <div className={showHideClassName} onClick={() => setShowModal(false)}>
+    <div
+      className={`modal ${showModal ? "block" : "hidden"}`}
+      onClick={() => setShowModal(false)}
+    >
       <div className={`modal-main`} onClick={(e) => e.stopPropagation()}>
         {children}
         <svg

@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, useMemo } from "react";
 import { appContext } from "../contexts/appContext.jsx";
-import { shortcodeContext } from "../contexts/shortcodeContext.jsx";
+import { gridContext } from "../contexts/gridContext.jsx";
 import Divider from "../components/global/Divider.jsx";
 import ShopMain from "../components/parts/ShopMain.jsx";
 import ShopHeader from "../components/parts/ShopHeader.jsx";
@@ -274,7 +274,7 @@ const ShortcodeNew = () => {
   styles += `</style>`;
 
   return (
-    <shortcodeContext.Provider value={shopValues}>
+    <gridContext.Provider value={shopValues}>
       <div
         className={`afx-ap-shortcode-new ${activeTab != "shortcode-new" ? "hidden" : ""}`}
       >
@@ -546,7 +546,7 @@ const ShortcodeNew = () => {
           />
         </ModalPreview>
       </div>
-    </shortcodeContext.Provider>
+    </gridContext.Provider>
   );
 };
 

@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { shortcodeContext } from "../../contexts/shortcodeContext";
+import { gridContext } from "../../contexts/gridContext";
 
 const Input = ({ title = "Button Text", name, type = "text" }) => {
-  const { defaultSettings, setDefaultSettings } = useContext(shortcodeContext);
+  const { defaultSettings, setDefaultSettings } = useContext(gridContext);
 
   return (
     <div className="afx-form-field flex-col !items-start">

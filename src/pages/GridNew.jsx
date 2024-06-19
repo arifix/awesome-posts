@@ -1,5 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useMemo } from "react";
 import { appContext } from "../contexts/appContext.jsx";
+import { gridContext } from "../contexts/gridContext";
 import Divider from "../components/global/Divider.jsx";
 import axios from "axios";
 import Select from "react-select";
@@ -7,63 +8,59 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/confetti.css";
+import Input from "../components/elements/Input.jsx";
+import Range from "../components/elements/Range.jsx";
+import ModalPreview from "../components/global/ModalPreview.jsx";
+import Preview from "../components/parts/Preview.jsx";
+import {
+  getGoogleFonts,
+  fontsUrlToName,
+  orderOptions,
+} from "../utils/const.js";
 
 const GridNew = () => {
   const [postTypes, setPostTypes] = useState([]);
+  const [pickerColors, setPickerColors] = useState([]);
+  const [fonts, setFonts] = useState({});
+  const [showModal, setShowModal] = useState(false);
 
   const {
     baseUrl,
+    gridId,
     activeTab,
     setActiveTab,
     refreshSettings,
     setRefreshSettings,
+    gridSettings,
+    setGridSettings,
     settings,
   } = useContext(appContext);
 
   const [defaultSettings, setDefaultSettings] = useState({
+    gridTitle: "",
     postTypes: [],
+    postsPerPage: 9,
+    postsOrder: [],
+    gridColumns: 3,
+
     taxonomies: [],
     terms: [],
     postsToInclude: [],
     postsToExclude: [],
     startDate: "",
     endDate: "",
-
-    alignment: "left",
-    border: {
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
-      type: "none",
-      color: "#333",
-    },
-    color: "#333",
-    bgColor: "#666",
-    font: "",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    padding: {
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
-    },
-    margin: {
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
-    },
-    fontSize: 30,
-    borderRadius: 10,
-    letterSpacing: 0,
-    wordSpacing: 0,
-    lineHeight: 30,
-    textDecoration: "none",
-    textTransform: "none",
-    showSection: true,
   });
+
+  const fontsOptions = getGoogleFonts(fonts);
+
+  const styleValues = useMemo(() => {
+    return {
+      defaultSettings,
+      setDefaultSettings,
+      pickerColors,
+      fontsOptions,
+    };
+  }, [defaultSettings, pickerColors, fontsOptions]);
 
   useEffect(() => {
     axios.get(baseUrl + "post-types").then((res) => {
@@ -73,51 +70,201 @@ const GridNew = () => {
     });
   }, []);
 
+  let styles = `<style></style>`;
+
   return (
-    <div>
+    <gridContext.Provider value={styleValues}>
       <div className="flex justify-between items-center pr-5">
-        <h2 className="heading-primary">New Post Grid</h2>
+        <h2 className="heading-primary">New Grid</h2>
       </div>
 
       <Divider />
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
-        <div className="afx-ap-form-field flex-col !items-start">
-          <label htmlFor="">Post Type:</label>
-          {Object.values(postTypes).length > 0 ? (
+      <div className="p-5">
+        <div dangerouslySetInnerHTML={{ __html: styles }}></div>
+
+        <div className="flex justify-between items-center pr-5 gap-5">
+          <h3 className="heading-secondary text-2xl pb-0">Grid Settings</h3>
+          <div className="afx-ap-btngroup">
+            {gridId ? (
+              <button
+                type="button"
+                className="action-button primary"
+                onClick={() => {
+                  navigator.clipboard.writeText(
+                    `[awesome-posts id="${gridId}"]`
+                  );
+                  toast.success("Shortcode Copied Successfully");
+                }}
+              >
+                <i className="dashicons-before dashicons-shortcode"></i> Copy
+                Shortcode
+              </button>
+            ) : (
+              ""
+            )}
+            <button
+              type="button"
+              className="action-button secondary"
+              onClick={() => {
+                setShowModal(true);
+              }}
+            >
+              <i className="dashicons-before dashicons-cover-image"></i>
+              Preview
+            </button>
+          </div>
+        </div>
+
+        <p>&nbsp;</p>
+
+        {JSON.stringify(defaultSettings)}
+
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+          <Input title="Grid Title" name="gridTitle" />
+
+          <div className="afx-form-field flex-col !items-start">
+            <label htmlFor="">Post Type:</label>
+            {Object.values(postTypes).length > 0 ? (
+              <Select
+                options={postTypes}
+                placeholder="Post"
+                value={
+                  Object.values(defaultSettings.postTypes).length > 0
+                    ? defaultSettings.postTypes
+                    : ""
+                }
+                styles={{
+                  control: (baseStyles) => ({
+                    ...baseStyles,
+                    width: 300,
+                  }),
+                }}
+                onChange={(newValue) => {
+                  setDefaultSettings({
+                    ...defaultSettings,
+                    postTypes: newValue,
+                    taxonomies: [],
+                    terms: [],
+                    postsToInclude: [],
+                    postsToExclude: [],
+                  });
+                }}
+              />
+            ) : (
+              <SkeletonTheme baseColor="#CCC" highlightColor="#FFF">
+                <Skeleton style={{ padding: 15, width: 300 }} />
+              </SkeletonTheme>
+            )}
+          </div>
+
+          <Input title="Posts Per Page" name="postsPerPage" type="number" />
+
+          <div className="afx-form-field flex-col !items-start">
+            <label htmlFor="">Default Order:</label>
             <Select
-              options={postTypes}
-              placeholder="All Post Types"
-              value={
-                Object.values(defaultSettings.postTypes).length > 0
-                  ? defaultSettings.postTypes
-                  : ""
-              }
+              options={orderOptions}
+              placeholder="Most Recent"
+              value={orderOptions.filter(
+                (option) => option.value === defaultSettings.postsOrder
+              )}
               styles={{
                 control: (baseStyles) => ({
                   ...baseStyles,
-                  width: 300,
+                  width: 275,
+                  height: 42,
                 }),
               }}
               onChange={(newValue) => {
                 setDefaultSettings({
                   ...defaultSettings,
-                  postTypes: newValue,
-                  taxonomies: [],
-                  terms: [],
-                  postsToInclude: [],
-                  postsToExclude: [],
+                  postsOrder: newValue.value,
                 });
               }}
             />
-          ) : (
-            <SkeletonTheme baseColor="#CCC" highlightColor="#FFF">
-              <Skeleton style={{ padding: 15, width: 300 }} />
-            </SkeletonTheme>
-          )}
+          </div>
+        </div>
+
+        <div className="px-5">
+          <div className="afx-form-field flex-col !items-start">
+            <label htmlFor="">Grid Columns:</label>
+            <div className="w-full flex flex-wrap gap-5">
+              {["One", "Two", "Three", "Four", "Five", "Six"].map((val, id) => (
+                <label
+                  key={id}
+                  className="w-full max-w-52 cursor-pointer"
+                  htmlFor=""
+                  onClick={(e) =>
+                    setDefaultSettings({
+                      ...defaultSettings,
+                      gridColumns: id + 1,
+                    })
+                  }
+                >
+                  <input
+                    type="radio"
+                    className="peer sr-only"
+                    name="gridColumns"
+                    value={id + 1}
+                    checked={defaultSettings.gridColumns === id + 1}
+                  />
+                  <div className="w-full rounded-md bg-white p-5 text-gray-600 ring-2 ring-transparent transition-all hover:shadow peer-checked:text-indigo-500 peer-checked:ring-indigo-500 peer-checked:ring-offset-2">
+                    <div className="flex flex-col gap-1">
+                      <div className="flex items-center justify-between">
+                        <i className="dashicons-before dashicons-screenoptions"></i>
+                        <div>
+                          {defaultSettings.gridColumns === id + 1 ? (
+                            <svg width="24" height="24" viewBox="0 0 24 24">
+                              <path
+                                fill="currentColor"
+                                d="m10.6 13.8l-2.175-2.175q-.275-.275-.675-.275t-.7.3q-.275.275-.275.7q0 .425.275.7L9.9 15.9q.275.275.7.275q.425 0 .7-.275l5.675-5.675q.275-.275.275-.675t-.3-.7q-.275-.275-.7-.275q-.425 0-.7.275ZM12 22q-2.075 0-3.9-.788q-1.825-.787-3.175-2.137q-1.35-1.35-2.137-3.175Q2 14.075 2 12t.788-3.9q.787-1.825 2.137-3.175q1.35-1.35 3.175-2.138Q9.925 2 12 2t3.9.787q1.825.788 3.175 2.138q1.35 1.35 2.137 3.175Q22 9.925 22 12t-.788 3.9q-.787 1.825-2.137 3.175q-1.35 1.35-3.175 2.137Q14.075 22 12 22Z"
+                              />
+                            </svg>
+                          ) : (
+                            <svg
+                              width="24"
+                              height="24"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth="1.5"
+                              stroke="currentColor"
+                              className="w-6 h-6 text-slate-500"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                              />
+                            </svg>
+                          )}
+                        </div>
+                      </div>
+                      <div className="flex items-end justify-between mt-2">
+                        <p>
+                          <span className="font-bold text-lg">
+                            {val} Column
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </label>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+
+      <ModalPreview
+        showModal={showModal}
+        setShowModal={setShowModal}
+        handleClose={() => {
+          setShowModal(false);
+        }}
+      >
+        <Preview defaultSettings={defaultSettings} />
+      </ModalPreview>
+    </gridContext.Provider>
   );
 };
 
