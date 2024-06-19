@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { gridContext } from "../../contexts/gridContext";
 import Select from "react-select";
-import { fontStyleOptions } from "../../utils/const.ts";
+import { fontStyleOptions } from "../../utils/const.js";
 
 const FontStyle = ({ name }) => {
   const { defaultSettings, setDefaultSettings } = useContext(gridContext);

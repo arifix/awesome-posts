@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { gridContext } from "../../contexts/gridContext";
 import Select from "react-select";
-import { fontWeightOptions } from "../../utils/const.ts";
+import { fontWeightOptions } from "../../utils/const.js";
 
 const FontWeight = ({ name }) => {
   const { defaultSettings, setDefaultSettings } = useContext(gridContext);

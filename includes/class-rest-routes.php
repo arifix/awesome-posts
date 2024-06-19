@@ -45,6 +45,24 @@ class AFX_Rest_Routes
             'permission_callback' => [$this, 'afx_get_settings_permission']
         ]);
 
+        register_rest_route('afx-ap/v1', '/taxonomies', [
+            'methods' => 'GET',
+            'callback' => [$this, 'afx_ap_get_taxonomies'],
+            'permission_callback' => [$this, 'afx_get_settings_permission']
+        ]);
+
+        register_rest_route('afx-ap/v1', '/terms', [
+            'methods' => 'GET',
+            'callback' => [$this, 'afx_ap_get_terms'],
+            'permission_callback' => [$this, 'afx_get_settings_permission']
+        ]);
+
+        register_rest_route('afx-ap/v1', '/posts', [
+            'methods' => 'GET',
+            'callback' => [$this, 'afx_ap_get_posts'],
+            'permission_callback' => [$this, 'afx_get_settings_permission']
+        ]);
+
         register_rest_route('afx-ap/v1', '/categories', [
             'methods' => 'GET',
             'callback' => [$this, 'afx_get_categories'],
@@ -220,6 +238,94 @@ class AFX_Rest_Routes
 
         return $types;
     }
+
+    public function afx_ap_get_taxonomies()
+    {
+
+        if ($_GET['post-type']) {
+            $taxonomies = get_object_taxonomies($_GET['post-type'], 'names');
+            $taxs = [];
+            if (count($taxonomies) > 0) {
+                foreach ($taxonomies as $tax) {
+                    if ($tax == 'post_tag' || $tax == 'post_format') {
+                        continue;
+                    }
+                    $taxs[] = ['value' => $tax, 'label' => ucwords(str_replace(array('-', '_'), ' ', $tax))];
+                }
+            }
+
+            return $taxs;
+        }
+        return [];
+    }
+
+    public function afx_ap_get_terms()
+    {
+        if ($_GET['post-type'] && $_GET['taxonomy']) {
+            $args = array(
+                'post_type' => $_GET['post-type'],
+                'taxonomy'  => $_GET['taxonomy']
+            );
+            $terms = get_terms($args);
+
+            $cats = [];
+            if (count($terms) > 0) {
+                foreach ($terms as $t) {
+                    $cats[] = ['value' => $t->slug, 'label' => $t->name];
+                }
+            }
+
+            return $cats;
+        }
+        return [];
+    }
+
+    public function afx_ap_get_posts()
+    {
+        $terms = !empty($_GET['terms']) ? explode(",", $_GET['terms']) : [];
+
+        $posts_args = array(
+            'post_type' => $_GET['post-type'],
+            'posts_per_page' => -1,
+            'post_status' => 'publish',
+            'orderby' => 'title',
+            'order' => 'ASC',
+        );
+
+        if (!empty($_GET['taxonomy']) && count($terms) > 0) {
+            $tax_query = [];
+            $tax_query['relation'] = 'OR';
+
+            foreach ($terms as $term) {
+                array_push(
+                    $tax_query,
+                    array(
+                        'taxonomy' => $_GET['taxonomy'],
+                        'field' => 'slug',
+                        'terms' => $term,
+                    )
+                );
+            }
+
+            if (count($tax_query) > 1) {
+                $posts_args['tax_query'] = $tax_query;
+            }
+        }
+
+        $posts_query = new WP_Query($posts_args);
+
+        $posts = [];
+        if ($posts_query->have_posts()) {
+            while ($posts_query->have_posts()) {
+                $posts_query->the_post();
+
+                $posts[] = ['value' => get_the_ID(), 'label' => get_the_title()];
+            }
+        }
+
+        return $posts;
+    }
+
 
     public function afx_save_settings_permission()
     {

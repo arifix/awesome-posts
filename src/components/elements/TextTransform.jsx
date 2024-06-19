@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { gridContext } from "../../contexts/gridContext";
 import Select from "react-select";
-import { textTransformOptions } from "../../utils/const.ts";
+import { textTransformOptions } from "../../utils/const.js";
 
 const TextTransform = ({ name }) => {
   const { defaultSettings, setDefaultSettings } = useContext(gridContext);

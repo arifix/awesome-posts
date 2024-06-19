@@ -1681,6 +1681,10 @@ video {
   text-transform: capitalize;
 }
 
+#afx-ap-app :is(.italic) {
+  font-style: italic;
+}
+
 #afx-ap-app :is(.leading-5) {
   line-height: 1.25rem;
 }
@@ -1739,6 +1743,18 @@ video {
 #afx-ap-app :is(.text-gray-600) {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+
+#afx-ap-app :is(.underline) {
+  text-decoration-line: underline;
+}
+
+#afx-ap-app :is(.overline) {
+  text-decoration-line: overline;
+}
+
+#afx-ap-app :is(.line-through) {
+  text-decoration-line: line-through;
 }
 
 #afx-ap-app :is(.accent-ap-primary) {

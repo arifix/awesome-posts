@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { gridContext } from "../../contexts/gridContext";
 import Select from "react-select";
-import { textDecorationOptions } from "../../utils/const.ts";
+import { textDecorationOptions } from "../../utils/const.js";
 
 const TextDecoration = ({ name }) => {
   const { defaultSettings, setDefaultSettings } = useContext(gridContext);

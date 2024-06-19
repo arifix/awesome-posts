@@ -1,5 +1,20 @@
 import GoogleFonts from "./google_fonts.json";
 
+export const gridStyleOptions = [
+  {
+    value: "style1",
+    label: "Style #1",
+  },
+  {
+    value: "style2",
+    label: "Style #2",
+  },
+  {
+    value: "style3",
+    label: "Style #3",
+  },
+];
+
 export const orderOptions = [
   {
     value: "date:DESC",
@@ -68,18 +83,80 @@ export const textAlignOptions = [
   },
 ];
 
-export const btnSizeOptions = [
+export const fontStyleOptions = [
   {
-    value: "small",
-    label: "Small",
+    value: "normal",
+    label: "Normal",
   },
   {
-    value: "medium",
-    label: "Medium",
+    value: "italic",
+    label: "Italic",
   },
   {
-    value: "large",
-    label: "Large",
+    value: "oblique",
+    label: "Oblique",
+  },
+];
+
+export const borderOptions = [
+  {
+    value: "none",
+    label: "None",
+  },
+  {
+    value: "solid",
+    label: "Solid",
+  },
+  {
+    value: "dashed",
+    label: "Dashed",
+  },
+  {
+    value: "dotted",
+    label: "Dotted",
+  },
+  {
+    value: "outset",
+    label: "Outset",
+  },
+  {
+    value: "inset",
+    label: "Inset",
+  },
+  {
+    value: "ridge",
+    label: "Ridge",
+  },
+  {
+    value: "groove",
+    label: "Groove",
+  },
+  {
+    value: "double",
+    label: "Double",
+  },
+];
+
+export const textDecorationOptions = [
+  {
+    value: "none",
+    label: "None",
+  },
+  {
+    value: "overline",
+    label: "Overline",
+  },
+  {
+    value: "underline",
+    label: "Underline",
+  },
+  {
+    value: "line-through",
+    label: "Line Through",
+  },
+  {
+    value: "underline overline",
+    label: "Underline Overline",
   },
 ];
 
@@ -151,4 +228,8 @@ export const isValidUrl = (urlString) => {
     "i"
   ); // validate fragment locator
   return !!urlPattern.test(urlString);
+};
+
+export const getRandomNo = (min = 1000, max = 9999) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 };

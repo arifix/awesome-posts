@@ -8,18 +8,32 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/confetti.css";
+import Alignment from "../components/elements/Alignment";
+import Border from "../components/elements/Border";
+import Color from "../components/elements/Color";
+import FontFamily from "../components/elements/FontFamily";
+import FontStyle from "../components/elements/FontStyle";
+import FontWeight from "../components/elements/FontWeight";
 import Input from "../components/elements/Input.jsx";
-import Range from "../components/elements/Range.jsx";
+import InputGroup from "../components/elements/InputGroup";
+import Range from "../components/elements/Range";
+import TextDecoration from "../components/elements/TextDecoration";
+import TextTransform from "../components/elements/TextTransform";
+import Toggle from "../components/elements/Toggle";
 import ModalPreview from "../components/global/ModalPreview.jsx";
 import Preview from "../components/parts/Preview.jsx";
 import {
   getGoogleFonts,
   fontsUrlToName,
   orderOptions,
+  gridStyleOptions,
 } from "../utils/const.js";
 
 const GridNew = () => {
   const [postTypes, setPostTypes] = useState([]);
+  const [taxonomies, setTaxonomies] = useState([]);
+  const [terms, setTerms] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [pickerColors, setPickerColors] = useState([]);
   const [fonts, setFonts] = useState({});
   const [showModal, setShowModal] = useState(false);
@@ -38,17 +52,53 @@ const GridNew = () => {
 
   const [defaultSettings, setDefaultSettings] = useState({
     gridTitle: "",
+    gridStyle: [],
     postTypes: [],
+    taxonomies: [],
+    gridColumns: 3,
     postsPerPage: 9,
     postsOrder: [],
-    gridColumns: 3,
 
-    taxonomies: [],
     terms: [],
     postsToInclude: [],
     postsToExclude: [],
     startDate: "",
     endDate: "",
+
+    alignment: "left",
+    border: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+      type: "none",
+      color: "#333",
+    },
+    color: "#333",
+    bgColor: "#666",
+    font: "",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    padding: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+    fontSize: 30,
+    borderRadius: 10,
+    letterSpacing: 0,
+    wordSpacing: 0,
+    lineHeight: 30,
+    textDecoration: "none",
+    textTransform: "none",
+    showSection: true,
   });
 
   const fontsOptions = getGoogleFonts(fonts);
@@ -69,6 +119,63 @@ const GridNew = () => {
       }
     });
   }, []);
+
+  useEffect(() => {
+    const type = defaultSettings.postTypes?.value;
+
+    if (type) {
+      axios.get(baseUrl + "taxonomies?post-type=" + type).then((res) => {
+        if (res.data) {
+          setTaxonomies(res.data);
+        }
+      });
+    }
+  }, [defaultSettings.postTypes]);
+
+  useEffect(() => {
+    const type = defaultSettings.postTypes?.value;
+    const taxonomy = defaultSettings.taxonomies?.value;
+
+    if (type && taxonomy) {
+      axios
+        .get(baseUrl + "terms?post-type=" + type + "&taxonomy=" + taxonomy)
+        .then((res) => {
+          if (res.data) {
+            setTerms(res.data);
+          }
+        });
+    }
+  }, [defaultSettings.taxonomies]);
+
+  useEffect(() => {
+    const type = defaultSettings.postTypes?.value || "";
+    const taxonomy = defaultSettings.taxonomies?.value || "";
+
+    const terms = [];
+    Object.values(defaultSettings.terms).map((item) => terms.push(item.value));
+
+    if (type != "" || taxonomy != "" || terms.length > 0) {
+      axios
+        .get(
+          baseUrl +
+            "posts?post-type=" +
+            type +
+            "&taxonomy=" +
+            taxonomy +
+            "&terms=" +
+            terms.join(",")
+        )
+        .then((res) => {
+          if (res.data) {
+            setPosts(res.data);
+          }
+        });
+    }
+  }, [
+    defaultSettings.postTypes,
+    defaultSettings.taxonomies,
+    defaultSettings.terms,
+  ]);
 
   let styles = `<style></style>`;
 
@@ -120,9 +227,35 @@ const GridNew = () => {
 
         {JSON.stringify(defaultSettings)}
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 px-5 py-2">
           <Input title="Grid Title" name="gridTitle" />
 
+          <div className="afx-form-field flex-col !items-start">
+            <label htmlFor="">Grid Style:</label>
+            <Select
+              options={gridStyleOptions}
+              placeholder="Style #1"
+              value={gridStyleOptions.filter(
+                (option) => option.value === defaultSettings.gridStyle
+              )}
+              styles={{
+                control: (baseStyles) => ({
+                  ...baseStyles,
+                  width: 275,
+                  height: 42,
+                }),
+              }}
+              onChange={(newValue) => {
+                setDefaultSettings({
+                  ...defaultSettings,
+                  gridStyle: newValue.value,
+                });
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 px-5 py-2">
           <div className="afx-form-field flex-col !items-start">
             <label htmlFor="">Post Type:</label>
             {Object.values(postTypes).length > 0 ? (
@@ -158,6 +291,151 @@ const GridNew = () => {
             )}
           </div>
 
+          <div className="afx-form-field flex-col !items-start">
+            <label htmlFor="">Taxonomy:</label>
+            <Select
+              options={taxonomies}
+              placeholder="All Taxonomies"
+              value={
+                Object.values(defaultSettings.taxonomies).length > 0
+                  ? defaultSettings.taxonomies
+                  : ""
+              }
+              styles={{
+                control: (baseStyles) => ({
+                  ...baseStyles,
+                  width: 300,
+                }),
+              }}
+              onChange={(newValue) => {
+                setDefaultSettings({
+                  ...defaultSettings,
+                  taxonomies: newValue,
+                  postsToInclude: [],
+                  postsToExclude: [],
+                });
+              }}
+            />
+          </div>
+
+          <div className="afx-form-field flex-col !items-start">
+            <label htmlFor="">Terms:</label>
+            <Select
+              options={terms}
+              placeholder="All Terms"
+              value={
+                Object.values(defaultSettings.terms).length > 0
+                  ? defaultSettings.terms
+                  : ""
+              }
+              styles={{
+                control: (baseStyles) => ({
+                  ...baseStyles,
+                  width: 300,
+                }),
+              }}
+              onChange={(newValue) => {
+                setDefaultSettings({
+                  ...defaultSettings,
+                  terms: newValue,
+                  postsToInclude: [],
+                  postsToExclude: [],
+                });
+              }}
+              isMulti
+            />
+          </div>
+
+          <div className="afx-form-field flex-col !items-start">
+            <label htmlFor="">Posts (Include):</label>
+            <Select
+              options={posts}
+              placeholder="All Posts"
+              value={
+                Object.values(defaultSettings.postsToInclude).length > 0
+                  ? defaultSettings.postsToInclude
+                  : ""
+              }
+              styles={{
+                control: (baseStyles) => ({
+                  ...baseStyles,
+                  width: 300,
+                }),
+              }}
+              onChange={(newValue) => {
+                setDefaultSettings({
+                  ...defaultSettings,
+                  postsToInclude: newValue,
+                });
+              }}
+              isMulti
+            />
+          </div>
+
+          <div className="afx-form-field flex-col !items-start">
+            <label htmlFor="">Posts (Exclude):</label>
+            <Select
+              options={posts}
+              placeholder="All Posts"
+              value={
+                Object.values(defaultSettings.postsToExclude).length > 0
+                  ? defaultSettings.postsToExclude
+                  : ""
+              }
+              styles={{
+                control: (baseStyles) => ({
+                  ...baseStyles,
+                  width: 300,
+                }),
+              }}
+              onChange={(newValue) => {
+                setDefaultSettings({
+                  ...defaultSettings,
+                  postsToExclude: newValue,
+                });
+              }}
+              isMulti
+            />
+          </div>
+
+          <div className="afx-form-field flex-col !items-start">
+            <label htmlFor="">Start Date:</label>
+            <Flatpickr
+              className="afx-input bg-white"
+              value={defaultSettings.startDate}
+              options={{
+                maxDate: "today",
+                dateFormat: "Y-m-d",
+              }}
+              onChange={(date) => {
+                setDefaultSettings({
+                  ...defaultSettings,
+                  startDate: date,
+                });
+              }}
+              placeholder="Start Date"
+            />
+          </div>
+
+          <div className="afx-form-field flex-col !items-start">
+            <label htmlFor="">End Date:</label>
+            <Flatpickr
+              className="afx-input bg-white"
+              value={defaultSettings.endDate}
+              options={{
+                maxDate: "today",
+                dateFormat: "Y-m-d",
+              }}
+              onChange={(date) => {
+                setDefaultSettings({
+                  ...defaultSettings,
+                  endDate: date,
+                });
+              }}
+              placeholder="End Date"
+            />
+          </div>
+
           <Input title="Posts Per Page" name="postsPerPage" type="number" />
 
           <div className="afx-form-field flex-col !items-start">
@@ -185,7 +463,7 @@ const GridNew = () => {
           </div>
         </div>
 
-        <div className="px-5">
+        <div className="px-5 py-2">
           <div className="afx-form-field flex-col !items-start">
             <label htmlFor="">Grid Columns:</label>
             <div className="w-full flex flex-wrap gap-5">
@@ -252,6 +530,32 @@ const GridNew = () => {
               ))}
             </div>
           </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 px-5 py-2">
+          <FontFamily name="font" />
+          <Range title="Font Size" name="fontSize" min={14} max={100} />
+          <FontWeight name="fontWeight" />
+          <FontStyle name="fontStyle" />
+          <TextDecoration name="textDecoration" />
+          <TextTransform name="textTransform" />
+          <Alignment name="alignment" />
+          <Color title="Text" name="color" />
+          <InputGroup name="padding" title="Padding" min={0} max={50} />
+          <InputGroup name="margin" title="Margin" min={0} max={50} />
+          <Border name="border" min={0} max={20} />
+          <Range
+            title="Letter Spacing"
+            name="letterSpacing"
+            min={-5}
+            max={50}
+          />
+          <Range title="Word Spacing" name="wordSpacing" min={-5} max={50} />
+          <Range title="Line Height" name="lineHeight" min={0} max={100} />
+
+          <Color title="Background" name="bgColor" />
+          <Range title="Border Radius" name="borderRadius" min={0} max={50} />
+          <Toggle title="Show Section" name="showSection" />
         </div>
       </div>
 

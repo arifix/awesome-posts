@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { gridContext } from "../../contexts/gridContext";
 import { SketchPicker } from "react-color";
 import Select from "react-select";
-import { borderOptions } from "../../utils/const.ts";
+import { borderOptions } from "../../utils/const.js";
 
 const Border = ({ name, min, max }) => {
   const [showPicker, setPicker] = useState(false);
