@@ -101,6 +101,17 @@ const App = () => {
   ];
 
   useEffect(() => {
+    const show_sidebar = localStorage.getItem("ap_show_sidebar");
+    if (show_sidebar) {
+      setShowSidebar(show_sidebar === "YES" ? true : false);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("ap_show_sidebar", showSidebar ? "YES" : "NO");
+  }, [showSidebar]);
+
+  useEffect(() => {
     axios.get(baseUrl + "settings").then((res) => {
       if (res?.data) {
         const setting = res?.data?.settings

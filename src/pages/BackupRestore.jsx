@@ -8,8 +8,7 @@ import { removeUrlParam } from "../utils/const.js";
 
 const BackupRestore = () => {
   const jsonUpload = useRef(null);
-  const [loader, setLoader] = useState("Restore Settings");
-  const [reset, setReset] = useState("Reset Settings");
+  const [reset, setReset] = useState("Reset All Settings");
   const [code, setCode] = useState("");
   const [showModal, setShowModal] = useState(false);
   const { baseUrl, mediaUrl, setRefreshSettings, settings, setActiveTab } =
@@ -20,6 +19,7 @@ const BackupRestore = () => {
   }, [settings]);
 
   const downloadBackup = () => {
+    const toastId = toast.loading("Downloading Backup...");
     axios
       .post(
         baseUrl + "settings/backup",
@@ -44,6 +44,8 @@ const BackupRestore = () => {
             link.setAttribute("download", res.data.file_name);
             document.body.appendChild(link);
             link.click();
+            toast.dismiss(toastId);
+            toast.success("Backup Downloaded Successfully!");
           });
         }
       });
@@ -51,8 +53,7 @@ const BackupRestore = () => {
 
   const restoreSettings = () => {
     if (jsonUpload.current.files[0]) {
-      setLoader("Restoring Settings...");
-
+      const toastId = toast.loading("Restoring Settings...");
       var formData = new FormData();
       let file = jsonUpload.current.files[0];
       formData.append("file", file);
@@ -85,9 +86,8 @@ const BackupRestore = () => {
             )
             .then((res) => {
               jsonUpload.current.value = "";
-              setLoader("Restore Settings");
               setRefreshSettings(true);
-
+              toast.dismiss(toastId);
               toast.success(res.data.message);
             });
         });
@@ -95,7 +95,7 @@ const BackupRestore = () => {
   };
 
   const resetSettings = () => {
-    setReset("Reseting...");
+    setReset("Reseting All Settings...");
 
     axios
       .post(
@@ -111,7 +111,7 @@ const BackupRestore = () => {
         }
       )
       .then((res) => {
-        setReset("Reset Settings");
+        setReset("Reset All Settings");
         removeUrlParam("tab");
         setActiveTab("grid-manager");
         setRefreshSettings(true);
@@ -161,16 +161,10 @@ const BackupRestore = () => {
                   accept="application/JSON"
                   required
                   className="hidden"
+                  onChange={() => restoreSettings()}
                 />
               </label>
             </div>
-            <button
-              type="button"
-              className="action-button primary"
-              onClick={() => restoreSettings()}
-            >
-              <i className="dashicons-before dashicons-yes"></i> {loader}
-            </button>
           </form>
         </div>
       </div>

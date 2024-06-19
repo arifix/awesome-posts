@@ -554,40 +554,6 @@ video {
   --tw-contain-style:  ;
 }
 
-.container {
-  width: 100%;
-}
-
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
-}
-
-@media (min-width: 1536px) {
-  .container {
-    max-width: 1536px;
-  }
-}
-
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap");
 
 #afx-ap-app {
@@ -691,7 +657,7 @@ video {
 
 .navigation li {
   position: relative;
-  margin-bottom: 1.75rem;
+  margin-bottom: 0px;
   border-radius: 0.5rem;
 }
 
@@ -702,6 +668,16 @@ video {
 @media (min-width: 1024px) {
   .navigation li {
     margin-bottom: 0.375rem;
+  }
+}
+
+.navigation > .menu > li > a {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .navigation > .menu > li > a {
+    display: flex;
   }
 }
 
@@ -755,24 +731,43 @@ video {
 }
 
 .navigation .sub-menu {
-  margin-left: 1.75rem;
+  margin-left: 0px;
   margin-top: 0.25rem;
-  display: none;
 }
 
 @media (min-width: 1024px) {
   .navigation .sub-menu {
-    display: block;
+    margin-left: 1.75rem;
   }
 }
 
 .navigation .sub-menu li {
-  margin-bottom: 0.375rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .navigation .sub-menu li {
+    margin-bottom: 0.375rem;
+  }
 }
 
 .navigation .sub-menu a {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+}
+
+.navigation .dashicons,
+  .navigation .dashicons-before:before {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+@media (min-width: 1024px) {
+  .navigation .dashicons,
+  .navigation .dashicons-before:before {
+    font-size: 20px;
+    line-height: 20px;
+  }
 }
 
 .filters li.active a {
@@ -869,11 +864,6 @@ video {
   }
 }
 
-.afx-ap-btngroup {
-  display: flex;
-  gap: 0.5rem;
-}
-
 .shortcode-preview {
   margin-top: 1.25rem;
 }
@@ -937,6 +927,55 @@ video {
   cursor: pointer;
 }
 
+.afx-ap-grids {
+  margin-left: 0px;
+  margin-right: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.afx-ap-grids > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-y-reverse: 0;
+  border-top-width: calc(2px * calc(1 - var(--tw-divide-y-reverse)));
+  border-bottom-width: calc(2px * var(--tw-divide-y-reverse));
+  --tw-divide-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-divide-opacity));
+}
+
+.afx-ap-grids {
+  padding: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .afx-ap-grids {
+    margin: 0.75rem;
+  }
+}
+
+.afx-ap-single-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem;
+}
+
+.afx-ap-single-grid h4 {
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 500;
+}
+
+.afx-ap-single-grid h4:hover {
+  --tw-text-opacity: 1;
+  color: rgb(116 95 241 / var(--tw-text-opacity));
+}
+
+.afx-ap-single-grid div button {
+  width: 2.5rem;
+}
+
 .afx-input-error {
   border-width: 2px !important;
   --tw-border-opacity: 1 !important;
@@ -977,10 +1016,6 @@ video {
 
 #afx-ap-app :is(.-left-1) {
   left: -0.25rem;
-}
-
-#afx-ap-app :is(.-left-5) {
-  left: -1.25rem;
 }
 
 #afx-ap-app :is(.-top-1) {
@@ -1027,12 +1062,9 @@ video {
   z-index: 50;
 }
 
-#afx-ap-app :is(.m-5) {
-  margin: 1.25rem;
-}
-
-#afx-ap-app :is(.m-10) {
-  margin: 2.5rem;
+#afx-ap-app :is(.mx-10) {
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
 }
 
 #afx-ap-app :is(.mx-3) {
@@ -1045,9 +1077,9 @@ video {
   margin-right: auto;
 }
 
-#afx-ap-app :is(.my-2) {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+#afx-ap-app :is(.my-5) {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
 }
 
 #afx-ap-app :is(.mb-4) {
@@ -1076,50 +1108,6 @@ video {
 
 #afx-ap-app :is(.mt-5) {
   margin-top: 1.25rem;
-}
-
-#afx-ap-app :is(.-mt-1) {
-  margin-top: -0.25rem;
-}
-
-#afx-ap-app :is(.mb-1) {
-  margin-bottom: 0.25rem;
-}
-
-#afx-ap-app :is(.mb-10) {
-  margin-bottom: 2.5rem;
-}
-
-#afx-ap-app :is(.mb-12) {
-  margin-bottom: 3rem;
-}
-
-#afx-ap-app :is(.mb-2) {
-  margin-bottom: 0.5rem;
-}
-
-#afx-ap-app :is(.ml-0) {
-  margin-left: 0px;
-}
-
-#afx-ap-app :is(.ml-1) {
-  margin-left: 0.25rem;
-}
-
-#afx-ap-app :is(.ml-3) {
-  margin-left: 0.75rem;
-}
-
-#afx-ap-app :is(.mr-0) {
-  margin-right: 0px;
-}
-
-#afx-ap-app :is(.mt-1) {
-  margin-top: 0.25rem;
-}
-
-#afx-ap-app :is(.mt-16) {
-  margin-top: 4rem;
 }
 
 #afx-ap-app :is(.block) {
@@ -1178,6 +1166,10 @@ video {
   height: 1rem;
 }
 
+#afx-ap-app :is(.h-5) {
+  height: 1.25rem;
+}
+
 #afx-ap-app :is(.h-6) {
   height: 1.5rem;
 }
@@ -1188,14 +1180,6 @@ video {
 
 #afx-ap-app :is(.h-screen) {
   height: 100vh;
-}
-
-#afx-ap-app :is(.h-full) {
-  height: 100%;
-}
-
-#afx-ap-app :is(.h-5) {
-  height: 1.25rem;
 }
 
 #afx-ap-app :is(.min-h-screen) {
@@ -1234,16 +1218,16 @@ video {
   width: 12rem;
 }
 
+#afx-ap-app :is(.w-5) {
+  width: 1.25rem;
+}
+
 #afx-ap-app :is(.w-5\/6) {
   width: 83.333333%;
 }
 
 #afx-ap-app :is(.w-6) {
   width: 1.5rem;
-}
-
-#afx-ap-app :is(.w-60) {
-  width: 15rem;
 }
 
 #afx-ap-app :is(.w-64) {
@@ -1258,36 +1242,16 @@ video {
   width: 100%;
 }
 
-#afx-ap-app :is(.w-5) {
-  width: 1.25rem;
-}
-
 #afx-ap-app :is(.min-w-\[300px\]) {
   min-width: 300px;
-}
-
-#afx-ap-app :is(.max-w-60) {
-  max-width: 15rem;
 }
 
 #afx-ap-app :is(.max-w-full) {
   max-width: 100%;
 }
 
-#afx-ap-app :is(.max-w-xl) {
-  max-width: 36rem;
-}
-
-#afx-ap-app :is(.max-w-6xl) {
-  max-width: 72rem;
-}
-
 #afx-ap-app :is(.max-w-screen-lg) {
   max-width: 1024px;
-}
-
-#afx-ap-app :is(.max-w-screen-xl) {
-  max-width: 1280px;
 }
 
 #afx-ap-app :is(.flex-1) {
@@ -1338,20 +1302,12 @@ video {
   flex-direction: column;
 }
 
-#afx-ap-app :is(.flex-wrap) {
-  flex-wrap: wrap;
-}
-
 #afx-ap-app :is(.\!items-start) {
   align-items: flex-start !important;
 }
 
 #afx-ap-app :is(.items-start) {
   align-items: flex-start;
-}
-
-#afx-ap-app :is(.items-end) {
-  align-items: flex-end;
 }
 
 #afx-ap-app :is(.items-center) {
@@ -1370,6 +1326,10 @@ video {
   gap: 0.25rem;
 }
 
+#afx-ap-app :is(.gap-10) {
+  gap: 2.5rem;
+}
+
 #afx-ap-app :is(.gap-2) {
   gap: 0.5rem;
 }
@@ -1378,16 +1338,12 @@ video {
   gap: 5rem;
 }
 
-#afx-ap-app :is(.gap-5) {
-  gap: 1.25rem;
-}
-
-#afx-ap-app :is(.gap-10) {
-  gap: 2.5rem;
-}
-
 #afx-ap-app :is(.gap-4) {
   gap: 1rem;
+}
+
+#afx-ap-app :is(.gap-5) {
+  gap: 1.25rem;
 }
 
 #afx-ap-app :is(.overflow-hidden) {
@@ -1408,10 +1364,6 @@ video {
 
 #afx-ap-app :is(.\!rounded-2xl) {
   border-radius: 1rem !important;
-}
-
-#afx-ap-app :is(.\!rounded-none) {
-  border-radius: 0px !important;
 }
 
 #afx-ap-app :is(.rounded) {
@@ -1438,28 +1390,8 @@ video {
   border-width: 4px;
 }
 
-#afx-ap-app :is(.border-2) {
-  border-width: 2px;
-}
-
-#afx-ap-app :is(.\!border-l-0) {
-  border-left-width: 0px !important;
-}
-
-#afx-ap-app :is(.\!border-r-0) {
-  border-right-width: 0px !important;
-}
-
-#afx-ap-app :is(.\!border-t-0) {
-  border-top-width: 0px !important;
-}
-
 #afx-ap-app :is(.border-b) {
   border-bottom-width: 1px;
-}
-
-#afx-ap-app :is(.border-b-2) {
-  border-bottom-width: 2px;
 }
 
 #afx-ap-app :is(.border-r-\[1px\]) {
@@ -1489,48 +1421,14 @@ video {
   border-color: transparent;
 }
 
-#afx-ap-app :is(.border-blue-400) {
-  --tw-border-opacity: 1;
-  border-color: rgb(96 165 250 / var(--tw-border-opacity));
-}
-
-#afx-ap-app :is(.border-green-500) {
-  --tw-border-opacity: 1;
-  border-color: rgb(34 197 94 / var(--tw-border-opacity));
-}
-
-#afx-ap-app :is(.border-indigo-500) {
-  --tw-border-opacity: 1;
-  border-color: rgb(99 102 241 / var(--tw-border-opacity));
-}
-
-#afx-ap-app :is(.border-purple-500) {
-  --tw-border-opacity: 1;
-  border-color: rgb(168 85 247 / var(--tw-border-opacity));
-}
-
-#afx-ap-app :is(.border-yellow-400) {
-  --tw-border-opacity: 1;
-  border-color: rgb(250 204 21 / var(--tw-border-opacity));
-}
-
 #afx-ap-app :is(.border-b-gray-300) {
   --tw-border-opacity: 1;
   border-bottom-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 
-#afx-ap-app :is(.border-b-gray-400) {
-  --tw-border-opacity: 1;
-  border-bottom-color: rgb(156 163 175 / var(--tw-border-opacity));
-}
-
 #afx-ap-app :is(.border-r-gray-300) {
   --tw-border-opacity: 1;
   border-right-color: rgb(209 213 219 / var(--tw-border-opacity));
-}
-
-#afx-ap-app :is(.\!bg-transparent) {
-  background-color: transparent !important;
 }
 
 #afx-ap-app :is(.bg-ap-primary) {
@@ -1573,35 +1471,6 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-#afx-ap-app :is(.bg-blue-400) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(96 165 250 / var(--tw-bg-opacity));
-}
-
-#afx-ap-app :is(.bg-green-500) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(34 197 94 / var(--tw-bg-opacity));
-}
-
-#afx-ap-app :is(.bg-indigo-500) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(99 102 241 / var(--tw-bg-opacity));
-}
-
-#afx-ap-app :is(.bg-purple-500) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(168 85 247 / var(--tw-bg-opacity));
-}
-
-#afx-ap-app :is(.bg-yellow-400) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(250 204 21 / var(--tw-bg-opacity));
-}
-
-#afx-ap-app :is(.bg-violet-500\/10) {
-  background-color: rgb(139 92 246 / 0.1);
-}
-
 #afx-ap-app :is(.fill-black) {
   fill: #000;
 }
@@ -1640,11 +1509,6 @@ video {
   padding-right: 1.5rem;
 }
 
-#afx-ap-app :is(.py-1) {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-}
-
 #afx-ap-app :is(.py-10) {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
@@ -1665,22 +1529,8 @@ video {
   padding-bottom: 1.5rem;
 }
 
-#afx-ap-app :is(.px-10) {
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-}
-
-#afx-ap-app :is(.px-5) {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-}
-
 #afx-ap-app :is(.\!pl-5) {
   padding-left: 1.25rem !important;
-}
-
-#afx-ap-app :is(.pb-0) {
-  padding-bottom: 0px;
 }
 
 #afx-ap-app :is(.pb-20) {
@@ -1753,16 +1603,6 @@ video {
   line-height: 1.75rem;
 }
 
-#afx-ap-app :is(.text-3xl) {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-}
-
-#afx-ap-app :is(.text-xs) {
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
-
 #afx-ap-app :is(.font-bold) {
   font-weight: 700;
 }
@@ -1777,10 +1617,6 @@ video {
 
 #afx-ap-app :is(.font-semibold) {
   font-weight: 600;
-}
-
-#afx-ap-app :is(.font-extrabold) {
-  font-weight: 800;
 }
 
 #afx-ap-app :is(.uppercase) {
@@ -1807,10 +1643,6 @@ video {
   line-height: 1.5;
 }
 
-#afx-ap-app :is(.leading-tight) {
-  line-height: 1.25;
-}
-
 #afx-ap-app :is(.tracking-wide) {
   letter-spacing: 0.025em;
 }
@@ -1819,14 +1651,19 @@ video {
   letter-spacing: 0.1em;
 }
 
+#afx-ap-app :is(.text-ap-primary) {
+  --tw-text-opacity: 1;
+  color: rgb(116 95 241 / var(--tw-text-opacity));
+}
+
+#afx-ap-app :is(.text-ap-text) {
+  --tw-text-opacity: 1;
+  color: rgb(129 129 129 / var(--tw-text-opacity));
+}
+
 #afx-ap-app :is(.text-gray-500) {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
-}
-
-#afx-ap-app :is(.text-gray-600) {
-  --tw-text-opacity: 1;
-  color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 
 #afx-ap-app :is(.text-gray-700) {
@@ -1847,56 +1684,6 @@ video {
 #afx-ap-app :is(.text-white) {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-#afx-ap-app :is(.text-blue-400) {
-  --tw-text-opacity: 1;
-  color: rgb(96 165 250 / var(--tw-text-opacity));
-}
-
-#afx-ap-app :is(.text-gray-800) {
-  --tw-text-opacity: 1;
-  color: rgb(31 41 55 / var(--tw-text-opacity));
-}
-
-#afx-ap-app :is(.text-green-500) {
-  --tw-text-opacity: 1;
-  color: rgb(34 197 94 / var(--tw-text-opacity));
-}
-
-#afx-ap-app :is(.text-indigo-500) {
-  --tw-text-opacity: 1;
-  color: rgb(99 102 241 / var(--tw-text-opacity));
-}
-
-#afx-ap-app :is(.text-purple-500) {
-  --tw-text-opacity: 1;
-  color: rgb(168 85 247 / var(--tw-text-opacity));
-}
-
-#afx-ap-app :is(.text-yellow-400) {
-  --tw-text-opacity: 1;
-  color: rgb(250 204 21 / var(--tw-text-opacity));
-}
-
-#afx-ap-app :is(.text-violet-600) {
-  --tw-text-opacity: 1;
-  color: rgb(124 58 237 / var(--tw-text-opacity));
-}
-
-#afx-ap-app :is(.text-ap-secondary) {
-  --tw-text-opacity: 1;
-  color: rgb(13 168 233 / var(--tw-text-opacity));
-}
-
-#afx-ap-app :is(.text-ap-text) {
-  --tw-text-opacity: 1;
-  color: rgb(129 129 129 / var(--tw-text-opacity));
-}
-
-#afx-ap-app :is(.text-ap-primary) {
-  --tw-text-opacity: 1;
-  color: rgb(116 95 241 / var(--tw-text-opacity));
 }
 
 #afx-ap-app :is(.accent-ap-primary) {
@@ -1939,16 +1726,6 @@ video {
   --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-#afx-ap-app :is(.ring-2) {
-  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
-}
-
-#afx-ap-app :is(.ring-transparent) {
-  --tw-ring-color: transparent;
 }
 
 #afx-ap-app :is(.filter) {
@@ -2097,15 +1874,14 @@ input[id^="rc-editable-input"] {
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
+#afx-ap-app :is(.hover\:text-ap-primary:hover) {
+  --tw-text-opacity: 1;
+  color: rgb(116 95 241 / var(--tw-text-opacity));
+}
+
 #afx-ap-app :is(.hover\:text-gray-500:hover) {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
-}
-
-#afx-ap-app :is(.hover\:shadow:hover) {
-  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 #afx-ap-app :is(.focus\:border-blue-300:focus) {
@@ -2135,23 +1911,9 @@ input[id^="rc-editable-input"] {
   font-weight: 700;
 }
 
-#afx-ap-app :is(.peer:checked ~ .peer-checked\:text-indigo-500) {
-  --tw-text-opacity: 1;
-  color: rgb(99 102 241 / var(--tw-text-opacity));
-}
-
 #afx-ap-app :is(.peer:checked ~ .peer-checked\:text-white) {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-#afx-ap-app :is(.peer:checked ~ .peer-checked\:ring-indigo-500) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(99 102 241 / var(--tw-ring-opacity));
-}
-
-#afx-ap-app :is(.peer:checked ~ .peer-checked\:ring-offset-2) {
-  --tw-ring-offset-width: 2px;
 }
 
 @media (min-width: 640px) {
@@ -2179,14 +1941,6 @@ input[id^="rc-editable-input"] {
 
   #afx-ap-app :is(.sm\:mt-4) {
     margin-top: 1rem;
-  }
-
-  #afx-ap-app :is(.sm\:mb-0) {
-    margin-bottom: 0px;
-  }
-
-  #afx-ap-app :is(.sm\:mr-10) {
-    margin-right: 2.5rem;
   }
 
   #afx-ap-app :is(.sm\:block) {
@@ -2221,16 +1975,8 @@ input[id^="rc-editable-input"] {
     width: 100%;
   }
 
-  #afx-ap-app :is(.sm\:w-1\/2) {
-    width: 50%;
-  }
-
   #afx-ap-app :is(.sm\:max-w-lg) {
     max-width: 32rem;
-  }
-
-  #afx-ap-app :is(.sm\:flex-row) {
-    flex-direction: row;
   }
 
   #afx-ap-app :is(.sm\:flex-row-reverse) {
@@ -2268,10 +2014,6 @@ input[id^="rc-editable-input"] {
 }
 
 @media (min-width: 768px) {
-  #afx-ap-app :is(.md\:mr-10) {
-    margin-right: 2.5rem;
-  }
-
   #afx-ap-app :is(.md\:block) {
     display: block;
   }
@@ -2290,24 +2032,16 @@ input[id^="rc-editable-input"] {
     display: flex;
   }
 
-  #afx-ap-app :is(.lg\:min-w-\[300px\]) {
-    min-width: 300px;
-  }
-
   #afx-ap-app :is(.lg\:max-w-\[75\%\]) {
     max-width: 75%;
   }
 
-  #afx-ap-app :is(.lg\:grid-cols-3) {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  #afx-ap-app :is(.lg\:grid-cols-4) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   #afx-ap-app :is(.lg\:flex-row) {
     flex-direction: row;
-  }
-
-  #afx-ap-app :is(.lg\:gap-10) {
-    gap: 2.5rem;
   }
 
   #afx-ap-app :is(.lg\:gap-16) {
@@ -2322,10 +2056,6 @@ input[id^="rc-editable-input"] {
     padding: 1.25rem;
   }
 
-  #afx-ap-app :is(.lg\:pr-5) {
-    padding-right: 1.25rem;
-  }
-
   #afx-ap-app :is(.lg\:pt-6) {
     padding-top: 1.5rem;
   }
@@ -2336,12 +2066,5 @@ input[id^="rc-editable-input"] {
 
   #afx-ap-app :is(.lg\:tracking-\[5px\]) {
     letter-spacing: 5px;
-  }
-}
-
-@media (min-width: 1280px) {
-  #afx-ap-app :is(.xl\:px-0) {
-    padding-left: 0px;
-    padding-right: 0px;
   }
 }

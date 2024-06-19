@@ -39,6 +39,12 @@ class AFX_Rest_Routes
             'permission_callback' => [$this, 'afx_save_settings_permission']
         ]);
 
+        register_rest_route('afx-ap/v1', '/post-types', [
+            'methods' => 'GET',
+            'callback' => [$this, 'afx_ap_get_post_types'],
+            'permission_callback' => [$this, 'afx_get_settings_permission']
+        ]);
+
         register_rest_route('afx-ap/v1', '/categories', [
             'methods' => 'GET',
             'callback' => [$this, 'afx_get_categories'],
@@ -194,6 +200,25 @@ class AFX_Rest_Routes
 
         wp_delete_attachment($file_id);
         return ['message' => 'Setting Restored Successfully'];
+    }
+
+    public function afx_ap_get_post_types()
+    {
+        $args = array(
+            'public'   => true,
+            '_builtin' => false,
+        );
+
+        $post_types = get_post_types($args, 'names', 'and');
+
+        $types = [['value' => 'post', 'label' => 'Post']];
+        if (count($post_types) > 0) {
+            foreach ($post_types as $pt) {
+                $types[] = ['value' => $pt, 'label' => ucwords(str_replace(array('-', '_'), ' ', $pt))];
+            }
+        }
+
+        return $types;
     }
 
     public function afx_save_settings_permission()

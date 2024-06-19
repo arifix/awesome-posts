@@ -10,7 +10,7 @@ const About = () => {
 
       <Divider />
 
-      <div className="grid md:grid-cols-3 max-w-screen-lg gap-10 m-5">
+      <div className="grid md:grid-cols-3 max-w-screen-lg gap-10 mx-10 my-5">
         <div className="flex gap-4 items-start flex-col ">
           <span className="bg-ap-primary text-white p-3 rounded-full">
             <svg
@@ -27,8 +27,9 @@ const About = () => {
           <div>
             <h3 className="text-2xl">Need Help?</h3>
             <p className="text-base text-ap-text mt-2">
-              Need assistance with something? Feel free to open a ticket on the
-              plugin support page or reach out to me via email at{" "}
+              Do you have any questions, suggestions, or feedback? Feel free to
+              open a ticket on the plugin support page or reach out to me via
+              email at{" "}
               <a href="mailto:madebyarif@gmail.com" className="text-ap-primary">
                 madebyarif@gmail.com
               </a>

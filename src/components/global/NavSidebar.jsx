@@ -6,7 +6,7 @@ const NavSidebar = () => {
   const {
     activeTab,
     setActiveTab,
-    shopSettings,
+    gridSettings,
     setGridSettings,
     initialSettings,
     setGridId,
@@ -27,9 +27,7 @@ const NavSidebar = () => {
                 setGridId(null);
               }}
               className={`${
-                activeTab == "grid-manager" || activeTab == "grid-new"
-                  ? "active"
-                  : ""
+                ["grid-manager", "grid-new"].includes(activeTab) ? "active" : ""
               }`}
             >
               <i className="dashicons-before dashicons-store"></i>
@@ -43,7 +41,7 @@ const NavSidebar = () => {
                     setActiveTab("grid-manager");
                     insertUrlParam("tab", "grid-manager");
                     removeUrlParam("grid_id");
-                    setGridSettings({ ...shopSettings });
+                    setGridSettings({ ...gridSettings });
                     setGridId(null);
                   }}
                   className={`${activeTab == "grid-manager" ? "active" : ""}`}

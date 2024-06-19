@@ -48,7 +48,11 @@
   }
 
   .navigation li {
-    @apply mb-7 lg:mb-1.5 relative rounded-lg hover:cursor-pointer;
+    @apply mb-0 lg:mb-1.5 relative rounded-lg hover:cursor-pointer;
+  }
+
+  .navigation > .menu > li > a {
+    @apply hidden lg:flex;
   }
 
   .navigation a {
@@ -68,15 +72,20 @@
   }
 
   .navigation .sub-menu {
-    @apply ml-7 mt-1 hidden lg:block;
+    @apply ml-0 lg:ml-7 mt-1;
   }
 
   .navigation .sub-menu li {
-    @apply mb-1.5;
+    @apply mb-5 lg:mb-1.5;
   }
 
   .navigation .sub-menu a {
     @apply py-1;
+  }
+
+  .navigation .dashicons,
+  .navigation .dashicons-before:before {
+    @apply text-3xl lg:text-[20px] lg:leading-[20px];
   }
 
   .filters {
@@ -174,19 +183,19 @@
     @apply w-8 h-8 absolute top-0 right-0 cursor-pointer;
   }
 
-  .afx-ap-shortcodes {
-    @apply flex flex-col gap-3 mx-0 lg:mx-5 lg:my-3 p-5 divide-y-2 divide-gray-300;
+  .afx-ap-grids {
+    @apply flex flex-col gap-3 mx-0 lg:m-3 p-5 divide-y-2 divide-gray-300;
   }
 
-  .afx-ap-single-shortcode {
+  .afx-ap-single-grid {
     @apply flex justify-between items-center p-5;
   }
 
-  .afx-ap-single-shortcode h4 {
+  .afx-ap-single-grid h4 {
     @apply text-xl font-medium cursor-pointer hover:text-ap-primary;
   }
 
-  .afx-ap-single-shortcode div button {
+  .afx-ap-single-grid div button {
     @apply w-10;
   }
 

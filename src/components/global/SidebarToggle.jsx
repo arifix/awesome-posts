@@ -11,7 +11,7 @@ const SidebarToggle = () => {
         setShowSidebar(!showSidebar);
       }}
       data-tooltip-id="afx-ap-tooltip"
-      data-tooltip-content="Show/Hide Sidebar"
+      data-tooltip-content={showSidebar ? "Hide Sidebar" : "Show Sidebar"}
       data-tooltip-place="right"
     >
       <svg
