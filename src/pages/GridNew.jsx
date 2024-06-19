@@ -4,10 +4,6 @@ import { gridContext } from "../contexts/gridContext";
 import Divider from "../components/global/Divider.jsx";
 import axios from "axios";
 import Select from "react-select";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
-import Flatpickr from "react-flatpickr";
-import "flatpickr/dist/themes/confetti.css";
 import Alignment from "../components/elements/Alignment";
 import Border from "../components/elements/Border";
 import Color from "../components/elements/Color";
@@ -25,9 +21,14 @@ import Preview from "../components/parts/Preview.jsx";
 import {
   getGoogleFonts,
   fontsUrlToName,
+  orderByOptions,
   orderOptions,
   gridStyleOptions,
+  operatorOptions,
+  postStatusOptions,
 } from "../utils/const.js";
+import GridSettings from "../components/parts/GridSettings.jsx";
+import QueryFilters from "../components/parts/QueryFilters.jsx";
 
 const GridNew = () => {
   const [postTypes, setPostTypes] = useState([]);
@@ -37,6 +38,7 @@ const GridNew = () => {
   const [pickerColors, setPickerColors] = useState([]);
   const [fonts, setFonts] = useState({});
   const [showModal, setShowModal] = useState(false);
+  const [activeSubTab, setActiveSubTab] = useState("grid_settings");
 
   const {
     baseUrl,
@@ -53,13 +55,17 @@ const GridNew = () => {
   const [defaultSettings, setDefaultSettings] = useState({
     gridTitle: "",
     gridStyle: [],
+
     postTypes: [],
     taxonomies: [],
     gridColumns: 3,
     postsPerPage: 9,
+    postsOrderBy: [],
     postsOrder: [],
+    offset: 0,
 
     terms: [],
+    operator: [],
     postsToInclude: [],
     postsToExclude: [],
     startDate: "",
@@ -100,8 +106,12 @@ const GridNew = () => {
     textTransform: "none",
     showSection: true,
 
-    showPostTitle: false,
-    showPostDes: false,
+    applyTaxonomyFilter: false,
+    applyOrderFilter: false,
+    applyPostsFilter: false,
+    applyPostsStatusFilter: false,
+
+    postStatus: [],
   });
 
   const fontsOptions = getGoogleFonts(fonts);
@@ -112,8 +122,16 @@ const GridNew = () => {
       setDefaultSettings,
       pickerColors,
       fontsOptions,
+      postTypes,
+      setPostTypes,
+      taxonomies,
+      setTaxonomies,
+      terms,
+      setTerms,
+      posts,
+      setPosts,
     };
-  }, [defaultSettings, pickerColors, fontsOptions]);
+  }, [defaultSettings, pickerColors, fontsOptions, postTypes]);
 
   useEffect(() => {
     axios.get(baseUrl + "post-types").then((res) => {
@@ -190,11 +208,43 @@ const GridNew = () => {
 
       <Divider />
 
-      <div className="p-5">
-        <div dangerouslySetInnerHTML={{ __html: styles }}></div>
+      <div className="flex flex-row justify-between">
+        <ul className="filters flex flex-row flex-wrap lg:flex-nowrap">
+          <li className={`${activeSubTab == "grid_settings" ? "active" : ""}`}>
+            <a
+              href="javascript:void(0);"
+              onClick={() => setActiveSubTab("grid_settings")}
+            >
+              Grid Settings
+            </a>
+          </li>
+          <li className={`${activeSubTab == "query_filters" ? "active" : ""}`}>
+            <a
+              href="javascript:void(0);"
+              onClick={() => setActiveSubTab("query_filters")}
+            >
+              Query &amp; Filters
+            </a>
+          </li>
+          <li className={`${activeSubTab == "layout" ? "active" : ""}`}>
+            <a
+              href="javascript:void(0);"
+              onClick={() => setActiveSubTab("layout")}
+            >
+              Layout
+            </a>
+          </li>
+          <li className={`${activeSubTab == "styling" ? "active" : ""}`}>
+            <a
+              href="javascript:void(0);"
+              onClick={() => setActiveSubTab("styling")}
+            >
+              Styling
+            </a>
+          </li>
+        </ul>
 
         <div className="flex justify-between items-center pr-5 gap-5">
-          <h3 className="heading-secondary text-2xl pb-0">Grid Settings</h3>
           <div className="afx-ap-btngroup">
             {gridId ? (
               <button
@@ -223,409 +273,37 @@ const GridNew = () => {
               <i className="dashicons-before dashicons-cover-image"></i>
               Preview
             </button>
+            <button
+              type="button"
+              className="action-button primary py-1"
+              onClick={() => console.log(111)}
+            >
+              <i className="dashicons-before dashicons-yes"></i> Save Grid
+            </button>
           </div>
         </div>
+      </div>
 
-        <p>&nbsp;</p>
+      {/* <div dangerouslySetInnerHTML={{ __html: styles }}></div> */}
 
-        {JSON.stringify(defaultSettings)}
-
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 px-5 py-2">
-          <Input title="Grid Title" name="gridTitle" />
-
-          <div className="afx-form-field flex-col !items-start">
-            <label htmlFor="">Grid Style:</label>
-            <Select
-              options={gridStyleOptions}
-              placeholder="Style #1"
-              value={gridStyleOptions.filter(
-                (option) => option.value === defaultSettings.gridStyle
-              )}
-              styles={{
-                control: (baseStyles) => ({
-                  ...baseStyles,
-                  width: 275,
-                  height: 42,
-                }),
-              }}
-              onChange={(newValue) => {
-                setDefaultSettings({
-                  ...defaultSettings,
-                  gridStyle: newValue.value,
-                });
-              }}
-            />
-          </div>
+      <div className="p-5">
+        <div className={`${activeSubTab == "grid_settings" ? "" : "hidden"}`}>
+          <GridSettings />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 px-5 py-2">
-          <div className="afx-form-field flex-col !items-start">
-            <label htmlFor="">Post Type:</label>
-            {Object.values(postTypes).length > 0 ? (
-              <Select
-                options={postTypes}
-                placeholder="Post Type"
-                value={
-                  Object.values(defaultSettings.postTypes).length > 0
-                    ? defaultSettings.postTypes
-                    : ""
-                }
-                styles={{
-                  control: (baseStyles) => ({
-                    ...baseStyles,
-                    width: 300,
-                  }),
-                }}
-                onChange={(newValue) => {
-                  setDefaultSettings({
-                    ...defaultSettings,
-                    postTypes: newValue,
-                    taxonomies: [],
-                    terms: [],
-                    postsToInclude: [],
-                    postsToExclude: [],
-                  });
-                }}
-              />
-            ) : (
-              <SkeletonTheme baseColor="#CCC" highlightColor="#FFF">
-                <Skeleton style={{ padding: 15, width: 300 }} />
-              </SkeletonTheme>
-            )}
-          </div>
-
-          <Input title="Posts Per Page" name="postsPerPage" type="number" />
-
-          <div className="afx-form-field flex-col !items-start">
-            <label htmlFor="">Default Order:</label>
-            <Select
-              options={orderOptions}
-              placeholder="Most Recent"
-              value={orderOptions.filter(
-                (option) => option.value === defaultSettings.postsOrder
-              )}
-              styles={{
-                control: (baseStyles) => ({
-                  ...baseStyles,
-                  width: 275,
-                  height: 42,
-                }),
-              }}
-              onChange={(newValue) => {
-                setDefaultSettings({
-                  ...defaultSettings,
-                  postsOrder: newValue.value,
-                });
-              }}
-            />
-          </div>
+        <div className={`${activeSubTab == "query_filters" ? "" : "hidden"}`}>
+          <QueryFilters />
         </div>
+      </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 px-5 py-2">
-          <div className="afx-form-field flex-col !items-start">
-            <label htmlFor="">Taxonomy:</label>
-            <Select
-              options={taxonomies}
-              placeholder="All Taxonomies"
-              value={
-                Object.values(defaultSettings.taxonomies).length > 0
-                  ? defaultSettings.taxonomies
-                  : ""
-              }
-              styles={{
-                control: (baseStyles) => ({
-                  ...baseStyles,
-                  width: 300,
-                }),
-              }}
-              onChange={(newValue) => {
-                setDefaultSettings({
-                  ...defaultSettings,
-                  taxonomies: newValue,
-                  postsToInclude: [],
-                  postsToExclude: [],
-                });
-              }}
-            />
-          </div>
-
-          <div className="afx-form-field flex-col !items-start">
-            <label htmlFor="">Terms:</label>
-            <Select
-              options={terms}
-              placeholder="All Terms"
-              value={
-                Object.values(defaultSettings.terms).length > 0
-                  ? defaultSettings.terms
-                  : ""
-              }
-              styles={{
-                control: (baseStyles) => ({
-                  ...baseStyles,
-                  width: 300,
-                }),
-              }}
-              onChange={(newValue) => {
-                setDefaultSettings({
-                  ...defaultSettings,
-                  terms: newValue,
-                  postsToInclude: [],
-                  postsToExclude: [],
-                });
-              }}
-              isMulti
-            />
-          </div>
-
-          <div className="afx-form-field flex-col !items-start">
-            <label htmlFor="">Posts (Include):</label>
-            <Select
-              options={posts}
-              placeholder="All Posts"
-              value={
-                Object.values(defaultSettings.postsToInclude).length > 0
-                  ? defaultSettings.postsToInclude
-                  : ""
-              }
-              styles={{
-                control: (baseStyles) => ({
-                  ...baseStyles,
-                  width: 300,
-                }),
-              }}
-              onChange={(newValue) => {
-                setDefaultSettings({
-                  ...defaultSettings,
-                  postsToInclude: newValue,
-                });
-              }}
-              isMulti
-            />
-          </div>
-
-          <div className="afx-form-field flex-col !items-start">
-            <label htmlFor="">Posts (Exclude):</label>
-            <Select
-              options={posts}
-              placeholder="All Posts"
-              value={
-                Object.values(defaultSettings.postsToExclude).length > 0
-                  ? defaultSettings.postsToExclude
-                  : ""
-              }
-              styles={{
-                control: (baseStyles) => ({
-                  ...baseStyles,
-                  width: 300,
-                }),
-              }}
-              onChange={(newValue) => {
-                setDefaultSettings({
-                  ...defaultSettings,
-                  postsToExclude: newValue,
-                });
-              }}
-              isMulti
-            />
-          </div>
-
-          <div className="afx-form-field flex-col !items-start">
-            <label htmlFor="">Start Date:</label>
-            <Flatpickr
-              className="afx-input bg-white"
-              value={defaultSettings.startDate}
-              options={{
-                maxDate: "today",
-                dateFormat: "Y-m-d",
-              }}
-              onChange={(date) => {
-                setDefaultSettings({
-                  ...defaultSettings,
-                  startDate: date,
-                });
-              }}
-              placeholder="Start Date"
-            />
-          </div>
-
-          <div className="afx-form-field flex-col !items-start">
-            <label htmlFor="">End Date:</label>
-            <Flatpickr
-              className="afx-input bg-white"
-              value={defaultSettings.endDate}
-              options={{
-                maxDate: "today",
-                dateFormat: "Y-m-d",
-              }}
-              onChange={(date) => {
-                setDefaultSettings({
-                  ...defaultSettings,
-                  endDate: date,
-                });
-              }}
-              placeholder="End Date"
-            />
-          </div>
-        </div>
-
-        <div className="px-5 py-2">
-          <div className="afx-form-field flex-col !items-start">
-            <label htmlFor="">Grid Columns:</label>
-            <div className="w-full flex flex-wrap gap-5">
-              {["One", "Two", "Three", "Four", "Five", "Six"].map((val, id) => (
-                <label
-                  key={id}
-                  className="w-full max-w-52 cursor-pointer"
-                  htmlFor=""
-                  onClick={(e) =>
-                    setDefaultSettings({
-                      ...defaultSettings,
-                      gridColumns: id + 1,
-                    })
-                  }
-                >
-                  <input
-                    type="radio"
-                    className="peer sr-only"
-                    name="gridColumns"
-                    value={id + 1}
-                    checked={defaultSettings.gridColumns === id + 1}
-                  />
-                  <div className="w-full rounded-md bg-white p-5 text-gray-600 ring-2 ring-transparent transition-all hover:shadow peer-checked:text-indigo-500 peer-checked:ring-indigo-500 peer-checked:ring-offset-2">
-                    <div className="flex flex-col gap-1">
-                      <div className="flex items-center justify-between">
-                        <i className="dashicons-before dashicons-screenoptions"></i>
-                        <div>
-                          {defaultSettings.gridColumns === id + 1 ? (
-                            <svg width="24" height="24" viewBox="0 0 24 24">
-                              <path
-                                fill="currentColor"
-                                d="m10.6 13.8l-2.175-2.175q-.275-.275-.675-.275t-.7.3q-.275.275-.275.7q0 .425.275.7L9.9 15.9q.275.275.7.275q.425 0 .7-.275l5.675-5.675q.275-.275.275-.675t-.3-.7q-.275-.275-.7-.275q-.425 0-.7.275ZM12 22q-2.075 0-3.9-.788q-1.825-.787-3.175-2.137q-1.35-1.35-2.137-3.175Q2 14.075 2 12t.788-3.9q.787-1.825 2.137-3.175q1.35-1.35 3.175-2.138Q9.925 2 12 2t3.9.787q1.825.788 3.175 2.138q1.35 1.35 2.137 3.175Q22 9.925 22 12t-.788 3.9q-.787 1.825-2.137 3.175q-1.35 1.35-3.175 2.137Q14.075 22 12 22Z"
-                              />
-                            </svg>
-                          ) : (
-                            <svg
-                              width="24"
-                              height="24"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              strokeWidth="1.5"
-                              stroke="currentColor"
-                              className="w-6 h-6 text-slate-500"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                              />
-                            </svg>
-                          )}
-                        </div>
-                      </div>
-                      <div className="flex items-end justify-between mt-2">
-                        <p>
-                          <span className="font-bold text-lg">
-                            {val} Column
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </label>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 px-5 py-2">
-          <FontFamily name="font" />
-          <Range title="Font Size" name="fontSize" min={14} max={100} />
-          <FontWeight name="fontWeight" />
-          <FontStyle name="fontStyle" />
-          <TextDecoration name="textDecoration" />
-          <TextTransform name="textTransform" />
-          <Alignment name="alignment" />
-          <Color title="Text" name="color" />
-          <InputGroup name="padding" title="Padding" min={0} max={50} />
-          <InputGroup name="margin" title="Margin" min={0} max={50} />
-          <Border name="border" min={0} max={20} />
-          <Range
-            title="Letter Spacing"
-            name="letterSpacing"
-            min={-5}
-            max={50}
-          />
-          <Range title="Word Spacing" name="wordSpacing" min={-5} max={50} />
-          <Range title="Line Height" name="lineHeight" min={0} max={100} />
-
-          <Color title="Background" name="bgColor" />
-          <Range title="Border Radius" name="borderRadius" min={0} max={50} />
-          <Toggle title="Show Section" name="showSection" />
-        </div>
-
-        <div className="px-5 py-2">
-          <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
-            <h3 className="heading-secondary text-2xl pb-0">Title Settings</h3>
-            <Toggle title="Show Post Title" name="showPostTitle" />
-          </div>
-          {defaultSettings.showPostTitle ? (
-            <>
-              <div className="grid grid-cols-1 lg:grid-cols-4 gap-5 lg:gap-10 mt-10">
-                <FontFamily name="productTitleFont" />
-
-                <Range
-                  title="Font Size"
-                  min={14}
-                  max={50}
-                  name="productTitleSize"
-                />
-
-                <Alignment name="productTitleAlignment" />
-
-                <Color name="productTitleColor" />
-              </div>
-              <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
-                <h4 className="tss-product-title text-center text-xl">
-                  This is a simple product
-                </h4>
-              </div>
-            </>
-          ) : (
-            ""
-          )}
-        </div>
-
-        <div className="px-5 py-2 mt-10">
-          <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
-            <h3 className="heading-secondary text-2xl pb-0">Description Settings</h3>
-            <Toggle title="Show Post Description" name="showPostDes" />
-          </div>
-          {defaultSettings.showPostDes ? (
-            <>
-              <div className="grid grid-cols-1 lg:grid-cols-4 gap-5 lg:gap-10 mt-10">
-                <FontFamily name="productTitleFont" />
-
-                <Range
-                  title="Font Size"
-                  min={14}
-                  max={50}
-                  name="productTitleSize"
-                />
-
-                <Alignment name="productTitleAlignment" />
-
-                <Color name="productTitleColor" />
-              </div>
-              <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
-                <h4 className="tss-product-title text-center text-xl">
-                  This is a simple product
-                </h4>
-              </div>
-            </>
-          ) : (
-            ""
-          )}
-        </div>
+      <div className="flex justify-center mt-10">
+        <button
+          type="button"
+          className="action-button primary py-1"
+          onClick={() => console.log(111)}
+        >
+          <i className="dashicons-before dashicons-yes"></i> Save Grid
+        </button>
       </div>
 
       <ModalPreview

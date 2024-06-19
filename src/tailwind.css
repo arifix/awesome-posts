@@ -89,7 +89,7 @@
   }
 
   .filters {
-    @apply mt-5 lg:mt-10;
+    @apply mx-5 mt-5;
   }
 
   .filters li {

@@ -15,22 +15,41 @@ export const gridStyleOptions = [
   },
 ];
 
+export const orderByOptions = [
+  {
+    value: "ID",
+    label: "ID",
+  },
+  {
+    value: "title",
+    label: "Title",
+  },
+  {
+    value: "date",
+    label: "Creation Date",
+  },
+  {
+    value: "modified",
+    label: "Modified Date",
+  },
+  {
+    value: "menu_order",
+    label: "Menu Order",
+  },
+  {
+    value: "rand",
+    label: "Random",
+  },
+];
+
 export const orderOptions = [
   {
-    value: "date:DESC",
-    label: "Most Recent",
+    value: "ASC",
+    label: "Ascending",
   },
   {
-    value: "date:ASC",
-    label: "Oldest First",
-  },
-  {
-    value: "title:ASC",
-    label: "Title A-Z",
-  },
-  {
-    value: "title:DESC",
-    label: "Title Z-A",
+    value: "DESC",
+    label: "Descending",
   },
 ];
 
@@ -157,6 +176,44 @@ export const textDecorationOptions = [
   {
     value: "underline overline",
     label: "Underline Overline",
+  },
+];
+
+export const operatorOptions = [
+  {
+    value: "IN",
+    label: "IN",
+  },
+  {
+    value: "NOT IN",
+    label: "NOT IN",
+  },
+  {
+    value: "AND",
+    label: "AND",
+  },
+];
+
+export const postStatusOptions = [
+  {
+    value: "publish",
+    label: "Publish",
+  },
+  {
+    value: "pending",
+    label: "Pending",
+  },
+  {
+    value: "draft",
+    label: "Draft",
+  },
+  {
+    value: "future",
+    label: "Future",
+  },
+  {
+    value: "private",
+    label: "Private",
   },
 ];
 

@@ -770,6 +770,52 @@ video {
   }
 }
 
+.filters {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.filters li {
+  margin-bottom: 0px;
+  width: auto;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.filters a {
+  position: relative;
+  bottom: 0.625rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  --tw-text-opacity: 1;
+  color: rgb(129 129 129 / var(--tw-text-opacity));
+}
+
+.filters a:hover {
+  border-bottom-width: 4px;
+  --tw-border-opacity: 1;
+  border-bottom-color: rgb(116 95 241 / var(--tw-border-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(116 95 241 / var(--tw-text-opacity));
+}
+
+.filters a:focus {
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.filters li a i {
+  position: relative;
+  top: 0.25rem;
+  margin-right: 0.5rem;
+}
+
 .filters li.active a {
   border-bottom-width: 4px;
   --tw-border-opacity: 1;
@@ -1259,10 +1305,6 @@ video {
   min-width: 300px;
 }
 
-#afx-ap-app :is(.max-w-2xl) {
-  max-width: 42rem;
-}
-
 #afx-ap-app :is(.max-w-52) {
   max-width: 13rem;
 }
@@ -1321,6 +1363,10 @@ video {
 
 #afx-ap-app :is(.grid-cols-4) {
   grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+#afx-ap-app :is(.flex-row) {
+  flex-direction: row;
 }
 
 #afx-ap-app :is(.flex-col) {
@@ -1498,11 +1544,6 @@ video {
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
 
-#afx-ap-app :is(.bg-slate-200) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
-}
-
 #afx-ap-app :is(.bg-slate-900) {
   --tw-bg-opacity: 1;
   background-color: rgb(15 23 42 / var(--tw-bg-opacity));
@@ -1541,10 +1582,6 @@ video {
   padding: 1.25rem;
 }
 
-#afx-ap-app :is(.p-7) {
-  padding: 1.75rem;
-}
-
 #afx-ap-app :is(.px-4) {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -1578,6 +1615,16 @@ video {
 #afx-ap-app :is(.py-6) {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+#afx-ap-app :is(.px-2) {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+#afx-ap-app :is(.py-1) {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 
 #afx-ap-app :is(.\!pl-5) {
@@ -1614,6 +1661,10 @@ video {
 
 #afx-ap-app :is(.pt-5) {
   padding-top: 1.25rem;
+}
+
+#afx-ap-app :is(.pb-5) {
+  padding-bottom: 1.25rem;
 }
 
 #afx-ap-app :is(.text-left) {
@@ -2150,8 +2201,8 @@ input[id^="rc-editable-input"] {
     flex-direction: row;
   }
 
-  #afx-ap-app :is(.lg\:gap-10) {
-    gap: 2.5rem;
+  #afx-ap-app :is(.lg\:flex-nowrap) {
+    flex-wrap: nowrap;
   }
 
   #afx-ap-app :is(.lg\:gap-16) {

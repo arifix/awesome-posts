@@ -10,7 +10,7 @@ const Toggle = ({ title = "Show Button", name }) => {
         htmlFor={name}
         className="!flex items-center flex-1 gap-5 !w-full cursor-pointer"
       >
-        {title}:
+        {title}
         <div className="relative">
           <input
             id={name}

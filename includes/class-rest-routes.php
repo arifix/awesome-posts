@@ -232,6 +232,10 @@ class AFX_Rest_Routes
         $types = [['value' => 'post', 'label' => 'Post']];
         if (count($post_types) > 0) {
             foreach ($post_types as $pt) {
+                if($pt == 'product'){
+                    continue;
+                }
+                
                 $types[] = ['value' => $pt, 'label' => ucwords(str_replace(array('-', '_'), ' ', $pt))];
             }
         }
