@@ -12,12 +12,13 @@ import {
   orderByOptions,
   orderOptions,
   postStatusOptions,
-  relationOptions
+  relationOptions,
 } from "../../utils/const.js";
 
 const GridQueryFilters = () => {
   const {
     postTypes,
+    authors,
     taxonomies,
     terms,
     posts,
@@ -198,9 +199,9 @@ const GridQueryFilters = () => {
               <label htmlFor="">Order By:</label>
               <Select
                 options={orderByOptions}
-                placeholder="ID"
+                placeholder="Creation Date"
                 value={orderByOptions.filter(
-                  (option) => option.value === defaultSettings.postsOrderBy
+                  (option) => option.value === defaultSettings.orderBy
                 )}
                 styles={{
                   control: (baseStyles) => ({
@@ -212,7 +213,7 @@ const GridQueryFilters = () => {
                 onChange={(newValue) => {
                   setDefaultSettings({
                     ...defaultSettings,
-                    postsOrderBy: newValue.value,
+                    orderBy: newValue.value,
                   });
                 }}
               />
@@ -224,7 +225,7 @@ const GridQueryFilters = () => {
                 options={orderOptions}
                 placeholder="Descending"
                 value={orderOptions.filter(
-                  (option) => option.value === defaultSettings.postsOrder
+                  (option) => option.value === defaultSettings.order
                 )}
                 styles={{
                   control: (baseStyles) => ({
@@ -236,7 +237,7 @@ const GridQueryFilters = () => {
                 onChange={(newValue) => {
                   setDefaultSettings({
                     ...defaultSettings,
-                    postsOrder: newValue.value,
+                    order: newValue.value,
                   });
                 }}
               />
@@ -330,6 +331,51 @@ const GridQueryFilters = () => {
                 }}
                 isMulti
               />
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
+
+      {/* Author Filter */}
+      <div className="px-5 py-2 mt-5">
+        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+          <h3 className="heading-secondary text-2xl pb-0">Author Filter</h3>
+          <Toggle title="Apply Author Filter?" name="applyAuthorFilter" />
+        </div>
+        {defaultSettings.applyAuthorFilter ? (
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+            <div className="afx-form-field flex-col !items-start">
+              <label htmlFor="">Author:</label>
+              {Object.values(authors).length > 0 ? (
+                <Select
+                  options={authors}
+                  placeholder="Author"
+                  value={
+                    Object.values(defaultSettings.authors).length > 0
+                      ? defaultSettings.authors
+                      : ""
+                  }
+                  styles={{
+                    control: (baseStyles) => ({
+                      ...baseStyles,
+                      width: 300,
+                    }),
+                  }}
+                  onChange={(newValue) => {
+                    setDefaultSettings({
+                      ...defaultSettings,
+                      authors: newValue,
+                    });
+                  }}
+                  isMulti
+                />
+              ) : (
+                <SkeletonTheme baseColor="#CCC" highlightColor="#FFF">
+                  <Skeleton style={{ padding: 15, width: 300 }} />
+                </SkeletonTheme>
+              )}
             </div>
           </div>
         ) : (

@@ -61,6 +61,7 @@ const GridSettings = () => {
                   name="gridColumns"
                   value={id + 1}
                   checked={defaultSettings.gridColumns === id + 1}
+                  readOnly
                 />
                 <div className="w-full rounded-md bg-white p-5 text-gray-600 ring-2 ring-transparent transition-all hover:shadow peer-checked:text-indigo-500 peer-checked:ring-indigo-500 peer-checked:ring-offset-2">
                   <div className="flex flex-col gap-1">

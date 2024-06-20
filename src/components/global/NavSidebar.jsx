@@ -18,8 +18,9 @@ const NavSidebar = () => {
         <ul className="menu">
           <li>
             <a
-              href="javascript:void(0);"
-              onClick={() => {
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
                 setActiveTab("grid-manager");
                 insertUrlParam("tab", "grid-manager");
                 removeUrlParam("grid_id");
@@ -36,8 +37,9 @@ const NavSidebar = () => {
             <ul className="sub-menu">
               <li>
                 <a
-                  href="javascript:void(0);"
-                  onClick={() => {
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
                     setActiveTab("grid-manager");
                     insertUrlParam("tab", "grid-manager");
                     removeUrlParam("grid_id");
@@ -52,8 +54,9 @@ const NavSidebar = () => {
               </li>
               <li>
                 <a
-                  href="javascript:void(0);"
-                  onClick={() => {
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
                     setActiveTab("grid-new");
                     insertUrlParam("tab", "grid-new");
                     removeUrlParam("grid_id");
@@ -71,8 +74,9 @@ const NavSidebar = () => {
 
           <li>
             <a
-              href="javascript:void(0);"
-              onClick={() => {
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
                 setActiveTab("brand-colors");
                 insertUrlParam("tab", "brand-colors");
                 removeUrlParam("grid_id");
@@ -93,8 +97,9 @@ const NavSidebar = () => {
             <ul className="sub-menu">
               <li>
                 <a
-                  href="javascript:void(0);"
-                  onClick={() => {
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
                     setActiveTab("brand-colors");
                     insertUrlParam("tab", "brand-colors");
                     removeUrlParam("grid_id");
@@ -109,8 +114,9 @@ const NavSidebar = () => {
               </li>
               <li>
                 <a
-                  href="javascript:void(0);"
-                  onClick={() => {
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
                     setActiveTab("fonts-manager");
                     insertUrlParam("tab", "fonts-manager");
                     removeUrlParam("grid_id");
@@ -125,8 +131,9 @@ const NavSidebar = () => {
               </li>
               <li>
                 <a
-                  href="javascript:void(0);"
-                  onClick={() => {
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
                     setActiveTab("backup-restore");
                     insertUrlParam("tab", "backup-restore");
                     removeUrlParam("grid_id");
@@ -143,8 +150,9 @@ const NavSidebar = () => {
           </li>
           <li>
             <a
-              href="javascript:void(0);"
-              onClick={() => {
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
                 setActiveTab("about");
                 insertUrlParam("tab", "about");
                 removeUrlParam("grid_id");

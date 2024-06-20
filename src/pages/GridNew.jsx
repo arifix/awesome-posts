@@ -13,6 +13,7 @@ import GridStyling from "../components/parts/GridStyling.jsx";
 
 const GridNew = () => {
   const [postTypes, setPostTypes] = useState([]);
+  const [authors, setAuthors] = useState([]);
   const [taxonomies, setTaxonomies] = useState([]);
   const [terms, setTerms] = useState([]);
   const [posts, setPosts] = useState([]);
@@ -48,12 +49,13 @@ const GridNew = () => {
     operator: "",
     orderBy: [],
     order: [],
-    postsToInclude: [],
-    postsToExclude: [],
     startDate: "",
     endDate: "",
     postStatus: [],
+    authors: [],
     keyword: "",
+    postsToInclude: [],
+    postsToExclude: [],
 
     alignment: "left",
     border: {
@@ -95,6 +97,7 @@ const GridNew = () => {
     applyDateFilter: true,
     applyPostsFilter: true,
     applyStatusFilter: true,
+    applyAuthorFilter: true,
     applySearchFilter: true,
   });
 
@@ -107,20 +110,23 @@ const GridNew = () => {
       pickerColors,
       fontsOptions,
       postTypes,
-      setPostTypes,
+      authors,
       taxonomies,
-      setTaxonomies,
       terms,
-      setTerms,
       posts,
-      setPosts,
     };
-  }, [defaultSettings, pickerColors, fontsOptions, postTypes]);
+  }, [defaultSettings, pickerColors, fontsOptions, postTypes, authors]);
 
   useEffect(() => {
     axios.get(baseUrl + "post-types").then((res) => {
       if (res.data) {
         setPostTypes(res.data);
+      }
+    });
+
+    axios.get(baseUrl + "authors").then((res) => {
+      if (res.data) {
+        setAuthors(res.data);
       }
     });
   }, []);
@@ -157,10 +163,22 @@ const GridNew = () => {
     const taxonomy = defaultSettings.taxonomy?.value || "";
     const relation = defaultSettings.relation || "OR";
     const operator = defaultSettings.operator || "IN";
+    const order_by = defaultSettings.orderBy || "";
+    const order = defaultSettings.order || "";
     const keyword = defaultSettings.keyword || "";
 
     const terms = [];
     Object.values(defaultSettings.terms).map((item) => terms.push(item.value));
+
+    const post_status = [];
+    Object.values(defaultSettings.postStatus).map((item) =>
+      post_status.push(item.value)
+    );
+
+    const authors = [];
+    Object.values(defaultSettings.authors).map((item) =>
+      authors.push(item.value)
+    );
 
     const sd = defaultSettings.startDate;
     let sd_date = "";
@@ -200,11 +218,23 @@ const GridNew = () => {
     if (taxonomy != "" && terms.length > 0 && operator != "") {
       query += `&operator=${operator}`;
     }
+    if (order_by != "") {
+      query += `&order_by=${order_by}`;
+    }
+    if (order != "") {
+      query += `&order=${order}`;
+    }
     if (sd_date != "") {
       query += `&startDate=${sd_date}`;
     }
     if (ed_date != "") {
       query += `&endDate=${ed_date}`;
+    }
+    if (post_status.length > 0) {
+      query += `&post_status=${post_status.join(",")}`;
+    }
+    if (authors.length > 0) {
+      query += `&authors=${authors.join(",")}`;
     }
     if (keyword != "") {
       query += `&keyword=${keyword}`;
@@ -223,8 +253,12 @@ const GridNew = () => {
     defaultSettings.terms,
     defaultSettings.relation,
     defaultSettings.operator,
+    defaultSettings.orderBy,
+    defaultSettings.order,
     defaultSettings.startDate,
     defaultSettings.endDate,
+    defaultSettings.postStatus,
+    defaultSettings.authors,
     defaultSettings.keyword,
   ]);
 
@@ -244,32 +278,44 @@ const GridNew = () => {
         <ul className="filters flex flex-col lg:flex-row flex-wrap lg:flex-nowrap">
           <li className={`${activeSubTab == "grid_settings" ? "active" : ""}`}>
             <a
-              href="javascript:void(0);"
-              onClick={() => setActiveSubTab("grid_settings")}
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveSubTab("grid_settings");
+              }}
             >
               Grid Settings
             </a>
           </li>
           <li className={`${activeSubTab == "query_filters" ? "active" : ""}`}>
             <a
-              href="javascript:void(0);"
-              onClick={() => setActiveSubTab("query_filters")}
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveSubTab("query_filters");
+              }}
             >
               Query &amp; Filters
             </a>
           </li>
           <li className={`${activeSubTab == "layout" ? "active" : ""}`}>
             <a
-              href="javascript:void(0);"
-              onClick={() => setActiveSubTab("layout")}
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveSubTab("layout");
+              }}
             >
               Layout
             </a>
           </li>
           <li className={`${activeSubTab == "styling" ? "active" : ""}`}>
             <a
-              href="javascript:void(0);"
-              onClick={() => setActiveSubTab("styling")}
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveSubTab("styling");
+              }}
             >
               Styling
             </a>

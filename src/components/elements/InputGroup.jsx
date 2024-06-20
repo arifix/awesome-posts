@@ -19,9 +19,9 @@ const InputGroup = ({ title, min, max, name }) => {
             <path
               d="M12 4L6 10M12 4L18 10M12 4L12 14.5M12 20V17.5"
               stroke="#1C274C"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
           <input
@@ -61,9 +61,9 @@ const InputGroup = ({ title, min, max, name }) => {
             <path
               d="M4 12H6.5M20 12L14 6M20 12L14 18M20 12H9.5"
               stroke="#1C274C"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
           <input
@@ -103,9 +103,9 @@ const InputGroup = ({ title, min, max, name }) => {
             <path
               d="M12 20L18 14M12 20L6 14M12 20L12 9.5M12 4V6.5"
               stroke="#1C274C"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
           <input
@@ -145,9 +145,9 @@ const InputGroup = ({ title, min, max, name }) => {
             <path
               d="M4 12L10 6M4 12L10 18M4 12H14.5M20 12H17.5"
               stroke="#1C274C"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
           <input

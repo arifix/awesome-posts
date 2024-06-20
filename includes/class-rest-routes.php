@@ -45,6 +45,12 @@ class AFX_Rest_Routes
             'permission_callback' => [$this, 'afx_get_settings_permission']
         ]);
 
+        register_rest_route('afx-ap/v1', '/authors', [
+            'methods' => 'GET',
+            'callback' => [$this, 'afx_ap_get_authors'],
+            'permission_callback' => [$this, 'afx_get_settings_permission']
+        ]);
+
         register_rest_route('afx-ap/v1', '/taxonomies', [
             'methods' => 'GET',
             'callback' => [$this, 'afx_ap_get_taxonomies'],
@@ -243,6 +249,18 @@ class AFX_Rest_Routes
         return $types;
     }
 
+    public function afx_ap_get_authors()
+    {
+        $users = get_users();
+
+        $authors = [];
+        foreach ($users as $user) {
+            $authors[] = ['value' => $user->ID, 'label' => ucwords($user->display_name)];
+        }
+
+        return $authors;
+    }
+
     public function afx_ap_get_taxonomies()
     {
 
@@ -287,6 +305,8 @@ class AFX_Rest_Routes
     public function afx_ap_get_posts()
     {
         $terms = !empty($_GET['terms']) ? explode(",", $_GET['terms']) : [];
+        $post_status = !empty($_GET['post_status']) ? explode(",", $_GET['post_status']) : [];
+        $authors = !empty($_GET['authors']) ? $_GET['authors'] : "";
 
         $posts_args = array(
             'post_type' => $_GET['post-type'],
@@ -317,6 +337,14 @@ class AFX_Rest_Routes
             }
         }
 
+        if (!empty($_GET['orderby'])) {
+            $posts_args['orderby'] = $_GET['orderby'];
+        }
+
+        if (!empty($_GET['order'])) {
+            $posts_args['order'] = $_GET['order'];
+        }
+
         if (!empty($_GET['startDate'])) {
             $posts_args['date_query'] = array(
                 array(
@@ -325,6 +353,14 @@ class AFX_Rest_Routes
                     'inclusive' => true,
                 )
             );
+        }
+
+        if (count($post_status) > 0) {
+            $posts_args['post_status'] = $post_status;
+        }
+
+        if (!empty($authors)) {
+            $posts_args['author'] = $authors;
         }
 
         if (!empty($_GET['keyword'])) {
@@ -344,7 +380,6 @@ class AFX_Rest_Routes
 
         return $posts;
     }
-
 
     public function afx_save_settings_permission()
     {

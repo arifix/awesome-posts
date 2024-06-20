@@ -13,7 +13,10 @@ const Sidebar = () => {
       }`}
     >
       <a
-        href="javascript:void(0);"
+        href="#"
+        onClick={(e) => {
+          e.preventDefault();
+        }}
         title="Awesome Posts"
         className="flex flex-col mt-5 lg:mt-0"
       >

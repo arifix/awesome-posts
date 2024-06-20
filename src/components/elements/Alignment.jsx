@@ -9,13 +9,14 @@ const Alignment = ({ name }) => {
       <label htmlFor="">Text Alignment:</label>
       <div className="grid w-48 grid-cols-4 gap-2 rounded p-1">
         {["left", "center", "right", "justify"].map((val, _id) => (
-          <div>
+          <div key={_id}>
             <input
               type="radio"
               name={name}
               value={val}
               className="peer !hidden"
               checked={defaultSettings[name] === val}
+              readOnly
             />
             <label
               htmlFor=""
