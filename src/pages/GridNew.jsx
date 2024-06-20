@@ -20,7 +20,7 @@ const GridNew = () => {
   const [pickerColors, setPickerColors] = useState([]);
   const [fonts, setFonts] = useState({});
   const [showModal, setShowModal] = useState(false);
-  const [activeSubTab, setActiveSubTab] = useState("query_filters");
+  const [activeSubTab, setActiveSubTab] = useState("layout");
 
   const {
     baseUrl,
@@ -39,6 +39,14 @@ const GridNew = () => {
     gridStyle: "",
     gridColumns: 3,
 
+    applyTaxonomyFilter: false,
+    applyOrderFilter: false,
+    applyDateFilter: false,
+    applyPostsFilter: false,
+    applyStatusFilter: false,
+    applyAuthorFilter: false,
+    applySearchFilter: false,
+
     postType: [],
     limit: "",
     postsPerPage: 9,
@@ -47,8 +55,8 @@ const GridNew = () => {
     terms: [],
     relation: "",
     operator: "",
-    orderBy: [],
-    order: [],
+    orderBy: "",
+    order: "",
     startDate: "",
     endDate: "",
     postStatus: [],
@@ -56,6 +64,14 @@ const GridNew = () => {
     keyword: "",
     postsToInclude: [],
     postsToExclude: [],
+
+    displayShortcodeHeading: true,
+    displayPostTitle: true,
+    displayPostCategory: true,
+    displayPostExcerpt: true,
+    displayPostMeta: true,
+    displayPostImage: true,
+    displayReadBtn: true,
 
     alignment: "left",
     border: {
@@ -91,14 +107,6 @@ const GridNew = () => {
     textDecoration: "none",
     textTransform: "none",
     showSection: true,
-
-    applyTaxonomyFilter: true,
-    applyOrderFilter: true,
-    applyDateFilter: true,
-    applyPostsFilter: true,
-    applyStatusFilter: true,
-    applyAuthorFilter: true,
-    applySearchFilter: true,
   });
 
   const fontsOptions = getGoogleFonts(fonts);
