@@ -236,6 +236,94 @@ export const postStatusOptions = [
   },
 ];
 
+export const tagOptions = [
+  {
+    value: "H1",
+    label: "H1",
+  },
+  {
+    value: "H2",
+    label: "H2",
+  },
+  {
+    value: "H3",
+    label: "H3",
+  },
+  {
+    value: "H4",
+    label: "H4",
+  },
+  {
+    value: "H5",
+    label: "H5",
+  },
+  {
+    value: "H6",
+    label: "H6",
+  },
+];
+
+export const separatorOptions = [
+  {
+    value: ".",
+    label: ".",
+  },
+  {
+    value: "/",
+    label: "/",
+  },
+  {
+    value: "//",
+    label: "//",
+  },
+  {
+    value: "|",
+    label: "|",
+  },
+  {
+    value: "-",
+    label: "-",
+  },
+];
+
+export const excerptOptions = [
+  {
+    value: "character",
+    label: "Character",
+  },
+  {
+    value: "word",
+    label: "Word",
+  },
+];
+
+export const columnOptions = [
+  {
+    value: "1",
+    label: "Column 1",
+  },
+  {
+    value: "2",
+    label: "Column 2",
+  },
+  {
+    value: "3",
+    label: "Column 3",
+  },
+  {
+    value: "4",
+    label: "Column 4",
+  },
+  {
+    value: "5",
+    label: "Column 5",
+  },
+  {
+    value: "6",
+    label: "Column 6",
+  },
+];
+
 export const getGoogleFonts = (fonts) => {
   const fontsOptions = [];
   Object.keys(fonts).map((val, index) => {

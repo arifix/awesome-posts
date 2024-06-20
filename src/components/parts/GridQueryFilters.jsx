@@ -188,7 +188,7 @@ const GridQueryFilters = () => {
       </div>
 
       {/* Order Filter */}
-      <div className="px-5 py-2 mt-5">
+      <div className="px-5 py-2">
         <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-0">Order Filter</h3>
           <Toggle title="Apply Order Filter?" name="applyOrderFilter" />
@@ -249,7 +249,7 @@ const GridQueryFilters = () => {
       </div>
 
       {/* Date Filter */}
-      <div className="px-5 py-2 mt-5">
+      <div className="px-5 py-2">
         <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-0">Date Filter</h3>
           <Toggle title="Apply Date Filter?" name="applyDateFilter" />
@@ -300,7 +300,7 @@ const GridQueryFilters = () => {
       </div>
 
       {/* Status Filter */}
-      <div className="px-5 py-2 mt-5">
+      <div className="px-5 py-2">
         <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-0">Status Filter</h3>
           <Toggle title="Apply Status Filter?" name="applyStatusFilter" />
@@ -339,7 +339,7 @@ const GridQueryFilters = () => {
       </div>
 
       {/* Author Filter */}
-      <div className="px-5 py-2 mt-5">
+      <div className="px-5 py-2">
         <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-0">Author Filter</h3>
           <Toggle title="Apply Author Filter?" name="applyAuthorFilter" />
@@ -384,7 +384,7 @@ const GridQueryFilters = () => {
       </div>
 
       {/* Search Filter */}
-      <div className="px-5 py-2 mt-5">
+      <div className="px-5 py-2">
         <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-0">Search Filter</h3>
           <Toggle title="Apply Search Filter?" name="applySearchFilter" />
@@ -399,7 +399,7 @@ const GridQueryFilters = () => {
       </div>
 
       {/* Posts Filter */}
-      <div className="px-5 py-2 mt-5">
+      <div className="px-5 py-2">
         <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-0">Posts Filter</h3>
           <Toggle title="Apply Posts Filter?" name="applyPostsFilter" />

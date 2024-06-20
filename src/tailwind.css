@@ -112,7 +112,7 @@
   }
 
   .afx-form-field label {
-    @apply block text-lg font-medium w-36;
+    @apply block text-lg font-medium w-48;
   }
 
   .afx-input {

@@ -37,7 +37,9 @@ const GridNew = () => {
   const [defaultSettings, setDefaultSettings] = useState({
     gridTitle: "",
     gridStyle: "",
-    gridColumns: 3,
+    gridColumnsD: 3,
+    gridColumnsT: 3,
+    gridColumnsM: 3,
 
     applyTaxonomyFilter: false,
     applyOrderFilter: false,
@@ -65,7 +67,7 @@ const GridNew = () => {
     postsToInclude: [],
     postsToExclude: [],
 
-    displayShortcodeHeading: true,
+    displaySCHeading: true,
     displayPostTitle: true,
     displayPostCategory: true,
     displayPostExcerpt: true,

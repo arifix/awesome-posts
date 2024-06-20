@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { gridContext } from "../../contexts/gridContext";
 
-const Input = ({ title = "Button Text", name, type = "text" }) => {
+const Input = ({ title = "Button Text", name, type = "text", placeholder = "" }) => {
   const { defaultSettings, setDefaultSettings } = useContext(gridContext);
 
   return (
@@ -9,7 +9,7 @@ const Input = ({ title = "Button Text", name, type = "text" }) => {
       <label htmlFor="">{title}:</label>
       <input
         type={type}
-        placeholder={title}
+        placeholder={placeholder || title}
         className="afx-input"
         value={defaultSettings[name]}
         onChange={(e) =>
