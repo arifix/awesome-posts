@@ -6,6 +6,7 @@ import {
   tagOptions,
   separatorOptions,
   excerptOptions,
+  mediaOptions,
 } from "../../utils/const.js";
 import Input from "../elements/Input";
 
@@ -84,6 +85,37 @@ const GridLayout = () => {
                 }}
               />
             </div>
+
+            <div className="afx-form-field flex-col !items-start">
+              <label htmlFor="">Title Type:</label>
+              <Select
+                options={excerptOptions}
+                placeholder="Character"
+                value={excerptOptions.filter(
+                  (option) => option.value === defaultSettings.postTitleType
+                )}
+                styles={{
+                  control: (baseStyles) => ({
+                    ...baseStyles,
+                    width: 275,
+                    height: 42,
+                  }),
+                }}
+                onChange={(newValue) => {
+                  setDefaultSettings({
+                    ...defaultSettings,
+                    postTitleType: newValue.value,
+                  });
+                }}
+              />
+            </div>
+
+            <Input
+              title="Title Limit"
+              type="number"
+              name="postTitleLimit"
+              tooltip="Leave to display full title"
+            />
           </div>
         ) : (
           ""
@@ -156,6 +188,12 @@ const GridLayout = () => {
         </div>
         {defaultSettings.displayPostMeta ? (
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+            <div>
+              <Toggle title="Display Tags?" name="postMetaDisTags" />
+              <Toggle title="Display Date?" name="postMetaDisDate" />
+              <Toggle title="Display Author?" name="postMetaDisAuthor" />
+              <Toggle title="Display Comemnt Count?" name="postMetaDisCC" />
+            </div>
             <div className="afx-form-field flex-col !items-start">
               <label htmlFor="">Separator:</label>
               <Select
@@ -197,7 +235,31 @@ const GridLayout = () => {
           />
         </div>
         {defaultSettings.displayPostImage ? (
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5"></div>
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+            <div className="afx-form-field flex-col !items-start">
+              <label htmlFor="">Image Size:</label>
+              <Select
+                options={mediaOptions}
+                placeholder="Large"
+                value={mediaOptions.filter(
+                  (option) => option.value === defaultSettings.postImageSize
+                )}
+                styles={{
+                  control: (baseStyles) => ({
+                    ...baseStyles,
+                    width: 275,
+                    height: 42,
+                  }),
+                }}
+                onChange={(newValue) => {
+                  setDefaultSettings({
+                    ...defaultSettings,
+                    postImageSize: newValue.value,
+                  });
+                }}
+              />
+            </div>
+          </div>
         ) : (
           ""
         )}

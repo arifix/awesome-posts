@@ -40,6 +40,7 @@ const GridNew = () => {
     gridColumnsD: 3,
     gridColumnsT: 3,
     gridColumnsM: 3,
+    gridLoadMoreBtn: true,
 
     applyTaxonomyFilter: false,
     applyOrderFilter: false,

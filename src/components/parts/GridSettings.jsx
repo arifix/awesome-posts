@@ -3,6 +3,8 @@ import { gridContext } from "../../contexts/gridContext.jsx";
 import Input from "../elements/Input.jsx";
 import Select from "react-select";
 import { gridStyleOptions, columnOptions } from "../../utils/const.js";
+import Toggle from "../elements/Toggle.jsx";
+import Tooltip from "../elements/Tooltip.jsx";
 
 const GridSettings = () => {
   const { defaultSettings, setDefaultSettings } = useContext(gridContext);
@@ -15,7 +17,7 @@ const GridSettings = () => {
         <Input title="Grid Title" name="gridTitle" />
 
         <div className="afx-form-field flex-col !items-start">
-          <label htmlFor="">Grid Style:</label>
+          <label htmlFor="">Grid Style: </label>
           <Select
             options={gridStyleOptions}
             placeholder="Style #1"
@@ -111,6 +113,10 @@ const GridSettings = () => {
             }}
           />
         </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 px-5 py-2">
+        <Toggle title="Display Load More Button?" name="gridLoadMoreBtn" />
       </div>
     </>
   );

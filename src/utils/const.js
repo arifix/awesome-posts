@@ -324,6 +324,25 @@ export const columnOptions = [
   },
 ];
 
+export const mediaOptions = [
+  {
+    value: "full",
+    label: "Full",
+  },
+  {
+    value: "large",
+    label: "Large",
+  },
+  {
+    value: "medium",
+    label: "Medium",
+  },
+  {
+    value: "thumbnail",
+    label: "Thumbnail",
+  },
+];
+
 export const getGoogleFonts = (fonts) => {
   const fontsOptions = [];
   Object.keys(fonts).map((val, index) => {
