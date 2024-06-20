@@ -20,7 +20,7 @@ const GridNew = () => {
   const [pickerColors, setPickerColors] = useState([]);
   const [fonts, setFonts] = useState({});
   const [showModal, setShowModal] = useState(false);
-  const [activeSubTab, setActiveSubTab] = useState("layout");
+  const [activeSubTab, setActiveSubTab] = useState("styling");
 
   const {
     baseUrl,

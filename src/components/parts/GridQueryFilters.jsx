@@ -30,6 +30,7 @@ const GridQueryFilters = () => {
     <>
       <h3 className="heading-secondary text-2xl pb-5">Query &amp; Filters</h3>
 
+      {/* Post Type */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 px-5 py-2">
         <div className="afx-form-field flex-col !items-start">
           <label htmlFor="">Post Type:</label>

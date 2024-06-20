@@ -13,6 +13,7 @@ const GridSettings = () => {
     <>
       <h3 className="heading-secondary text-2xl pb-5">Grid Settings</h3>
 
+      {/* Grid Info */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 px-5 py-2">
         <Input title="Grid Title" name="gridTitle" />
 
@@ -41,6 +42,7 @@ const GridSettings = () => {
         </div>
       </div>
 
+      {/* Grid Column */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 px-5 py-2">
         <div className="afx-form-field flex-col !items-start">
           <label htmlFor="">Grid Column (Desktop):</label>
@@ -115,6 +117,7 @@ const GridSettings = () => {
         </div>
       </div>
 
+      {/* Grid Extra */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 px-5 py-2">
         <Toggle title="Display Load More Button?" name="gridLoadMoreBtn" />
       </div>
