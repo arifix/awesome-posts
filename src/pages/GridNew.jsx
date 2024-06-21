@@ -681,10 +681,7 @@ const GridNew = () => {
       <div className="flex justify-between items-center pr-5">
         <h2 className="heading-primary">New Grid</h2>
       </div>
-
       <Divider />
-
-      {/* {JSON.stringify(defaultSettings)} */}
 
       <div className="flex flex-col gap-5 lg:gap-0 lg:flex-row justify-between">
         <ul className="filters flex flex-col lg:flex-row flex-wrap lg:flex-nowrap">
@@ -766,7 +763,7 @@ const GridNew = () => {
             <button
               type="button"
               className="action-button primary py-1"
-              onClick={() => console.log(111)}
+              onClick={() => saveGrid()}
             >
               <i className="dashicons-before dashicons-yes"></i> Save Grid
             </button>

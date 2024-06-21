@@ -349,7 +349,7 @@ const GridStyling = () => {
           <Border name="btnBorder" min={0} max={20} />
         </div>
 
-        <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
+        <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7 text-center">
           <button
             type="button"
             className="ap-btn"
