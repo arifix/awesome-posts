@@ -4,7 +4,6 @@ import Input from "../elements/Input.jsx";
 import Select from "react-select";
 import { gridStyleOptions, columnOptions } from "../../utils/const.js";
 import Toggle from "../elements/Toggle.jsx";
-import Tooltip from "../elements/Tooltip.jsx";
 
 const GridSettings = () => {
   const { defaultSettings, setDefaultSettings } = useContext(gridContext);
@@ -15,7 +14,7 @@ const GridSettings = () => {
 
       {/* Grid Info */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 px-5 py-2">
-        <Input title="Grid Title" name="gridTitle" />
+        <Input title="Grid Title" name="gridTitle" required />
 
         <div className="afx-form-field flex-col !items-start">
           <label htmlFor="">Grid Style: </label>

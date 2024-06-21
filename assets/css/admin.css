@@ -826,8 +826,9 @@ video {
   padding-bottom: 0.75rem;
   font-size: 1.125rem;
   line-height: 1.75rem;
+  font-weight: 500;
   --tw-text-opacity: 1;
-  color: rgb(129 129 129 / var(--tw-text-opacity));
+  color: rgb(55 65 81 / var(--tw-text-opacity));
 }
 
 .filters a:hover {
@@ -1203,10 +1204,6 @@ video {
   margin-top: 1.25rem;
 }
 
-#afx-ap-app :is(.mr-3) {
-  margin-right: 0.75rem;
-}
-
 #afx-ap-app :is(.block) {
   display: block;
 }
@@ -1353,6 +1350,10 @@ video {
 
 #afx-ap-app :is(.max-w-screen-lg) {
   max-width: 1024px;
+}
+
+#afx-ap-app :is(.max-w-2xl) {
+  max-width: 42rem;
 }
 
 #afx-ap-app :is(.flex-1) {
@@ -1580,6 +1581,21 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+#afx-ap-app :is(.bg-slate-200) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+}
+
+#afx-ap-app :is(.bg-ap-text) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(129 129 129 / var(--tw-bg-opacity));
+}
+
+#afx-ap-app :is(.bg-slate-700) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(51 65 85 / var(--tw-bg-opacity));
+}
+
 #afx-ap-app :is(.fill-black) {
   fill: #000;
 }
@@ -1606,6 +1622,10 @@ video {
 
 #afx-ap-app :is(.p-5) {
   padding: 1.25rem;
+}
+
+#afx-ap-app :is(.p-7) {
+  padding: 1.75rem;
 }
 
 #afx-ap-app :is(.px-4) {
@@ -1686,6 +1706,14 @@ video {
 
 #afx-ap-app :is(.pt-5) {
   padding-top: 1.25rem;
+}
+
+#afx-ap-app :is(.pb-3) {
+  padding-bottom: 0.75rem;
+}
+
+#afx-ap-app :is(.pb-2) {
+  padding-bottom: 0.5rem;
 }
 
 #afx-ap-app :is(.text-left) {
@@ -1817,9 +1845,9 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-#afx-ap-app :is(.text-blue-600) {
+#afx-ap-app :is(.text-red-500) {
   --tw-text-opacity: 1;
-  color: rgb(37 99 235 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
 #afx-ap-app :is(.underline) {
@@ -2111,10 +2139,6 @@ input[id^="rc-editable-input"] {
     height: 100vh;
   }
 
-  #afx-ap-app :is(.sm\:h-5) {
-    height: 1.25rem;
-  }
-
   #afx-ap-app :is(.sm\:w-10) {
     width: 2.5rem;
   }
@@ -2125,10 +2149,6 @@ input[id^="rc-editable-input"] {
 
   #afx-ap-app :is(.sm\:w-full) {
     width: 100%;
-  }
-
-  #afx-ap-app :is(.sm\:w-5) {
-    width: 1.25rem;
   }
 
   #afx-ap-app :is(.sm\:max-w-lg) {
@@ -2194,14 +2214,6 @@ input[id^="rc-editable-input"] {
 
   #afx-ap-app :is(.lg\:grid-cols-4) {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  #afx-ap-app :is(.lg\:grid-cols-5) {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-
-  #afx-ap-app :is(.lg\:grid-cols-6) {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 
   #afx-ap-app :is(.lg\:flex-row) {

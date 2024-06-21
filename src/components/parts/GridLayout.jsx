@@ -90,7 +90,7 @@ const GridLayout = () => {
               <label htmlFor="">Title Type:</label>
               <Select
                 options={excerptOptions}
-                placeholder="Character"
+                placeholder=""
                 value={excerptOptions.filter(
                   (option) => option.value === defaultSettings.postTitleType
                 )}
@@ -195,7 +195,6 @@ const GridLayout = () => {
               title="Excerpt Limit"
               type="number"
               name="postExcerptLimit"
-              placeholder="15"
             />
             <Input title="More Text" name="postExcerptText" placeholder="..." />
           </div>
@@ -264,7 +263,7 @@ const GridLayout = () => {
               <label htmlFor="">Image Size:</label>
               <Select
                 options={mediaOptions}
-                placeholder="Large"
+                placeholder=""
                 value={mediaOptions.filter(
                   (option) => option.value === defaultSettings.postImageSize
                 )}
@@ -300,7 +299,6 @@ const GridLayout = () => {
             <Input
               title="Button Text"
               name="postBtnText"
-              placeholder="Read More"
             />
           </div>
         ) : (

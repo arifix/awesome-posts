@@ -8,13 +8,15 @@ const Input = ({
   type = "text",
   placeholder = "",
   tooltip = "",
+  required = false,
 }) => {
   const { defaultSettings, setDefaultSettings } = useContext(gridContext);
 
   return (
     <div className="afx-form-field flex-col !items-start">
       <label htmlFor="" className="flex gap-2 items-center">
-        {title}: {tooltip ? <Tooltip text={tooltip} /> : ""}
+        {title}:{required && <span className="text-red-500">*</span>}
+        {tooltip ? <Tooltip text={tooltip} /> : ""}
       </label>
       <input
         type={type}

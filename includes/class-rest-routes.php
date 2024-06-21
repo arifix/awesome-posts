@@ -363,8 +363,8 @@ class AFX_Rest_Routes
             $posts_args['author'] = $authors;
         }
 
-        if (!empty($_GET['keyword'])) {
-            $posts_args['s'] = $_GET['keyword'];
+        if (!empty($_GET['search'])) {
+            $posts_args['s'] = $_GET['search'];
         }
 
         $posts_query = new WP_Query($posts_args);

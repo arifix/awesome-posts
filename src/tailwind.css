@@ -97,7 +97,7 @@
   }
 
   .filters a {
-    @apply text-lg text-ap-text px-5 py-3 relative bottom-2.5 hover:text-ap-primary hover:border-b-4 hover:border-b-ap-primary focus:shadow-none;
+    @apply text-lg text-gray-700 font-medium px-5 py-3 relative bottom-2.5 hover:text-ap-primary hover:border-b-4 hover:border-b-ap-primary focus:shadow-none;
   }
   .filters li a i {
     @apply relative top-1 mr-2;

@@ -33,7 +33,9 @@ const GridQueryFilters = () => {
       {/* Post Type */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 px-5 py-2">
         <div className="afx-form-field flex-col !items-start">
-          <label htmlFor="">Post Type:</label>
+          <label htmlFor="">
+            Post Type: <span className="text-red-500">*</span>
+          </label>
           {Object.values(postTypes).length > 0 ? (
             <Select
               options={postTypes}
@@ -67,9 +69,9 @@ const GridQueryFilters = () => {
           )}
         </div>
 
-        <Input title="Limit" name="limit" type="number" />
+        <Input title="Limit" name="postLimit" type="number" />
         <Input title="Posts Per Page" name="postsPerPage" type="number" />
-        <Input title="Offset" name="offset" type="number" />
+        <Input title="Offset" name="postOffset" type="number" />
       </div>
 
       {/* Taxnomy Filter */}
@@ -139,7 +141,7 @@ const GridQueryFilters = () => {
               <label htmlFor="">Relation:</label>
               <Select
                 options={relationOptions}
-                placeholder="OR"
+                placeholder=""
                 value={relationOptions.filter(
                   (option) => option.value === defaultSettings.relation
                 )}
@@ -163,7 +165,7 @@ const GridQueryFilters = () => {
               <label htmlFor="">Operator:</label>
               <Select
                 options={operatorOptions}
-                placeholder="IN"
+                placeholder=""
                 value={operatorOptions.filter(
                   (option) => option.value === defaultSettings.operator
                 )}
@@ -200,9 +202,9 @@ const GridQueryFilters = () => {
               <label htmlFor="">Order By:</label>
               <Select
                 options={orderByOptions}
-                placeholder="Creation Date"
+                placeholder=""
                 value={orderByOptions.filter(
-                  (option) => option.value === defaultSettings.orderBy
+                  (option) => option.value === defaultSettings.postOrderBy
                 )}
                 styles={{
                   control: (baseStyles) => ({
@@ -214,7 +216,7 @@ const GridQueryFilters = () => {
                 onChange={(newValue) => {
                   setDefaultSettings({
                     ...defaultSettings,
-                    orderBy: newValue.value,
+                    postOrderBy: newValue.value,
                   });
                 }}
               />
@@ -224,9 +226,9 @@ const GridQueryFilters = () => {
               <label htmlFor="">Order:</label>
               <Select
                 options={orderOptions}
-                placeholder="Descending"
+                placeholder=""
                 value={orderOptions.filter(
-                  (option) => option.value === defaultSettings.order
+                  (option) => option.value === defaultSettings.postOrder
                 )}
                 styles={{
                   control: (baseStyles) => ({
@@ -238,7 +240,7 @@ const GridQueryFilters = () => {
                 onChange={(newValue) => {
                   setDefaultSettings({
                     ...defaultSettings,
-                    order: newValue.value,
+                    postOrder: newValue.value,
                   });
                 }}
               />
@@ -261,7 +263,7 @@ const GridQueryFilters = () => {
               <label htmlFor="">Start Date:</label>
               <Flatpickr
                 className="afx-input bg-white"
-                value={defaultSettings.startDate}
+                value={defaultSettings.postStartDate}
                 options={{
                   maxDate: "today",
                   dateFormat: "Y-m-d",
@@ -269,7 +271,7 @@ const GridQueryFilters = () => {
                 onChange={(date) => {
                   setDefaultSettings({
                     ...defaultSettings,
-                    startDate: date,
+                    postStartDate: date,
                   });
                 }}
                 placeholder="Start Date"
@@ -280,7 +282,7 @@ const GridQueryFilters = () => {
               <label htmlFor="">End Date:</label>
               <Flatpickr
                 className="afx-input bg-white"
-                value={defaultSettings.endDate}
+                value={defaultSettings.postEndDate}
                 options={{
                   maxDate: "today",
                   dateFormat: "Y-m-d",
@@ -288,7 +290,7 @@ const GridQueryFilters = () => {
                 onChange={(date) => {
                   setDefaultSettings({
                     ...defaultSettings,
-                    endDate: date,
+                    postEndDate: date,
                   });
                 }}
                 placeholder="End Date"
@@ -392,7 +394,7 @@ const GridQueryFilters = () => {
         </div>
         {defaultSettings.applySearchFilter ? (
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
-            <Input title="Keyword" name="keyword" />
+            <Input title="Keyword" name="search" />
           </div>
         ) : (
           ""

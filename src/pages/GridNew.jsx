@@ -45,26 +45,27 @@ const GridNew = () => {
     applyTaxonomyFilter: false,
     applyOrderFilter: false,
     applyDateFilter: false,
-    applyPostsFilter: false,
     applyStatusFilter: false,
     applyAuthorFilter: false,
     applySearchFilter: false,
+    applyPostsFilter: false,
 
     postType: [],
-    limit: "",
+    postLimit: "",
     postsPerPage: 9,
-    offset: 0,
+    postOffset: 0,
     taxonomy: [],
     terms: [],
-    relation: "",
-    operator: "",
-    orderBy: "",
-    order: "",
-    startDate: "",
-    endDate: "",
+    relation: "OR",
+    operator: "IN",
+
+    postOrderBy: "date",
+    postOrder: "DESC",
+    postStartDate: "",
+    postEndDate: "",
     postStatus: [],
     authors: [],
-    keyword: "",
+    search: "",
     postsToInclude: [],
     postsToExclude: [],
 
@@ -76,40 +77,102 @@ const GridNew = () => {
     displayPostImage: true,
     displayReadBtn: true,
 
-    alignment: "left",
-    border: {
+    scHeadingTag: "H2",
+    postTitleTag: "H3",
+    postTitleType: "character",
+    postTitleLimit: 0,
+    postCatSeparator: "|",
+    postExcerptType: "character",
+    postExcerptLimit: 25,
+    postExcerptText: "...",
+    postMetaDisTags: true,
+    postMetaDisDate: true,
+    postMetaDisAuthor: false,
+    postMetaDisCC: false,
+    postMetaSeparator: "|",
+    postImageSize: "large",
+    postBtnText: "Read More",
+
+    // border: {
+    //   top: 0,
+    //   right: 0,
+    //   bottom: 0,
+    //   left: 0,
+    //   type: "none",
+    //   color: "#333",
+    // },
+
+    shFont: "",
+    shFontSize: 26,
+    shFontWeight: "bold",
+    shFontStyle: "normal",
+    shColor: "#333",
+    shTextDecoration: "none",
+    shTextTransform: "none",
+    shLineHeight: 26,
+    shPadding: {
       top: 0,
       right: 0,
       bottom: 0,
       left: 0,
-      type: "none",
-      color: "#333",
     },
-    color: "#333",
-    bgColor: "#666",
-    font: "",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    padding: {
+    shMargin: {
       top: 0,
       right: 0,
       bottom: 0,
       left: 0,
     },
-    margin: {
+    shLetterSpacing: 0,
+    shWordSpacing: 0,
+    shAlignment: "center",
+
+    titleFont: "",
+    titleFontSize: 20,
+    titleFontWeight: "normal",
+    titleFontStyle: "normal",
+    titleColor: "#333",
+    titleTextDecoration: "none",
+    titleTextTransform: "none",
+    titleLineHeight: 20,
+    titlePadding: {
       top: 0,
       right: 0,
       bottom: 0,
       left: 0,
     },
-    fontSize: 30,
-    borderRadius: 10,
-    letterSpacing: 0,
-    wordSpacing: 0,
-    lineHeight: 30,
-    textDecoration: "none",
-    textTransform: "none",
-    showSection: true,
+    titleMargin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+    titleLetterSpacing: 0,
+    titleWordSpacing: 0,
+    titleAlignment: "left",
+
+    excerptFont: "",
+    excerptFontSize: 16,
+    excerptFontWeight: "normal",
+    excerptFontStyle: "normal",
+    excerptColor: "#333",
+    excerptTextDecoration: "none",
+    excerptTextTransform: "none",
+    excerptLineHeight: 16,
+    excerptPadding: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+    excerptMargin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+    excerptLetterSpacing: 0,
+    excerptWordSpacing: 0,
+    excerptAlignment: "left",
   });
 
   const fontsOptions = getGoogleFonts(fonts);
@@ -174,9 +237,9 @@ const GridNew = () => {
     const taxonomy = defaultSettings.taxonomy?.value || "";
     const relation = defaultSettings.relation || "OR";
     const operator = defaultSettings.operator || "IN";
-    const order_by = defaultSettings.orderBy || "";
-    const order = defaultSettings.order || "";
-    const keyword = defaultSettings.keyword || "";
+    const order_by = defaultSettings.postOrderBy || "";
+    const order = defaultSettings.postOrder || "";
+    const search = defaultSettings.search || "";
 
     const terms = [];
     Object.values(defaultSettings.terms).map((item) => terms.push(item.value));
@@ -191,7 +254,7 @@ const GridNew = () => {
       authors.push(item.value)
     );
 
-    const sd = defaultSettings.startDate;
+    const sd = defaultSettings.postStartDate;
     let sd_date = "";
     if (sd) {
       const sd_obj = new Date(Date.parse(sd));
@@ -202,7 +265,7 @@ const GridNew = () => {
         sd_year + "-" + sd_month.toString().padStart(2, "0") + "-" + sd_day;
     }
 
-    const ed = defaultSettings.endDate;
+    const ed = defaultSettings.postEndDate;
     let ed_date = "";
     if (ed) {
       const ed_obj = new Date(Date.parse(ed));
@@ -247,8 +310,8 @@ const GridNew = () => {
     if (authors.length > 0) {
       query += `&authors=${authors.join(",")}`;
     }
-    if (keyword != "") {
-      query += `&keyword=${keyword}`;
+    if (search != "") {
+      query += `&search=${search}`;
     }
 
     if (type != "" && query) {
@@ -264,13 +327,13 @@ const GridNew = () => {
     defaultSettings.terms,
     defaultSettings.relation,
     defaultSettings.operator,
-    defaultSettings.orderBy,
-    defaultSettings.order,
-    defaultSettings.startDate,
-    defaultSettings.endDate,
+    defaultSettings.postOrderBy,
+    defaultSettings.postOrder,
+    defaultSettings.postStartDate,
+    defaultSettings.postEndDate,
     defaultSettings.postStatus,
     defaultSettings.authors,
-    defaultSettings.keyword,
+    defaultSettings.search,
   ]);
 
   let styles = `<style></style>`;
