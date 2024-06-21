@@ -3,9 +3,10 @@ import { appContext } from "../contexts/appContext.jsx";
 import { gridContext } from "../contexts/gridContext";
 import Divider from "../components/global/Divider.jsx";
 import axios from "axios";
+import toast from "react-hot-toast";
 import ModalPreview from "../components/global/ModalPreview.jsx";
 import Preview from "../components/parts/Preview.jsx";
-import { getGoogleFonts } from "../utils/const.js";
+import { getGoogleFonts, insertUrlParam } from "../utils/const.js";
 import GridSettings from "../components/parts/GridSettings.jsx";
 import GridQueryFilters from "../components/parts/GridQueryFilters.jsx";
 import GridLayout from "../components/parts/GridLayout.jsx";
@@ -20,19 +21,10 @@ const GridNew = () => {
   const [pickerColors, setPickerColors] = useState([]);
   const [fonts, setFonts] = useState({});
   const [showModal, setShowModal] = useState(false);
-  const [activeSubTab, setActiveSubTab] = useState("styling");
-
-  const {
-    baseUrl,
-    gridId,
-    activeTab,
-    setActiveTab,
-    refreshSettings,
-    setRefreshSettings,
-    gridSettings,
-    setGridSettings,
-    settings,
-  } = useContext(appContext);
+  const [activeSubTab, setActiveSubTab] = useState("grid_settings");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [loader, setLoader] = useState("Save Grid");
 
   const [defaultSettings, setDefaultSettings] = useState({
     gridTitle: "",
@@ -93,15 +85,6 @@ const GridNew = () => {
     postImageSize: "large",
     postBtnText: "Read More",
 
-    // border: {
-    //   top: 0,
-    //   right: 0,
-    //   bottom: 0,
-    //   left: 0,
-    //   type: "none",
-    //   color: "#333",
-    // },
-
     shFont: "",
     shFontSize: 26,
     shFontWeight: "bold",
@@ -130,7 +113,8 @@ const GridNew = () => {
     titleFontSize: 20,
     titleFontWeight: "normal",
     titleFontStyle: "normal",
-    titleColor: "#333",
+    titleColor: "#666",
+    titleHoverColor: "#000",
     titleTextDecoration: "none",
     titleTextTransform: "none",
     titleLineHeight: 20,
@@ -154,7 +138,7 @@ const GridNew = () => {
     excerptFontSize: 16,
     excerptFontWeight: "normal",
     excerptFontStyle: "normal",
-    excerptColor: "#333",
+    excerptColor: "#666",
     excerptTextDecoration: "none",
     excerptTextTransform: "none",
     excerptLineHeight: 16,
@@ -173,11 +157,367 @@ const GridNew = () => {
     excerptLetterSpacing: 0,
     excerptWordSpacing: 0,
     excerptAlignment: "left",
+
+    metaFont: "",
+    metaFontSize: 16,
+    metaFontWeight: "normal",
+    metaFontStyle: "normal",
+    metaColor: "#666",
+    metaTextDecoration: "none",
+    metaTextTransform: "none",
+    metaLineHeight: 16,
+    metaPadding: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+    metaMargin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+    metaLetterSpacing: 0,
+    metaWordSpacing: 0,
+    metaAlignment: "left",
+
+    btnFont: "",
+    btnFontSize: 18,
+    btnFontWeight: "normal",
+    btnFontStyle: "normal",
+    btnBgColor: "#0da8e9",
+    btnColor: "#FFF",
+    btnBorderRadius: 5,
+    btnBgHoverColor: "#745FF1",
+    btnHoverColor: "#FFF",
+    btnTextDecoration: "none",
+    btnTextTransform: "none",
+    btnLineHeight: 18,
+    btnPadding: {
+      top: 12,
+      right: 30,
+      bottom: 12,
+      left: 30,
+    },
+    btnMargin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+    btnLetterSpacing: 0,
+    btnWordSpacing: 0,
+    btnAlignment: "left",
+    btnBorder: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+      type: "none",
+      color: "#333",
+    },
   });
+
+  const {
+    baseUrl,
+    gridId,
+    setGridId,
+    activeTab,
+    setActiveTab,
+    refreshSettings,
+    setRefreshSettings,
+    gridSettings,
+    setGridSettings,
+    settings,
+  } = useContext(appContext);
+
+  useEffect(() => {
+    if (settings?.colors) {
+      const color_array = [];
+      Object.keys(settings.colors).forEach(function (key, index) {
+        color_array.push(settings.colors[key]);
+      });
+      setPickerColors(color_array);
+    }
+
+    if (settings?.fonts) {
+      setFonts(settings.fonts);
+    }
+  }, [settings]);
+
+  useEffect(() => {
+    if (activeTab == "grid-new") {
+      const queryParameters = new URLSearchParams(window.location.search);
+      const grid_id = queryParameters.get("grid_id");
+      if (grid_id) {
+        axios
+          .post(
+            baseUrl + "grid/get",
+            {
+              grid_id,
+            },
+            {
+              headers: {
+                "content-type": "application/json",
+                "X-WP-NONCE": afxApApp.nonce,
+              },
+            }
+          )
+          .then((res) => {
+            setGridId(res.data.id);
+            const settings = JSON.parse(res.data.settings);
+            setDefaultSettings({
+              ...defaultSettings,
+              gridTitle: res.data.title,
+
+              gridStyle: settings.gridStyle,
+              gridColumnsD: settings.gridColumnsD,
+              gridColumnsT: settings.gridColumnsT,
+              gridColumnsM: settings.gridColumnsM,
+              gridLoadMoreBtn: settings.gridLoadMoreBtn,
+
+              applyTaxonomyFilter: settings.applyTaxonomyFilter,
+              applyOrderFilter: settings.applyOrderFilter,
+              applyDateFilter: settings.applyDateFilter,
+              applyStatusFilter: settings.applyStatusFilter,
+              applyAuthorFilter: settings.applyAuthorFilter,
+              applySearchFilter: settings.applySearchFilter,
+              applyPostsFilter: settings.applyPostsFilter,
+
+              postType: settings.postType,
+              postLimit: settings.postLimit,
+              postsPerPage: settings.postsPerPage,
+              postOffset: settings.postOffset,
+              taxonomy: settings.taxonomy,
+              terms: settings.terms,
+              relation: settings.relation,
+              operator: settings.operator,
+
+              postOrderBy: settings.postOrderBy,
+              postOrder: settings.postOrder,
+              postStartDate: settings.postStartDate,
+              postEndDate: settings.postEndDate,
+              postStatus: settings.postStatus,
+              authors: settings.authors,
+              search: settings.search,
+              postsToInclude: settings.postsToInclude,
+              postsToExclude: settings.postsToExclude,
+
+              displaySCHeading: settings.displaySCHeading,
+              displayPostTitle: settings.displayPostTitle,
+              displayPostCategory: settings.displayPostCategory,
+              displayPostExcerpt: settings.displayPostExcerpt,
+              displayPostMeta: settings.displayPostMeta,
+              displayPostImage: settings.displayPostImage,
+              displayReadBtn: settings.displayReadBtn,
+
+              scHeadingTag: settings.scHeadingTag,
+              postTitleTag: settings.postTitleTag,
+              postTitleType: settings.postTitleType,
+              postTitleLimit: settings.postTitleLimit,
+              postCatSeparator: settings.postCatSeparator,
+              postExcerptType: settings.postExcerptType,
+              postExcerptLimit: settings.postExcerptLimit,
+              postExcerptText: settings.postExcerptText,
+              postMetaDisTags: settings.postMetaDisTags,
+              postMetaDisDate: settings.postMetaDisDate,
+              postMetaDisAuthor: settings.postMetaDisAuthor,
+              postMetaDisCC: settings.postMetaDisCC,
+              postMetaSeparator: settings.postMetaSeparator,
+              postImageSize: settings.postImageSize,
+              postBtnText: settings.postBtnText,
+
+              shFont: settings.shFont,
+              shFontSize: settings.shFontSize,
+              shFontWeight: settings.shFontWeight,
+              shFontStyle: settings.shFontStyle,
+              shColor: settings.shColor,
+              shTextDecoration: settings.shTextDecoration,
+              shTextTransform: settings.shTextTransform,
+              shLineHeight: settings.shLineHeight,
+              shPadding: {
+                top: settings.shPadding.top,
+                right: settings.shPadding.right,
+                bottom: settings.shPadding.bottom,
+                left: settings.shPadding.left,
+              },
+              shMargin: {
+                top: settings.shMargin.top,
+                right: settings.shMargin.right,
+                bottom: settings.shMargin.bottom,
+                left: settings.shMargin.left,
+              },
+              shLetterSpacing: settings.shLetterSpacing,
+              shWordSpacing: settings.shWordSpacing,
+              shAlignment: settings.shAlignment,
+
+              titleFont: settings.titleFont,
+              titleFontSize: settings.titleFontSize,
+              titleFontWeight: settings.titleFontWeight,
+              titleFontStyle: settings.titleFontStyle,
+              titleColor: settings.titleColor,
+              titleHoverColor: settings.titleHoverColor,
+              titleTextDecoration: settings.titleTextDecoration,
+              titleTextTransform: settings.titleTextTransform,
+              titleLineHeight: settings.titleLineHeight,
+              titlePadding: {
+                top: settings.titlePadding.top,
+                right: settings.titlePadding.right,
+                bottom: settings.titlePadding.bottom,
+                left: settings.titlePadding.left,
+              },
+              titleMargin: {
+                top: settings.titleMargin.top,
+                right: settings.titleMargin.right,
+                bottom: settings.titleMargin.bottom,
+                left: settings.titleMargin.left,
+              },
+              titleLetterSpacing: settings.titleLetterSpacing,
+              titleWordSpacing: settings.titleWordSpacing,
+              titleAlignment: settings.titleAlignment,
+
+              excerptFont: settings.excerptFont,
+              excerptFontSize: settings.excerptFontSize,
+              excerptFontWeight: settings.excerptFontWeight,
+              excerptFontStyle: settings.excerptFontStyle,
+              excerptColor: settings.excerptColor,
+              excerptTextDecoration: settings.excerptTextDecoration,
+              excerptTextTransform: settings.excerptTextTransform,
+              excerptLineHeight: settings.excerptLineHeight,
+              excerptPadding: {
+                top: settings.excerptPadding.top,
+                right: settings.excerptPadding.right,
+                bottom: settings.excerptPadding.bottom,
+                left: settings.excerptPadding.left,
+              },
+              excerptMargin: {
+                top: settings.excerptMargin.top,
+                right: settings.excerptMargin.right,
+                bottom: settings.excerptMargin.bottom,
+                left: settings.excerptMargin.left,
+              },
+              excerptLetterSpacing: settings.excerptLetterSpacing,
+              excerptWordSpacing: settings.excerptWordSpacing,
+              excerptAlignment: settings.excerptAlignment,
+
+              metaFont: settings.metaFont,
+              metaFontSize: settings.metaFontSize,
+              metaFontWeight: settings.metaFontWeight,
+              metaFontStyle: settings.shFometaFontStylent,
+              metaColor: settings.metaColor,
+              metaTextDecoration: settings.metaTextDecoration,
+              metaTextTransform: settings.metaTextTransform,
+              metaLineHeight: settings.metaLineHeight,
+              metaPadding: {
+                top: settings.metaPadding.top,
+                right: settings.metaPadding.right,
+                bottom: settings.metaPadding.bottom,
+                left: settings.metaPadding.left,
+              },
+              metaMargin: {
+                top: settings.metaMargin.top,
+                right: settings.metaMargin.right,
+                bottom: settings.metaMargin.bottom,
+                left: settings.metaMargin.left,
+              },
+              metaLetterSpacing: settings.metaLetterSpacing,
+              metaWordSpacing: settings.metaWordSpacing,
+              metaAlignment: settings.metaAlignment,
+
+              btnFont: settings.btnFont,
+              btnFontSize: settings.btnFontSize,
+              btnFontWeight: settings.btnFontWeight,
+              btnFontStyle: settings.btnFontStyle,
+              btnBgColor: settings.btnBgColor,
+              btnColor: settings.btnColor,
+              btnBorderRadius: settings.btnBorderRadius,
+              btnBgHoverColor: settings.btnBgHoverColor,
+              btnHoverColor: settings.btnHoverColor,
+              btnTextDecoration: settings.btnTextDecoration,
+              btnTextTransform: settings.btnTextTransform,
+              btnLineHeight: settings.btnLineHeight,
+              btnPadding: {
+                top: settings.btnPadding.top,
+                right: settings.btnPadding.right,
+                bottom: settings.btnPadding.bottom,
+                left: settings.btnPadding.left,
+              },
+              btnMargin: {
+                top: settings.btnMargin.top,
+                right: settings.btnMargin.right,
+                bottom: settings.btnMargin.bottom,
+                left: settings.btnMargin.left,
+              },
+              btnLetterSpacing: settings.btnLetterSpacing,
+              btnWordSpacing: settings.btnWordSpacing,
+              btnAlignment: settings.btnAlignment,
+              btnBorder: {
+                top: settings.btnBorder.top,
+                right: settings.btnBorder.right,
+                bottom: settings.btnBorder.bottom,
+                left: settings.btnBorder.left,
+                type: settings.btnBorder.type,
+                color: settings.btnBorder.color,
+              },
+            });
+          });
+      } else {
+        setGridId(null);
+        setDefaultSettings({ ...defaultSettings });
+      }
+      setLoading(false);
+    }
+  }, [activeTab]);
 
   const fontsOptions = getGoogleFonts(fonts);
 
-  const styleValues = useMemo(() => {
+  const saveGrid = () => {
+    if (defaultSettings.gridTitle == "") {
+      toast.error("Grid Title is Required");
+      setActiveSubTab("grid_settings");
+      window.scrollTo(0, 0);
+      setError(true);
+    } else if (defaultSettings.postType == "") {
+      toast.error("Post Type is Required");
+      setActiveSubTab("query_filters");
+      window.scrollTo(0, 0);
+      setError(true);
+    } else {
+      setError(false);
+      setLoader("Saving Grid...");
+      const settings = { ...defaultSettings };
+      delete settings.gridTitle;
+
+      const queryParameters = new URLSearchParams(window.location.search);
+      const grid_id = queryParameters.get("grid_id");
+
+      axios
+        .post(
+          baseUrl + "grid/new",
+          {
+            grid_id: grid_id,
+            grid_title: defaultSettings.gridTitle,
+            grid_settings: JSON.stringify(settings),
+          },
+          {
+            headers: {
+              "content-type": "application/json",
+              "X-WP-NONCE": afxApApp.nonce,
+            },
+          }
+        )
+        .then((res) => {
+          setGridId(res.data.grid_id);
+          toast.success(res.data.message);
+          insertUrlParam("grid_id", res.data.grid_id);
+          setRefreshSettings(true);
+          setLoader("Save Grid");
+        });
+    }
+  };
+
+  const gridValues = useMemo(() => {
     return {
       defaultSettings,
       setDefaultSettings,
@@ -336,10 +676,8 @@ const GridNew = () => {
     defaultSettings.search,
   ]);
 
-  let styles = `<style></style>`;
-
   return (
-    <gridContext.Provider value={styleValues}>
+    <gridContext.Provider value={gridValues}>
       <div className="flex justify-between items-center pr-5">
         <h2 className="heading-primary">New Grid</h2>
       </div>
@@ -460,9 +798,9 @@ const GridNew = () => {
         <button
           type="button"
           className="action-button primary py-1"
-          onClick={() => console.log(111)}
+          onClick={() => saveGrid()}
         >
-          <i className="dashicons-before dashicons-yes"></i> Save Grid
+          <i className="dashicons-before dashicons-yes"></i> {loader}
         </button>
       </div>
 

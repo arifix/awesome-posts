@@ -112,7 +112,11 @@
   }
 
   .afx-form-field label {
-    @apply block text-lg font-medium w-48;
+    @apply block text-lg font-medium w-36;
+  }
+
+  .afx-form-field label:not(.select-none) {
+    @apply !w-auto;
   }
 
   .afx-input {

@@ -869,10 +869,14 @@ video {
 
 .afx-form-field label {
   display: block;
-  width: 12rem;
+  width: 9rem;
   font-size: 1.125rem;
   line-height: 1.75rem;
   font-weight: 500;
+}
+
+.afx-form-field label:not(.select-none) {
+  width: auto !important;
 }
 
 .afx-input {
@@ -1340,6 +1344,10 @@ video {
   min-width: 300px;
 }
 
+#afx-ap-app :is(.max-w-2xl) {
+  max-width: 42rem;
+}
+
 #afx-ap-app :is(.max-w-\[1450px\]) {
   max-width: 1450px;
 }
@@ -1350,10 +1358,6 @@ video {
 
 #afx-ap-app :is(.max-w-screen-lg) {
   max-width: 1024px;
-}
-
-#afx-ap-app :is(.max-w-2xl) {
-  max-width: 42rem;
 }
 
 #afx-ap-app :is(.flex-1) {
@@ -1571,6 +1575,11 @@ video {
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
 
+#afx-ap-app :is(.bg-slate-200) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+}
+
 #afx-ap-app :is(.bg-slate-900) {
   --tw-bg-opacity: 1;
   background-color: rgb(15 23 42 / var(--tw-bg-opacity));
@@ -1579,21 +1588,6 @@ video {
 #afx-ap-app :is(.bg-white) {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-#afx-ap-app :is(.bg-slate-200) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
-}
-
-#afx-ap-app :is(.bg-ap-text) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(129 129 129 / var(--tw-bg-opacity));
-}
-
-#afx-ap-app :is(.bg-slate-700) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(51 65 85 / var(--tw-bg-opacity));
 }
 
 #afx-ap-app :is(.fill-black) {
@@ -1680,6 +1674,10 @@ video {
   padding-bottom: 5rem;
 }
 
+#afx-ap-app :is(.pb-3) {
+  padding-bottom: 0.75rem;
+}
+
 #afx-ap-app :is(.pb-4) {
   padding-bottom: 1rem;
 }
@@ -1706,14 +1704,6 @@ video {
 
 #afx-ap-app :is(.pt-5) {
   padding-top: 1.25rem;
-}
-
-#afx-ap-app :is(.pb-3) {
-  padding-bottom: 0.75rem;
-}
-
-#afx-ap-app :is(.pb-2) {
-  padding-bottom: 0.5rem;
 }
 
 #afx-ap-app :is(.text-left) {
@@ -1835,6 +1825,11 @@ video {
   color: rgb(17 24 39 / var(--tw-text-opacity));
 }
 
+#afx-ap-app :is(.text-red-500) {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+
 #afx-ap-app :is(.text-slate-500) {
   --tw-text-opacity: 1;
   color: rgb(100 116 139 / var(--tw-text-opacity));
@@ -1843,11 +1838,6 @@ video {
 #afx-ap-app :is(.text-white) {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-#afx-ap-app :is(.text-red-500) {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
 #afx-ap-app :is(.underline) {
