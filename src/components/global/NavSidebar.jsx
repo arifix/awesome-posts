@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { appContext } from "../../contexts/appContext.jsx";
 import { insertUrlParam, removeUrlParam } from "../../utils/const.js";
 
