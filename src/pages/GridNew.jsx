@@ -27,6 +27,8 @@ const GridNew = () => {
   const [error, setError] = useState(false);
   const [loader, setLoader] = useState("Save Grid");
 
+  const [cssStyles, setCssStyles] = useState("");
+
   const [initialSettings, setInitialSettings] = useState({
     gridTitle: "",
     gridStyle: "style1",
@@ -125,14 +127,14 @@ const GridNew = () => {
     shAlignment: "center",
 
     titleFont: "",
-    titleFontSize: 20,
-    titleFontWeight: "normal",
+    titleFontSize: 22,
+    titleFontWeight: "bold",
     titleFontStyle: "normal",
     titleColor: "#666",
     titleHoverColor: "#000",
     titleTextDecoration: "none",
     titleTextTransform: "none",
-    titleLineHeight: 20,
+    titleLineHeight: 22,
     titlePadding: {
       top: 0,
       right: 0,
@@ -658,7 +660,7 @@ const GridNew = () => {
               metaFont: settings.metaFont,
               metaFontSize: settings.metaFontSize,
               metaFontWeight: settings.metaFontWeight,
-              metaFontStyle: settings.shFometaFontStylent,
+              metaFontStyle: settings.metaFontStyle,
               metaColor: settings.metaColor,
               metaTextDecoration: settings.metaTextDecoration,
               metaTextTransform: settings.metaTextTransform,
@@ -733,6 +735,8 @@ const GridNew = () => {
     return {
       defaultSettings,
       setDefaultSettings,
+      cssStyles,
+      setCssStyles,
       pickerColors,
       fontsOptions,
       postTypes,
@@ -741,7 +745,14 @@ const GridNew = () => {
       terms,
       posts,
     };
-  }, [defaultSettings, pickerColors, fontsOptions, postTypes, authors]);
+  }, [
+    defaultSettings,
+    pickerColors,
+    fontsOptions,
+    postTypes,
+    authors,
+    cssStyles,
+  ]);
 
   useEffect(() => {
     axios.get(baseUrl + "post-types").then((res) => {
@@ -1089,7 +1100,7 @@ const GridNew = () => {
           setShowModal(false);
         }}
       >
-        <Preview defaultSettings={defaultSettings} />
+        <Preview defaultSettings={defaultSettings} cssStyles={cssStyles} />
       </ModalPreview>
     </gridContext.Provider>
   );

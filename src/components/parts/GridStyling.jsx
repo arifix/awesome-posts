@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { gridContext } from "../../contexts/gridContext.jsx";
 import FontFamily from "../elements/FontFamily.jsx";
 import Range from "../elements/Range.jsx";
@@ -13,9 +13,9 @@ import Border from "../elements/Border.jsx";
 import { fontsUrlToName } from "../../utils/const.js";
 
 const GridStyling = () => {
-  const { defaultSettings, setDefaultSettings } = useContext(gridContext);
+  const { defaultSettings, setCssStyles } = useContext(gridContext);
 
-  let styles = `<style>`;
+  let styles = "";
   if (defaultSettings.shFont) {
     const font = defaultSettings.shFont.includes("http")
       ? fontsUrlToName(defaultSettings.shFont)
@@ -25,8 +25,32 @@ const GridStyling = () => {
       : `https://fonts.googleapis.com/css?family=${defaultSettings.shFont
           .split(" ")
           .join("+")}&display=swap`;
-    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.ap-sh{font-family: '${font}';}`;
+
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.ap-grid-title{font-family: '${font}'}`;
   }
+
+  styles += `.ap-grid-title{
+      font-size: ${defaultSettings.shFontSize + "px"};
+      font-weight: ${defaultSettings.shFontWeight};
+      font-style: ${defaultSettings.shFontStyle};
+      color: ${defaultSettings.shColor};
+      text-decoration: ${defaultSettings.shTextDecoration};
+      text-transform: ${defaultSettings.shTextTransform};
+      line-height: ${defaultSettings.shLineHeight + "px"};
+      padding: ${defaultSettings.shPadding.top}px ${
+        defaultSettings.shPadding.right
+      }px ${defaultSettings.shPadding.bottom}px ${
+        defaultSettings.shPadding.left
+      }px;
+      margin: ${defaultSettings.shMargin.top}px ${
+        defaultSettings.shMargin.right
+      }px ${defaultSettings.shMargin.bottom}px ${
+        defaultSettings.shMargin.left
+      }px;
+      letter-spacing: ${defaultSettings.shLetterSpacing + "px"};
+      word-spacing: ${defaultSettings.shWordSpacing + "px"};
+      text-align: ${defaultSettings.shAlignment};
+    }`;
 
   if (defaultSettings.titleFont) {
     const font = defaultSettings.titleFont.includes("http")
@@ -37,8 +61,32 @@ const GridStyling = () => {
       : `https://fonts.googleapis.com/css?family=${defaultSettings.titleFont
           .split(" ")
           .join("+")}&display=swap`;
-    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.ap-title{font-family: '${font}';}`;
+
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.ap-title{font-family: '${font}'}`;
   }
+
+  styles += `.ap-title{
+      font-size: ${defaultSettings.titleFontSize + "px"};
+      font-weight: ${defaultSettings.titleFontWeight};
+      font-style: ${defaultSettings.titleFontStyle};
+      color: ${defaultSettings.titleColor};
+      text-decoration: ${defaultSettings.titleTextDecoration};
+      text-transform: ${defaultSettings.titleTextTransform};
+      line-height: ${defaultSettings.titleLineHeight + "px"};
+      padding: ${defaultSettings.titlePadding.top}px ${
+        defaultSettings.titlePadding.right
+      }px ${defaultSettings.titlePadding.bottom}px ${
+        defaultSettings.titlePadding.left
+      }px;
+      margin: ${defaultSettings.titleMargin.top}px ${
+        defaultSettings.titleMargin.right
+      }px ${defaultSettings.titleMargin.bottom}px ${
+        defaultSettings.titleMargin.left
+      }px;
+      letter-spacing: ${defaultSettings.titleLetterSpacing + "px"};
+      word-spacing: ${defaultSettings.titleWordSpacing + "px"};
+      text-align: ${defaultSettings.titleAlignment};
+    }`;
 
   styles += `.ap-title:hover{color: ${defaultSettings.titleHoverColor} !important;}`;
 
@@ -51,8 +99,32 @@ const GridStyling = () => {
       : `https://fonts.googleapis.com/css?family=${defaultSettings.excerptFont
           .split(" ")
           .join("+")}&display=swap`;
-    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.ap-excerpt{font-family: '${font}';}`;
+
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.ap-excerpt{font-family: '${font}'}`;
   }
+
+  styles += `.ap-excerpt{
+      font-size: ${defaultSettings.excerptFontSize + "px"};
+      font-weight: ${defaultSettings.excerptFontWeight};
+      font-style: ${defaultSettings.excerptFontStyle};
+      color: ${defaultSettings.excerptColor};
+      text-decoration: ${defaultSettings.excerptTextDecoration};
+      text-transform: ${defaultSettings.excerptTextTransform};
+      line-height: ${defaultSettings.excerptLineHeight + "px"};
+      padding: ${defaultSettings.excerptPadding.top}px ${
+        defaultSettings.excerptPadding.right
+      }px ${defaultSettings.excerptPadding.bottom}px ${
+        defaultSettings.excerptPadding.left
+      }px;
+      margin: ${defaultSettings.excerptMargin.top}px ${
+        defaultSettings.excerptMargin.right
+      }px ${defaultSettings.excerptMargin.bottom}px ${
+        defaultSettings.excerptMargin.left
+      }px;
+      letter-spacing: ${defaultSettings.excerptLetterSpacing + "px"};
+      word-spacing: ${defaultSettings.excerptWordSpacing + "px"};
+      text-align: ${defaultSettings.excerptAlignment};
+    }`;
 
   if (defaultSettings.metaFont) {
     const font = defaultSettings.metaFont.includes("http")
@@ -63,8 +135,32 @@ const GridStyling = () => {
       : `https://fonts.googleapis.com/css?family=${defaultSettings.metaFont
           .split(" ")
           .join("+")}&display=swap`;
-    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.ap-meta{font-family: '${font}';}`;
+
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.ap-meta{font-family: '${font}'}`;
   }
+
+  styles += `.ap-meta{
+      font-size: ${defaultSettings.metaFontSize + "px"};
+      font-weight: ${defaultSettings.metaFontWeight};
+      font-style: ${defaultSettings.metaFontStyle};
+      color: ${defaultSettings.metaColor};
+      text-decoration: ${defaultSettings.metaTextDecoration};
+      text-transform: ${defaultSettings.metaTextTransform};
+      line-height: ${defaultSettings.metaLineHeight + "px"};
+      padding: ${defaultSettings.metaPadding.top}px ${
+        defaultSettings.metaPadding.right
+      }px ${defaultSettings.metaPadding.bottom}px ${
+        defaultSettings.metaPadding.left
+      }px;
+      margin: ${defaultSettings.metaMargin.top}px ${
+        defaultSettings.metaMargin.right
+      }px ${defaultSettings.metaMargin.bottom}px ${
+        defaultSettings.metaMargin.left
+      }px;
+      letter-spacing: ${defaultSettings.metaLetterSpacing + "px"};
+      word-spacing: ${defaultSettings.metaWordSpacing + "px"};
+      text-align: ${defaultSettings.metaAlignment};
+    }`;
 
   if (defaultSettings.btnFont) {
     const font = defaultSettings.btnFont.includes("http")
@@ -75,19 +171,56 @@ const GridStyling = () => {
       : `https://fonts.googleapis.com/css?family=${defaultSettings.btnFont
           .split(" ")
           .join("+")}&display=swap`;
-    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.ap-btn{font-family: '${font}';}`;
+
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.ap-btn{font-family: '${font}'}`;
   }
 
-  styles += `.ap-btn:hover{background-color: ${defaultSettings.btnBgHoverColor} !important;color: ${defaultSettings.btnHoverColor} !important;}`;
+  styles += `.ap-btn{
+        font-size: ${defaultSettings.btnFontSize + "px"};
+        font-weight: ${defaultSettings.btnFontWeight};
+        font-style: ${defaultSettings.btnFontStyle};
+        background-color: ${defaultSettings.btnBgColor};
+        color: ${defaultSettings.btnColor};
+        border-radius: ${defaultSettings.btnBorderRadius + "px"};
+        text-decoration: ${defaultSettings.btnTextDecoration};
+        text-transform: ${defaultSettings.btnTextTransform};
+        line-height: ${defaultSettings.btnLineHeight + "px"};
+        padding: ${defaultSettings.btnPadding.top}px ${
+          defaultSettings.btnPadding.right
+        }px ${defaultSettings.btnPadding.bottom}px ${
+          defaultSettings.btnPadding.left
+        }px;
+        margin: ${defaultSettings.btnMargin.top}px ${
+          defaultSettings.btnMargin.right
+        }px ${defaultSettings.btnMargin.bottom}px ${
+          defaultSettings.btnMargin.left
+        }px;
+        letter-spacing: ${defaultSettings.btnLetterSpacing + "px"};
+        word-spacing: ${defaultSettings.btnWordSpacing + "px"};
+        text-align: ${defaultSettings.btnAlignment};
+        border-style: ${defaultSettings.btnBorder.type};
+        border-color: ${defaultSettings.btnBorder.color};
+        border-top: ${defaultSettings.btnBorder.top + "px"};
+        border-right: ${defaultSettings.btnBorder.right + "px"};
+        border-bottom: ${defaultSettings.btnBorder.bottom + "px"};
+        border-left: ${defaultSettings.btnBorder.left + "px"};
+      }`;
 
-  styles += `<style>`;
+  styles += `.ap-btn:hover{
+      background-color: ${defaultSettings.btnBgHoverColor};
+      color: ${defaultSettings.btnHoverColor};
+    }`;
+
+  useEffect(() => {
+    setCssStyles(styles);
+  }, [defaultSettings]);
 
   return (
     <>
       <h3 className="heading-secondary text-2xl pb-5">Styling</h3>
-      <div dangerouslySetInnerHTML={{ __html: styles }}></div>
-
-     
+      <div
+        dangerouslySetInnerHTML={{ __html: `<style>${styles}</style>` }}
+      ></div>
 
       {/* Grid Styling */}
       <div className="px-5 py-2">
@@ -130,25 +263,7 @@ const GridStyling = () => {
         </div>
 
         <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
-          <h4
-            className="ap-sh"
-            style={{
-              fontSize: defaultSettings.shFontSize + "px",
-              fontWeight: defaultSettings.shFontWeight,
-              fontStyle: defaultSettings.shFontStyle,
-              color: defaultSettings.shColor,
-              textDecoration: defaultSettings.shTextDecoration,
-              textTransform: defaultSettings.shTextTransform,
-              lineHeight: defaultSettings.shLineHeight + "px",
-              padding: `${defaultSettings.shPadding.top}px ${defaultSettings.shPadding.right}px ${defaultSettings.shPadding.bottom}px ${defaultSettings.shPadding.left}px`,
-              margin: `${defaultSettings.shMargin.top}px ${defaultSettings.shMargin.right}px ${defaultSettings.shMargin.bottom}px ${defaultSettings.shMargin.left}px`,
-              letterSpacing: defaultSettings.shLetterSpacing + "px",
-              wordSpacing: defaultSettings.shWordSpacing + "px",
-              textAlign: defaultSettings.shAlignment,
-            }}
-          >
-            {defaultSettings.gridTitle}
-          </h4>
+          <h4 className="ap-grid-title">{defaultSettings.gridTitle}</h4>
         </div>
       </div>
 
@@ -186,25 +301,7 @@ const GridStyling = () => {
         </div>
 
         <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
-          <a
-            className="ap-title cursor-pointer"
-            style={{
-              fontSize: defaultSettings.titleFontSize + "px",
-              fontWeight: defaultSettings.titleFontWeight,
-              fontStyle: defaultSettings.titleFontStyle,
-              color: defaultSettings.titleColor,
-              textDecoration: defaultSettings.titleTextDecoration,
-              textTransform: defaultSettings.titleTextTransform,
-              lineHeight: defaultSettings.titleLineHeight + "px",
-              padding: `${defaultSettings.titlePadding.top}px ${defaultSettings.titlePadding.right}px ${defaultSettings.titlePadding.bottom}px ${defaultSettings.titlePadding.left}px`,
-              margin: `${defaultSettings.titleMargin.top}px ${defaultSettings.titleMargin.right}px ${defaultSettings.titleMargin.bottom}px ${defaultSettings.titleMargin.left}px`,
-              letterSpacing: defaultSettings.titleLetterSpacing + "px",
-              wordSpacing: defaultSettings.titleWordSpacing + "px",
-              textAlign: defaultSettings.titleAlignment,
-            }}
-          >
-            Sample Post Title
-          </a>
+          <a className="ap-title cursor-pointer">Sample Post Title</a>
         </div>
       </div>
 
@@ -246,23 +343,7 @@ const GridStyling = () => {
         </div>
 
         <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
-          <p
-            className="ap-excerpt"
-            style={{
-              fontSize: defaultSettings.excerptFontSize + "px",
-              fontWeight: defaultSettings.excerptFontWeight,
-              fontStyle: defaultSettings.excerptFontStyle,
-              color: defaultSettings.excerptColor,
-              textDecoration: defaultSettings.excerptTextDecoration,
-              textTransform: defaultSettings.excerptTextTransform,
-              lineHeight: defaultSettings.excerptLineHeight + "px",
-              padding: `${defaultSettings.excerptPadding.top}px ${defaultSettings.excerptPadding.right}px ${defaultSettings.excerptPadding.bottom}px ${defaultSettings.excerptPadding.left}px`,
-              margin: `${defaultSettings.excerptMargin.top}px ${defaultSettings.excerptMargin.right}px ${defaultSettings.excerptMargin.bottom}px ${defaultSettings.excerptMargin.left}px`,
-              letterSpacing: defaultSettings.excerptLetterSpacing + "px",
-              wordSpacing: defaultSettings.excerptWordSpacing + "px",
-              textAlign: defaultSettings.excerptAlignment,
-            }}
-          >
+          <p className="ap-excerpt">
             Sample Post Excerpt Text. Lorem ipsum dolor sit amet consectetur
             adipisicing elit. Ipsam facilis velit doloribus nesciunt, quo atque
             ratione officiis at unde laborum...
@@ -303,25 +384,7 @@ const GridStyling = () => {
         </div>
 
         <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
-          <p
-            className="ap-meta"
-            style={{
-              fontSize: defaultSettings.metaFontSize + "px",
-              fontWeight: defaultSettings.metaFontWeight,
-              fontStyle: defaultSettings.metaFontStyle,
-              color: defaultSettings.metaColor,
-              textDecoration: defaultSettings.metaTextDecoration,
-              textTransform: defaultSettings.metaTextTransform,
-              lineHeight: defaultSettings.metaLineHeight + "px",
-              padding: `${defaultSettings.metaPadding.top}px ${defaultSettings.metaPadding.right}px ${defaultSettings.metaPadding.bottom}px ${defaultSettings.metaPadding.left}px`,
-              margin: `${defaultSettings.metaMargin.top}px ${defaultSettings.metaMargin.right}px ${defaultSettings.metaMargin.bottom}px ${defaultSettings.metaMargin.left}px`,
-              letterSpacing: defaultSettings.metaLetterSpacing + "px",
-              wordSpacing: defaultSettings.metaWordSpacing + "px",
-              textAlign: defaultSettings.metaAlignment,
-            }}
-          >
-            Sample post meta text
-          </p>
+          <p className="ap-meta">Sample post meta text</p>
         </div>
       </div>
 
@@ -365,32 +428,7 @@ const GridStyling = () => {
         </div>
 
         <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7 text-center">
-          <button
-            type="button"
-            className="ap-btn"
-            style={{
-              fontSize: defaultSettings.btnFontSize + "px",
-              fontWeight: defaultSettings.btnFontWeight,
-              fontStyle: defaultSettings.btnFontStyle,
-              backgroundColor: defaultSettings.btnBgColor,
-              color: defaultSettings.btnColor,
-              borderRadius: defaultSettings.btnBorderRadius + "px",
-              textDecoration: defaultSettings.btnTextDecoration,
-              textTransform: defaultSettings.btnTextTransform,
-              lineHeight: defaultSettings.btnLineHeight + "px",
-              padding: `${defaultSettings.btnPadding.top}px ${defaultSettings.btnPadding.right}px ${defaultSettings.btnPadding.bottom}px ${defaultSettings.btnPadding.left}px`,
-              margin: `${defaultSettings.btnMargin.top}px ${defaultSettings.btnMargin.right}px ${defaultSettings.btnMargin.bottom}px ${defaultSettings.btnMargin.left}px`,
-              letterSpacing: defaultSettings.btnLetterSpacing + "px",
-              wordSpacing: defaultSettings.btnWordSpacing + "px",
-              textAlign: defaultSettings.btnAlignment,
-              borderStyle: defaultSettings.btnBorder.type,
-              borderColor: defaultSettings.btnBorder.color,
-              borderTop: defaultSettings.btnBorder.top + "px",
-              borderRight: defaultSettings.btnBorder.right + "px",
-              borderBottom: defaultSettings.btnBorder.bottom + "px",
-              borderLeft: defaultSettings.btnBorder.left + "px",
-            }}
-          >
+          <button type="button" className="ap-btn">
             {defaultSettings.postBtnText}
           </button>
         </div>
