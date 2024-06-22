@@ -69,7 +69,7 @@ const GridQueryFilters = () => {
           )}
         </div>
 
-        <Input title="Limit" name="postLimit" type="number" />
+        <Input title="Limit" name="postLimit" type="number" tooltip="Leave to display all posts" />
         <Input title="Posts Per Page" name="postsPerPage" type="number" />
         <Input title="Offset" name="postOffset" type="number" />
       </div>

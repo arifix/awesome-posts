@@ -28,7 +28,7 @@ const GridNew = () => {
 
   const [defaultSettings, setDefaultSettings] = useState({
     gridTitle: "",
-    gridStyle: "",
+    gridStyle: "style1",
     gridColumnsD: 3,
     gridColumnsT: 3,
     gridColumnsM: 3,
@@ -284,6 +284,7 @@ const GridNew = () => {
           .then((res) => {
             setGridId(res.data.id);
             const settings = JSON.parse(res.data.settings);
+
             setDefaultSettings({
               ...defaultSettings,
               gridTitle: res.data.title,
