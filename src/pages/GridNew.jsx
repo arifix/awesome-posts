@@ -11,7 +11,6 @@ import GridSettings from "../components/parts/GridSettings.jsx";
 import GridQueryFilters from "../components/parts/GridQueryFilters.jsx";
 import GridLayout from "../components/parts/GridLayout.jsx";
 import GridStyling from "../components/parts/GridStyling.jsx";
-import GridOrder from "../components/parts/GridOrder.jsx";
 
 const GridNew = () => {
   const [postTypes, setPostTypes] = useState([]);
@@ -234,15 +233,6 @@ const GridNew = () => {
       type: "none",
       color: "#333",
     },
-
-    elementsOrder: [
-      "featured_image",
-      "post_category",
-      "post_meta",
-      "post_title",
-      "post_excerpt",
-      "read_more_button",
-    ],
   });
 
   const [defaultSettings, setDefaultSettings] = useState({
@@ -450,15 +440,6 @@ const GridNew = () => {
       type: "none",
       color: "#333",
     },
-
-    elementsOrder: [
-      "featured_image",
-      "post_category",
-      "post_meta",
-      "post_title",
-      "post_excerpt",
-      "read_more_button",
-    ],
   });
 
   const {
@@ -716,8 +697,6 @@ const GridNew = () => {
                 type: settings.btnBorder.type,
                 color: settings.btnBorder.color,
               },
-
-              elementsOrder: settings.elementsOrder,
             });
           });
       } else {
@@ -1006,17 +985,6 @@ const GridNew = () => {
               Styling
             </a>
           </li>
-          <li className={`${activeSubTab == "order" ? "active" : ""}`}>
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                setActiveSubTab("order");
-              }}
-            >
-              Elements Order
-            </a>
-          </li>
         </ul>
 
         <div className="flex justify-center lg:justify-between items-center pr-5 gap-5">
@@ -1076,10 +1044,6 @@ const GridNew = () => {
 
         <div className={`${activeSubTab == "styling" ? "" : "hidden"}`}>
           <GridStyling />
-        </div>
-
-        <div className={`${activeSubTab == "order" ? "" : "hidden"}`}>
-          <GridOrder />
         </div>
       </div>
 

@@ -1160,10 +1160,6 @@ video {
   z-index: 50;
 }
 
-#afx-ap-app :is(.m-5) {
-  margin: 1.25rem;
-}
-
 #afx-ap-app :is(.mx-10) {
   margin-left: 2.5rem;
   margin-right: 2.5rem;
@@ -1194,10 +1190,6 @@ video {
 
 #afx-ap-app :is(.ml-5) {
   margin-left: 1.25rem;
-}
-
-#afx-ap-app :is(.mr-3) {
-  margin-right: 0.75rem;
 }
 
 #afx-ap-app :is(.mt-10) {
@@ -1368,14 +1360,6 @@ video {
   max-width: 1024px;
 }
 
-#afx-ap-app :is(.max-w-sm) {
-  max-width: 24rem;
-}
-
-#afx-ap-app :is(.max-w-xl) {
-  max-width: 36rem;
-}
-
 #afx-ap-app :is(.flex-1) {
   flex: 1 1 0%;
 }
@@ -1394,10 +1378,6 @@ video {
 
 #afx-ap-app :is(.cursor-ew-resize) {
   cursor: ew-resize;
-}
-
-#afx-ap-app :is(.cursor-move) {
-  cursor: move;
 }
 
 #afx-ap-app :is(.cursor-pointer) {
@@ -1598,11 +1578,6 @@ video {
 #afx-ap-app :is(.bg-slate-200) {
   --tw-bg-opacity: 1;
   background-color: rgb(226 232 240 / var(--tw-bg-opacity));
-}
-
-#afx-ap-app :is(.bg-slate-700) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(51 65 85 / var(--tw-bg-opacity));
 }
 
 #afx-ap-app :is(.bg-slate-900) {
