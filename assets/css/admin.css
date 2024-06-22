@@ -2075,10 +2075,6 @@ input[id^="rc-editable-input"] {
   color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
-#afx-ap-app :is(.hover\:underline:hover) {
-  text-decoration-line: underline;
-}
-
 #afx-ap-app :is(.focus\:border-blue-300:focus) {
   --tw-border-opacity: 1;
   border-color: rgb(147 197 253 / var(--tw-border-opacity));

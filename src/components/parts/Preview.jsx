@@ -13,55 +13,58 @@ const Preview = ({ defaultSettings, cssStyles }) => {
 
   let styles = `<style>
     .afx-ap-wrapper {
-    width: 100%;
-    max-width: 100%;
-    padding: 20px;
-  }
+      width: 100%;
+      max-width: 100%;
+      padding: 20px;
+    }
 
-   .afx-ap-posts {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-}
+    .afx-ap-posts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 15px;
+    }
 
-.ap-post-single {
-display: flex;
-flex-direction: column;
-gap: 10px;
-box-shadow: 5px 5px 5px #CCC;
-background-color: #FFF;
-border-radius: 5px;
-}
+    .ap-post-single {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 5px 5px 5px #CCC;
+      background-color: #FFF;
+      border-radius: 5px;
+    }
 
-.ap-featured-img {
-  border-top-left-radius: 5px;
+    .ap-featured-img {
+      border-top-left-radius: 5px;
       border-top-right-radius: 5px;
-  }
-
-  .ap-post-content {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 15px;
-  }
-
-  ${cssStyles}
-
-  .afx-ap-posts {
-    grid-template-columns: repeat(${defaultSettings.gridColumnsD}, 1fr);
-  }
-
-  @media screen and (max-width: 991px) {
-    .afx-ap-posts {
-      grid-template-columns: repeat(${defaultSettings.gridColumnsT}, 1fr);
+      height: 250px;
+      object-fit: cover;
     }
-  }
 
-  @media screen and (max-width: 767px) {
-    .afx-ap-posts {
-      grid-template-columns: repeat(${defaultSettings.gridColumnsM}, 1fr);
+    .ap-post-content {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 15px;
     }
-  }
+
+    ${cssStyles}
+
+    .afx-ap-posts {
+      grid-template-columns: repeat(${defaultSettings.gridColumnsD}, 1fr);
+    }
+
+    @media screen and (max-width: 991px) {
+      .afx-ap-posts {
+        grid-template-columns: repeat(${defaultSettings.gridColumnsT}, 1fr);
+      }
+    }
+
+    @media screen and (max-width: 767px) {
+      .afx-ap-posts {
+        grid-template-columns: repeat(${defaultSettings.gridColumnsM}, 1fr);
+      }
+    }
   </style>`;
 
   return (
