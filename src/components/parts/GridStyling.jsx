@@ -30,26 +30,22 @@ const GridStyling = () => {
   }
 
   styles += `.ap-grid-title{
-      font-size: ${defaultSettings.shFontSize + "px"};
-      font-weight: ${defaultSettings.shFontWeight};
-      font-style: ${defaultSettings.shFontStyle};
-      color: ${defaultSettings.shColor};
-      text-decoration: ${defaultSettings.shTextDecoration};
-      text-transform: ${defaultSettings.shTextTransform};
-      line-height: ${defaultSettings.shLineHeight + "px"};
-      padding: ${defaultSettings.shPadding.top}px ${
+    font-size: ${defaultSettings.shFontSize + "px"};
+    font-weight: ${defaultSettings.shFontWeight};
+    font-style: ${defaultSettings.shFontStyle};
+    color: ${defaultSettings.shColor};
+    text-decoration: ${defaultSettings.shTextDecoration};
+    text-transform: ${defaultSettings.shTextTransform};
+    line-height: ${defaultSettings.shLineHeight + "px"};
+    padding: ${defaultSettings.shPadding.top}px ${
         defaultSettings.shPadding.right
-      }px ${defaultSettings.shPadding.bottom}px ${
-        defaultSettings.shPadding.left
-      }px;
-      margin: ${defaultSettings.shMargin.top}px ${
-        defaultSettings.shMargin.right
-      }px ${defaultSettings.shMargin.bottom}px ${
-        defaultSettings.shMargin.left
-      }px;
-      letter-spacing: ${defaultSettings.shLetterSpacing + "px"};
-      word-spacing: ${defaultSettings.shWordSpacing + "px"};
-      text-align: ${defaultSettings.shAlignment};
+      }px ${defaultSettings.shPadding.bottom}px ${defaultSettings.shPadding.left}px;
+    margin: ${defaultSettings.shMargin.top}px ${defaultSettings.shMargin.right}px ${
+        defaultSettings.shMargin.bottom
+      }px ${defaultSettings.shMargin.left}px;
+    letter-spacing: ${defaultSettings.shLetterSpacing + "px"};
+    word-spacing: ${defaultSettings.shWordSpacing + "px"};
+    text-align: ${defaultSettings.shAlignment};
     }`;
 
   if (defaultSettings.titleFont) {
@@ -66,26 +62,26 @@ const GridStyling = () => {
   }
 
   styles += `.ap-title{
-      font-size: ${defaultSettings.titleFontSize + "px"};
-      font-weight: ${defaultSettings.titleFontWeight};
-      font-style: ${defaultSettings.titleFontStyle};
-      color: ${defaultSettings.titleColor};
-      text-decoration: ${defaultSettings.titleTextDecoration};
-      text-transform: ${defaultSettings.titleTextTransform};
-      line-height: ${defaultSettings.titleLineHeight + "px"};
-      padding: ${defaultSettings.titlePadding.top}px ${
+    font-size: ${defaultSettings.titleFontSize + "px"};
+    font-weight: ${defaultSettings.titleFontWeight};
+    font-style: ${defaultSettings.titleFontStyle};
+    color: ${defaultSettings.titleColor};
+    text-decoration: ${defaultSettings.titleTextDecoration};
+    text-transform: ${defaultSettings.titleTextTransform};
+    line-height: ${defaultSettings.titleLineHeight + "px"};
+    padding: ${defaultSettings.titlePadding.top}px ${
         defaultSettings.titlePadding.right
       }px ${defaultSettings.titlePadding.bottom}px ${
         defaultSettings.titlePadding.left
       }px;
-      margin: ${defaultSettings.titleMargin.top}px ${
+    margin: ${defaultSettings.titleMargin.top}px ${
         defaultSettings.titleMargin.right
       }px ${defaultSettings.titleMargin.bottom}px ${
         defaultSettings.titleMargin.left
       }px;
-      letter-spacing: ${defaultSettings.titleLetterSpacing + "px"};
-      word-spacing: ${defaultSettings.titleWordSpacing + "px"};
-      text-align: ${defaultSettings.titleAlignment};
+    letter-spacing: ${defaultSettings.titleLetterSpacing + "px"};
+    word-spacing: ${defaultSettings.titleWordSpacing + "px"};
+    text-align: ${defaultSettings.titleAlignment};
     }`;
 
   styles += `.ap-title:hover{color: ${defaultSettings.titleHoverColor} !important;}`;
@@ -104,26 +100,26 @@ const GridStyling = () => {
   }
 
   styles += `.ap-excerpt{
-      font-size: ${defaultSettings.excerptFontSize + "px"};
-      font-weight: ${defaultSettings.excerptFontWeight};
-      font-style: ${defaultSettings.excerptFontStyle};
-      color: ${defaultSettings.excerptColor};
-      text-decoration: ${defaultSettings.excerptTextDecoration};
-      text-transform: ${defaultSettings.excerptTextTransform};
-      line-height: ${defaultSettings.excerptLineHeight + "px"};
-      padding: ${defaultSettings.excerptPadding.top}px ${
+    font-size: ${defaultSettings.excerptFontSize + "px"};
+    font-weight: ${defaultSettings.excerptFontWeight};
+    font-style: ${defaultSettings.excerptFontStyle};
+    color: ${defaultSettings.excerptColor};
+    text-decoration: ${defaultSettings.excerptTextDecoration};
+    text-transform: ${defaultSettings.excerptTextTransform};
+    line-height: ${defaultSettings.excerptLineHeight + "px"};
+    padding: ${defaultSettings.excerptPadding.top}px ${
         defaultSettings.excerptPadding.right
       }px ${defaultSettings.excerptPadding.bottom}px ${
         defaultSettings.excerptPadding.left
       }px;
-      margin: ${defaultSettings.excerptMargin.top}px ${
+    margin: ${defaultSettings.excerptMargin.top}px ${
         defaultSettings.excerptMargin.right
       }px ${defaultSettings.excerptMargin.bottom}px ${
         defaultSettings.excerptMargin.left
       }px;
-      letter-spacing: ${defaultSettings.excerptLetterSpacing + "px"};
-      word-spacing: ${defaultSettings.excerptWordSpacing + "px"};
-      text-align: ${defaultSettings.excerptAlignment};
+    letter-spacing: ${defaultSettings.excerptLetterSpacing + "px"};
+    word-spacing: ${defaultSettings.excerptWordSpacing + "px"};
+    text-align: ${defaultSettings.excerptAlignment};
     }`;
 
   if (defaultSettings.metaFont) {
@@ -140,26 +136,26 @@ const GridStyling = () => {
   }
 
   styles += `.ap-meta{
-      font-size: ${defaultSettings.metaFontSize + "px"};
-      font-weight: ${defaultSettings.metaFontWeight};
-      font-style: ${defaultSettings.metaFontStyle};
-      color: ${defaultSettings.metaColor};
-      text-decoration: ${defaultSettings.metaTextDecoration};
-      text-transform: ${defaultSettings.metaTextTransform};
-      line-height: ${defaultSettings.metaLineHeight + "px"};
-      padding: ${defaultSettings.metaPadding.top}px ${
+    font-size: ${defaultSettings.metaFontSize + "px"};
+    font-weight: ${defaultSettings.metaFontWeight};
+    font-style: ${defaultSettings.metaFontStyle};
+    color: ${defaultSettings.metaColor};
+    text-decoration: ${defaultSettings.metaTextDecoration};
+    text-transform: ${defaultSettings.metaTextTransform};
+    line-height: ${defaultSettings.metaLineHeight + "px"};
+    padding: ${defaultSettings.metaPadding.top}px ${
         defaultSettings.metaPadding.right
       }px ${defaultSettings.metaPadding.bottom}px ${
         defaultSettings.metaPadding.left
       }px;
-      margin: ${defaultSettings.metaMargin.top}px ${
+    margin: ${defaultSettings.metaMargin.top}px ${
         defaultSettings.metaMargin.right
       }px ${defaultSettings.metaMargin.bottom}px ${
         defaultSettings.metaMargin.left
       }px;
-      letter-spacing: ${defaultSettings.metaLetterSpacing + "px"};
-      word-spacing: ${defaultSettings.metaWordSpacing + "px"};
-      text-align: ${defaultSettings.metaAlignment};
+    letter-spacing: ${defaultSettings.metaLetterSpacing + "px"};
+    word-spacing: ${defaultSettings.metaWordSpacing + "px"};
+    text-align: ${defaultSettings.metaAlignment};
     }`;
 
   if (defaultSettings.btnFont) {
@@ -176,39 +172,37 @@ const GridStyling = () => {
   }
 
   styles += `.ap-btn{
-        font-size: ${defaultSettings.btnFontSize + "px"};
-        font-weight: ${defaultSettings.btnFontWeight};
-        font-style: ${defaultSettings.btnFontStyle};
-        background-color: ${defaultSettings.btnBgColor};
-        color: ${defaultSettings.btnColor};
-        border-radius: ${defaultSettings.btnBorderRadius + "px"};
-        text-decoration: ${defaultSettings.btnTextDecoration};
-        text-transform: ${defaultSettings.btnTextTransform};
-        line-height: ${defaultSettings.btnLineHeight + "px"};
-        padding: ${defaultSettings.btnPadding.top}px ${
-          defaultSettings.btnPadding.right
-        }px ${defaultSettings.btnPadding.bottom}px ${
-          defaultSettings.btnPadding.left
-        }px;
-        margin: ${defaultSettings.btnMargin.top}px ${
-          defaultSettings.btnMargin.right
-        }px ${defaultSettings.btnMargin.bottom}px ${
-          defaultSettings.btnMargin.left
-        }px;
-        letter-spacing: ${defaultSettings.btnLetterSpacing + "px"};
-        word-spacing: ${defaultSettings.btnWordSpacing + "px"};
-        text-align: ${defaultSettings.btnAlignment};
-        border-style: ${defaultSettings.btnBorder.type};
-        border-color: ${defaultSettings.btnBorder.color};
-        border-top: ${defaultSettings.btnBorder.top + "px"};
-        border-right: ${defaultSettings.btnBorder.right + "px"};
-        border-bottom: ${defaultSettings.btnBorder.bottom + "px"};
-        border-left: ${defaultSettings.btnBorder.left + "px"};
-      }`;
+    font-size: ${defaultSettings.btnFontSize + "px"};
+    font-weight: ${defaultSettings.btnFontWeight};
+    font-style: ${defaultSettings.btnFontStyle};
+    background-color: ${defaultSettings.btnBgColor};
+    color: ${defaultSettings.btnColor};
+    border-radius: ${defaultSettings.btnBorderRadius + "px"};
+    text-decoration: ${defaultSettings.btnTextDecoration};
+    text-transform: ${defaultSettings.btnTextTransform};
+    line-height: ${defaultSettings.btnLineHeight + "px"};
+    padding: ${defaultSettings.btnPadding.top}px ${
+        defaultSettings.btnPadding.right
+      }px ${defaultSettings.btnPadding.bottom}px ${
+        defaultSettings.btnPadding.left
+      }px;
+    margin: ${defaultSettings.btnMargin.top}px ${
+        defaultSettings.btnMargin.right
+      }px ${defaultSettings.btnMargin.bottom}px ${defaultSettings.btnMargin.left}px;
+    letter-spacing: ${defaultSettings.btnLetterSpacing + "px"};
+    word-spacing: ${defaultSettings.btnWordSpacing + "px"};
+    text-align: ${defaultSettings.btnAlignment};
+    border-style: ${defaultSettings.btnBorder.type};
+    border-color: ${defaultSettings.btnBorder.color};
+    border-top: ${defaultSettings.btnBorder.top + "px"};
+    border-right: ${defaultSettings.btnBorder.right + "px"};
+    border-bottom: ${defaultSettings.btnBorder.bottom + "px"};
+    border-left: ${defaultSettings.btnBorder.left + "px"};
+    }`;
 
   styles += `.ap-btn:hover{
-      background-color: ${defaultSettings.btnBgHoverColor};
-      color: ${defaultSettings.btnHoverColor};
+    background-color: ${defaultSettings.btnBgHoverColor};
+    color: ${defaultSettings.btnHoverColor};
     }`;
 
   useEffect(() => {
