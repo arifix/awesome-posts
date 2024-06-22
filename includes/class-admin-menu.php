@@ -13,8 +13,8 @@ class AFX_Admin_Menu
         $slug = 'awesome-posts';
 
         add_menu_page(
-            __('Awesome Posts', $slug),
-            __('Awesome Posts', $slug),
+            'Awesome Posts',
+            'Awesome Posts',
             $capability,
             $slug,
             [$this, 'afx_menu_page_template'],

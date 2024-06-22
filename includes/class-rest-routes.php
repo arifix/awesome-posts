@@ -349,7 +349,7 @@ class AFX_Rest_Routes
             $posts_args['date_query'] = array(
                 array(
                     'after' => $_GET['startDate'],
-                    'before' => !empty($_GET['endDate']) ? $_GET['endDate'] : date('Y-m-d'),
+                    'before' => !empty($_GET['endDate']) ? $_GET['endDate'] : gmdate('Y-m-d'),
                     'inclusive' => true,
                 )
             );

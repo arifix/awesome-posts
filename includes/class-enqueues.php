@@ -17,14 +17,17 @@ class AFX_Enqueues
                 'nonce' => wp_create_nonce('wp_rest'),
             ]);
 
-            wp_enqueue_style('afx-ap-admin-style', plugin_dir_url(__FILE__) . '../build/index.css');
+            wp_enqueue_style('afx-ap-admin-style', plugin_dir_url(__FILE__) . '../build/index.css', [], '1.0.0');
         }
     }
 
     function afx_frontend_enqueue()
     {
-        wp_enqueue_script('afx-ap-frontend-script', plugin_dir_url(__FILE__) . '../assets/js/script.js', ['jquery'], '1.0.0', true);
-        wp_enqueue_style('afx-ap-frontend-style', plugin_dir_url(__FILE__) . '../assets/css/style.css');
+        global $post;
+        if (is_a($post, 'WP_Post') && has_shortcode($post->post_content, 'awesome-posts')) {
+            wp_enqueue_script('afx-ap-frontend-script', plugin_dir_url(__FILE__) . '../assets/js/script.js', ['jquery'], '1.0.0', true);
+            wp_enqueue_style('afx-ap-frontend-style', plugin_dir_url(__FILE__) . '../assets/css/style.css', [], '1.0.0');
+        }
     }
 }
 

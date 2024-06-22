@@ -2,7 +2,7 @@
 
 /**
  *
- * Plugin Name: Awesome Posts – Shortcode for Post Grid
+ * Plugin Name: Awesome Posts
  * Plugin URI: https://madebyarif.com/app/awesome-posts
  * Author: Arif Khan
  * Author URI: https://www.arif-khan.net/
