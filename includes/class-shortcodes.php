@@ -33,18 +33,132 @@ class AFX_Shortcodes
             $settings = $results[0]->settings;
             $set = json_decode($settings);
 
-            print_r($set);
-            die();
+            $post_type = $set->postType->value;
+            $post_per_page = $set->postsPerPage ?: -1;
+            $offset = $set->postOffset;
+            $taxonomy = $set->taxonomy->value;
+            $terms = [];
+            if (count((array) $set->terms) > 0) {
+                $terms = $set->terms;
 
-            $posts_cats = [];
-            if (count((array) $set->categories) > 0) {
-                $categories = $set->categories;
-
-                foreach ($categories as $cat) {
-                    $posts_cats[] = $cat->value;
+                foreach ($terms as $term) {
+                    $terms[] = $term->value;
                 }
             }
 
+            $relation = $set->relation;
+            $operator = $set->operator;
+            $post_orderby = $set->postOrderBy;
+            $post_order = $set->postOrder;
+            $start_date = explode('T', $set->postStartDate[0])[0];
+            $end_date = explode('T', $set->postEndDate[0])[0];
+
+            $post_status = [];
+            if (count((array) $set->postStatus) > 0) {
+                $ps = $set->postStatus;
+
+                foreach ($ps as $p) {
+                    $post_status[] = $p->value;
+                }
+            }
+
+            $authors = [];
+            if (count((array) $set->authors) > 0) {
+                $aut = $set->authors;
+
+                foreach ($aut as $a) {
+                    $authors[] = $a->value;
+                }
+            }
+
+            $search = $set->search;
+
+            $posts_include = [];
+            if (count((array) $set->postsToInclude) > 0) {
+                $pi = $set->postsToInclude;
+
+                foreach ($pi as $p) {
+                    $posts_include[] = $p->value;
+                }
+            }
+
+            $posts_exclude = [];
+            if (count((array) $set->postsToExclude) > 0) {
+                $pe = $set->postsToExclude;
+
+                foreach ($pe as $p) {
+                    $posts_exclude[] = $p->value;
+                }
+            }
+
+            $posts_args = array(
+                'post_type' => $post_type,
+                'posts_per_page' => $post_per_page,
+                'post_status' => 'publish',
+                'orderby' => 'title',
+                'order' => 'ASC',
+                'offset' => $offset
+            );
+
+            if (!empty($taxonomy) && count($terms) > 0) {
+                $tax_query = [];
+                $tax_query['relation'] = $relation;
+
+                foreach ($terms as $term) {
+                    array_push(
+                        $tax_query,
+                        array(
+                            'taxonomy' => $taxonomy,
+                            'field' => 'slug',
+                            'terms' => $term,
+                            'operator' => $operator
+                        )
+                    );
+                }
+
+                if (count($tax_query) > 1) {
+                    $posts_args['tax_query'] = $tax_query;
+                }
+            }
+
+            if (!empty($post_orderby)) {
+                $posts_args['orderby'] = $post_orderby;
+            }
+
+            if (!empty($post_order)) {
+                $posts_args['order'] = $post_order;
+            }
+
+            if (!empty($start_date)) {
+                $posts_args['date_query'] = array(
+                    array(
+                        'after' => $start_date,
+                        'before' => !empty($end_date) ? $end_date : gmdate('Y-m-d'),
+                        'inclusive' => true,
+                    )
+                );
+            }
+
+            if (count($post_status) > 0) {
+                $posts_args['post_status'] = $post_status;
+            }
+
+            if (!empty($authors)) {
+                $posts_args['author'] = $authors;
+            }
+
+            if (!empty($search)) {
+                $posts_args['s'] = $search;
+            }
+
+            $posts_query = new WP_Query($posts_args);
+
+
+
+            print_r($set);
+            //die();
+
+            /*
             $order_ar = explode(':', preg_replace('/\s+/', '', ($set->postsOrder ?: 'date:DESC')));
 
             $total_args = array(
@@ -232,6 +346,7 @@ class AFX_Shortcodes
             $html .= '</div>';
 
             return $html;
+            */
         }
 
         return "";

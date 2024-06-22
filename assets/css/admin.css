@@ -1716,6 +1716,11 @@ video {
   padding-bottom: 0.75rem;
 }
 
+#afx-ap-app :is(.py-1\.5) {
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+}
+
 #afx-ap-app :is(.\!pl-5) {
   padding-left: 1.25rem !important;
 }

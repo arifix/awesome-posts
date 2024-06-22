@@ -45,7 +45,6 @@ const GridNew = () => {
     applyPostsFilter: false,
 
     postType: [],
-    postLimit: "",
     postsPerPage: 9,
     postOffset: 0,
     taxonomy: [],
@@ -252,7 +251,6 @@ const GridNew = () => {
     applyPostsFilter: false,
 
     postType: [],
-    postLimit: "",
     postsPerPage: 9,
     postOffset: 0,
     taxonomy: [],
@@ -509,7 +507,6 @@ const GridNew = () => {
               applyPostsFilter: settings.applyPostsFilter,
 
               postType: settings.postType,
-              postLimit: settings.postLimit,
               postsPerPage: settings.postsPerPage,
               postOffset: settings.postOffset,
               taxonomy: settings.taxonomy,
@@ -1021,7 +1018,7 @@ const GridNew = () => {
               className="action-button primary py-1"
               onClick={() => saveGrid()}
             >
-              <i className="dashicons-before dashicons-yes"></i> Save Grid
+              <i className="dashicons-before dashicons-yes"></i> {loader}
             </button>
           </div>
         </div>
@@ -1050,7 +1047,7 @@ const GridNew = () => {
       <div className="flex justify-center mt-10">
         <button
           type="button"
-          className="action-button primary py-2 px-6"
+          className="action-button primary py-1.5 px-6"
           onClick={() => saveGrid()}
         >
           <i className="dashicons-before dashicons-yes"></i> {loader}
