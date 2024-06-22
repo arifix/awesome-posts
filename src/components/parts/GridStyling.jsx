@@ -87,6 +87,19 @@ const GridStyling = () => {
       <h3 className="heading-secondary text-2xl pb-5">Styling</h3>
       <div dangerouslySetInnerHTML={{ __html: styles }}></div>
 
+      {/* Grid Styling */}
+      <div className="px-5 py-2">
+        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+          <h3 className="heading-secondary text-xl pb-3">Grid Styling</h3>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+          <Color title="Background" name="gridBgColor" />
+          <InputGroup title="Padding" name="gridPadding" min={0} max={50} />
+          <InputGroup title="Margin" name="gridMargin" min={0} max={50} />
+        </div>
+      </div>
+
       {/* Shortcode Heading */}
       <div className="px-5 py-2">
         <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
@@ -132,7 +145,7 @@ const GridStyling = () => {
               textAlign: defaultSettings.shAlignment,
             }}
           >
-            Sample Post Title
+            {defaultSettings.gridTitle}
           </h4>
         </div>
       </div>

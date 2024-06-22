@@ -85,6 +85,20 @@ const GridNew = () => {
     postImageSize: "large",
     postBtnText: "Read More",
 
+    gridBgColor: "#CCC",
+    gridPadding: {
+      top: 10,
+      right: 10,
+      bottom: 10,
+      left: 10,
+    },
+    gridMargin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+
     shFont: "",
     shFontSize: 26,
     shFontWeight: "bold",
@@ -250,6 +264,9 @@ const GridNew = () => {
     if (activeTab == "grid-new") {
       const queryParameters = new URLSearchParams(window.location.search);
       const grid_id = queryParameters.get("grid_id");
+
+      setLoading(true);
+      const toastId = toast.loading("Getting Grid data...");
       if (grid_id) {
         axios
           .post(
@@ -311,6 +328,20 @@ const GridNew = () => {
               displayPostMeta: settings.displayPostMeta,
               displayPostImage: settings.displayPostImage,
               displayReadBtn: settings.displayReadBtn,
+
+              gridBgColor: settings.gridBgColor,
+              gridPadding: {
+                top: settings.gridPadding.top,
+                right: settings.gridPadding.right,
+                bottom: settings.gridPadding.bottom,
+                left: settings.gridPadding.left,
+              },
+              gridMargin: {
+                top: settings.gridMargin.top,
+                right: settings.gridMargin.right,
+                bottom: settings.gridMargin.bottom,
+                left: settings.gridMargin.left,
+              },
 
               scHeadingTag: settings.scHeadingTag,
               postTitleTag: settings.postTitleTag,
@@ -467,6 +498,7 @@ const GridNew = () => {
         setDefaultSettings({ ...defaultSettings });
       }
       setLoading(false);
+      toast.dismiss(toastId);
     }
   }, [activeTab]);
 
