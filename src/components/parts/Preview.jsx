@@ -119,7 +119,7 @@ const Preview = ({ defaultSettings, cssStyles }) => {
 
       <div className="afx-ap-wrapper">
         {defaultSettings.displaySCHeading && (
-          <h2 className="ap-grid-title">Grid Title Here</h2>
+          <h2 className="ap-grid-title">{defaultSettings.gridTitle}</h2>
         )}
 
         <div className="afx-ap-posts">

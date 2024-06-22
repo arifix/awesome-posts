@@ -30,6 +30,7 @@ class AFX_Shortcodes
         $results = $wpdb->get_results("SELECT * FROM `$table_name` WHERE `id`='$id' ORDER BY `id` DESC LIMIT 1");
 
         if (count($results) == 1) {
+            $grid_title = $results[0]->title;
             $settings = $results[0]->settings;
             $set = json_decode($settings);
 
@@ -39,10 +40,10 @@ class AFX_Shortcodes
             $taxonomy = $set->taxonomy->value;
             $terms = [];
             if (count((array) $set->terms) > 0) {
-                $terms = $set->terms;
+                $tr = $set->terms;
 
-                foreach ($terms as $term) {
-                    $terms[] = $term->value;
+                foreach ($tr as $t) {
+                    $terms[] = $t->value;
                 }
             }
 
@@ -151,11 +152,289 @@ class AFX_Shortcodes
                 $posts_args['s'] = $search;
             }
 
+            if (count($posts_include) > 0) {
+                $posts_args['post__in'] = $posts_include;
+            }
+
+            if (count($posts_exclude) > 0 && count($posts_include) == 0) {
+                $posts_args['post__not_in'] = $posts_exclude;
+            }
+
             $posts_query = new WP_Query($posts_args);
 
+            $html = '<style>
+                .afx-ap-wrapper {
+                background-color: ' . $set->gridBgColor . ';
+                padding: ' . $set->gridPadding->top . 'px ' . $set->gridPadding->right . 'px ' . $set->gridPadding->bottom . 'px ' . $set->gridPadding->left . 'px;
+                margin: ' . $set->gridMargin->top . 'px ' . $set->gridMargin->right . 'px ' . $set->gridMargin->bottom . 'px ' . $set->gridMargin->left . 'px;
+            }
+
+            .afx-ap-posts {
+                gap: ' . $set->gridGap . 'px;
+            }
+
+            .ap-date {
+                background-color: ' . $set->btnBgColor . ';
+                color: ' . $set->btnColor . ';
+            }
+
+            .afx-ap-posts {
+                grid-template-columns: repeat(' . $set->gridColumnsD . ', 1fr);
+            }
+
+            @media screen and (max-width: 991px) {
+                .afx-ap-posts {
+                    grid-template-columns: repeat(' . $set->gridColumnsT . ', 1fr);
+                }
+            }
+
+            @media screen and (max-width: 767px) {
+                .afx-ap-posts {
+                    grid-template-columns: repeat(' . $set->gridColumnsM . ', 1fr);
+                }
+            }';
+
+            if ($set->shFont) {
+                $font = str_contains($set->shFont, "http")
+                    ? AFX_Helper::fonts_url_to_name($set->shFont)
+                    : $set->shFont;
+                $font_url = str_contains($set->shFont, "http")
+                    ? $set->shFont
+                    : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->shFont) . '&display=swap';
+
+                $html .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.ap-grid-title{font-family: ' . $font . '}';
+            }
+
+            $html .= '.ap-grid-title{
+                font-size: ' . $set->shFontSize . 'px;
+                font-weight: ' . $set->shFontWeight . ';
+                font-style: ' . $set->shFontStyle . ';
+                color: ' . $set->shColor . ';
+                text-decoration: ' . $set->shTextDecoration . ';
+                text-transform: ' . $set->shTextTransform . ';
+                line-height: ' . $set->shLineHeight . 'px;
+                padding: ' . $set->shPadding->top . 'px ' . $set->shPadding->right . 'px ' . $set->shPadding->bottom . 'px ' . $set->shPadding->left . 'px;
+                margin: ' . $set->shMargin->top . 'px ' . $set->shMargin->right . 'px ' . $set->shMargin->bottom . 'px ' . $set->shMargin->left . 'px;
+                letter-spacing: ' . $set->shLetterSpacing . 'px;
+                word-spacing: ' . $set->shWordSpacing . 'px;
+                text-align: ' . $set->shAlignment . ';
+                }';
+
+            if ($set->titleFont) {
+                $font = str_contains($set->titleFont, "http")
+                    ? AFX_Helper::fonts_url_to_name($set->titleFont)
+                    : $set->titleFont;
+                $font_url = str_contains($set->titleFont, "http")
+                    ? $set->titleFont
+                    : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->titleFont) . '&display=swap';
+
+                $html .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.ap-title{font-family: ' . $font . '}';
+            }
+
+            $html .= '.ap-title{
+                    font-size: ' . $set->titleFontSize . 'px;
+                    font-weight: ' . $set->titleFontWeight . ';
+                    font-style: ' . $set->titleFontStyle . ';
+                    color: ' . $set->titleColor . ';
+                    text-decoration: ' . $set->titleTextDecoration . ';
+                    text-transform: ' . $set->titleTextTransform . ';
+                    line-height: ' . $set->titleLineHeight . 'px;
+                    padding: ' . $set->titlePadding->top . 'px ' . $set->titlePadding->right . 'px ' . $set->titlePadding->bottom . 'px ' . $set->titlePadding->left . 'px;
+                    margin: ' . $set->titleMargin->top . 'px ' . $set->titleMargin->right . 'px ' . $set->titleMargin->bottom . 'px ' . $set->titleMargin->left . 'px;
+                    letter-spacing: ' . $set->titleLetterSpacing . 'px;
+                    word-spacing: ' . $set->titleWordSpacing . 'px;
+                    text-align: ' . $set->titleAlignment . ';
+                  }';
+
+            $html .= '.ap-title:hover{color: ' . $set->titleHoverColor . ';}';
+
+            if ($set->excerptFont) {
+                $font = str_contains($set->excerptFont, "http")
+                    ? AFX_Helper::fonts_url_to_name($set->excerptFont)
+                    : $set->excerptFont;
+                $font_url = str_contains($set->excerptFont, "http")
+                    ? $set->excerptFont
+                    : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->excerptFont) . '&display=swap';
+
+                $html .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.ap-excerpt{font-family: ' . $font . '}';
+            }
+
+            $html .= '.ap-excerpt{
+                font-size: ' . $set->excerptFontSize . 'px;
+                font-weight: ' . $set->excerptFontWeight . ';
+                font-style: ' . $set->excerptFontStyle . ';
+                color: ' . $set->excerptColor . ';
+                text-decoration: ' . $set->excerptTextDecoration . ';
+                text-transform: ' . $set->excerptTextTransform . ';
+                line-height: ' . $set->excerptLineHeight . 'px;
+                padding: ' . $set->excerptPadding->top . 'px ' . $set->excerptPadding->right . 'px ' . $set->excerptPadding->bottom . 'px ' . $set->excerptPadding->left . 'px;
+                margin: ' . $set->excerptMargin->top . 'px ' . $set->excerptMargin->right . 'px ' . $set->excerptMargin->bottom . 'px ' . $set->excerptMargin->left . 'px;
+                letter-spacing: ' . $set->excerptLetterSpacing . 'px;
+                word-spacing: ' . $set->excerptWordSpacing . 'px;
+                text-align: ' . $set->excerptAlignment . ';
+              }';
+
+            if ($set->metaFont) {
+                $font = str_contains($set->metaFont, "http")
+                    ? AFX_Helper::fonts_url_to_name($set->metaFont)
+                    : $set->metaFont;
+                $font_url = str_contains($set->metaFont, "http")
+                    ? $set->metaFont
+                    : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->metaFont) . '&display=swap';
+
+                $html .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.ap-meta{font-family: ' . $font . '}';
+            }
+
+            $html .= '.ap-meta{
+                font-size: ' . $set->metaFontSize . 'px;
+                font-weight: ' . $set->metaFontWeight . ';
+                font-style: ' . $set->metaFontStyle . ';
+                color: ' . $set->metaColor . ';
+                text-decoration: ' . $set->metaTextDecoration . ';
+                text-transform: ' . $set->metaTextTransform . ';
+                line-height: ' . $set->metaLineHeight . 'px;
+                padding: ' . $set->metaPadding->top . 'px ' . $set->metaPadding->right . 'px ' . $set->metaPadding->bottom . 'px ' . $set->metaPadding->left . 'px;
+                margin: ' . $set->metaMargin->top . 'px ' . $set->metaMargin->right . 'px ' . $set->metaMargin->bottom . 'px ' . $set->metaMargin->left . 'px;
+                letter-spacing: ' . $set->metaLetterSpacing . 'px;
+                word-spacing: ' . $set->metaWordSpacing . 'px;
+                text-align: ' . $set->metaAlignment . ';
+              }';
+
+            $html .= '.ap-meta a {color: ' . $set->metaColor . ';}
+              .ap-meta a:hover {color: ' . $set->metaHoverColor . ';}';
+
+            if ($set->btnFont) {
+                $font = str_contains($set->btnFont, "http")
+                    ? AFX_Helper::fonts_url_to_name($set->btnFont)
+                    : $set->btnFont;
+                $font_url = str_contains($set->btnFont, "http")
+                    ? $set->btnFont
+                    : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->btnFont) . '&display=swap';
+
+                $html .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.ap-btn{font-family: ' . $font . '}';
+            }
+
+            $html .= '.ap-btn{
+            font-size: ' . $set->btnFontSize . 'px;
+                font-weight: ' . $set->btnFontWeight . ';
+                font-style: ' . $set->btnFontStyle . ';
+                color: ' . $set->btnColor . ';
+                background-color: ' . $set->btnBgColor . ';
+                color: ' . $set->btnColor . ';
+                border-radius: ' . $set->btnBorderRadius . 'px;
+                text-decoration: ' . $set->btnTextDecoration . ';
+                text-transform: ' . $set->btnTextTransform . ';
+                line-height: ' . $set->btnLineHeight . 'px;
+                padding: ' . $set->btnPadding->top . 'px ' . $set->btnPadding->right . 'px ' . $set->btnPadding->bottom . 'px ' . $set->btnPadding->left . 'px;
+                margin: ' . $set->btnMargin->top . 'px ' . $set->btnMargin->right . 'px ' . $set->btnMargin->bottom . 'px ' . $set->btnMargin->left . 'px;
+                letter-spacing: ' . $set->btnLetterSpacing . 'px;
+                word-spacing: ' . $set->btnWordSpacing . 'px;
+                text-align: ' . $set->btnAlignment . ';
 
 
-            print_r($set);
+             
+              border-style: ' . $set->btnBorder->type . ';
+              border-color: ' . $set->btnBorder->color . ';
+              border-top: ' . $set->btnBorder->top . 'px;
+              border-right: ' . $set->btnBorder->right . 'px;
+              border-bottom: ' . $set->btnBorder->bottom . 'px;
+              border-left: ' . $set->btnBorder->left . 'px;
+              }';
+
+            $html .= '.ap-btn:hover{
+              background-color: ' . $set->btnBgHoverColor . ';
+              color: ' . $set->btnHoverColor . ';
+              }';
+
+            $html .= '</style>';
+
+            if ($posts_query->have_posts()) {
+                $html .= '<div class="afx-ap-wrapper">';
+                $html .= '<h2 class="ap-grid-title">' . $grid_title . '</h2>';
+                $html .= '<div class="afx-ap-posts">';
+                while ($posts_query->have_posts()) {
+                    $posts_query->the_post();
+                    $featured_image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'full');
+
+                    $author = get_the_author();
+                    $comments = get_comment_count(get_the_ID());
+
+                    $cats = [];
+                    if ($post_type == 'post') {
+                        $term_list = wp_get_post_terms(get_the_ID(), 'category', array('fields' => 'all'));
+
+                        foreach ($term_list as $term) {
+                            $term_link = get_term_link($term);
+                            $cats[] = '<a href="' . $term_link . '">' . $term->name . '</a>';
+                        }
+                    } else {
+                        if (!empty($taxonomy)) {
+                            $term_list = wp_get_post_terms(get_the_ID(), $taxonomy, array('fields' => 'all'));
+
+                            foreach ($term_list as $term) {
+                                $term_link = get_term_link($term);
+                                $cats[] = '<a href="' . $term_link . '">' . $term->name . '</a>';
+                            }
+                        }
+                    }
+
+                    $html .= '<div class="ap-post-single">
+                        <div class="ap-image-cover">
+                        <img
+                            decoding="async"
+                            src="' . (is_array($featured_image) ? $featured_image[0] : 'https://placehold.co/900x600/orange/FFFFFF/png?text=Placeholder+Image') . '"
+                            alt="' . get_the_title() . '"
+                            class="ap-featured-img"
+                        />
+                        <div class="ap-date">' . get_the_date('d M') . '</div>
+                        </div>
+ 
+                        <div class="ap-post-meta">
+                            <a href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">
+                            <svg
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                width="24"
+                                height="24"
+                            >
+                                <path
+                                d="M12 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm9 11a1 1 0 0 1-2 0v-2a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v2a1 1 0 0 1-2 0v-2a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v2z"
+                                />
+                            </svg>
+                            <span class="ap-meta">' . $author . '</span>
+                            </a>
+
+                            <a href="' . get_the_permalink() . '">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+                                ></path>
+                            </svg>
+                            <span class="ap-meta">' . $comments['approved'] . ' Comments</span>
+                            </a>
+                        </div>
+                        <div class="ap-post-content">
+                            <p class="ap-cats ap-meta">' . join(" $set->postCatSeparator ", $cats) . ' </p>
+                            <a href="' . get_the_permalink() . '">
+                                <h3 class="ap-title">' . get_the_title() . '</h3>
+                            </a>
+                            <p class="ap-excerpt">' . get_the_excerpt() . '</p>
+                            <a href="' . get_the_permalink() . '" class="ap-btn">' . $set->postBtnText . '</a>
+                        </div>
+                        </div>';
+                }
+                $html .= '</div>';
+                $html .= '</div>';
+            }
+
+
+            //print_r($set);
+
+            return $html;
             //die();
 
             /*

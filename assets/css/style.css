@@ -1,75 +1,83 @@
 .afx-ap-wrapper {
-  width: 100%;
-  max-width: 100%;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
-.afx-ap-wrapper .product-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 40px;
-  margin-top: 20px;
-  row-gap: 60px;
-}
-
-.afx-ap-wrapper .product {
-  display: flex;
-  flex-direction: column;
-}
-
-.afx-ap-wrapper .product img {
-  max-width: 100%;
-  height: auto;
-  max-height: 350px;
-  border-bottom: 1px solid #ddd;
-  object-fit: cover;
-}
-
-.afx-ap-wrapper .product h2 {
-  margin: 0.5rem 0;
-}
-
-.afx-ap-wrapper .product p {
-  flex-grow: 1;
-}
-
-.afx-ap-wrapper .product .price {
-  margin: 0.5rem 0;
-  font-weight: bold;
-}
-
-.afx-ap-wrapper .product a {
-  background: #333;
-  color: #fff;
-  border: 0;
-  padding: 19px 40px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  border-radius: 100px;
+.afx-ap-wrapper a {
   text-decoration: none;
 }
 
-.afx-ap-wrapper .product a:hover {
-  background: #555;
+.afx-ap-posts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 15px;
 }
 
-.afx-ap-wrapper .afx-ap-filter {
+.ap-post-single {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 5px 5px #ccc;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.ap-featured-img {
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.ap-post-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+}
+
+.ap-image-cover {
+  position: relative;
+}
+
+.ap-date {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border-radius: 50%;
+  height: 75px;
+  width: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  padding: 10px;
+  text-align: center;
+  line-height: 20px;
+}
+
+.ap-post-meta {
+  background-color: #f3f4f6;
   display: flex;
   justify-content: space-between;
+  padding: 15px;
 }
 
-.afx-ap-wrapper .afx-ap-select {
-  width: 190px;
-  height: 45px;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #b8b8b8;
-  font-size: 16px;
-  color: #3d3d35;
-  margin-left: auto;
+.ap-post-meta svg {
+  height: 25px;
+}
+
+.ap-post-meta a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.ap-btn {
+  margin-top: 10px;
 }
 
 #afx-ap-loader {
