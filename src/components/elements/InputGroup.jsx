@@ -195,7 +195,7 @@ const InputGroup = ({ title, min, max, name }) => {
               },
             });
           }}
-          data-tooltip-id="afx-tooltip"
+          data-tooltip-id="afx-ap-tooltip"
           data-tooltip-content={grouped ? "Ungroup Values" : "Group Values"}
         >
           {grouped ? (
