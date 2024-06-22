@@ -30,7 +30,11 @@ const About = () => {
               Do you have any questions, suggestions, or feedback? Feel free to
               open a ticket on the plugin support page or reach out to me via
               email at{" "}
-              <a href="mailto:madebyarif@gmail.com?subject=Awesome%20Posts%20WP" className="text-ap-primary" target="_blank">
+              <a
+                href="mailto:madebyarif@gmail.com?subject=Awesome%20Posts%20WP"
+                className="text-ap-primary"
+                target="_blank"
+              >
                 madebyarif@gmail.com
               </a>
             </p>

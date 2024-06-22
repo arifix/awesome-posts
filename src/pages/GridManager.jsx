@@ -20,7 +20,6 @@ const GridManager = () => {
     setActiveTab,
     refreshSettings,
     setRefreshSettings,
-    settings,
   } = useContext(appContext);
 
   useEffect(() => {

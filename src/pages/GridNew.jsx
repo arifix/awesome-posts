@@ -11,6 +11,7 @@ import GridSettings from "../components/parts/GridSettings.jsx";
 import GridQueryFilters from "../components/parts/GridQueryFilters.jsx";
 import GridLayout from "../components/parts/GridLayout.jsx";
 import GridStyling from "../components/parts/GridStyling.jsx";
+import GridOrder from "../components/parts/GridOrder.jsx";
 
 const GridNew = () => {
   const [postTypes, setPostTypes] = useState([]);
@@ -25,6 +26,222 @@ const GridNew = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [loader, setLoader] = useState("Save Grid");
+
+  const [initialSettings, setInitialSettings] = useState({
+    gridTitle: "",
+    gridStyle: "style1",
+    gridColumnsD: 3,
+    gridColumnsT: 3,
+    gridColumnsM: 3,
+    gridLoadMoreBtn: true,
+
+    applyTaxonomyFilter: false,
+    applyOrderFilter: false,
+    applyDateFilter: false,
+    applyStatusFilter: false,
+    applyAuthorFilter: false,
+    applySearchFilter: false,
+    applyPostsFilter: false,
+
+    postType: [],
+    postLimit: "",
+    postsPerPage: 9,
+    postOffset: 0,
+    taxonomy: [],
+    terms: [],
+    relation: "OR",
+    operator: "IN",
+
+    postOrderBy: "date",
+    postOrder: "DESC",
+    postStartDate: "",
+    postEndDate: "",
+    postStatus: [],
+    authors: [],
+    search: "",
+    postsToInclude: [],
+    postsToExclude: [],
+
+    displaySCHeading: true,
+    displayPostTitle: true,
+    displayPostCategory: true,
+    displayPostExcerpt: true,
+    displayPostMeta: true,
+    displayPostImage: true,
+    displayReadBtn: true,
+
+    scHeadingTag: "H2",
+    postTitleTag: "H3",
+    postTitleType: "character",
+    postTitleLimit: 0,
+    postCatSeparator: "|",
+    postExcerptType: "character",
+    postExcerptLimit: 25,
+    postExcerptText: "...",
+    postMetaDisTags: true,
+    postMetaDisDate: true,
+    postMetaDisAuthor: false,
+    postMetaDisCC: false,
+    postMetaSeparator: "|",
+    postImageSize: "large",
+    postBtnText: "Read More",
+
+    gridBgColor: "#CCC",
+    gridPadding: {
+      top: 10,
+      right: 10,
+      bottom: 10,
+      left: 10,
+    },
+    gridMargin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+
+    shFont: "",
+    shFontSize: 26,
+    shFontWeight: "bold",
+    shFontStyle: "normal",
+    shColor: "#333",
+    shTextDecoration: "none",
+    shTextTransform: "none",
+    shLineHeight: 26,
+    shPadding: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+    shMargin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+    shLetterSpacing: 0,
+    shWordSpacing: 0,
+    shAlignment: "center",
+
+    titleFont: "",
+    titleFontSize: 20,
+    titleFontWeight: "normal",
+    titleFontStyle: "normal",
+    titleColor: "#666",
+    titleHoverColor: "#000",
+    titleTextDecoration: "none",
+    titleTextTransform: "none",
+    titleLineHeight: 20,
+    titlePadding: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+    titleMargin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+    titleLetterSpacing: 0,
+    titleWordSpacing: 0,
+    titleAlignment: "left",
+
+    excerptFont: "",
+    excerptFontSize: 16,
+    excerptFontWeight: "normal",
+    excerptFontStyle: "normal",
+    excerptColor: "#666",
+    excerptTextDecoration: "none",
+    excerptTextTransform: "none",
+    excerptLineHeight: 16,
+    excerptPadding: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+    excerptMargin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+    excerptLetterSpacing: 0,
+    excerptWordSpacing: 0,
+    excerptAlignment: "left",
+
+    metaFont: "",
+    metaFontSize: 16,
+    metaFontWeight: "normal",
+    metaFontStyle: "normal",
+    metaColor: "#666",
+    metaTextDecoration: "none",
+    metaTextTransform: "none",
+    metaLineHeight: 16,
+    metaPadding: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+    metaMargin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+    metaLetterSpacing: 0,
+    metaWordSpacing: 0,
+    metaAlignment: "left",
+
+    btnFont: "",
+    btnFontSize: 18,
+    btnFontWeight: "normal",
+    btnFontStyle: "normal",
+    btnBgColor: "#0da8e9",
+    btnColor: "#FFF",
+    btnBorderRadius: 5,
+    btnBgHoverColor: "#745FF1",
+    btnHoverColor: "#FFF",
+    btnTextDecoration: "none",
+    btnTextTransform: "none",
+    btnLineHeight: 18,
+    btnPadding: {
+      top: 12,
+      right: 30,
+      bottom: 12,
+      left: 30,
+    },
+    btnMargin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+    btnLetterSpacing: 0,
+    btnWordSpacing: 0,
+    btnAlignment: "left",
+    btnBorder: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+      type: "none",
+      color: "#333",
+    },
+
+    elementsOrder: [
+      "featured_image",
+      "post_category",
+      "post_meta",
+      "post_title",
+      "post_excerpt",
+      "read_more_button",
+    ],
+  });
 
   const [defaultSettings, setDefaultSettings] = useState({
     gridTitle: "",
@@ -231,6 +448,15 @@ const GridNew = () => {
       type: "none",
       color: "#333",
     },
+
+    elementsOrder: [
+      "featured_image",
+      "post_category",
+      "post_meta",
+      "post_title",
+      "post_excerpt",
+      "read_more_button",
+    ],
   });
 
   const {
@@ -238,11 +464,7 @@ const GridNew = () => {
     gridId,
     setGridId,
     activeTab,
-    setActiveTab,
-    refreshSettings,
     setRefreshSettings,
-    gridSettings,
-    setGridSettings,
     settings,
   } = useContext(appContext);
 
@@ -492,11 +714,13 @@ const GridNew = () => {
                 type: settings.btnBorder.type,
                 color: settings.btnBorder.color,
               },
+
+              elementsOrder: settings.elementsOrder,
             });
           });
       } else {
         setGridId(null);
-        setDefaultSettings({ ...defaultSettings });
+        setDefaultSettings({ ...initialSettings });
       }
       setLoading(false);
       toast.dismiss(toastId);
@@ -504,51 +728,6 @@ const GridNew = () => {
   }, [activeTab]);
 
   const fontsOptions = getGoogleFonts(fonts);
-
-  const saveGrid = () => {
-    if (defaultSettings.gridTitle == "") {
-      toast.error("Grid Title is Required");
-      setActiveSubTab("grid_settings");
-      window.scrollTo(0, 0);
-      setError(true);
-    } else if (defaultSettings.postType == "") {
-      toast.error("Post Type is Required");
-      setActiveSubTab("query_filters");
-      window.scrollTo(0, 0);
-      setError(true);
-    } else {
-      setError(false);
-      setLoader("Saving Grid...");
-      const settings = { ...defaultSettings };
-      delete settings.gridTitle;
-
-      const queryParameters = new URLSearchParams(window.location.search);
-      const grid_id = queryParameters.get("grid_id");
-
-      axios
-        .post(
-          baseUrl + "grid/new",
-          {
-            grid_id: grid_id,
-            grid_title: defaultSettings.gridTitle,
-            grid_settings: JSON.stringify(settings),
-          },
-          {
-            headers: {
-              "content-type": "application/json",
-              "X-WP-NONCE": afxApApp.nonce,
-            },
-          }
-        )
-        .then((res) => {
-          setGridId(res.data.grid_id);
-          toast.success(res.data.message);
-          insertUrlParam("grid_id", res.data.grid_id);
-          setRefreshSettings(true);
-          setLoader("Save Grid");
-        });
-    }
-  };
 
   const gridValues = useMemo(() => {
     return {
@@ -577,6 +756,13 @@ const GridNew = () => {
       }
     });
   }, []);
+
+  useEffect(() => {
+    if (!gridId) {
+      setGridId(null);
+      setDefaultSettings({ ...initialSettings });
+    }
+  }, [gridId]);
 
   useEffect(() => {
     const type = defaultSettings.postType?.value;
@@ -709,6 +895,53 @@ const GridNew = () => {
     defaultSettings.search,
   ]);
 
+  const saveGrid = () => {
+    console.log(defaultSettings.elementsOrder);
+
+    if (defaultSettings.gridTitle == "") {
+      toast.error("Grid Title is Required");
+      setActiveSubTab("grid_settings");
+      window.scrollTo(0, 0);
+      setError(true);
+    } else if (defaultSettings.postType == "") {
+      toast.error("Post Type is Required");
+      setActiveSubTab("query_filters");
+      window.scrollTo(0, 0);
+      setError(true);
+    } else {
+      setError(false);
+      setLoader("Saving Grid...");
+      const settings = { ...defaultSettings };
+      delete settings.gridTitle;
+
+      const queryParameters = new URLSearchParams(window.location.search);
+      const grid_id = queryParameters.get("grid_id");
+
+      axios
+        .post(
+          baseUrl + "grid/new",
+          {
+            grid_id: grid_id,
+            grid_title: defaultSettings.gridTitle,
+            grid_settings: JSON.stringify(settings),
+          },
+          {
+            headers: {
+              "content-type": "application/json",
+              "X-WP-NONCE": afxApApp.nonce,
+            },
+          }
+        )
+        .then((res) => {
+          setGridId(res.data.grid_id);
+          toast.success(res.data.message);
+          insertUrlParam("grid_id", res.data.grid_id);
+          setRefreshSettings(true);
+          setLoader("Save Grid");
+        });
+    }
+  };
+
   return (
     <gridContext.Provider value={gridValues}>
       <div className="flex justify-between items-center pr-5">
@@ -760,6 +993,17 @@ const GridNew = () => {
               }}
             >
               Styling
+            </a>
+          </li>
+          <li className={`${activeSubTab == "order" ? "active" : ""}`}>
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveSubTab("order");
+              }}
+            >
+              Elements Order
             </a>
           </li>
         </ul>
@@ -822,12 +1066,16 @@ const GridNew = () => {
         <div className={`${activeSubTab == "styling" ? "" : "hidden"}`}>
           <GridStyling />
         </div>
+
+        <div className={`${activeSubTab == "order" ? "" : "hidden"}`}>
+          <GridOrder />
+        </div>
       </div>
 
       <div className="flex justify-center mt-10">
         <button
           type="button"
-          className="action-button primary py-1"
+          className="action-button primary py-2 px-6"
           onClick={() => saveGrid()}
         >
           <i className="dashicons-before dashicons-yes"></i> {loader}

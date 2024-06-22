@@ -16,78 +16,6 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   const [gridId, setGridId] = useState(null);
 
-  const initialSettings = {
-    gridTitle: "",
-    gridColumns: 3,
-    categories: {},
-    postsPerPage: 9,
-    postsOrder: "date:DESC",
-
-    showProductTitle: false,
-    productTitleFont: "",
-    productTitleSize: 22,
-    productTitleAlignment: "left",
-    productTitleColor: "#000",
-
-    showProductDes: false,
-    productDesFont: "",
-    productDesSize: 14,
-    productDesAlignment: "left",
-    productDesColor: "#000",
-
-    showProductPrice: false,
-    productPriceFont: "",
-    productPriceSize: 18,
-    productPriceAlignment: "left",
-    productPriceColor: "#000",
-
-    showProductButton: false,
-    productButtonFont: "",
-    productButtonSize: 18,
-    productButtonAlignment: "center",
-    productButtonBgColor: "#333",
-    productButtonColor: "#FFF",
-    productButtonText: "View Product",
-    productButtonWidth: "medium",
-    productButtonBorderRadius: 10,
-  };
-
-  const [gridSettings, setGridSettings] = useState({
-    gridTitle: "",
-    gridColumns: 3,
-    categories: {},
-    postsPerPage: 9,
-    postsOrder: "date:DESC",
-
-    showProductTitle: false,
-    productTitleFont: "",
-    productTitleSize: 22,
-    productTitleAlignment: "left",
-    productTitleColor: "#000",
-
-    showProductDes: false,
-    productDesFont: "",
-    productDesSize: 14,
-    productDesAlignment: "left",
-    productDesColor: "#000",
-
-    showProductPrice: false,
-    productPriceFont: "",
-    productPriceSize: 18,
-    productPriceAlignment: "left",
-    productPriceColor: "#000",
-
-    showProductButton: false,
-    productButtonFont: "",
-    productButtonSize: 18,
-    productButtonAlignment: "center",
-    productButtonBgColor: "#333",
-    productButtonColor: "#FFF",
-    productButtonText: "View Product",
-    productButtonWidth: "medium",
-    productButtonBorderRadius: 10,
-  });
-
   const baseUrl = `${afxApApp.apiUrl}/afx-ap/v1/`;
   const mediaUrl = `${afxApApp.apiUrl}/wp/v2/media/`;
 
@@ -99,6 +27,13 @@ const App = () => {
     "backup-restore",
     "about",
   ];
+
+  useEffect(() => {
+    window.history.pushState(null, null, window.location.href);
+    window.onpopstate = function (event) {
+      window.history.go(1);
+    };
+  }, []);
 
   useEffect(() => {
     const show_sidebar = localStorage.getItem("ap_show_sidebar");
@@ -141,9 +76,6 @@ const App = () => {
       setRefreshSettings,
       showSidebar,
       setShowSidebar,
-      gridSettings,
-      setGridSettings,
-      initialSettings,
       gridId,
       setGridId,
     };
@@ -153,8 +85,6 @@ const App = () => {
     setActiveTab,
     setRefreshSettings,
     showSidebar,
-    gridSettings,
-    setGridSettings,
     gridId,
     setGridId,
   ]);

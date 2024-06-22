@@ -87,6 +87,8 @@ const GridStyling = () => {
       <h3 className="heading-secondary text-2xl pb-5">Styling</h3>
       <div dangerouslySetInnerHTML={{ __html: styles }}></div>
 
+     
+
       {/* Grid Styling */}
       <div className="px-5 py-2">
         <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">

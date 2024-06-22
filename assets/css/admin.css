@@ -1160,6 +1160,10 @@ video {
   z-index: 50;
 }
 
+#afx-ap-app :is(.m-5) {
+  margin: 1.25rem;
+}
+
 #afx-ap-app :is(.mx-10) {
   margin-left: 2.5rem;
   margin-right: 2.5rem;
@@ -1178,6 +1182,16 @@ video {
 #afx-ap-app :is(.my-5) {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
+}
+
+#afx-ap-app :is(.mx-2) {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+#afx-ap-app :is(.my-4) {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 #afx-ap-app :is(.mb-4) {
@@ -1206,6 +1220,10 @@ video {
 
 #afx-ap-app :is(.mt-5) {
   margin-top: 1.25rem;
+}
+
+#afx-ap-app :is(.mr-3) {
+  margin-right: 0.75rem;
 }
 
 #afx-ap-app :is(.block) {
@@ -1360,6 +1378,22 @@ video {
   max-width: 1024px;
 }
 
+#afx-ap-app :is(.max-w-sm) {
+  max-width: 24rem;
+}
+
+#afx-ap-app :is(.max-w-\[200px\]) {
+  max-width: 200px;
+}
+
+#afx-ap-app :is(.max-w-lg) {
+  max-width: 32rem;
+}
+
+#afx-ap-app :is(.max-w-xl) {
+  max-width: 36rem;
+}
+
 #afx-ap-app :is(.flex-1) {
   flex: 1 1 0%;
 }
@@ -1382,6 +1416,10 @@ video {
 
 #afx-ap-app :is(.cursor-pointer) {
   cursor: pointer;
+}
+
+#afx-ap-app :is(.cursor-move) {
+  cursor: move;
 }
 
 #afx-ap-app :is(.select-none) {
@@ -1580,6 +1618,11 @@ video {
   background-color: rgb(226 232 240 / var(--tw-bg-opacity));
 }
 
+#afx-ap-app :is(.bg-slate-700) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(51 65 85 / var(--tw-bg-opacity));
+}
+
 #afx-ap-app :is(.bg-slate-900) {
   --tw-bg-opacity: 1;
   background-color: rgb(15 23 42 / var(--tw-bg-opacity));
@@ -1588,6 +1631,11 @@ video {
 #afx-ap-app :is(.bg-white) {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+#afx-ap-app :is(.bg-blue-200) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(191 219 254 / var(--tw-bg-opacity));
 }
 
 #afx-ap-app :is(.fill-black) {
@@ -1660,6 +1708,16 @@ video {
 #afx-ap-app :is(.py-6) {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+#afx-ap-app :is(.px-8) {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+#afx-ap-app :is(.py-3) {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 #afx-ap-app :is(.\!pl-5) {
@@ -1838,6 +1896,16 @@ video {
 #afx-ap-app :is(.text-white) {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+#afx-ap-app :is(.text-blue-600) {
+  --tw-text-opacity: 1;
+  color: rgb(37 99 235 / var(--tw-text-opacity));
+}
+
+#afx-ap-app :is(.text-blue-800) {
+  --tw-text-opacity: 1;
+  color: rgb(30 64 175 / var(--tw-text-opacity));
 }
 
 #afx-ap-app :is(.underline) {
@@ -2040,6 +2108,11 @@ input[id^="rc-editable-input"] {
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
+#afx-ap-app :is(.hover\:bg-ap-secondary:hover) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(13 168 233 / var(--tw-bg-opacity));
+}
+
 #afx-ap-app :is(.hover\:text-ap-primary:hover) {
   --tw-text-opacity: 1;
   color: rgb(116 95 241 / var(--tw-text-opacity));
@@ -2129,6 +2202,10 @@ input[id^="rc-editable-input"] {
     height: 100vh;
   }
 
+  #afx-ap-app :is(.sm\:h-5) {
+    height: 1.25rem;
+  }
+
   #afx-ap-app :is(.sm\:w-10) {
     width: 2.5rem;
   }
@@ -2139,6 +2216,10 @@ input[id^="rc-editable-input"] {
 
   #afx-ap-app :is(.sm\:w-full) {
     width: 100%;
+  }
+
+  #afx-ap-app :is(.sm\:w-5) {
+    width: 1.25rem;
   }
 
   #afx-ap-app :is(.sm\:max-w-lg) {

@@ -6,9 +6,6 @@ const NavSidebar = () => {
   const {
     activeTab,
     setActiveTab,
-    gridSettings,
-    setGridSettings,
-    initialSettings,
     setGridId,
   } = useContext(appContext);
 
@@ -24,7 +21,7 @@ const NavSidebar = () => {
                 setActiveTab("grid-manager");
                 insertUrlParam("tab", "grid-manager");
                 removeUrlParam("grid_id");
-                setGridSettings({ ...initialSettings });
+  
                 setGridId(null);
               }}
               className={`${
@@ -43,7 +40,6 @@ const NavSidebar = () => {
                     setActiveTab("grid-manager");
                     insertUrlParam("tab", "grid-manager");
                     removeUrlParam("grid_id");
-                    setGridSettings({ ...gridSettings });
                     setGridId(null);
                   }}
                   className={`${activeTab == "grid-manager" ? "active" : ""}`}
@@ -60,7 +56,6 @@ const NavSidebar = () => {
                     setActiveTab("grid-new");
                     insertUrlParam("tab", "grid-new");
                     removeUrlParam("grid_id");
-                    setGridSettings({ ...initialSettings });
                     setGridId(null);
                   }}
                   className={`${activeTab == "grid-new" ? "active" : ""}`}
@@ -80,7 +75,6 @@ const NavSidebar = () => {
                 setActiveTab("brand-colors");
                 insertUrlParam("tab", "brand-colors");
                 removeUrlParam("grid_id");
-                setGridSettings({ ...initialSettings });
                 setGridId(null);
               }}
               className={`${
@@ -103,7 +97,6 @@ const NavSidebar = () => {
                     setActiveTab("brand-colors");
                     insertUrlParam("tab", "brand-colors");
                     removeUrlParam("grid_id");
-                    setGridSettings({ ...initialSettings });
                     setGridId(null);
                   }}
                   className={`${activeTab == "brand-colors" ? "active" : ""}`}
@@ -120,7 +113,6 @@ const NavSidebar = () => {
                     setActiveTab("fonts-manager");
                     insertUrlParam("tab", "fonts-manager");
                     removeUrlParam("grid_id");
-                    setGridSettings({ ...initialSettings });
                     setGridId(null);
                   }}
                   className={`${activeTab == "fonts-manager" ? "active" : ""}`}
@@ -137,7 +129,6 @@ const NavSidebar = () => {
                     setActiveTab("backup-restore");
                     insertUrlParam("tab", "backup-restore");
                     removeUrlParam("grid_id");
-                    setGridSettings({ ...initialSettings });
                     setGridId(null);
                   }}
                   className={`${activeTab == "backup-restore" ? "active" : ""}`}
@@ -156,7 +147,6 @@ const NavSidebar = () => {
                 setActiveTab("about");
                 insertUrlParam("tab", "about");
                 removeUrlParam("grid_id");
-                setGridSettings({ ...initialSettings });
                 setGridId(null);
               }}
               className={`${activeTab == "about" ? "active" : ""}`}
