@@ -32,8 +32,8 @@ const GridNew = () => {
     gridTitle: "",
     gridStyle: "style1",
     gridColumnsD: 3,
-    gridColumnsT: 3,
-    gridColumnsM: 3,
+    gridColumnsT: 2,
+    gridColumnsM: 1,
     gridLoadMoreBtn: true,
 
     applyTaxonomyFilter: false,
@@ -79,15 +79,14 @@ const GridNew = () => {
     postExcerptType: "character",
     postExcerptLimit: 25,
     postExcerptText: "...",
-    postMetaDisTags: true,
     postMetaDisDate: true,
     postMetaDisAuthor: false,
     postMetaDisCC: false,
-    postMetaSeparator: "|",
     postImageSize: "large",
     postBtnText: "Read More",
 
     gridBgColor: "#CCC",
+    gridGap: 10,
     gridPadding: {
       top: 10,
       right: 10,
@@ -129,8 +128,8 @@ const GridNew = () => {
     titleFontSize: 22,
     titleFontWeight: "bold",
     titleFontStyle: "normal",
-    titleColor: "#666",
-    titleHoverColor: "#000",
+    titleColor: "#000",
+    titleHoverColor: "#333",
     titleTextDecoration: "none",
     titleTextTransform: "none",
     titleLineHeight: 22,
@@ -179,6 +178,7 @@ const GridNew = () => {
     metaFontWeight: "normal",
     metaFontStyle: "normal",
     metaColor: "#666",
+    metaHoverColor: "#333",
     metaTextDecoration: "none",
     metaTextTransform: "none",
     metaLineHeight: 16,
@@ -224,7 +224,7 @@ const GridNew = () => {
     },
     btnLetterSpacing: 0,
     btnWordSpacing: 0,
-    btnAlignment: "left",
+    btnAlignment: "center",
     btnBorder: {
       top: 0,
       right: 0,
@@ -286,15 +286,14 @@ const GridNew = () => {
     postExcerptType: "character",
     postExcerptLimit: 25,
     postExcerptText: "...",
-    postMetaDisTags: true,
     postMetaDisDate: true,
     postMetaDisAuthor: false,
     postMetaDisCC: false,
-    postMetaSeparator: "|",
     postImageSize: "large",
     postBtnText: "Read More",
 
     gridBgColor: "#CCC",
+    gridGap: 10,
     gridPadding: {
       top: 10,
       right: 10,
@@ -336,8 +335,8 @@ const GridNew = () => {
     titleFontSize: 20,
     titleFontWeight: "normal",
     titleFontStyle: "normal",
-    titleColor: "#666",
-    titleHoverColor: "#000",
+    titleColor: "#000",
+    titleHoverColor: "#333",
     titleTextDecoration: "none",
     titleTextTransform: "none",
     titleLineHeight: 20,
@@ -386,6 +385,7 @@ const GridNew = () => {
     metaFontWeight: "normal",
     metaFontStyle: "normal",
     metaColor: "#666",
+    metaHoverColor: "#333",
     metaTextDecoration: "none",
     metaTextTransform: "none",
     metaLineHeight: 16,
@@ -431,7 +431,7 @@ const GridNew = () => {
     },
     btnLetterSpacing: 0,
     btnWordSpacing: 0,
-    btnAlignment: "left",
+    btnAlignment: "center",
     btnBorder: {
       top: 0,
       right: 0,
@@ -536,6 +536,7 @@ const GridNew = () => {
               displayReadBtn: settings.displayReadBtn,
 
               gridBgColor: settings.gridBgColor,
+              gridGap: settings.gridGap,
               gridPadding: {
                 top: settings.gridPadding.top,
                 right: settings.gridPadding.right,
@@ -557,11 +558,9 @@ const GridNew = () => {
               postExcerptType: settings.postExcerptType,
               postExcerptLimit: settings.postExcerptLimit,
               postExcerptText: settings.postExcerptText,
-              postMetaDisTags: settings.postMetaDisTags,
               postMetaDisDate: settings.postMetaDisDate,
               postMetaDisAuthor: settings.postMetaDisAuthor,
               postMetaDisCC: settings.postMetaDisCC,
-              postMetaSeparator: settings.postMetaSeparator,
               postImageSize: settings.postImageSize,
               postBtnText: settings.postBtnText,
 
@@ -643,6 +642,7 @@ const GridNew = () => {
               metaFontWeight: settings.metaFontWeight,
               metaFontStyle: settings.metaFontStyle,
               metaColor: settings.metaColor,
+              metaHoverColor: settings.metaHoverColor,
               metaTextDecoration: settings.metaTextDecoration,
               metaTextTransform: settings.metaTextTransform,
               metaLineHeight: settings.metaLineHeight,
@@ -886,8 +886,6 @@ const GridNew = () => {
   ]);
 
   const saveGrid = () => {
-    console.log(defaultSettings.elementsOrder);
-
     if (defaultSettings.gridTitle == "") {
       toast.error("Grid Title is Required");
       setActiveSubTab("grid_settings");
@@ -935,7 +933,9 @@ const GridNew = () => {
   return (
     <gridContext.Provider value={gridValues}>
       <div className="flex justify-between items-center pr-5">
-        <h2 className="heading-primary">New Grid</h2>
+        <h2 className="heading-primary">
+          {defaultSettings.gridTitle || "New Grid"}
+        </h2>
       </div>
       <Divider />
 

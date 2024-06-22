@@ -210,36 +210,10 @@ const GridLayout = () => {
           <Toggle title="Display Post Meta?" name="displayPostMeta" />
         </div>
         {defaultSettings.displayPostMeta ? (
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
-            <div>
-              <Toggle title="Display Tags?" name="postMetaDisTags" />
-              <Toggle title="Display Date?" name="postMetaDisDate" />
-              <Toggle title="Display Author?" name="postMetaDisAuthor" />
-              <Toggle title="Display Comemnt Count?" name="postMetaDisCC" />
-            </div>
-            <div className="afx-form-field flex-col !items-start">
-              <label htmlFor="">Separator:</label>
-              <Select
-                options={separatorOptions}
-                placeholder="|"
-                value={separatorOptions.filter(
-                  (option) => option.value === defaultSettings.postMetaSeparator
-                )}
-                styles={{
-                  control: (baseStyles) => ({
-                    ...baseStyles,
-                    width: 275,
-                    height: 42,
-                  }),
-                }}
-                onChange={(newValue) => {
-                  setDefaultSettings({
-                    ...defaultSettings,
-                    postMetaSeparator: newValue.value,
-                  });
-                }}
-              />
-            </div>
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5 max-w-4xl">
+            <Toggle title="Display Date?" name="postMetaDisDate" />
+            <Toggle title="Display Author?" name="postMetaDisAuthor" />
+            <Toggle title="Display Comemnt Count?" name="postMetaDisCC" />
           </div>
         ) : (
           ""
@@ -296,10 +270,7 @@ const GridLayout = () => {
         </div>
         {defaultSettings.displayReadBtn ? (
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
-            <Input
-              title="Button Text"
-              name="postBtnText"
-            />
+            <Input title="Button Text" name="postBtnText" />
           </div>
         ) : (
           ""

@@ -33,6 +33,9 @@ class AFX_Shortcodes
             $settings = $results[0]->settings;
             $set = json_decode($settings);
 
+            print_r($set);
+            die();
+
             $posts_cats = [];
             if (count((array) $set->categories) > 0) {
                 $categories = $set->categories;
@@ -236,6 +239,7 @@ class AFX_Shortcodes
 
     function afx_posts_ajax()
     {
+        /*
         $categories = !empty($_REQUEST['categories']) ? $_REQUEST['categories'] : 'all';
         $order = isset($_REQUEST['order']) ? $_REQUEST['order'] : 'date:DESC';
         $order_ar = explode(':', preg_replace('/\s+/', '', $order));
@@ -295,6 +299,9 @@ class AFX_Shortcodes
         echo json_encode([
             'result' => $html,
         ]);
+        */
+
+        echo 1234567890;
 
         die();
     }

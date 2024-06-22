@@ -38,11 +38,13 @@ const GridStyling = () => {
     text-transform: ${defaultSettings.shTextTransform};
     line-height: ${defaultSettings.shLineHeight + "px"};
     padding: ${defaultSettings.shPadding.top}px ${
-        defaultSettings.shPadding.right
-      }px ${defaultSettings.shPadding.bottom}px ${defaultSettings.shPadding.left}px;
-    margin: ${defaultSettings.shMargin.top}px ${defaultSettings.shMargin.right}px ${
-        defaultSettings.shMargin.bottom
-      }px ${defaultSettings.shMargin.left}px;
+      defaultSettings.shPadding.right
+    }px ${defaultSettings.shPadding.bottom}px ${
+      defaultSettings.shPadding.left
+    }px;
+    margin: ${defaultSettings.shMargin.top}px ${
+      defaultSettings.shMargin.right
+    }px ${defaultSettings.shMargin.bottom}px ${defaultSettings.shMargin.left}px;
     letter-spacing: ${defaultSettings.shLetterSpacing + "px"};
     word-spacing: ${defaultSettings.shWordSpacing + "px"};
     text-align: ${defaultSettings.shAlignment};
@@ -70,15 +72,15 @@ const GridStyling = () => {
     text-transform: ${defaultSettings.titleTextTransform};
     line-height: ${defaultSettings.titleLineHeight + "px"};
     padding: ${defaultSettings.titlePadding.top}px ${
-        defaultSettings.titlePadding.right
-      }px ${defaultSettings.titlePadding.bottom}px ${
-        defaultSettings.titlePadding.left
-      }px;
+      defaultSettings.titlePadding.right
+    }px ${defaultSettings.titlePadding.bottom}px ${
+      defaultSettings.titlePadding.left
+    }px;
     margin: ${defaultSettings.titleMargin.top}px ${
-        defaultSettings.titleMargin.right
-      }px ${defaultSettings.titleMargin.bottom}px ${
-        defaultSettings.titleMargin.left
-      }px;
+      defaultSettings.titleMargin.right
+    }px ${defaultSettings.titleMargin.bottom}px ${
+      defaultSettings.titleMargin.left
+    }px;
     letter-spacing: ${defaultSettings.titleLetterSpacing + "px"};
     word-spacing: ${defaultSettings.titleWordSpacing + "px"};
     text-align: ${defaultSettings.titleAlignment};
@@ -108,15 +110,15 @@ const GridStyling = () => {
     text-transform: ${defaultSettings.excerptTextTransform};
     line-height: ${defaultSettings.excerptLineHeight + "px"};
     padding: ${defaultSettings.excerptPadding.top}px ${
-        defaultSettings.excerptPadding.right
-      }px ${defaultSettings.excerptPadding.bottom}px ${
-        defaultSettings.excerptPadding.left
-      }px;
+      defaultSettings.excerptPadding.right
+    }px ${defaultSettings.excerptPadding.bottom}px ${
+      defaultSettings.excerptPadding.left
+    }px;
     margin: ${defaultSettings.excerptMargin.top}px ${
-        defaultSettings.excerptMargin.right
-      }px ${defaultSettings.excerptMargin.bottom}px ${
-        defaultSettings.excerptMargin.left
-      }px;
+      defaultSettings.excerptMargin.right
+    }px ${defaultSettings.excerptMargin.bottom}px ${
+      defaultSettings.excerptMargin.left
+    }px;
     letter-spacing: ${defaultSettings.excerptLetterSpacing + "px"};
     word-spacing: ${defaultSettings.excerptWordSpacing + "px"};
     text-align: ${defaultSettings.excerptAlignment};
@@ -144,19 +146,22 @@ const GridStyling = () => {
     text-transform: ${defaultSettings.metaTextTransform};
     line-height: ${defaultSettings.metaLineHeight + "px"};
     padding: ${defaultSettings.metaPadding.top}px ${
-        defaultSettings.metaPadding.right
-      }px ${defaultSettings.metaPadding.bottom}px ${
-        defaultSettings.metaPadding.left
-      }px;
+      defaultSettings.metaPadding.right
+    }px ${defaultSettings.metaPadding.bottom}px ${
+      defaultSettings.metaPadding.left
+    }px;
     margin: ${defaultSettings.metaMargin.top}px ${
-        defaultSettings.metaMargin.right
-      }px ${defaultSettings.metaMargin.bottom}px ${
-        defaultSettings.metaMargin.left
-      }px;
+      defaultSettings.metaMargin.right
+    }px ${defaultSettings.metaMargin.bottom}px ${
+      defaultSettings.metaMargin.left
+    }px;
     letter-spacing: ${defaultSettings.metaLetterSpacing + "px"};
     word-spacing: ${defaultSettings.metaWordSpacing + "px"};
     text-align: ${defaultSettings.metaAlignment};
-    }`;
+    }
+
+    .ap-meta a {color: ${defaultSettings.metaColor};}
+    .ap-meta a:hover {color: ${defaultSettings.metaHoverColor};}`;
 
   if (defaultSettings.btnFont) {
     const font = defaultSettings.btnFont.includes("http")
@@ -182,13 +187,15 @@ const GridStyling = () => {
     text-transform: ${defaultSettings.btnTextTransform};
     line-height: ${defaultSettings.btnLineHeight + "px"};
     padding: ${defaultSettings.btnPadding.top}px ${
-        defaultSettings.btnPadding.right
-      }px ${defaultSettings.btnPadding.bottom}px ${
-        defaultSettings.btnPadding.left
-      }px;
+      defaultSettings.btnPadding.right
+    }px ${defaultSettings.btnPadding.bottom}px ${
+      defaultSettings.btnPadding.left
+    }px;
     margin: ${defaultSettings.btnMargin.top}px ${
-        defaultSettings.btnMargin.right
-      }px ${defaultSettings.btnMargin.bottom}px ${defaultSettings.btnMargin.left}px;
+      defaultSettings.btnMargin.right
+    }px ${defaultSettings.btnMargin.bottom}px ${
+      defaultSettings.btnMargin.left
+    }px;
     letter-spacing: ${defaultSettings.btnLetterSpacing + "px"};
     word-spacing: ${defaultSettings.btnWordSpacing + "px"};
     text-align: ${defaultSettings.btnAlignment};
@@ -224,6 +231,7 @@ const GridStyling = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
           <Color title="Background" name="gridBgColor" />
+          <Range title="Gap" name="gridGap" min={0} max={50} />
           <InputGroup title="Padding" name="gridPadding" min={0} max={50} />
           <InputGroup title="Margin" name="gridMargin" min={0} max={50} />
         </div>
@@ -357,6 +365,7 @@ const GridStyling = () => {
           <FontWeight name="metaFontWeight" />
           <FontStyle name="metaFontStyle" />
           <Color name="metaColor" />
+          <Color title="Hover" name="metaHoverColor" />
           <TextDecoration name="metaTextDecoration" />
           <TextTransform name="metaTextTransform" />
           <Range title="Line Height" name="metaLineHeight" min={0} max={100} />

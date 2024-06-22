@@ -1208,6 +1208,18 @@ video {
   margin-top: 1.25rem;
 }
 
+#afx-ap-app :is(.ml-1) {
+  margin-left: 0.25rem;
+}
+
+#afx-ap-app :is(.mr-1) {
+  margin-right: 0.25rem;
+}
+
+#afx-ap-app :is(.mr-3) {
+  margin-right: 0.75rem;
+}
+
 #afx-ap-app :is(.block) {
   display: block;
 }
@@ -1280,6 +1292,10 @@ video {
   height: 100vh;
 }
 
+#afx-ap-app :is(.h-16) {
+  height: 4rem;
+}
+
 #afx-ap-app :is(.min-h-screen) {
   min-height: 100vh;
 }
@@ -1340,6 +1356,10 @@ video {
   width: 100%;
 }
 
+#afx-ap-app :is(.w-16) {
+  width: 4rem;
+}
+
 #afx-ap-app :is(.min-w-\[300px\]) {
   min-width: 300px;
 }
@@ -1358,6 +1378,26 @@ video {
 
 #afx-ap-app :is(.max-w-screen-lg) {
   max-width: 1024px;
+}
+
+#afx-ap-app :is(.max-w-md) {
+  max-width: 28rem;
+}
+
+#afx-ap-app :is(.max-w-sm) {
+  max-width: 24rem;
+}
+
+#afx-ap-app :is(.max-w-xl) {
+  max-width: 36rem;
+}
+
+#afx-ap-app :is(.max-w-4xl) {
+  max-width: 56rem;
+}
+
+#afx-ap-app :is(.max-w-3xl) {
+  max-width: 48rem;
 }
 
 #afx-ap-app :is(.flex-1) {
@@ -1402,6 +1442,10 @@ video {
 
 #afx-ap-app :is(.grid-cols-4) {
   grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+#afx-ap-app :is(.flex-row) {
+  flex-direction: row;
 }
 
 #afx-ap-app :is(.flex-col) {
@@ -1590,6 +1634,11 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+#afx-ap-app :is(.bg-indigo-600) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(79 70 229 / var(--tw-bg-opacity));
+}
+
 #afx-ap-app :is(.fill-black) {
   fill: #000;
 }
@@ -1660,6 +1709,11 @@ video {
 #afx-ap-app :is(.py-6) {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+#afx-ap-app :is(.py-3) {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 #afx-ap-app :is(.\!pl-5) {
@@ -1746,6 +1800,11 @@ video {
 #afx-ap-app :is(.text-xl) {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+#afx-ap-app :is(.text-xs) {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 #afx-ap-app :is(.font-bold) {
@@ -1922,6 +1981,10 @@ video {
   transition-duration: 150ms;
 }
 
+#afx-ap-app :is(.duration-500) {
+  transition-duration: 500ms;
+}
+
 #afx-ap-app :is(.ease-in-out) {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -2040,6 +2103,11 @@ input[id^="rc-editable-input"] {
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
+#afx-ap-app :is(.hover\:bg-white:hover) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
 #afx-ap-app :is(.hover\:text-ap-primary:hover) {
   --tw-text-opacity: 1;
   color: rgb(116 95 241 / var(--tw-text-opacity));
@@ -2048,6 +2116,11 @@ input[id^="rc-editable-input"] {
 #afx-ap-app :is(.hover\:text-gray-500:hover) {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
+#afx-ap-app :is(.hover\:text-indigo-600:hover) {
+  --tw-text-opacity: 1;
+  color: rgb(79 70 229 / var(--tw-text-opacity));
 }
 
 #afx-ap-app :is(.focus\:border-blue-300:focus) {
