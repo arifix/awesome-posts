@@ -28,23 +28,7 @@ class AFX_Shortcodes
 
         $id = $atts['id'];
 
-        //$sql = ;
-        /*
-		$results = wp_cache_get(md5($wpdb->prepare("SELECT * FROM %s WHERE id = %d ORDER BY `id` DESC LIMIT 1", $table_name, $id)), 'awesome-posts');
-		if($results === false) {
-			$results = $wpdb->get_results($wpdb->prepare("SELECT * FROM %s WHERE id = %d ORDER BY `id` DESC LIMIT 1", $table_name, $id), OBJECT);
-			wp_cache_add(md5($sql), $results, 'awesome-posts');
-		}
-            */
-
         $result = $wpdb->get_row($wpdb->prepare("SELECT * FROM %i WHERE id = %d", $table_name, $id));
-        //print_r($results);
-
-        //$results = $wpdb->get_results($sql);
-
-        //$results = $wpdb->get_results("SELECT * FROM `$table_name` WHERE `id`='$id' ORDER BY `id` DESC LIMIT 1");
-
-        //print_r($results);
 
         if ($result !== null) {
             $grid_title = $result->title;
@@ -53,8 +37,8 @@ class AFX_Shortcodes
 
             $post_type = $set->postType->value;
             $post_per_page = $set->postsPerPage ?: -1;
-            $offset = $set->postOffset;
-            $taxonomy = $set->taxonomy->value;
+            $offset = $set->postOffset ?: 0;
+            $taxonomy = !empty($set->taxonomy) ? $set->taxonomy->value : "";
             $terms = [];
             if (count((array) $set->terms) > 0) {
                 $tr = $set->terms;
@@ -68,8 +52,8 @@ class AFX_Shortcodes
             $operator = $set->operator;
             $post_orderby = $set->postOrderBy;
             $post_order = $set->postOrder;
-            $start_date = explode('T', $set->postStartDate[0])[0];
-            $end_date = explode('T', $set->postEndDate[0])[0];
+            $start_date = !empty($set->postStartDate) ? explode('T', $set->postStartDate[0])[0] : "";
+            $end_date = !empty($set->postEndDate) ? explode('T', $set->postEndDate[0])[0] : "";
 
             $post_status = [];
             if (count((array) $set->postStatus) > 0) {
@@ -178,38 +162,40 @@ class AFX_Shortcodes
             }
 
             $posts_query = new WP_Query($posts_args);
+            $found_posts =  $posts_query->found_posts;
+            $total_posts =  $found_posts - $offset;
 
             $html = '<style>
-                .afx-ap-wrapper {
-                background-color: ' . $set->gridBgColor . ';
-                padding: ' . $set->gridPadding->top . 'px ' . $set->gridPadding->right . 'px ' . $set->gridPadding->bottom . 'px ' . $set->gridPadding->left . 'px;
-                margin: ' . $set->gridMargin->top . 'px ' . $set->gridMargin->right . 'px ' . $set->gridMargin->bottom . 'px ' . $set->gridMargin->left . 'px;
-            }
-
-            .afx-ap-wrapper .afx-ap-posts {
-                gap: ' . $set->gridGap . 'px;
-            }
-
-            .afx-ap-wrapper .ap-date {
-                background-color: ' . $set->btnBgColor . ';
-                color: ' . $set->btnColor . ';
-            }
-
-            .afx-ap-wrapper .afx-ap-posts {
-                grid-template-columns: repeat(' . $set->gridColumnsD . ', 1fr);
-            }
-
-            @media screen and (max-width: 991px) {
-                .afx-ap-wrapper .afx-ap-posts {
-                    grid-template-columns: repeat(' . $set->gridColumnsT . ', 1fr);
+                    .afx-ap-wrapper {
+                    background-color: ' . $set->gridBgColor . ';
+                    padding: ' . $set->gridPadding->top . 'px ' . $set->gridPadding->right . 'px ' . $set->gridPadding->bottom . 'px ' . $set->gridPadding->left . 'px;
+                    margin: ' . $set->gridMargin->top . 'px ' . $set->gridMargin->right . 'px ' . $set->gridMargin->bottom . 'px ' . $set->gridMargin->left . 'px;
                 }
-            }
 
-            @media screen and (max-width: 767px) {
                 .afx-ap-wrapper .afx-ap-posts {
-                    grid-template-columns: repeat(' . $set->gridColumnsM . ', 1fr);
+                    gap: ' . $set->gridGap . 'px;
                 }
-            }';
+
+                .afx-ap-wrapper .ap-date {
+                    background-color: ' . $set->btnBgColor . ';
+                    color: ' . $set->btnColor . ';
+                }
+
+                .afx-ap-wrapper .afx-ap-posts {
+                    grid-template-columns: repeat(' . $set->gridColumnsD . ', 1fr);
+                }
+
+                @media screen and (max-width: 991px) {
+                    .afx-ap-wrapper .afx-ap-posts {
+                        grid-template-columns: repeat(' . $set->gridColumnsT . ', 1fr);
+                    }
+                }
+
+                @media screen and (max-width: 767px) {
+                    .afx-ap-wrapper .afx-ap-posts {
+                        grid-template-columns: repeat(' . $set->gridColumnsM . ', 1fr);
+                    }
+                }';
 
             if ($set->shFont) {
                 $font = str_contains($set->shFont, "http")
@@ -245,7 +231,7 @@ class AFX_Shortcodes
                     ? $set->titleFont
                     : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->titleFont) . '&display=swap';
 
-                $html .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.ap-title{font-family: ' . $font . '}';
+                $html .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.afx-ap-wrapper .ap-title{font-family: ' . $font . '}';
             }
 
             $html .= '.afx-ap-wrapper .ap-title{
@@ -273,7 +259,7 @@ class AFX_Shortcodes
                     ? $set->excerptFont
                     : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->excerptFont) . '&display=swap';
 
-                $html .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.ap-excerpt{font-family: ' . $font . '}';
+                $html .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.afx-ap-wrapper .ap-excerpt{font-family: ' . $font . '}';
             }
 
             $html .= '.afx-ap-wrapper .ap-excerpt{
@@ -301,7 +287,7 @@ class AFX_Shortcodes
                     ? $set->metaFont
                     : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->metaFont) . '&display=swap';
 
-                $html .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.ap-meta{font-family: ' . $font . '}';
+                $html .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.afx-ap-wrapper .ap-meta{font-family: ' . $font . '}';
             }
 
             $html .= '.afx-ap-wrapper .ap-meta{
@@ -330,11 +316,11 @@ class AFX_Shortcodes
                     ? $set->btnFont
                     : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->btnFont) . '&display=swap';
 
-                $html .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.ap-btn{font-family: ' . $font . '}';
+                $html .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.afx-ap-wrapper .ap-btn{font-family: ' . $font . '}';
             }
 
             $html .= '.afx-ap-wrapper .ap-btn{
-            font-size: ' . $set->btnFontSize . 'px;
+                font-size: ' . $set->btnFontSize . 'px;
                 font-weight: ' . $set->btnFontWeight . ';
                 font-style: ' . $set->btnFontStyle . ';
                 color: ' . $set->btnColor . ';
@@ -348,26 +334,67 @@ class AFX_Shortcodes
                 letter-spacing: ' . $set->btnLetterSpacing . 'px;
                 word-spacing: ' . $set->btnWordSpacing . 'px;
                 text-align: ' . $set->btnAlignment . ';
-
-
-             
-              border-style: ' . $set->btnBorder->type . ';
-              border-color: ' . $set->btnBorder->color . ';
-              border-top: ' . $set->btnBorder->top . 'px;
-              border-right: ' . $set->btnBorder->right . 'px;
-              border-bottom: ' . $set->btnBorder->bottom . 'px;
-              border-left: ' . $set->btnBorder->left . 'px;
+                border-style: ' . $set->btnBorder->type . ';
+                border-color: ' . $set->btnBorder->color . ';
+                border-top-width: ' . $set->btnBorder->top . 'px;
+                border-right-width: ' . $set->btnBorder->right . 'px;
+                border-bottom-width: ' . $set->btnBorder->bottom . 'px;
+                border-left-width: ' . $set->btnBorder->left . 'px;
               }';
 
-            $html .= '.ap-btn:hover{
+            $html .= '.afx-ap-wrapper .ap-btn:hover{
               background-color: ' . $set->btnBgHoverColor . ';
               color: ' . $set->btnHoverColor . ';
               }';
 
+              if ($set->btnLmFont) {
+                $font = str_contains($set->btnLmFont, "http")
+                    ? AFX_Helper::fonts_url_to_name($set->btnLmFont)
+                    : $set->btnLmFont;
+                $font_url = str_contains($set->btnLmFont, "http")
+                    ? $set->btnLmFont
+                    : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->btnLmFont) . '&display=swap';
+
+                $html .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.afx-ap-wrapper .ap-more-btn{font-family: ' . $font . '}';
+            }
+
+            $html .= '.afx-ap-wrapper .ap-more-btn{
+                font-size: ' . $set->btnLmFontSize . 'px;
+                font-weight: ' . $set->btnLmFontWeight . ';
+                font-style: ' . $set->btnLmFontStyle . ';
+                color: ' . $set->btnLmColor . ';
+                background-color: ' . $set->btnLmBgColor . ';
+                border-radius: ' . $set->btnLmBorderRadius . 'px;
+                text-decoration: ' . $set->btnLmTextDecoration . ';
+                text-transform: ' . $set->btnLmTextTransform . ';
+                line-height: ' . $set->btnLmLineHeight . 'px;
+                padding: ' . $set->btnLmPadding->top . 'px ' . $set->btnLmPadding->right . 'px ' . $set->btnLmPadding->bottom . 'px ' . $set->btnLmPadding->left . 'px;
+                letter-spacing: ' . $set->btnLmLetterSpacing . 'px;
+                word-spacing: ' . $set->btnLmWordSpacing . 'px;
+                text-align: ' . $set->btnLmAlignment . ';
+                border-style: ' . $set->btnLmBorder->type . ';
+                border-color: ' . $set->btnLmBorder->color . ';
+                border-top-width: ' . $set->btnLmBorder->top . 'px;
+                border-right-width: ' . $set->btnLmBorder->right . 'px;
+                border-bottom-width: ' . $set->btnLmBorder->bottom . 'px;
+                border-left-width: ' . $set->btnLmBorder->left . 'px;
+              }';
+
+            $html .= '.afx-ap-wrapper .ap-more-btn:hover{
+              background-color: ' . $set->btnLmBgHoverColor . ';
+              color: ' . $set->btnLmHoverColor . ';
+              }';
+              
             $html .= '</style>';
 
             if ($posts_query->have_posts()) {
                 $html .= '<div class="afx-ap-wrapper">';
+                $html .= '<div class="ap-loader">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>';
+
                 $html .= '<h2 class="ap-grid-title">' . $grid_title . '</h2>';
                 $html .= '<div class="afx-ap-posts">';
                 while ($posts_query->have_posts()) {
@@ -446,204 +473,14 @@ class AFX_Shortcodes
                         </div>';
                 }
                 $html .= '</div>';
+                $html .= '<p style="text-align: center;"><button type="button" class="ap-more-btn" data-admin-ajax="' . admin_url("admin-ajax.php") . '" data-query="' . str_replace('"', '\'', json_encode($posts_args)) . '" data-settings="' .  str_replace('"', '\'', json_encode($set)) . '" data-query-offset="' . $offset . '" data-total-posts="' . $total_posts . '"' . ($post_per_page >= $total_posts ? 'style="display: none;"' : '') . '>Load More</button></p>';
                 $html .= '</div>';
             }
 
-
-            //print_r($set);
-
-            return $html;
-            //die();
-
-            /*
-            $order_ar = explode(':', preg_replace('/\s+/', '', ($set->postsOrder ?: 'date:DESC')));
-
-            $total_args = array(
-                'post_type' => 'product',
-                'posts_per_page' => -1,
-                'post_status' => 'publish',
-                'orderby' => $order_ar[0],
-                'order' => $order_ar[1],
-            );
-
-            $posts_args = array(
-                'post_type' => 'product',
-                'posts_per_page' => ($set->postsPerPage ?: -1),
-                'post_status' => 'publish',
-                'orderby' => $order_ar[0],
-                'order' => $order_ar[1],
-            );
-
-            if (count((array) $set->categories) > 0) {
-                $categories = $set->categories;
-
-                if (count($categories) > 0) {
-                    $tax_query = [];
-                    $tax_query['relation'] = 'OR';
-
-                    foreach ($categories as $cat) {
-                        array_push(
-                            $tax_query,
-                            array(
-                                'taxonomy' => 'product_cat',
-                                'field' => 'slug',
-                                'terms' => $cat->value,
-                            )
-                        );
-                    }
-
-                    $posts_args['tax_query'] = $tax_query;
-                    $total_args['tax_query'] = $tax_query;
-                }
-            }
-
-            $total_query = new WP_Query($total_args);
-            $total_posts = $total_query->found_posts;
-
-            $posts_query = new WP_Query($posts_args);
-
-            $style = '<style>';
-            $style .= '@media(min-width: 961px){#afx-ap-wrapper .product-grid{grid-template-columns: repeat(' . $set->gridColumns . ', 1fr);}}';
-
-            if (!$set->showProductTitle) {
-                $style .= '#afx-ap-wrapper .product-grid .product h2{display: none;}';
-            }
-            if ($set->productTitleFont) {
-                $font = str_contains($set->productTitleFont, 'http')
-                    ? AFX_Helper::fonts_url_to_name($set->productTitleFont)
-                    : $set->productTitleFont;
-                $font_url = str_contains($set->productTitleFont, 'http')
-                    ? $set->productTitleFont
-                    : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->productTitleFont) . '&display=swap';
-                $style .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}#afx-ap-wrapper .product-grid .product h2{font-family: "' . $font . '";}';
-            }
-            if ($set->productTitleSize) {
-                $style .= '#afx-ap-wrapper .product-grid .product h2{font-size: ' . $set->productTitleSize . 'px;}';
-            }
-            if ($set->productTitleColor) {
-                $style .= '#afx-ap-wrapper .product-grid .product h2{color: ' . $set->productTitleColor . ';}';
-            }
-            if ($set->productTitleAlignment) {
-                $style .= '#afx-ap-wrapper .product-grid .product h2{text-align: ' . $set->productTitleAlignment . ';}';
-            }
-
-            if (!$set->showProductDes) {
-                $style .= '#afx-ap-wrapper .product-grid .product p:not(.price){display: none;}';
-            }
-            if ($set->productDesFont) {
-                $font = str_contains($set->productDesFont, 'http')
-                    ? AFX_Helper::fonts_url_to_name($set->productDesFont)
-                    : $set->productDesFont;
-                $font_url = str_contains($set->productDesFont, 'http')
-                    ? $set->productDesFont
-                    : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->productDesFont) . '&display=swap';
-                $style .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}#afx-ap-wrapper .product-grid .product p:not(.price){font-family: "' . $font . '";}';
-            }
-            if ($set->productDesSize) {
-                $style .= '#afx-ap-wrapper .product-grid .product p:not(.price){font-size: ' . $set->productDesSize . 'px;}';
-            }
-            if ($set->productDesColor) {
-                $style .= '#afx-ap-wrapper .product-grid .product p:not(.price){color: ' . $set->productDesColor . ';}';
-            }
-            if ($set->productDesAlignment) {
-                $style .= '#afx-ap-wrapper .product-grid .product p:not(.price){text-align: ' . $set->productDesAlignment . ';}';
-            }
-
-            if (!$set->showProductPrice) {
-                $style .= '#afx-ap-wrapper .product-grid .product .price{display: none;}';
-            }
-            if ($set->productPriceFont) {
-                $font = str_contains($set->productPriceFont, 'http')
-                    ? AFX_Helper::fonts_url_to_name($set->productPriceFont)
-                    : $set->productPriceFont;
-                $font_url = str_contains($set->productPriceFont, 'http')
-                    ? $set->productPriceFont
-                    : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->productPriceFont) . '&display=swap';
-                $style .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}#afx-ap-wrapper .product-grid .product .price{font-family: "' . $font . '";}';
-            }
-            if ($set->productPriceSize) {
-                $style .= '#afx-ap-wrapper .product-grid .product .price{font-size: ' . $set->productPriceSize . 'px;}';
-            }
-            if ($set->productPriceColor) {
-                $style .= '#afx-ap-wrapper .product-grid .product .price{color: ' . $set->productPriceColor . ';}';
-            }
-            if ($set->productPriceAlignment) {
-                $style .= '#afx-ap-wrapper .product-grid .product .price{text-align: ' . $set->productPriceAlignment . ';}';
-            }
-
-            if (!$set->showProductButton) {
-                $style .= '#afx-ap-wrapper .product-grid .product a{display: none;}';
-            }
-            if ($set->productButtonFont) {
-                $font = str_contains($set->productButtonFont, 'http')
-                    ? AFX_Helper::fonts_url_to_name($set->productButtonFont)
-                    : $set->productButtonFont;
-                $font_url = str_contains($set->productButtonFont, 'http')
-                    ? $set->productButtonFont
-                    : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->productButtonFont) . '&display=swap';
-                $style .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}#afx-ap-wrapper .product-grid .product a{font-family: "' . $font . '";}';
-            }
-            if ($set->productButtonSize) {
-                $style .= '#afx-ap-wrapper .product-grid .product a{font-size: ' . $set->productButtonSize . 'px;}';
-            }
-            if ($set->productButtonColor) {
-                $style .= '#afx-ap-wrapper .product-grid .product a{color: ' . $set->productButtonColor . ';}';
-            }
-            if ($set->productButtonAlignment) {
-                $style .= '#afx-ap-wrapper .product-grid .product a{text-align: ' . $set->productButtonAlignment . ';}';
-            }
-            if ($set->productButtonBgColor) {
-                $style .= '#afx-ap-wrapper .product-grid .product a{background-color: ' . $set->productButtonBgColor . ';}';
-            }
-            if ($set->productButtonBorderRadius) {
-                $style .= '#afx-ap-wrapper .product-grid .product a{border-radius: ' . $set->productButtonBorderRadius . 'px;}';
-            }
-
-            $style .= ' </style>';
-
-            $html = $style;
-            $html .= '<div id="afx-ap-wrapper">';
-            if ($posts_query->have_posts()) {
-                $html .= '<div class="afx-ap-filter">
-                <div id="afx-ap-loader">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-
-                <select class="afx-ap-posts-order afx-ap-select" name="order">
-                    <option value="date:DESC" ' . ($set->postsOrder == 'date:DESC' ? 'selected' : "") . '>Most Recent</option>
-                    <option value="date:ASC" ' . ($set->postsOrder == 'date:ASC' ? 'selected' : "") . '>Oldest First</option>
-                    <option value="title:ASC" ' . ($set->postsOrder == 'title:ASC' ? 'selected' : "") . '>Title A-Z</option>
-                    <option value="title:DESC" ' . ($set->postsOrder == 'title:DESC' ? 'selected' : "") . '>Title Z-A</option>
-                </select>
-            </div>';
-
-                $html .= '<div class="product-grid">';
-                while ($posts_query->have_posts()) {
-                    $posts_query->the_post();
-
-                    $product   = wc_get_product(get_the_ID());
-                    $image_url = wp_get_attachment_url($product->get_image_id(), 'full');
-
-                    $html .= '<div class="product">';
-                    $html .= '<img src="' . ($image_url ?: 'https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png?format=jpg&quality=100&v=1530129081') . '" alt="' . get_the_title() . '">';
-                    $html .= '<h2>' . get_the_title() . '</h2>';
-                    $html .= '<p>' . get_the_excerpt() . '</p>';
-                    $html .= '<p class="price">$' . $product->get_sale_price() . '</p>';
-                    $html .= '<a href="' . get_permalink() . '">View Product</a>';
-                    //$html .= '<a href="?add-to-cart=' . get_the_ID() . '" data-quantity="1" class="add_to_cart_button ajax_add_to_cart" data-product_id="' . get_the_ID() . '">Add to Cart</a>';
-                    $html .= '</div>';
-                }
-
-                $html .= '</div>';
-                $html .= '<button type="button" id="afx-ap-load-more" data-admin-ajax="' . admin_url("admin-ajax.php") . '"  data-categories="' . join(",", $posts_cats) . '" data-posts-per-page="' . $set->postsPerPage . '" data-total-posts="' . $total_posts . '" 
-            ' . ($set->postsPerPage >= $total_posts ? 'style="display: none;"' : '') . '>Load More</button>';
-            }
-            $html .= '</div>';
+            wp_reset_query();
+            wp_reset_postdata();
 
             return $html;
-            */
         }
 
         return "";
@@ -651,41 +488,9 @@ class AFX_Shortcodes
 
     function afx_posts_ajax()
     {
-        /*
-        $categories = !empty($_REQUEST['categories']) ? $_REQUEST['categories'] : 'all';
-        $order = isset($_REQUEST['order']) ? $_REQUEST['order'] : 'date:DESC';
-        $order_ar = explode(':', preg_replace('/\s+/', '', $order));
-
-        $posts_args = array(
-            'post_type' => 'product',
-            'posts_per_page' => $_REQUEST['posts_per_page'],
-            'offset' => $_REQUEST['offset'],
-            'post_status' => 'publish',
-            'orderby' => $order_ar[0],
-            'order' => $order_ar[1]
-        );
-
-        if ($categories != 'all') {
-            $categories = explode(',', preg_replace('/\s+/', '', $categories));
-
-            if (count($categories) > 0) {
-                $tax_query = [];
-                $tax_query['relation'] = 'OR';
-
-                foreach ($categories as $cat) {
-                    array_push(
-                        $tax_query,
-                        array(
-                            'taxonomy' => 'product_cat',
-                            'field' => 'slug',
-                            'terms' => $cat,
-                        )
-                    );
-                }
-
-                $posts_args['tax_query'] = $tax_query;
-            }
-        }
+        $posts_args = !empty($_REQUEST['query']) ? json_decode(str_replace("\'", "\"", $_REQUEST['query']), true) : [];
+        $posts_args['offset'] = isset($_REQUEST['offset']) ? $posts_args->offset + $_REQUEST['offset'] : 0;
+        $set = !empty($_REQUEST['settings']) ? json_decode(str_replace("\'", "\"", $_REQUEST['settings'])) : [];
 
         $posts_query = new WP_Query($posts_args);
 
@@ -693,27 +498,87 @@ class AFX_Shortcodes
         if ($posts_query->have_posts()) {
             while ($posts_query->have_posts()) {
                 $posts_query->the_post();
+                $featured_image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'full');
 
-                $product   = wc_get_product(get_the_ID());
-                $image_url = wp_get_attachment_url($product->get_image_id(), 'full');
+                $author = get_the_author();
+                $comments = get_comment_count(get_the_ID());
 
-                $html .= '<div class="product">';
-                $html .= '<img src="' . ($image_url ?: 'https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png?format=jpg&quality=100&v=1530129081') . '" alt="' . get_the_title() . '">';
-                $html .= '<h2>' . get_the_title() . '</h2>';
-                $html .= '<p>' . get_the_excerpt() . '</p>';
-                $html .= '<p class="price">$' . $product->get_sale_price() . '</p>';
-                $html .= '<a href="' . get_permalink() . '">View Product</a>';
-                //$html .= '<a href="?add-to-cart=' . get_the_ID() . '" data-quantity="1" class="add_to_cart_button ajax_add_to_cart" data-product_id="' . get_the_ID() . '">Add to Cart</a>';
-                $html .= '</div>';
+                $cats = [];
+                if ($post_type == 'post') {
+                    $term_list = wp_get_post_terms(get_the_ID(), 'category', array('fields' => 'all'));
+
+                    foreach ($term_list as $term) {
+                        $term_link = get_term_link($term);
+                        $cats[] = '<a href="' . $term_link . '">' . $term->name . '</a>';
+                    }
+                } else {
+                    if (!empty($taxonomy2)) {
+                        $term_list = wp_get_post_terms(get_the_ID(), $taxonomy, array('fields' => 'all'));
+
+                        foreach ($term_list as $term) {
+                            $term_link = get_term_link($term);
+                            $cats[] = '<a href="' . $term_link . '">' . $term->name . '</a>';
+                        }
+                    }
+                }
+
+                $html .= '<div class="ap-post-single">
+                    <div class="ap-image-cover">
+                    <img
+                        decoding="async"
+                        src="' . (is_array($featured_image) ? $featured_image[0] : 'https://placehold.co/900x600/orange/FFFFFF/png?text=Placeholder+Image') . '"
+                        alt="' . get_the_title() . '"
+                        class="ap-featured-img"
+                    />
+                    <div class="ap-date">' . get_the_date('d M') . '</div>
+                    </div>
+
+                    <div class="ap-post-meta">
+                        <a href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">
+                            <svg
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                width="24"
+                                height="24"
+                            >
+                                <path
+                                d="M12 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm9 11a1 1 0 0 1-2 0v-2a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v2a1 1 0 0 1-2 0v-2a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v2z"
+                                />
+                            </svg>
+                            <span class="ap-meta">' . $author . '</span>
+                        </a>
+
+                        <a href="' . get_the_permalink() . '">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+                                ></path>
+                            </svg>
+                            <span class="ap-meta">' . $comments['approved'] . ' Comments</span>
+                        </a>
+                    </div>
+                    <div class="ap-post-content">
+                        <p class="ap-cats ap-meta">' . join(" $set->postCatSeparator ", $cats) . ' </p>
+                        <a href="' . get_the_permalink() . '">
+                            <h3 class="ap-title">' . get_the_title() . '</h3>
+                        </a>
+                        <p class="ap-excerpt">' . get_the_excerpt() . '</p>
+                        <a href="' . get_the_permalink() . '" class="ap-btn">' . $set->postBtnText . '</a>
+                    </div>
+                    </div>';
             }
         }
 
         echo json_encode([
             'result' => $html,
         ]);
-        */
 
-        echo 1234567890;
+        wp_reset_query();
+        wp_reset_postdata();
 
         die();
     }

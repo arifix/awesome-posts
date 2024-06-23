@@ -21,13 +21,12 @@ class AFX_Activator
 
             $charset_collate = $wpdb->get_charset_collate();
 
-            $sql = $wpdb->prepare("CREATE TABLE %i (
+            $sql = "CREATE TABLE $table_name (
                 `id` int(11) NOT NULL AUTO_INCREMENT,
                 `title` varchar(200) NOT NULL,
                 `settings` text NOT NULL,
                 `timestamp` varchar(20) NOT NULL,
-                PRIMARY KEY (id)
-            ) %s;", $table_name, $charset_collate);
+                PRIMARY KEY (id) $charset_collate;";
 
             require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 

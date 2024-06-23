@@ -176,14 +176,7 @@ class AFX_Rest_Routes
         }
 
         $table_name = $wpdb->prefix . AFX_AP_TABLE_NAME;
-        //$results = $wpdb->get_results($wpdb->prepare("SELECT * FROM %i WHERE 1", $table_name));
-
-        $query = $wpdb->prepare("SELECT * FROM %i WHERE 1", $table_name);
-
-		if ( false === ( $posts = get_transient( 'cached_posts' ) ) ) {
-			$results = $wpdb->get_results($query);
-			wp_cache_add(md5($query), $results, 'awesome-posts');
-		}
+        $results = $wpdb->get_results($wpdb->prepare("SELECT * FROM %i WHERE 1", $table_name));
 
         $grids = [];
         if (count($results) > 0) {

@@ -201,16 +201,60 @@ const GridStyling = () => {
     text-align: ${defaultSettings.btnAlignment};
     border-style: ${defaultSettings.btnBorder.type};
     border-color: ${defaultSettings.btnBorder.color};
-    border-top: ${defaultSettings.btnBorder.top + "px"};
-    border-right: ${defaultSettings.btnBorder.right + "px"};
-    border-bottom: ${defaultSettings.btnBorder.bottom + "px"};
-    border-left: ${defaultSettings.btnBorder.left + "px"};
+    border-top-width: ${defaultSettings.btnBorder.top + "px"};
+    border-right-width: ${defaultSettings.btnBorder.right + "px"};
+    border-bottom-width: ${defaultSettings.btnBorder.bottom + "px"};
+    border-left-width: ${defaultSettings.btnBorder.left + "px"};
     }`;
 
   styles += `.ap-btn:hover{
     background-color: ${defaultSettings.btnBgHoverColor};
     color: ${defaultSettings.btnHoverColor};
     }`;
+
+    if (defaultSettings.btnLmFont) {
+      const font = defaultSettings.btnLmFont.includes("http")
+        ? fontsUrlToName(defaultSettings.btnLmFont)
+        : defaultSettings.btnLmFont;
+      const font_url = defaultSettings.btnLmFont.includes("http")
+        ? defaultSettings.btnLmFont
+        : `https://fonts.googleapis.com/css?family=${defaultSettings.btnLmFont
+            .split(" ")
+            .join("+")}&display=swap`;
+  
+      styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.ap-more-btn{font-family: '${font}'}`;
+    }
+  
+    styles += `.ap-more-btn{
+      font-size: ${defaultSettings.btnLmFontSize + "px"};
+      font-weight: ${defaultSettings.btnLmFontWeight};
+      font-style: ${defaultSettings.btnLmFontStyle};
+      background-color: ${defaultSettings.btnLmBgColor};
+      color: ${defaultSettings.btnLmColor};
+      border-radius: ${defaultSettings.btnLmBorderRadius + "px"};
+      text-decoration: ${defaultSettings.btnLmTextDecoration};
+      text-transform: ${defaultSettings.btnLmTextTransform};
+      line-height: ${defaultSettings.btnLmLineHeight + "px"};
+      padding: ${defaultSettings.btnLmPadding.top}px ${
+        defaultSettings.btnLmPadding.right
+      }px ${defaultSettings.btnLmPadding.bottom}px ${
+        defaultSettings.btnLmPadding.left
+      }px;
+      letter-spacing: ${defaultSettings.btnLmLetterSpacing + "px"};
+      word-spacing: ${defaultSettings.btnLmWordSpacing + "px"};
+      text-align: ${defaultSettings.btnLmAlignment};
+      border-style: ${defaultSettings.btnLmBorder.type};
+      border-color: ${defaultSettings.btnLmBorder.color};
+      border-top-width: ${defaultSettings.btnLmBorder.top + "px"};
+      border-right-width: ${defaultSettings.btnLmBorder.right + "px"};
+      border-bottom-width: ${defaultSettings.btnLmBorder.bottom + "px"};
+      border-left-width: ${defaultSettings.btnLmBorder.left + "px"};
+      }`;
+  
+    styles += `.ap-more-btn:hover{
+      background-color: ${defaultSettings.btnLmBgHoverColor};
+      color: ${defaultSettings.btnLmHoverColor};
+      }`;
 
   useEffect(() => {
     setCssStyles(styles);
@@ -451,6 +495,51 @@ const GridStyling = () => {
         <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7 text-center">
           <button type="button" className="ap-btn">
             {defaultSettings.postBtnText}
+          </button>
+        </div>
+      </div>
+
+      {/* Load More Button */}
+      <div className="px-5 py-2">
+        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+          <h3 className="heading-secondary text-xl pb-3">
+            Load More Button
+          </h3>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+          <FontFamily name="btnLmFont" />
+          <Range title="Font Size" name="btnLmFontSize" min={14} max={100} />
+          <FontWeight name="btnLmFontWeight" />
+          <FontStyle name="btnLmFontStyle" />
+          <Color title="Background" name="btnLmBgColor" />
+          <Color name="btnLmColor" />
+          <Color title="Hover Background" name="btnLmBgHoverColor" />
+          <Color title="Hover" name="btnLmHoverColor" />
+          <Range
+            title="Border Radius"
+            name="btnLmBorderRadius"
+            min={0}
+            max={50}
+          />
+          <TextDecoration name="btnLmTextDecoration" />
+          <TextTransform name="btnLmTextTransform" />
+          <Range title="Line Height" name="btnLmLineHeight" min={0} max={100} />
+          <InputGroup title="Padding" name="btnLmPadding" min={0} max={50} />
+          <Range
+            title="Letter Spacing"
+            name="btnLmLetterSpacing"
+            min={-5}
+            max={50}
+          />
+          <Range title="Word Spacing" name="btnLmWordSpacing" min={-5} max={50} />
+          <Alignment name="btnLmAlignment" />
+          <Border name="btnLmBorder" min={0} max={20} />
+        </div>
+
+        <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7 text-center">
+          <button type="button" className="ap-more-btn">
+            {defaultSettings.btnLmText}
           </button>
         </div>
       </div>

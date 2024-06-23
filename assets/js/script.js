@@ -7,7 +7,7 @@
         type: "POST",
         dataType: "json",
         beforeSend: (xhr) => {
-          $(".pas-loader").show();
+          $(".ap-loader").show();
           beforeFun();
         },
         success: function (data) {
@@ -22,61 +22,43 @@
     });
   }
 
-  $(".afx-ap-posts-order").on("change", async function () {
-    const admin_url = $("#afx-ap-load-more").attr("data-admin-ajax");
-    const categories = $("#afx-ap-load-more").attr("data-categories");
-    const posts_per_page = $("#afx-ap-load-more").attr("data-posts-per-page");
-    const total_posts = $("#afx-ap-load-more").attr("data-total-posts");
-    const order = $(this).val();
-
-    sendAjax(
-      admin_url,
-      "get_awesome-posts",
-      { categories, posts_per_page, order },
-      function (data) {
-        $(".product-grid .product").remove();
-        $(".product-grid").prepend(data.result);
-        $("#afx-ap-loader").hide();
-
-        const current_post_count = $(".product-grid .product").length;
-        if (total_posts == current_post_count) {
-          $("#afx-ap-load-more").hide();
-        } else {
-          $("#afx-ap-load-more").show();
-        }
-      },
-      function () {
-        $("#afx-ap-loader").show();
-      }
-    );
-  });
-
-  $("#afx-ap-load-more").on("click", async function () {
+  $(".ap-more-btn").on("click", async function () {
     const admin_url = $(this).attr("data-admin-ajax");
-    const categories = $(this).attr("data-categories");
-    const posts_per_page = $(this).attr("data-posts-per-page");
-    const offset = $(".product-grid .product").length;
-    const total_posts = $(this).attr("data-total-posts");
-    const order = $(".afx-ap-posts-order").val();
+    const query = $(this).attr("data-query");
+    const settings = $(this).attr("data-settings");
+    const total_posts = parseInt($(this).attr("data-total-posts"));
+    const offset =
+      parseInt(
+        $(this).parents(".afx-ap-wrapper").find(".ap-post-single").length
+      ) + parseInt($(this).attr("data-query-offset"));
+
+    const self = $(this);
 
     sendAjax(
       admin_url,
       "get_awesome-posts",
-      { categories, posts_per_page, offset, order },
+      { query, settings, offset },
       function (data) {
-        $(".product-grid .product").last().after(data.result);
-        $("#afx-ap-loader").hide();
+        self
+          .parents(".afx-ap-wrapper")
+          .find(".ap-post-single")
+          .last()
+          .after(data.result);
+        $(".ap-loader").hide();
 
-        const current_post_count = $(".product-grid .product").length;
-        if (total_posts == current_post_count) {
-          $("#afx-ap-load-more").hide();
+        const current_post_count = parseInt(
+          self.parents(".afx-ap-wrapper").find(".ap-post-single").length
+        );
+
+        if (total_posts <= current_post_count) {
+          $(".ap-more-btn").hide();
         }
 
-        $("#afx-ap-load-more .spinner").remove();
+        $(".ap-more-btn .spinner").remove();
       },
       function () {
-        $("#afx-ap-loader").show();
-        $("#afx-ap-load-more").prepend(`<span class="spinner"></span>`);
+        $(".ap-loader").show();
+        $(".ap-more-btn").prepend(`<span class="spinner"></span>`);
       }
     );
   });

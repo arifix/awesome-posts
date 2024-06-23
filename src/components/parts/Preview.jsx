@@ -195,6 +195,12 @@ const Preview = ({ defaultSettings, cssStyles }) => {
             </div>
           ))}
         </div>
+
+        <p style={{ textAlign: "center", marginTop: 10 }}>
+          <button type="button" className="ap-more-btn">
+            Load More
+          </button>
+        </p>
       </div>
     </div>
   );
