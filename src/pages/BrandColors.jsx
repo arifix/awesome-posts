@@ -45,7 +45,7 @@ const BrandColors = () => {
 
     axios
       .post(
-        baseUrl + "settings",
+        baseUrl + "settings" + "/?_wpnonce=" + afxApApp.nonce,
         {
           settings: JSON.stringify(colors),
         },

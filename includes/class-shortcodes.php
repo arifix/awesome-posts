@@ -27,11 +27,28 @@ class AFX_Shortcodes
         ), $atts, 'awesome-posts');
 
         $id = $atts['id'];
-        $results = $wpdb->get_results("SELECT * FROM `$table_name` WHERE `id`='$id' ORDER BY `id` DESC LIMIT 1");
 
-        if (count($results) == 1) {
-            $grid_title = $results[0]->title;
-            $settings = $results[0]->settings;
+        //$sql = ;
+        /*
+		$results = wp_cache_get(md5($wpdb->prepare("SELECT * FROM %s WHERE id = %d ORDER BY `id` DESC LIMIT 1", $table_name, $id)), 'awesome-posts');
+		if($results === false) {
+			$results = $wpdb->get_results($wpdb->prepare("SELECT * FROM %s WHERE id = %d ORDER BY `id` DESC LIMIT 1", $table_name, $id), OBJECT);
+			wp_cache_add(md5($sql), $results, 'awesome-posts');
+		}
+            */
+
+        $result = $wpdb->get_row($wpdb->prepare("SELECT * FROM %i WHERE id = %d", $table_name, $id));
+        //print_r($results);
+
+        //$results = $wpdb->get_results($sql);
+
+        //$results = $wpdb->get_results("SELECT * FROM `$table_name` WHERE `id`='$id' ORDER BY `id` DESC LIMIT 1");
+
+        //print_r($results);
+
+        if ($result !== null) {
+            $grid_title = $result->title;
+            $settings = $result->settings;
             $set = json_decode($settings);
 
             $post_type = $set->postType->value;

@@ -22,7 +22,7 @@ const BackupRestore = () => {
     const toastId = toast.loading("Downloading Backup...");
     axios
       .post(
-        baseUrl + "settings/backup",
+        baseUrl + "settings/backup" + "/?_wpnonce=" + afxApApp.nonce,
         {},
         {
           headers: {
@@ -60,7 +60,7 @@ const BackupRestore = () => {
       formData.append("title", file.name);
 
       axios
-        .post(mediaUrl, formData, {
+        .post(mediaUrl + "/?_wpnonce=" + afxApApp.nonce, formData, {
           headers: {
             "Content-Disposition": "form-data; filename='" + file.name + "'",
             "X-WP-NONCE": afxApApp.nonce,
@@ -72,7 +72,7 @@ const BackupRestore = () => {
 
           axios
             .post(
-              baseUrl + "settings/restore",
+              baseUrl + "settings/restore" + "/?_wpnonce=" + afxApApp.nonce,
               {
                 file_id,
                 json_url,
@@ -99,7 +99,7 @@ const BackupRestore = () => {
 
     axios
       .post(
-        baseUrl + "settings/reset",
+        baseUrl + "settings/reset" + "/?_wpnonce=" + afxApApp.nonce,
         {
           settings: "",
         },

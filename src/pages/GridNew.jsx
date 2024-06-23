@@ -477,7 +477,7 @@ const GridNew = () => {
       if (grid_id) {
         axios
           .post(
-            baseUrl + "grid/get",
+            baseUrl + "grid/get" + "/?_wpnonce=" + afxApApp.nonce,
             {
               grid_id,
             },
@@ -737,17 +737,21 @@ const GridNew = () => {
   ]);
 
   useEffect(() => {
-    axios.get(baseUrl + "post-types").then((res) => {
-      if (res.data) {
-        setPostTypes(res.data);
-      }
-    });
+    axios
+      .get(baseUrl + "post-types" + "/?_wpnonce=" + afxApApp.nonce)
+      .then((res) => {
+        if (res.data) {
+          setPostTypes(res.data);
+        }
+      });
 
-    axios.get(baseUrl + "authors").then((res) => {
-      if (res.data) {
-        setAuthors(res.data);
-      }
-    });
+    axios
+      .get(baseUrl + "authors" + "/?_wpnonce=" + afxApApp.nonce)
+      .then((res) => {
+        if (res.data) {
+          setAuthors(res.data);
+        }
+      });
   }, []);
 
   useEffect(() => {
@@ -761,11 +765,19 @@ const GridNew = () => {
     const type = defaultSettings.postType?.value;
 
     if (type) {
-      axios.get(baseUrl + "taxonomies?post-type=" + type).then((res) => {
-        if (res.data) {
-          setTaxonomies(res.data);
-        }
-      });
+      axios
+        .get(
+          baseUrl +
+            "taxonomies?post-type=" +
+            type +
+            "&_wpnonce=" +
+            afxApApp.nonce
+        )
+        .then((res) => {
+          if (res.data) {
+            setTaxonomies(res.data);
+          }
+        });
     }
   }, [defaultSettings.postType]);
 
@@ -775,7 +787,15 @@ const GridNew = () => {
 
     if (type && taxonomy) {
       axios
-        .get(baseUrl + "terms?post-type=" + type + "&taxonomy=" + taxonomy)
+        .get(
+          baseUrl +
+            "terms?post-type=" +
+            type +
+            "&taxonomy=" +
+            taxonomy +
+            "&_wpnonce=" +
+            afxApApp.nonce
+        )
         .then((res) => {
           if (res.data) {
             setTerms(res.data);
@@ -867,11 +887,13 @@ const GridNew = () => {
     }
 
     if (type != "" && query) {
-      axios.get(baseUrl + "posts?" + query).then((res) => {
-        if (res.data) {
-          setPosts(res.data);
-        }
-      });
+      axios
+        .get(baseUrl + "posts?" + query + "&_wpnonce=" + afxApApp.nonce)
+        .then((res) => {
+          if (res.data) {
+            setPosts(res.data);
+          }
+        });
     }
   }, [
     defaultSettings.postType,
@@ -910,7 +932,7 @@ const GridNew = () => {
 
       axios
         .post(
-          baseUrl + "grid/new",
+          baseUrl + "grid/new" + "/?_wpnonce=" + afxApApp.nonce,
           {
             grid_id: grid_id,
             grid_title: defaultSettings.gridTitle,

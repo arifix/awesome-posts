@@ -32,7 +32,7 @@ const FontsManager = () => {
     formData.append("title", file.name);
 
     axios
-      .post(mediaUrl, formData, {
+      .post(mediaUrl + "/?_wpnonce=" + afxApApp.nonce, formData, {
         headers: {
           "Content-Disposition": "form-data; filename='" + file.name + "'",
           "X-WP-NONCE": afxApApp.nonce,
@@ -44,7 +44,7 @@ const FontsManager = () => {
 
         axios
           .post(
-            baseUrl + "settings",
+            baseUrl + "settings" + "/?_wpnonce=" + afxApApp.nonce,
             {
               settings: JSON.stringify({
                 fonts: { ...fonts, [file_id]: font_url },
@@ -88,7 +88,7 @@ const FontsManager = () => {
 
         axios
           .post(
-            baseUrl + "settings",
+            baseUrl + "settings" + "/?_wpnonce=" + afxApApp.nonce,
             {
               settings: JSON.stringify({
                 fonts: { ...fonts, [file_id]: fontUrl },
@@ -124,7 +124,7 @@ const FontsManager = () => {
 
     axios
       .post(
-        baseUrl + "settings",
+        baseUrl + "settings" + "/?_wpnonce=" + afxApApp.nonce,
         {
           settings: JSON.stringify({
             fonts: newFonts,
@@ -145,7 +145,7 @@ const FontsManager = () => {
         if (delId.length < 13) {
           axios
             .post(
-              mediaUrl + `${key}/?force=1`,
+              mediaUrl + key + "/?force=1&_wpnonce=" + afxApApp.nonce,
               {},
               {
                 headers: {

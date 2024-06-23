@@ -47,16 +47,18 @@ const App = () => {
   }, [showSidebar]);
 
   useEffect(() => {
-    axios.get(baseUrl + "settings").then((res) => {
-      if (res?.data) {
-        const setting = res?.data?.settings
-          ? JSON.parse(res.data.settings)
-          : "";
-        setSettings(setting);
-        setRefreshSettings(false);
-      }
-      setLoading(false);
-    });
+    axios
+      .get(baseUrl + "settings" + "/?_wpnonce=" + afxApApp.nonce)
+      .then((res) => {
+        if (res?.data) {
+          const setting = res?.data?.settings
+            ? JSON.parse(res.data.settings)
+            : "";
+          setSettings(setting);
+          setRefreshSettings(false);
+        }
+        setLoading(false);
+      });
 
     const queryParameters = new URLSearchParams(window.location.search);
     const tab = queryParameters.get("tab");

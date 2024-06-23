@@ -24,12 +24,14 @@ const GridManager = () => {
 
   useEffect(() => {
     if (activeTab == "grid-manager") {
-      axios.get(baseUrl + "grid/all").then((res) => {
-        if (res.data) {
-          setGrids(res.data);
-          setLoading(false);
-        }
-      });
+      axios
+        .get(baseUrl + "grid/all" + "/?_wpnonce=" + afxApApp.nonce)
+        .then((res) => {
+          if (res.data) {
+            setGrids(res.data);
+            setLoading(false);
+          }
+        });
       setRefreshSettings(false);
     }
   }, [refreshSettings, activeTab]);
@@ -37,7 +39,7 @@ const GridManager = () => {
   const deleteGrid = () => {
     axios
       .post(
-        baseUrl + "grid/delete",
+        baseUrl + "grid/delete" + "/?_wpnonce=" + afxApApp.nonce,
         {
           del_id: delId,
         },

@@ -124,8 +124,8 @@ class AFX_Rest_Routes
     public function afx_save_settings($req)
     {
         if (is_string($req)) {
-            $data = json_decode($req);
-            $settings = json_encode($data->settings);
+            $data =  json_decode($req);
+            $settings =  wp_json_encode($data->settings);
         } else {
             $settings = sanitize_text_field($req['settings']);
         }
@@ -133,7 +133,7 @@ class AFX_Rest_Routes
         $data = $this->afx_get_settings();
         if ($data->data['settings']) {
             $existing_setting = $data->data['settings'];
-            $new_settings = json_encode(array_merge(json_decode($existing_setting, true), json_decode($settings, true)));
+            $new_settings =  wp_json_encode(array_merge(json_decode($existing_setting, true),  json_decode($settings, true)));
         } else {
             $new_settings = $settings;
         }
@@ -148,7 +148,8 @@ class AFX_Rest_Routes
         global $wpdb;
         $table_name = $wpdb->prefix . AFX_AP_TABLE_NAME;
 
-        $wpdb->query("TRUNCATE TABLE $table_name");
+        $wpdb->query($wpdb->prepare("TRUNCATE TABLE %i", $table_name));
+
         update_option('afx_grid_settings', "");
 
         return ['message' => 'Setting Reset Successfully'];
@@ -156,10 +157,12 @@ class AFX_Rest_Routes
 
     public function afx_backup_settings()
     {
-        global $wpdb;
+        global $wpdb, $wp_filesystem;
+        include_once ABSPATH . 'wp-admin/includes/file.php';
+        WP_Filesystem();
 
         $settings = get_option('afx_grid_settings');
-        $setting_obj = json_decode($settings);
+        $setting_obj =  json_decode($settings);
 
         $fonts = [];
         if (isset($setting_obj->fonts)) {
@@ -173,7 +176,14 @@ class AFX_Rest_Routes
         }
 
         $table_name = $wpdb->prefix . AFX_AP_TABLE_NAME;
-        $results = $wpdb->get_results("SELECT * FROM `$table_name` WHERE 1");
+        //$results = $wpdb->get_results($wpdb->prepare("SELECT * FROM %i WHERE 1", $table_name));
+
+        $query = $wpdb->prepare("SELECT * FROM %i WHERE 1", $table_name);
+
+		if ( false === ( $posts = get_transient( 'cached_posts' ) ) ) {
+			$results = $wpdb->get_results($query);
+			wp_cache_add(md5($query), $results, 'awesome-posts');
+		}
 
         $grids = [];
         if (count($results) > 0) {
@@ -182,12 +192,12 @@ class AFX_Rest_Routes
             }
         }
 
-        $setting_obj->grids = json_encode($grids);
+        $setting_obj->grids =  wp_json_encode($grids);
 
         $upload_dir = wp_get_upload_dir();
         $file_name = 'awesome_posts_backup.json';
         $upload_url = $upload_dir['basedir'] . '/' . $file_name;
-        file_put_contents($upload_url, json_encode($setting_obj));
+        $wp_filesystem->put_contents($upload_url,  wp_json_encode($setting_obj));
 
         $file_url = $upload_dir['baseurl'] . '/' . $file_name;
         return ['message' => 'Setting Reset Successfully', 'file_name' => $file_name, 'file_url' => $file_url];
@@ -203,13 +213,13 @@ class AFX_Rest_Routes
         $request = wp_remote_get($json_url);
         $new_settings =  wp_remote_retrieve_body($request);
 
-        $settings_obj = json_decode($new_settings);
+        $settings_obj =  json_decode($new_settings);
         $grids = $settings_obj->grids;
         unset($settings_obj->grids);
 
-        $grid_obj = json_decode($grids);
+        $grid_obj =  json_decode($grids);
         if (count((array) $grid_obj) > 0) {
-            $wpdb->query("TRUNCATE TABLE $table_name");
+            $wpdb->query($wpdb->prepare("TRUNCATE TABLE %i", $table_name));
 
             foreach ($grid_obj as $key => $val) {
                 $wpdb->insert($table_name, array(
@@ -220,7 +230,7 @@ class AFX_Rest_Routes
             }
         }
 
-        update_option('afx_grid_settings', json_encode($settings_obj));
+        update_option('afx_grid_settings',  wp_json_encode($settings_obj));
 
         wp_delete_attachment($file_id);
         return ['message' => 'Setting Restored Successfully'];
@@ -264,7 +274,7 @@ class AFX_Rest_Routes
     public function afx_ap_get_taxonomies()
     {
 
-        if ($_GET['post-type']) {
+        if (wp_verify_nonce($_GET['_wpnonce'], 'wp_rest') && $_GET['post-type']) {
             $taxonomies = get_object_taxonomies($_GET['post-type'], 'names');
             $taxs = [];
             if (count($taxonomies) > 0) {
@@ -278,12 +288,13 @@ class AFX_Rest_Routes
 
             return $taxs;
         }
+
         return [];
     }
 
     public function afx_ap_get_terms()
     {
-        if ($_GET['post-type'] && $_GET['taxonomy']) {
+        if (wp_verify_nonce($_GET['_wpnonce'], 'wp_rest') && $_GET['post-type'] && $_GET['taxonomy']) {
             $args = array(
                 'post_type' => $_GET['post-type'],
                 'taxonomy'  => $_GET['taxonomy']
@@ -299,86 +310,91 @@ class AFX_Rest_Routes
 
             return $cats;
         }
+
         return [];
     }
 
     public function afx_ap_get_posts()
     {
-        $terms = !empty($_GET['terms']) ? explode(",", $_GET['terms']) : [];
-        $post_status = !empty($_GET['post_status']) ? explode(",", $_GET['post_status']) : [];
-        $authors = !empty($_GET['authors']) ? $_GET['authors'] : "";
+        if (wp_verify_nonce($_GET['_wpnonce'], 'wp_rest')) {
+            $terms = !empty($_GET['terms']) ? explode(",", $_GET['terms']) : [];
+            $post_status = !empty($_GET['post_status']) ? explode(",", $_GET['post_status']) : [];
+            $authors = !empty($_GET['authors']) ? $_GET['authors'] : "";
 
-        $posts_args = array(
-            'post_type' => $_GET['post-type'],
-            'posts_per_page' => -1,
-            'post_status' => 'publish',
-            'orderby' => 'title',
-            'order' => 'ASC',
-        );
+            $posts_args = array(
+                'post_type' => $_GET['post-type'],
+                'posts_per_page' => -1,
+                'post_status' => 'publish',
+                'orderby' => 'title',
+                'order' => 'ASC',
+            );
 
-        if (!empty($_GET['taxonomy']) && count($terms) > 0) {
-            $tax_query = [];
-            $tax_query['relation'] = $_GET['relation'];
+            if (!empty($_GET['taxonomy']) && count($terms) > 0) {
+                $tax_query = [];
+                $tax_query['relation'] = $_GET['relation'];
 
-            foreach ($terms as $term) {
-                array_push(
-                    $tax_query,
+                foreach ($terms as $term) {
+                    array_push(
+                        $tax_query,
+                        array(
+                            'taxonomy' => $_GET['taxonomy'],
+                            'field' => 'slug',
+                            'terms' => $term,
+                            'operator' => $_GET['operator']
+                        )
+                    );
+                }
+
+                if (count($tax_query) > 1) {
+                    $posts_args['tax_query'] = $tax_query;
+                }
+            }
+
+            if (!empty($_GET['orderby'])) {
+                $posts_args['orderby'] = $_GET['orderby'];
+            }
+
+            if (!empty($_GET['order'])) {
+                $posts_args['order'] = $_GET['order'];
+            }
+
+            if (!empty($_GET['startDate'])) {
+                $posts_args['date_query'] = array(
                     array(
-                        'taxonomy' => $_GET['taxonomy'],
-                        'field' => 'slug',
-                        'terms' => $term,
-                        'operator' => $_GET['operator']
+                        'after' => $_GET['startDate'],
+                        'before' => !empty($_GET['endDate']) ? $_GET['endDate'] : gmdate('Y-m-d'),
+                        'inclusive' => true,
                     )
                 );
             }
 
-            if (count($tax_query) > 1) {
-                $posts_args['tax_query'] = $tax_query;
+            if (count($post_status) > 0) {
+                $posts_args['post_status'] = $post_status;
             }
-        }
 
-        if (!empty($_GET['orderby'])) {
-            $posts_args['orderby'] = $_GET['orderby'];
-        }
-
-        if (!empty($_GET['order'])) {
-            $posts_args['order'] = $_GET['order'];
-        }
-
-        if (!empty($_GET['startDate'])) {
-            $posts_args['date_query'] = array(
-                array(
-                    'after' => $_GET['startDate'],
-                    'before' => !empty($_GET['endDate']) ? $_GET['endDate'] : gmdate('Y-m-d'),
-                    'inclusive' => true,
-                )
-            );
-        }
-
-        if (count($post_status) > 0) {
-            $posts_args['post_status'] = $post_status;
-        }
-
-        if (!empty($authors)) {
-            $posts_args['author'] = $authors;
-        }
-
-        if (!empty($_GET['search'])) {
-            $posts_args['s'] = $_GET['search'];
-        }
-
-        $posts_query = new WP_Query($posts_args);
-
-        $posts = [];
-        if ($posts_query->have_posts()) {
-            while ($posts_query->have_posts()) {
-                $posts_query->the_post();
-
-                $posts[] = ['value' => get_the_ID(), 'label' => get_the_title()];
+            if (!empty($authors)) {
+                $posts_args['author'] = $authors;
             }
+
+            if (!empty($_GET['search'])) {
+                $posts_args['s'] = $_GET['search'];
+            }
+
+            $posts_query = new WP_Query($posts_args);
+
+            $posts = [];
+            if ($posts_query->have_posts()) {
+                while ($posts_query->have_posts()) {
+                    $posts_query->the_post();
+
+                    $posts[] = ['value' => get_the_ID(), 'label' => get_the_title()];
+                }
+            }
+
+            return $posts;
         }
 
-        return $posts;
+        return [];
     }
 
     public function afx_save_settings_permission()
@@ -410,9 +426,9 @@ class AFX_Rest_Routes
     public function afx_get_grid_all()
     {
         global $wpdb;
-
         $table_name = $wpdb->prefix . AFX_AP_TABLE_NAME;
-        $results = $wpdb->get_results("SELECT * FROM `$table_name` WHERE 1");
+
+        $results = $wpdb->get_results($wpdb->prepare("SELECT * FROM %i WHERE 1", $table_name));
 
         return $results;
     }
@@ -420,11 +436,10 @@ class AFX_Rest_Routes
     public function afx_get_grid_single($req)
     {
         global $wpdb;
+        $table_name = $wpdb->prefix . AFX_AP_TABLE_NAME;
 
         $grid_id = $req['grid_id'];
-
-        $table_name = $wpdb->prefix . AFX_AP_TABLE_NAME;
-        $results = $wpdb->get_results("SELECT * FROM `$table_name` WHERE `id`='$grid_id'");
+        $results = $wpdb->get_results($wpdb->prepare("SELECT * FROM %i WHERE `id`= %d", $table_name, $grid_id));
 
         return $results[0];
     }
@@ -477,7 +492,7 @@ class AFX_Rest_Routes
 
     public function afx_get_products()
     {
-        $categories = isset($_GET['categories']) ? explode(",", $_GET['categories']) : [];
+        $categories = wp_verify_nonce($_GET['_wpnonce'], 'wp_rest') && isset($_GET['categories']) ? explode(",", $_GET['categories']) : [];
 
         $product_args = array(
             'post_type' => 'product',
@@ -516,7 +531,7 @@ class AFX_Rest_Routes
             endwhile;
         }
 
-        return json_encode($products);
+        return  wp_json_encode($products);
     }
 }
 
