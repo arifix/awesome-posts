@@ -385,6 +385,8 @@ class AFX_Shortcodes
               color: ' . $set->btnLmHoverColor . ';
               }';
 
+              $html .= '.ap-loader div{background-color: ' . $set->btnLmBgColor . ';}';
+
             $html .= '</style>';
 
             if ($posts_query->have_posts()) {
