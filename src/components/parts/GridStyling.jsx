@@ -369,14 +369,6 @@ const GridStyling = () => {
             max={500}
           />
         </div>
-
-        <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
-          <p className="ap-excerpt">
-            Sample Post Excerpt Text. Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Ipsam facilis velit doloribus nesciunt, quo atque
-            ratione officiis at unde laborum...
-          </p>
-        </div>
       </div>
 
       {/* Post Meta */}

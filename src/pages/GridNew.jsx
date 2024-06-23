@@ -380,6 +380,8 @@ const GridNew = () => {
     excerptWordSpacing: 0,
     excerptAlignment: "left",
 
+    postImageHeight: 250,
+
     metaFont: "",
     metaFontSize: 16,
     metaFontWeight: "normal",
@@ -635,6 +637,8 @@ const GridNew = () => {
               excerptLetterSpacing: settings.excerptLetterSpacing,
               excerptWordSpacing: settings.excerptWordSpacing,
               excerptAlignment: settings.excerptAlignment,
+
+              postImageHeight: settings.postImageHeight,
 
               metaFont: settings.metaFont,
               metaFontSize: settings.metaFontSize,
