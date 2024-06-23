@@ -15,11 +15,21 @@ class AFX_Activator
         $afx_db_version = get_option('afx_db_version', '1.0');
 
         if (
-            $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %i", $table_name)) != $table_name ||
+            $wpdb->get_var("show tables like '{$table_name}'") != $table_name ||
             version_compare($afx_db_version, '1.0') < 0
         ) {
 
             $charset_collate = $wpdb->get_charset_collate();
+
+            $sql = "CREATE TABLE " . $table_name . " (
+                `id` int(11) NOT NULL AUTO_INCREMENT,
+                `title` varchar(200) NOT NULL,
+                `settings` text NOT NULL,
+                `timestamp` varchar(20) NOT NULL,
+                PRIMARY KEY (id)
+            ) $charset_collate;";
+
+            require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
             $sql = "CREATE TABLE $table_name (
                 `id` int(11) NOT NULL AUTO_INCREMENT,
