@@ -347,7 +347,7 @@ class AFX_Shortcodes
               color: ' . $set->btnHoverColor . ';
               }';
 
-              if ($set->btnLmFont) {
+            if ($set->btnLmFont) {
                 $font = str_contains($set->btnLmFont, "http")
                     ? AFX_Helper::fonts_url_to_name($set->btnLmFont)
                     : $set->btnLmFont;
@@ -384,7 +384,7 @@ class AFX_Shortcodes
               background-color: ' . $set->btnLmBgHoverColor . ';
               color: ' . $set->btnLmHoverColor . ';
               }';
-              
+
             $html .= '</style>';
 
             if ($posts_query->have_posts()) {
@@ -395,7 +395,10 @@ class AFX_Shortcodes
                     <div></div>
                 </div>';
 
-                $html .= '<h2 class="ap-grid-title">' . $grid_title . '</h2>';
+                if ($set->displaySCHeading) {
+                    $html .= '<h2 class="ap-grid-title">' . $grid_title . '</h2>';
+                }
+
                 $html .= '<div class="afx-ap-posts">';
                 while ($posts_query->have_posts()) {
                     $posts_query->the_post();
@@ -413,7 +416,7 @@ class AFX_Shortcodes
                             $cats[] = '<a href="' . $term_link . '">' . $term->name . '</a>';
                         }
                     } else {
-                        if (!empty($taxonomy2)) {
+                        if (!empty($taxonomy)) {
                             $term_list = wp_get_post_terms(get_the_ID(), $taxonomy, array('fields' => 'all'));
 
                             foreach ($term_list as $term) {
@@ -423,19 +426,26 @@ class AFX_Shortcodes
                         }
                     }
 
-                    $html .= '<div class="ap-post-single">
-                        <div class="ap-image-cover">
+                    $html .= '<div class="ap-post-single">';
+                    if ($set->displayPostImage) {
+                        $html .= '<div class="ap-image-cover">
                         <img
-                            decoding="async"
                             src="' . (is_array($featured_image) ? $featured_image[0] : 'https://placehold.co/900x600/orange/FFFFFF/png?text=Placeholder+Image') . '"
                             alt="' . get_the_title() . '"
                             class="ap-featured-img"
-                        />
-                        <div class="ap-date">' . get_the_date('d M') . '</div>
-                        </div>
- 
-                        <div class="ap-post-meta">
-                            <a href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">
+                        />';
+
+                        if ($set->displayPostMeta && $set->postMetaDisDate) {
+                            $html .= '<div class="ap-date">' . get_the_date('d M') . '</div>';
+                        }
+                        $html .= '</div>';
+                    }
+
+                    if ($set->displayPostMeta) {
+                        $html .= '<div class="ap-post-meta">';
+
+                        if ($set->postMetaDisAuthor) {
+                            $html .= '<a href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">
                                 <svg
                                     fill="currentColor"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -448,9 +458,11 @@ class AFX_Shortcodes
                                     />
                                 </svg>
                                 <span class="ap-meta">' . $author . '</span>
-                            </a>
+                            </a>';
+                        }
 
-                            <a href="' . get_the_permalink() . '">
+                        if ($set->postMetaDisCC) {
+                            $html .= '<a href="' . get_the_permalink() . '">
                                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path
                                     strokeLinecap="round"
@@ -460,16 +472,34 @@ class AFX_Shortcodes
                                     ></path>
                                 </svg>
                                 <span class="ap-meta">' . $comments['approved'] . ' Comments</span>
-                            </a>
-                        </div>
-                        <div class="ap-post-content">
-                            <p class="ap-cats ap-meta">' . join(" $set->postCatSeparator ", $cats) . ' </p>
-                            <a href="' . get_the_permalink() . '">
+                            </a>';
+                        }
+
+                        $html .= '</div>';
+                    }
+
+
+                    $html .= '<div class="ap-post-content">';
+
+                    if ($set->displayPostCategory) {
+                        $html .= '<p class="ap-cats ap-meta">' . join(" $set->postCatSeparator ", $cats) . ' </p>';
+                    }
+
+                    if ($set->displayPostTitle) {
+                        $html .= '<a href="' . get_the_permalink() . '">
                                 <h3 class="ap-title">' . get_the_title() . '</h3>
-                            </a>
-                            <p class="ap-excerpt">' . get_the_excerpt() . '</p>
-                            <a href="' . get_the_permalink() . '" class="ap-btn">' . $set->postBtnText . '</a>
-                        </div>
+                            </a>';
+                    }
+
+                    if ($set->displayPostExcerpt) {
+                        $html .= '<p class="ap-excerpt">' . get_the_excerpt() . '</p>';
+                    }
+
+                    if ($set->displayReadBtn) {
+                        $html .= '<a href="' . get_the_permalink() . '" class="ap-btn">' . $set->postBtnText . '</a>';
+                    }
+
+                    $html .= '</div>
                         </div>';
                 }
                 $html .= '</div>';
@@ -512,7 +542,7 @@ class AFX_Shortcodes
                         $cats[] = '<a href="' . $term_link . '">' . $term->name . '</a>';
                     }
                 } else {
-                    if (!empty($taxonomy2)) {
+                    if (!empty($taxonomy)) {
                         $term_list = wp_get_post_terms(get_the_ID(), $taxonomy, array('fields' => 'all'));
 
                         foreach ($term_list as $term) {
@@ -525,7 +555,6 @@ class AFX_Shortcodes
                 $html .= '<div class="ap-post-single">
                     <div class="ap-image-cover">
                     <img
-                        decoding="async"
                         src="' . (is_array($featured_image) ? $featured_image[0] : 'https://placehold.co/900x600/orange/FFFFFF/png?text=Placeholder+Image') . '"
                         alt="' . get_the_title() . '"
                         class="ap-featured-img"
