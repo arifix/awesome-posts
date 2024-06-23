@@ -353,6 +353,32 @@ const GridStyling = () => {
         </div>
       </div>
 
+      {/* Post Featured Image */}
+      <div className="px-5 py-2">
+        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+          <h3 className="heading-secondary text-xl pb-3">
+            Post Featured Image
+          </h3>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+          <Range
+            title="Image Size"
+            name="postImageHeight"
+            min={100}
+            max={500}
+          />
+        </div>
+
+        <div className="w-full max-w-2xl mx-auto bg-slate-200 p-7">
+          <p className="ap-excerpt">
+            Sample Post Excerpt Text. Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Ipsam facilis velit doloribus nesciunt, quo atque
+            ratione officiis at unde laborum...
+          </p>
+        </div>
+      </div>
+
       {/* Post Meta */}
       <div className="px-5 py-2">
         <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">

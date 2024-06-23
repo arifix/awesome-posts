@@ -169,27 +169,27 @@ class AFX_Shortcodes
                 margin: ' . $set->gridMargin->top . 'px ' . $set->gridMargin->right . 'px ' . $set->gridMargin->bottom . 'px ' . $set->gridMargin->left . 'px;
             }
 
-            .afx-ap-posts {
+            .afx-ap-wrapper .afx-ap-posts {
                 gap: ' . $set->gridGap . 'px;
             }
 
-            .ap-date {
+            .afx-ap-wrapper .ap-date {
                 background-color: ' . $set->btnBgColor . ';
                 color: ' . $set->btnColor . ';
             }
 
-            .afx-ap-posts {
+            .afx-ap-wrapper .afx-ap-posts {
                 grid-template-columns: repeat(' . $set->gridColumnsD . ', 1fr);
             }
 
             @media screen and (max-width: 991px) {
-                .afx-ap-posts {
+                .afx-ap-wrapper .afx-ap-posts {
                     grid-template-columns: repeat(' . $set->gridColumnsT . ', 1fr);
                 }
             }
 
             @media screen and (max-width: 767px) {
-                .afx-ap-posts {
+                .afx-ap-wrapper .afx-ap-posts {
                     grid-template-columns: repeat(' . $set->gridColumnsM . ', 1fr);
                 }
             }';
@@ -205,7 +205,7 @@ class AFX_Shortcodes
                 $html .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.ap-grid-title{font-family: ' . $font . '}';
             }
 
-            $html .= '.ap-grid-title{
+            $html .= '.afx-ap-wrapper .ap-grid-title{
                 font-size: ' . $set->shFontSize . 'px;
                 font-weight: ' . $set->shFontWeight . ';
                 font-style: ' . $set->shFontStyle . ';
@@ -231,7 +231,7 @@ class AFX_Shortcodes
                 $html .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.ap-title{font-family: ' . $font . '}';
             }
 
-            $html .= '.ap-title{
+            $html .= '.afx-ap-wrapper .ap-title{
                     font-size: ' . $set->titleFontSize . 'px;
                     font-weight: ' . $set->titleFontWeight . ';
                     font-style: ' . $set->titleFontStyle . ';
@@ -246,7 +246,7 @@ class AFX_Shortcodes
                     text-align: ' . $set->titleAlignment . ';
                   }';
 
-            $html .= '.ap-title:hover{color: ' . $set->titleHoverColor . ';}';
+            $html .= '.afx-ap-wrapper .ap-title:hover{color: ' . $set->titleHoverColor . ';}';
 
             if ($set->excerptFont) {
                 $font = str_contains($set->excerptFont, "http")
@@ -259,7 +259,7 @@ class AFX_Shortcodes
                 $html .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.ap-excerpt{font-family: ' . $font . '}';
             }
 
-            $html .= '.ap-excerpt{
+            $html .= '.afx-ap-wrapper .ap-excerpt{
                 font-size: ' . $set->excerptFontSize . 'px;
                 font-weight: ' . $set->excerptFontWeight . ';
                 font-style: ' . $set->excerptFontStyle . ';
@@ -274,6 +274,8 @@ class AFX_Shortcodes
                 text-align: ' . $set->excerptAlignment . ';
               }';
 
+            $html .= '.afx-ap-wrapper .ap-featured-img{height: ' . $set->postImageHeight . 'px;}';
+
             if ($set->metaFont) {
                 $font = str_contains($set->metaFont, "http")
                     ? AFX_Helper::fonts_url_to_name($set->metaFont)
@@ -285,7 +287,7 @@ class AFX_Shortcodes
                 $html .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.ap-meta{font-family: ' . $font . '}';
             }
 
-            $html .= '.ap-meta{
+            $html .= '.afx-ap-wrapper .ap-meta{
                 font-size: ' . $set->metaFontSize . 'px;
                 font-weight: ' . $set->metaFontWeight . ';
                 font-style: ' . $set->metaFontStyle . ';
@@ -300,8 +302,8 @@ class AFX_Shortcodes
                 text-align: ' . $set->metaAlignment . ';
               }';
 
-            $html .= '.ap-meta a {color: ' . $set->metaColor . ';}
-              .ap-meta a:hover {color: ' . $set->metaHoverColor . ';}';
+            $html .= '.afx-ap-wrapper .ap-meta a {color: ' . $set->metaColor . ';}
+              .afx-ap-wrapper .ap-meta a:hover {color: ' . $set->metaHoverColor . ';}';
 
             if ($set->btnFont) {
                 $font = str_contains($set->btnFont, "http")
@@ -314,13 +316,12 @@ class AFX_Shortcodes
                 $html .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.ap-btn{font-family: ' . $font . '}';
             }
 
-            $html .= '.ap-btn{
+            $html .= '.afx-ap-wrapper .ap-btn{
             font-size: ' . $set->btnFontSize . 'px;
                 font-weight: ' . $set->btnFontWeight . ';
                 font-style: ' . $set->btnFontStyle . ';
                 color: ' . $set->btnColor . ';
                 background-color: ' . $set->btnBgColor . ';
-                color: ' . $set->btnColor . ';
                 border-radius: ' . $set->btnBorderRadius . 'px;
                 text-decoration: ' . $set->btnTextDecoration . ';
                 text-transform: ' . $set->btnTextTransform . ';
@@ -368,7 +369,7 @@ class AFX_Shortcodes
                             $cats[] = '<a href="' . $term_link . '">' . $term->name . '</a>';
                         }
                     } else {
-                        if (!empty($taxonomy)) {
+                        if (!empty($taxonomy2)) {
                             $term_list = wp_get_post_terms(get_the_ID(), $taxonomy, array('fields' => 'all'));
 
                             foreach ($term_list as $term) {
@@ -391,30 +392,30 @@ class AFX_Shortcodes
  
                         <div class="ap-post-meta">
                             <a href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">
-                            <svg
-                                fill="currentColor"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                width="24"
-                                height="24"
-                            >
-                                <path
-                                d="M12 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm9 11a1 1 0 0 1-2 0v-2a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v2a1 1 0 0 1-2 0v-2a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v2z"
-                                />
-                            </svg>
-                            <span class="ap-meta">' . $author . '</span>
+                                <svg
+                                    fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    width="24"
+                                    height="24"
+                                >
+                                    <path
+                                    d="M12 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm9 11a1 1 0 0 1-2 0v-2a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v2a1 1 0 0 1-2 0v-2a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v2z"
+                                    />
+                                </svg>
+                                <span class="ap-meta">' . $author . '</span>
                             </a>
 
                             <a href="' . get_the_permalink() . '">
-                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
-                                ></path>
-                            </svg>
-                            <span class="ap-meta">' . $comments['approved'] . ' Comments</span>
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+                                    ></path>
+                                </svg>
+                                <span class="ap-meta">' . $comments['approved'] . ' Comments</span>
                             </a>
                         </div>
                         <div class="ap-post-content">

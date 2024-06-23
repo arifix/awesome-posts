@@ -172,6 +172,8 @@ const GridNew = () => {
     excerptWordSpacing: 0,
     excerptAlignment: "left",
 
+    postImageHeight: 250,
+
     metaFont: "",
     metaFontSize: 16,
     metaFontWeight: "normal",

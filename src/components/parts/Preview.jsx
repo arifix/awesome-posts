@@ -37,7 +37,7 @@ const Preview = ({ defaultSettings, cssStyles }) => {
       width: 100%;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
-      height: 250px;
+      height: ${defaultSettings.postImageHeight}px;
       object-fit: cover;
     }
 

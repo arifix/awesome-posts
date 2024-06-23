@@ -9,13 +9,13 @@
   text-decoration: none;
 }
 
-.afx-ap-posts {
+.afx-ap-wrapper .afx-ap-posts {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin-top: 15px;
 }
 
-.ap-post-single {
+.afx-ap-wrapper .ap-post-single {
   display: flex;
   flex-direction: column;
   box-shadow: 5px 5px 5px #ccc;
@@ -23,7 +23,7 @@
   border-radius: 5px;
 }
 
-.ap-featured-img {
+.afx-ap-wrapper .ap-featured-img {
   width: 100%;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -31,18 +31,18 @@
   object-fit: cover;
 }
 
-.ap-post-content {
+.afx-ap-wrapper .ap-post-content {
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding: 15px;
 }
 
-.ap-image-cover {
+.afx-ap-wrapper .ap-image-cover {
   position: relative;
 }
 
-.ap-date {
+.afx-ap-wrapper .ap-date {
   position: absolute;
   top: 12px;
   right: 12px;
@@ -58,26 +58,36 @@
   line-height: 20px;
 }
 
-.ap-post-meta {
+.afx-ap-wrapper .ap-post-meta {
   background-color: #f3f4f6;
   display: flex;
   justify-content: space-between;
   padding: 15px;
 }
 
-.ap-post-meta svg {
+.afx-ap-wrapper .ap-post-meta svg {
   height: 25px;
 }
 
-.ap-post-meta a {
+.afx-ap-wrapper .ap-post-meta a {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
 }
 
-.ap-btn {
+.afx-ap-wrapper .ap-btn {
   margin-top: 10px;
+}
+
+@media screen and (max-width: 767px) {
+  .afx-ap-wrapper .ap-date {
+    width: 70px;
+    height: 70px;
+    font-size: 14px;
+    top: 5px;
+    right: 5px;
+  }
 }
 
 #afx-ap-loader {
