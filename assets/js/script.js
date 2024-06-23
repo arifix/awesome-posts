@@ -31,13 +31,14 @@
       parseInt(
         $(this).parents(".afx-ap-wrapper").find(".ap-post-single").length
       ) + parseInt($(this).attr("data-query-offset"));
+      const _wpnonce = $(this).attr("data-wp-nonce");
 
     const self = $(this);
 
     sendAjax(
       admin_url,
       "get_awesome-posts",
-      { query, settings, offset },
+      { query, settings, offset, _wpnonce },
       function (data) {
         self
           .parents(".afx-ap-wrapper")

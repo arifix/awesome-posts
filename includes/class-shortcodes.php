@@ -385,7 +385,7 @@ class AFX_Shortcodes
               color: ' . $set->btnLmHoverColor . ';
               }';
 
-              $html .= '.ap-loader div{background-color: ' . $set->btnLmBgColor . ';}';
+            $html .= '.ap-loader div{background-color: ' . $set->btnLmBgColor . ';}';
 
             $html .= '</style>';
 
@@ -505,7 +505,7 @@ class AFX_Shortcodes
                         </div>';
                 }
                 $html .= '</div>';
-                $html .= '<p style="text-align: center;"><button type="button" class="ap-more-btn" data-admin-ajax="' . admin_url("admin-ajax.php") . '" data-query="' . str_replace('"', '\'', json_encode($posts_args)) . '" data-settings="' .  str_replace('"', '\'', json_encode($set)) . '" data-query-offset="' . $offset . '" data-total-posts="' . $total_posts . '"' . ($post_per_page >= $total_posts ? 'style="display: none;"' : '') . '>Load More</button></p>';
+                $html .= '<p style="text-align: center;"><button type="button" class="ap-more-btn" data-wp-nonce="' . wp_create_nonce('ajax_nonce') . '" data-admin-ajax="' . admin_url("admin-ajax.php") . '" data-query="' . str_replace('"', '\'', wp_json_encode($posts_args)) . '" data-settings="' .  str_replace('"', '\'', wp_json_encode($set)) . '" data-query-offset="' . $offset . '" data-total-posts="' . $total_posts . '"' . ($post_per_page >= $total_posts ? 'style="display: none;"' : '') . '>Load More</button></p>';
                 $html .= '</div>';
             }
 
@@ -520,41 +520,42 @@ class AFX_Shortcodes
 
     function afx_posts_ajax()
     {
-        $posts_args = !empty($_REQUEST['query']) ? json_decode(str_replace("\'", "\"", $_REQUEST['query']), true) : [];
-        $posts_args['offset'] = isset($_REQUEST['offset']) ? $posts_args->offset + $_REQUEST['offset'] : 0;
-        $set = !empty($_REQUEST['settings']) ? json_decode(str_replace("\'", "\"", $_REQUEST['settings'])) : [];
+        if (wp_verify_nonce($_REQUEST['_wpnonce'], 'ajax_nonce')) {
+            $posts_args = !empty($_REQUEST['query']) ? json_decode(str_replace("\'", "\"", $_REQUEST['query']), true) : [];
+            $posts_args['offset'] = isset($_REQUEST['offset']) ? $posts_args->offset + $_REQUEST['offset'] : 0;
+            $set = !empty($_REQUEST['settings']) ? json_decode(str_replace("\'", "\"", $_REQUEST['settings'])) : [];
 
-        $posts_query = new WP_Query($posts_args);
+            $posts_query = new WP_Query($posts_args);
 
-        $html = '';
-        if ($posts_query->have_posts()) {
-            while ($posts_query->have_posts()) {
-                $posts_query->the_post();
-                $featured_image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'full');
+            $html = '';
+            if ($posts_query->have_posts()) {
+                while ($posts_query->have_posts()) {
+                    $posts_query->the_post();
+                    $featured_image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'full');
 
-                $author = get_the_author();
-                $comments = get_comment_count(get_the_ID());
+                    $author = get_the_author();
+                    $comments = get_comment_count(get_the_ID());
 
-                $cats = [];
-                if ($post_type == 'post') {
-                    $term_list = wp_get_post_terms(get_the_ID(), 'category', array('fields' => 'all'));
-
-                    foreach ($term_list as $term) {
-                        $term_link = get_term_link($term);
-                        $cats[] = '<a href="' . $term_link . '">' . $term->name . '</a>';
-                    }
-                } else {
-                    if (!empty($taxonomy)) {
-                        $term_list = wp_get_post_terms(get_the_ID(), $taxonomy, array('fields' => 'all'));
+                    $cats = [];
+                    if ($post_type == 'post') {
+                        $term_list = wp_get_post_terms(get_the_ID(), 'category', array('fields' => 'all'));
 
                         foreach ($term_list as $term) {
                             $term_link = get_term_link($term);
                             $cats[] = '<a href="' . $term_link . '">' . $term->name . '</a>';
                         }
-                    }
-                }
+                    } else {
+                        if (!empty($taxonomy)) {
+                            $term_list = wp_get_post_terms(get_the_ID(), $taxonomy, array('fields' => 'all'));
 
-                $html .= '<div class="ap-post-single">
+                            foreach ($term_list as $term) {
+                                $term_link = get_term_link($term);
+                                $cats[] = '<a href="' . $term_link . '">' . $term->name . '</a>';
+                            }
+                        }
+                    }
+
+                    $html .= '<div class="ap-post-single">
                     <div class="ap-image-cover">
                     <img
                         src="' . (is_array($featured_image) ? $featured_image[0] : 'https://placehold.co/900x600/orange/FFFFFF/png?text=Placeholder+Image') . '"
@@ -601,15 +602,17 @@ class AFX_Shortcodes
                         <a href="' . get_the_permalink() . '" class="ap-btn">' . $set->postBtnText . '</a>
                     </div>
                     </div>';
+                }
             }
+
+            echo wp_json_encode([
+                'result' => $html,
+            ]);
+
+            wp_reset_query();
+            wp_reset_postdata();
         }
-
-        echo json_encode([
-            'result' => $html,
-        ]);
-
-        wp_reset_query();
-        wp_reset_postdata();
+        echo "";
 
         die();
     }
