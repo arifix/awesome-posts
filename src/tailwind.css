@@ -104,7 +104,7 @@
   }
 
   .filters li.active a {
-    @apply text-ap-primary border-b-3 border-b-ap-primary;
+    @apply text-ap-primary border-b-4 border-b-ap-primary;
   }
 
   .afx-form-field {
