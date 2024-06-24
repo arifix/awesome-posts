@@ -37,6 +37,24 @@ class AFX_Helper
         }
         return $types;
     }
+
+    static function get_text_limit_by($text, $limit, $type = 'character', $rest = '...')
+    {
+        if ($limit) {
+            if ($type === 'word') {
+                $words = explode(' ', $text);
+                if (count($words) > $limit) {
+                    return implode(' ', array_slice($words, 0, $limit)) . $rest;
+                }
+            } elseif ($type === 'character') {
+                if (strlen($text) > $limit) {
+                    return substr($text, 0, $limit) . $rest;
+                }
+            }
+        }
+
+        return $text;
+    }
 }
 
 new AFX_Helper();

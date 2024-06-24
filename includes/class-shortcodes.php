@@ -398,7 +398,7 @@ class AFX_Shortcodes
                 </div>';
 
                 if ($set->displaySCHeading) {
-                    $html .= '<h2 class="ap-grid-title">' . $grid_title . '</h2>';
+                    $html .= '<' . $set->scHeadingTag . ' class="ap-grid-title">' . $grid_title . '</' . $set->scHeadingTag . '>';
                 }
 
                 $html .= '<div class="afx-ap-posts">';
@@ -489,12 +489,12 @@ class AFX_Shortcodes
 
                     if ($set->displayPostTitle) {
                         $html .= '<a href="' . get_the_permalink() . '">
-                                <h3 class="ap-title">' . get_the_title() . '</h3>
+                                <' . $set->postTitleTag . ' class="ap-title">' . AFX_Helper::get_text_limit_by(get_the_title(), $set->postTitleLimit, $set->postTitleType, '') . '</' . $set->postTitleTag . '>
                             </a>';
                     }
 
                     if ($set->displayPostExcerpt) {
-                        $html .= '<p class="ap-excerpt">' . get_the_excerpt() . '</p>';
+                        $html .= '<p class="ap-excerpt">' .  AFX_Helper::get_text_limit_by(get_the_excerpt(), $set->postExcerptLimit, $set->postExcerptType, $set->postExcerptText) . '</p>';
                     }
 
                     if ($set->displayReadBtn) {
@@ -505,7 +505,9 @@ class AFX_Shortcodes
                         </div>';
                 }
                 $html .= '</div>';
-                $html .= '<p style="text-align: center;"><button type="button" class="ap-more-btn" data-wp-nonce="' . wp_create_nonce('ajax_nonce') . '" data-admin-ajax="' . admin_url("admin-ajax.php") . '" data-query="' . str_replace('"', '\'', wp_json_encode($posts_args)) . '" data-settings="' .  str_replace('"', '\'', wp_json_encode($set)) . '" data-query-offset="' . $offset . '" data-total-posts="' . $total_posts . '"' . ($post_per_page >= $total_posts ? 'style="display: none;"' : '') . '>Load More</button></p>';
+                if ($set->loadMoreBtn) {
+                    $html .= '<p style="text-align: center;"><button type="button" class="ap-more-btn" data-wp-nonce="' . wp_create_nonce('ajax_nonce') . '" data-admin-ajax="' . admin_url("admin-ajax.php") . '" data-query="' . str_replace('"', '\'', wp_json_encode($posts_args)) . '" data-settings="' .  str_replace('"', '\'', wp_json_encode($set)) . '" data-query-offset="' . $offset . '" data-total-posts="' . $total_posts . '"' . ($post_per_page >= $total_posts ? 'style="display: none;"' : '') . '>' . $set->loadMoreBtnText . '</button></p>';
+                }
                 $html .= '</div>';
             }
 

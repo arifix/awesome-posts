@@ -195,6 +195,7 @@ const GridLayout = () => {
               title="Excerpt Limit"
               type="number"
               name="postExcerptLimit"
+              tooltip="Leave to display full title"
             />
             <Input title="More Text" name="postExcerptText" placeholder="..." />
           </div>
@@ -271,6 +272,21 @@ const GridLayout = () => {
         {defaultSettings.displayReadBtn ? (
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
             <Input title="Button Text" name="postBtnText" />
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
+
+      {/* Load More Button */}
+      <div className="px-5 py-2">
+        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+          <h3 className="heading-secondary text-xl pb-0">Load More Button</h3>
+          <Toggle title="Display Load More Button?" name="loadMoreBtn" />
+        </div>
+        {defaultSettings.loadMoreBtn ? (
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+            <Input title="Button Text" name="loadMoreBtnText" />
           </div>
         ) : (
           ""

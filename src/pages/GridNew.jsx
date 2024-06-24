@@ -34,7 +34,6 @@ const GridNew = () => {
     gridColumnsD: 3,
     gridColumnsT: 2,
     gridColumnsM: 1,
-    gridLoadMoreBtn: true,
 
     applyTaxonomyFilter: false,
     applyOrderFilter: false,
@@ -83,6 +82,9 @@ const GridNew = () => {
     postMetaDisCC: false,
     postImageSize: "large",
     postBtnText: "Read More",
+
+    loadMoreBtn: true,
+    loadMoreBtnText: "Load More",
 
     gridBgColor: "#CCC",
     gridGap: 10,
@@ -273,7 +275,6 @@ const GridNew = () => {
     gridColumnsD: 3,
     gridColumnsT: 3,
     gridColumnsM: 3,
-    gridLoadMoreBtn: true,
 
     applyTaxonomyFilter: false,
     applyOrderFilter: false,
@@ -322,6 +323,9 @@ const GridNew = () => {
     postMetaDisCC: false,
     postImageSize: "large",
     postBtnText: "Read More",
+
+    loadMoreBtn: true,
+    loadMoreBtnText: "Load More",
 
     gridBgColor: "#CCC",
     gridGap: 10,
@@ -562,7 +566,6 @@ const GridNew = () => {
               gridColumnsD: settings.gridColumnsD,
               gridColumnsT: settings.gridColumnsT,
               gridColumnsM: settings.gridColumnsM,
-              gridLoadMoreBtn: settings.gridLoadMoreBtn,
 
               applyTaxonomyFilter: settings.applyTaxonomyFilter,
               applyOrderFilter: settings.applyOrderFilter,
@@ -626,6 +629,9 @@ const GridNew = () => {
               postMetaDisCC: settings.postMetaDisCC,
               postImageSize: settings.postImageSize,
               postBtnText: settings.postBtnText,
+
+              loadMoreBtn: settings.loadMoreBtn,
+              loadMoreBtnText: settings.loadMoreBtnText,
 
               shFont: settings.shFont,
               shFontSize: settings.shFontSize,
