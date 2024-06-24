@@ -18,7 +18,8 @@ const TextDecoration = ({ name }) => {
         styles={{
           control: (baseStyles) => ({
             ...baseStyles,
-            width: 300,
+            width: "100%",
+            maxWidth: 300,
           }),
         }}
         onChange={(newValue) => {

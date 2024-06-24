@@ -1064,7 +1064,7 @@ const GridNew = () => {
       <Divider />
 
       <div className="flex flex-col gap-5 lg:gap-0 lg:flex-row justify-between">
-        <ul className="filters flex flex-col lg:flex-row flex-wrap lg:flex-nowrap">
+        <ul className="filters flex flex-col xl:flex-row flex-wrap lg:flex-nowrap">
           <li className={`${activeSubTab == "grid_settings" ? "active" : ""}`}>
             <a
               href="#"

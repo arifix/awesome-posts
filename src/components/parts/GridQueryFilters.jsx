@@ -31,7 +31,7 @@ const GridQueryFilters = () => {
       <h3 className="heading-secondary text-2xl pb-5">Query &amp; Filters</h3>
 
       {/* Post Type */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 px-5 py-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 px-5 py-2">
         <div className="afx-form-field flex-col !items-start">
           <label htmlFor="">
             Post Type: <span className="text-red-500">*</span>
@@ -48,7 +48,8 @@ const GridQueryFilters = () => {
               styles={{
                 control: (baseStyles) => ({
                   ...baseStyles,
-                  width: 300,
+                  width: "100%",
+                  maxWidth: 300,
                 }),
               }}
               onChange={(newValue) => {
@@ -79,7 +80,7 @@ const GridQueryFilters = () => {
           <Toggle title="Apply Taxonomy Filter?" name="applyTaxonomyFilter" />
         </div>
         {defaultSettings.applyTaxonomyFilter ? (
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
             <div className="afx-form-field flex-col !items-start">
               <label htmlFor="">Taxonomy:</label>
               <Select
@@ -93,7 +94,8 @@ const GridQueryFilters = () => {
                 styles={{
                   control: (baseStyles) => ({
                     ...baseStyles,
-                    width: 300,
+                    width: "100%",
+                    maxWidth: 300,
                   }),
                 }}
                 onChange={(newValue) => {
@@ -120,7 +122,8 @@ const GridQueryFilters = () => {
                 styles={{
                   control: (baseStyles) => ({
                     ...baseStyles,
-                    width: 300,
+                    width: "100%",
+                    maxWidth: 300,
                   }),
                 }}
                 onChange={(newValue) => {
@@ -146,8 +149,8 @@ const GridQueryFilters = () => {
                 styles={{
                   control: (baseStyles) => ({
                     ...baseStyles,
-                    width: 275,
-                    height: 42,
+                    width: "100%",
+                    maxWidth: 275,
                   }),
                 }}
                 onChange={(newValue) => {
@@ -170,8 +173,8 @@ const GridQueryFilters = () => {
                 styles={{
                   control: (baseStyles) => ({
                     ...baseStyles,
-                    width: 275,
-                    height: 42,
+                    width: "100%",
+                    maxWidth: 275,
                   }),
                 }}
                 onChange={(newValue) => {
@@ -195,7 +198,7 @@ const GridQueryFilters = () => {
           <Toggle title="Apply Order Filter?" name="applyOrderFilter" />
         </div>
         {defaultSettings.applyOrderFilter ? (
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
             <div className="afx-form-field flex-col !items-start">
               <label htmlFor="">Order By:</label>
               <Select
@@ -207,8 +210,8 @@ const GridQueryFilters = () => {
                 styles={{
                   control: (baseStyles) => ({
                     ...baseStyles,
-                    width: 275,
-                    height: 42,
+                    width: "100%",
+                    maxWidth: 275,
                   }),
                 }}
                 onChange={(newValue) => {
@@ -231,8 +234,8 @@ const GridQueryFilters = () => {
                 styles={{
                   control: (baseStyles) => ({
                     ...baseStyles,
-                    width: 275,
-                    height: 42,
+                    width: "100%",
+                    maxWidth: 275,
                   }),
                 }}
                 onChange={(newValue) => {
@@ -256,7 +259,7 @@ const GridQueryFilters = () => {
           <Toggle title="Apply Date Filter?" name="applyDateFilter" />
         </div>
         {defaultSettings.applyDateFilter ? (
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
             <div className="afx-form-field flex-col !items-start">
               <label htmlFor="">Start Date:</label>
               <Flatpickr
@@ -307,7 +310,7 @@ const GridQueryFilters = () => {
           <Toggle title="Apply Status Filter?" name="applyStatusFilter" />
         </div>
         {defaultSettings.applyStatusFilter ? (
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
             <div className="afx-form-field flex-col !items-start">
               <label htmlFor="">Posts Status:</label>
               <Select
@@ -321,7 +324,8 @@ const GridQueryFilters = () => {
                 styles={{
                   control: (baseStyles) => ({
                     ...baseStyles,
-                    width: 300,
+                    width: "100%",
+                    maxWidth: 300,
                   }),
                 }}
                 onChange={(newValue) => {
@@ -346,7 +350,7 @@ const GridQueryFilters = () => {
           <Toggle title="Apply Author Filter?" name="applyAuthorFilter" />
         </div>
         {defaultSettings.applyAuthorFilter ? (
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
             <div className="afx-form-field flex-col !items-start">
               <label htmlFor="">Author:</label>
               {Object.values(authors).length > 0 ? (
@@ -361,7 +365,8 @@ const GridQueryFilters = () => {
                   styles={{
                     control: (baseStyles) => ({
                       ...baseStyles,
-                      width: 300,
+                      width: "100%",
+                      maxWidth: 300,
                     }),
                   }}
                   onChange={(newValue) => {
@@ -391,7 +396,7 @@ const GridQueryFilters = () => {
           <Toggle title="Apply Search Filter?" name="applySearchFilter" />
         </div>
         {defaultSettings.applySearchFilter ? (
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
             <Input title="Keyword" name="search" />
           </div>
         ) : (
@@ -416,11 +421,12 @@ const GridQueryFilters = () => {
               </svg>
               <span className="text-white">
                 Note: You cannot combine Post Include and Post Exclude in the
-                same query. Whenever possible, avoid using Post Exclude for better performance.
+                same query. Whenever possible, avoid using Post Exclude for
+                better performance.
               </span>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
               <div className="afx-form-field flex-col !items-start">
                 <label htmlFor="">Include Only:</label>
                 <Select
@@ -434,7 +440,8 @@ const GridQueryFilters = () => {
                   styles={{
                     control: (baseStyles) => ({
                       ...baseStyles,
-                      width: 300,
+                      width: "100%",
+                      maxWidth: 300,
                     }),
                   }}
                   onChange={(newValue) => {
@@ -460,7 +467,8 @@ const GridQueryFilters = () => {
                   styles={{
                     control: (baseStyles) => ({
                       ...baseStyles,
-                      width: 300,
+                      width: "100%",
+                      maxWidth: 300,
                     }),
                   }}
                   onChange={(newValue) => {

@@ -93,11 +93,11 @@
   }
 
   .filters li {
-    @apply text-center w-auto p-3  mb-0;
+    @apply text-center w-auto p-3 mb-0;
   }
 
   .filters a {
-    @apply text-lg text-gray-700 font-medium px-5 py-3 relative bottom-2.5 hover:text-ap-primary hover:border-b-4 hover:border-b-ap-primary focus:shadow-none;
+    @apply text-lg text-gray-700 font-medium py-2 2xl:px-5 2xl:py-3 relative bottom-2.5 hover:text-ap-primary hover:border-b-4 hover:border-b-ap-primary focus:shadow-none;
   }
   .filters li a i {
     @apply relative top-1 mr-2;
@@ -232,6 +232,7 @@
 }
 
 .css-b62m3t-container {
+  width: 90%;
   max-width: 400px;
 }
 

@@ -212,20 +212,20 @@ const GridStyling = () => {
     color: ${defaultSettings.btnHoverColor};
     }`;
 
-    if (defaultSettings.btnLmFont) {
-      const font = defaultSettings.btnLmFont.includes("http")
-        ? fontsUrlToName(defaultSettings.btnLmFont)
-        : defaultSettings.btnLmFont;
-      const font_url = defaultSettings.btnLmFont.includes("http")
-        ? defaultSettings.btnLmFont
-        : `https://fonts.googleapis.com/css?family=${defaultSettings.btnLmFont
-            .split(" ")
-            .join("+")}&display=swap`;
-  
-      styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.ap-more-btn{font-family: '${font}'}`;
-    }
-  
-    styles += `.ap-more-btn{
+  if (defaultSettings.btnLmFont) {
+    const font = defaultSettings.btnLmFont.includes("http")
+      ? fontsUrlToName(defaultSettings.btnLmFont)
+      : defaultSettings.btnLmFont;
+    const font_url = defaultSettings.btnLmFont.includes("http")
+      ? defaultSettings.btnLmFont
+      : `https://fonts.googleapis.com/css?family=${defaultSettings.btnLmFont
+          .split(" ")
+          .join("+")}&display=swap`;
+
+    styles += `@font-face {font-family: '${font}';src: url("${font_url}");}.ap-more-btn{font-family: '${font}'}`;
+  }
+
+  styles += `.ap-more-btn{
       font-size: ${defaultSettings.btnLmFontSize + "px"};
       font-weight: ${defaultSettings.btnLmFontWeight};
       font-style: ${defaultSettings.btnLmFontStyle};
@@ -250,8 +250,8 @@ const GridStyling = () => {
       border-bottom-width: ${defaultSettings.btnLmBorder.bottom + "px"};
       border-left-width: ${defaultSettings.btnLmBorder.left + "px"};
       }`;
-  
-    styles += `.ap-more-btn:hover{
+
+  styles += `.ap-more-btn:hover{
       background-color: ${defaultSettings.btnLmBgHoverColor};
       color: ${defaultSettings.btnLmHoverColor};
       }`;
@@ -273,7 +273,7 @@ const GridStyling = () => {
           <h3 className="heading-secondary text-xl pb-3">Grid Styling</h3>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
           <Color title="Background" name="gridBgColor" />
           <Range title="Gap" name="gridGap" min={0} max={50} />
           <InputGroup title="Padding" name="gridPadding" min={0} max={50} />
@@ -287,7 +287,7 @@ const GridStyling = () => {
           <h3 className="heading-secondary text-xl pb-3">Shortcode Heading</h3>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
           <FontFamily name="shFont" />
           <Range title="Font Size" name="shFontSize" min={14} max={100} />
           <FontWeight name="shFontWeight" />
@@ -319,7 +319,7 @@ const GridStyling = () => {
           <h3 className="heading-secondary text-xl pb-3">Post Title</h3>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
           <FontFamily name="titleFont" />
           <Range title="Font Size" name="titleFontSize" min={14} max={100} />
           <FontWeight name="titleFontWeight" />
@@ -357,7 +357,7 @@ const GridStyling = () => {
           <h3 className="heading-secondary text-xl pb-3">Post Excerpt</h3>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
           <FontFamily name="excerptFont" />
           <Range title="Font Size" name="excerptFontSize" min={14} max={100} />
           <FontWeight name="excerptFontWeight" />
@@ -405,7 +405,7 @@ const GridStyling = () => {
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
           <Range
             title="Image Size"
             name="postImageHeight"
@@ -421,7 +421,7 @@ const GridStyling = () => {
           <h3 className="heading-secondary text-xl pb-3">Post Meta</h3>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
           <FontFamily name="metaFont" />
           <Range title="Font Size" name="metaFontSize" min={14} max={100} />
           <FontWeight name="metaFontWeight" />
@@ -461,7 +461,7 @@ const GridStyling = () => {
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
           <FontFamily name="btnFont" />
           <Range title="Font Size" name="btnFontSize" min={14} max={100} />
           <FontWeight name="btnFontWeight" />
@@ -502,12 +502,10 @@ const GridStyling = () => {
       {/* Load More Button */}
       <div className="px-5 py-2">
         <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
-          <h3 className="heading-secondary text-xl pb-3">
-            Load More Button
-          </h3>
+          <h3 className="heading-secondary text-xl pb-3">Load More Button</h3>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
           <FontFamily name="btnLmFont" />
           <Range title="Font Size" name="btnLmFontSize" min={14} max={100} />
           <FontWeight name="btnLmFontWeight" />
@@ -532,7 +530,12 @@ const GridStyling = () => {
             min={-5}
             max={50}
           />
-          <Range title="Word Spacing" name="btnLmWordSpacing" min={-5} max={50} />
+          <Range
+            title="Word Spacing"
+            name="btnLmWordSpacing"
+            min={-5}
+            max={50}
+          />
           <Alignment name="btnLmAlignment" />
           <Border name="btnLmBorder" min={0} max={20} />
         </div>

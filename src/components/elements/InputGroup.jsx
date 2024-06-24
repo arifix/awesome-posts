@@ -8,7 +8,7 @@ const InputGroup = ({ title, min, max, name }) => {
   return (
     <div className="afx-form-field flex-col !items-start">
       <label htmlFor="">{title}:</label>
-      <div className="flex gap-1">
+      <div className="grid grid-cols-5 md:grid-cols-3 2xl:grid-cols-5 gap-1">
         <div className="relative">
           <svg
             xmlns="http://www.w3.org/2000/svg"

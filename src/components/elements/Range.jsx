@@ -8,7 +8,7 @@ const Range = ({ title, min = 14, max = 50, name, unit = "px" }) => {
     <>
       <div className="afx-form-field flex-col !items-start">
         <label htmlFor="">{title}:</label>
-        <div className="min-w-[300px]">
+        <div className="2xl:min-w-[300px]">
           <div className="flex justify-between w-full">
             <span className="text-base">
               {min}

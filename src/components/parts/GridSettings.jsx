@@ -13,7 +13,7 @@ const GridSettings = () => {
       <h3 className="heading-secondary text-2xl pb-5">Grid Settings</h3>
 
       {/* Grid Info */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 px-5 py-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 px-5 py-2">
         <Input title="Grid Title" name="gridTitle" required />
 
         <div className="afx-form-field flex-col !items-start">
@@ -27,8 +27,8 @@ const GridSettings = () => {
             styles={{
               control: (baseStyles) => ({
                 ...baseStyles,
-                width: 275,
-                height: 42,
+                width: "100%",
+                maxWidth: 275
               }),
             }}
             onChange={(newValue) => {
@@ -42,7 +42,7 @@ const GridSettings = () => {
       </div>
 
       {/* Grid Column */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 px-5 py-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 px-5 py-2">
         <div className="afx-form-field flex-col !items-start">
           <label htmlFor="">Grid Column (Desktop):</label>
           <Select
@@ -54,8 +54,8 @@ const GridSettings = () => {
             styles={{
               control: (baseStyles) => ({
                 ...baseStyles,
-                width: 275,
-                height: 42,
+                width: "100%",
+                maxWidth: 275,
               }),
             }}
             onChange={(newValue) => {
@@ -78,8 +78,8 @@ const GridSettings = () => {
             styles={{
               control: (baseStyles) => ({
                 ...baseStyles,
-                width: 275,
-                height: 42,
+                width: "100%",
+                maxWidth: 275,
               }),
             }}
             onChange={(newValue) => {
@@ -102,8 +102,8 @@ const GridSettings = () => {
             styles={{
               control: (baseStyles) => ({
                 ...baseStyles,
-                width: 275,
-                height: 42,
+                width: "100%",
+                maxWidth: 275
               }),
             }}
             onChange={(newValue) => {

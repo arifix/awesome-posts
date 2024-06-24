@@ -10,7 +10,7 @@ const About = () => {
 
       <Divider />
 
-      <div className="grid md:grid-cols-3 max-w-screen-lg gap-10 mx-10 my-5">
+      <div className="grid grid-cols-1 lg:grid-cols-3 max-w-screen-lg gap-10 mx-10 my-5">
         <div className="flex gap-4 items-start flex-col ">
           <span className="bg-ap-primary text-white p-3 rounded-full">
             <svg

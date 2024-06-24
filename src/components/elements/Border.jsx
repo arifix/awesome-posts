@@ -14,7 +14,7 @@ const Border = ({ name, min, max }) => {
   return (
     <div className="afx-form-field flex-col !items-start">
       <label htmlFor="">Border:</label>
-      <div className="flex gap-1">
+      <div className="grid grid-cols-5 md:grid-cols-3 2xl:grid-cols-5 gap-1">
         <div className="relative">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -244,7 +244,7 @@ const Border = ({ name, min, max }) => {
           )}
         </button>
       </div>
-      <div className="flex gap-5 items-center">
+      <div className="flex gap-3 items-center">
         <Select
           options={borderOptions}
           placeholder="Large"
@@ -254,7 +254,8 @@ const Border = ({ name, min, max }) => {
           styles={{
             control: (baseStyles) => ({
               ...baseStyles,
-              width: 250,
+              width: "100%",
+              maxWidth: 200,
             }),
           }}
           onChange={(newValue) => {
