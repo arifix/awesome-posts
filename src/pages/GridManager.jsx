@@ -7,6 +7,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import Alert from "../components/elements/Alert.jsx";
 
 const GridManager = () => {
   const [loading, setLoading] = useState(true);
@@ -90,57 +91,61 @@ const GridManager = () => {
         </SkeletonTheme>
       ) : (
         <div className="afx-ap-grids">
-          {grids.map((s, key) => (
-            <div className="afx-ap-single-grid" key={key}>
-              <h4
-                onClick={() => {
-                  setActiveTab("grid-new");
-                  insertUrlParam("tab", "grid-new");
-                  insertUrlParam("grid_id", s.id);
-                }}
-              >
-                {s.title}
-              </h4>
-              <div>
-                <button
-                  type="button"
+          {grids ? (
+            grids.map((s, key) => (
+              <div className="afx-ap-single-grid" key={key}>
+                <h4
                   onClick={() => {
                     setActiveTab("grid-new");
                     insertUrlParam("tab", "grid-new");
                     insertUrlParam("grid_id", s.id);
                   }}
-                  data-tooltip-id="afx-ap-tooltip"
-                  data-tooltip-content="Edit Grid"
                 >
-                  <i className="dashicons-before dashicons-edit hover:text-ap-primary"></i>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    navigator.clipboard.writeText(
-                      `[awesome-posts id="${s.id}"]`
-                    );
-                    toast.success("Shortcode Copied Successfully");
-                  }}
-                  data-tooltip-id="afx-ap-tooltip"
-                  data-tooltip-content="Copy Shortcode"
-                >
-                  <i className="dashicons-before dashicons-shortcode hover:text-ap-primary"></i>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setDelId(s.id);
-                    setShowModal(true);
-                  }}
-                  data-tooltip-id="afx-ap-tooltip"
-                  data-tooltip-content="Delete Grid"
-                >
-                  <i className="dashicons-before dashicons-trash hover:text-ap-primary"></i>
-                </button>
+                  {s.title}
+                </h4>
+                <div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setActiveTab("grid-new");
+                      insertUrlParam("tab", "grid-new");
+                      insertUrlParam("grid_id", s.id);
+                    }}
+                    data-tooltip-id="afx-ap-tooltip"
+                    data-tooltip-content="Edit Grid"
+                  >
+                    <i className="dashicons-before dashicons-edit hover:text-ap-primary"></i>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      navigator.clipboard.writeText(
+                        `[awesome-posts id="${s.id}"]`
+                      );
+                      toast.success("Shortcode Copied Successfully");
+                    }}
+                    data-tooltip-id="afx-ap-tooltip"
+                    data-tooltip-content="Copy Shortcode"
+                  >
+                    <i className="dashicons-before dashicons-shortcode hover:text-ap-primary"></i>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setDelId(s.id);
+                      setShowModal(true);
+                    }}
+                    data-tooltip-id="afx-ap-tooltip"
+                    data-tooltip-content="Delete Grid"
+                  >
+                    <i className="dashicons-before dashicons-trash hover:text-ap-primary"></i>
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <Alert text="You currently do not have a grid. Please begin creating one now." />
+          )}
         </div>
       )}
 
