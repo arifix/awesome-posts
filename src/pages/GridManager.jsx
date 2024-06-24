@@ -91,7 +91,7 @@ const GridManager = () => {
         </SkeletonTheme>
       ) : (
         <div className="afx-ap-grids">
-          {grids ? (
+          {grids.length ? (
             grids.map((s, key) => (
               <div className="afx-ap-single-grid" key={key}>
                 <h4
