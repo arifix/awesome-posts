@@ -407,7 +407,7 @@ const GridQueryFilters = () => {
         </div>
         {defaultSettings.applyPostsFilter ? (
           <>
-            <div className="flex items-center bg-blue-500 px-4 py-2 rounded-md text-lg max-w-3xl mt-2">
+            <div className="flex items-center bg-blue-500 px-4 py-2 rounded-md text-lg max-w-7xl mt-3">
               <svg viewBox="0 0 24 24" className="text-white w-5 h-5 mr-3">
                 <path
                   fill="currentColor"
@@ -415,8 +415,8 @@ const GridQueryFilters = () => {
                 ></path>
               </svg>
               <span className="text-white">
-                Note: you cannot combine Post Include and Post Exclude in the
-                same query.
+                Note: You cannot combine Post Include and Post Exclude in the
+                same query. Whenever possible, avoid using Post Exclude for better performance.
               </span>
             </div>
 

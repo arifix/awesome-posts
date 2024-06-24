@@ -1372,6 +1372,14 @@ video {
   max-width: 1024px;
 }
 
+#afx-ap-app :is(.max-w-6xl) {
+  max-width: 72rem;
+}
+
+#afx-ap-app :is(.max-w-7xl) {
+  max-width: 80rem;
+}
+
 #afx-ap-app :is(.flex-1) {
   flex: 1 1 0%;
 }
