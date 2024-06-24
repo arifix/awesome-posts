@@ -14,5 +14,6 @@ class AFX_Deactivator
 
         $wpdb->query($wpdb->prepare("DROP TABLE IF EXISTS %i", $table_name));
         delete_option("afx_db_version");
+        delete_option("afx_grid_settings");
     }
 }
