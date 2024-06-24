@@ -81,6 +81,46 @@
   margin-right: auto !important;
 }
 
+.afx-ap-wrapper.afx-ap-grid-style2 .ap-post-single {
+  background-color: transparent;
+  position: relative;
+}
+
+.afx-ap-wrapper.afx-ap-grid-style2 .ap-featured-img {
+  filter: brightness(0.75);
+  border-radius: 10px;
+}
+
+.afx-ap-wrapper.afx-ap-grid-style2 .ap-date {
+  background-color: transparent !important;
+  height: auto;
+  width: auto;
+}
+
+.afx-ap-wrapper.afx-ap-grid-style2 .ap-post-content {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.afx-ap-wrapper.afx-ap-grid-style2 .ap-post-meta {
+  padding: 0;
+  background-color: transparent;
+  margin-bottom: 10px;
+  gap: 15px;
+}
+
+.afx-ap-wrapper.afx-ap-grid-style2 .ap-btn {
+  background-color: transparent !important;
+  margin: 10px 0 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: max-content;
+}
+
 @media screen and (max-width: 767px) {
   .afx-ap-wrapper .ap-date {
     width: 70px;
@@ -145,7 +185,7 @@
 }
 
 .ap-more-btn:hover {
-  background-color: #745FF1;
+  background-color: #745ff1;
 }
 
 .afx-ap-wrapper .spinner {

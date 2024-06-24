@@ -144,6 +144,8 @@ text-align: ' . $set->metaAlignment . ';
 $css .= '.afx-ap-wrapper .ap-meta a {color: ' . $set->metaColor . ';}
 .afx-ap-wrapper .ap-meta a:hover {color: ' . $set->metaHoverColor . ';}';
 
+$css .= '.afx-ap-wrapper .ap-post-meta svg {color: ' . $set->metaColor . ';}';
+
 if ($set->btnFont) {
     $font = str_contains($set->btnFont, "http")
         ? AFX_Helper::fonts_url_to_name($set->btnFont)
