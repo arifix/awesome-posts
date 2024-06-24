@@ -97,14 +97,14 @@
   }
 
   .filters a {
-    @apply text-lg text-gray-700 font-medium py-2 2xl:px-5 2xl:py-3 relative bottom-2.5 hover:text-ap-primary hover:border-b-4 hover:border-b-ap-primary focus:shadow-none;
+    @apply text-lg text-gray-700 font-medium py-3 relative bottom-2.5 hover:text-ap-primary hover:border-b-4 hover:border-b-ap-primary focus:shadow-none;
   }
   .filters li a i {
     @apply relative top-1 mr-2;
   }
 
   .filters li.active a {
-    @apply text-ap-primary border-b-4 border-b-ap-primary;
+    @apply text-ap-primary border-b-3 border-b-ap-primary;
   }
 
   .afx-form-field {
@@ -242,57 +242,6 @@ input[id^="rc-editable-input"] {
 
 #rc-editable-input-1 {
   display: block !important;
-}
-
-/* Preview */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 40px;
-  margin-top: 20px;
-  row-gap: 60px;
-}
-
-.product {
-  display: flex;
-  flex-direction: column;
-}
-
-.product img {
-  max-width: 100%;
-  height: auto;
-  border-bottom: 1px solid #ddd;
-  object-fit: cover;
-  aspect-ratio: 1/1;
-}
-
-.product h2 {
-  margin: 0.5rem 0;
-}
-
-.product p {
-  flex-grow: 1;
-}
-
-.product .price {
-  margin: 0.5rem 0;
-  font-weight: bold;
-}
-
-.product a {
-  background: #333;
-  color: #fff;
-  border: 0;
-  padding: 15px 40px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  border-radius: 100px;
-  text-decoration: none;
-  text-align: center;
-}
-
-.product a:hover {
-  background: #555;
 }
 
 /* Plugin Page Config */

@@ -262,15 +262,15 @@ const GridStyling = () => {
 
   return (
     <>
-      <h3 className="heading-secondary text-2xl pb-5">Styling</h3>
+      <h3 className="heading-secondary text-2xl pb-5">Elements Styling</h3>
       <div
         dangerouslySetInnerHTML={{ __html: `<style>${styles}</style>` }}
       ></div>
 
-      {/* Grid Styling */}
+      {/* Grid Styles */}
       <div className="px-5 py-2">
         <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
-          <h3 className="heading-secondary text-xl pb-3">Grid Styling</h3>
+          <h3 className="heading-secondary text-xl pb-3">Grid</h3>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">

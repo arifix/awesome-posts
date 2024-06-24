@@ -15,7 +15,7 @@ const GridLayout = () => {
 
   return (
     <>
-      <h3 className="heading-secondary text-2xl pb-5">Layouts</h3>
+      <h3 className="heading-secondary text-2xl pb-5">Layout &amp; Structure</h3>
 
       {/* Shortcode Heading */}
       <div className="px-5 py-2">

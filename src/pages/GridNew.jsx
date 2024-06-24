@@ -590,7 +590,7 @@ const GridNew = () => {
       <Divider />
 
       <div className="flex flex-col gap-5 lg:gap-0 lg:flex-row justify-between">
-        <ul className="filters flex flex-col xl:flex-row flex-wrap lg:flex-nowrap">
+        <ul className="filters grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4">
           <li className={`${activeSubTab == "grid_settings" ? "active" : ""}`}>
             <a
               href="#"
@@ -621,7 +621,7 @@ const GridNew = () => {
                 setActiveSubTab("grid_layout");
               }}
             >
-              Layout
+              Layout &amp; Structure
             </a>
           </li>
           <li className={`${activeSubTab == "grid_styling" ? "active" : ""}`}>
@@ -632,7 +632,7 @@ const GridNew = () => {
                 setActiveSubTab("grid_styling");
               }}
             >
-              Styling
+              Elements Styling
             </a>
           </li>
         </ul>

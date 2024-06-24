@@ -820,8 +820,8 @@ video {
 .filters a {
   position: relative;
   bottom: 0.625rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
   font-size: 1.125rem;
   line-height: 1.75rem;
   font-weight: 500;
@@ -841,15 +841,6 @@ video {
   --tw-shadow: 0 0 #0000;
   --tw-shadow-colored: 0 0 #0000;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-@media (min-width: 1536px) {
-  .filters a {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-  }
 }
 
 .filters li a i {
@@ -1429,10 +1420,6 @@ video {
   flex-direction: column;
 }
 
-#afx-ap-app :is(.flex-wrap) {
-  flex-wrap: wrap;
-}
-
 #afx-ap-app :is(.\!items-start) {
   align-items: flex-start !important;
 }
@@ -1994,60 +1981,6 @@ input[id^="rc-editable-input"] {
   display: block !important;
 }
 
-/* Preview */
-
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  -moz-column-gap: 40px;
-       column-gap: 40px;
-  margin-top: 20px;
-  row-gap: 60px;
-}
-
-.product {
-  display: flex;
-  flex-direction: column;
-}
-
-.product img {
-  max-width: 100%;
-  height: auto;
-  border-bottom: 1px solid #ddd;
-  -o-object-fit: cover;
-     object-fit: cover;
-  aspect-ratio: 1/1;
-}
-
-.product h2 {
-  margin: 0.5rem 0;
-}
-
-.product p {
-  flex-grow: 1;
-}
-
-.product .price {
-  margin: 0.5rem 0;
-  font-weight: bold;
-}
-
-.product a {
-  background: #333;
-  color: #fff;
-  border: 0;
-  padding: 15px 40px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  border-radius: 100px;
-  text-decoration: none;
-  text-align: center;
-}
-
-.product a:hover {
-  background: #555;
-}
-
 /* Plugin Page Config */
 
 @media screen and (min-width: 961px) {
@@ -2250,10 +2183,6 @@ input[id^="rc-editable-input"] {
     flex-direction: row;
   }
 
-  #afx-ap-app :is(.lg\:flex-nowrap) {
-    flex-wrap: nowrap;
-  }
-
   #afx-ap-app :is(.lg\:justify-between) {
     justify-content: space-between;
   }
@@ -2291,15 +2220,15 @@ input[id^="rc-editable-input"] {
   #afx-ap-app :is(.xl\:grid-cols-4) {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
-
-  #afx-ap-app :is(.xl\:flex-row) {
-    flex-direction: row;
-  }
 }
 
 @media (min-width: 1536px) {
   #afx-ap-app :is(.\32xl\:min-w-\[300px\]) {
     min-width: 300px;
+  }
+
+  #afx-ap-app :is(.\32xl\:grid-cols-4) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   #afx-ap-app :is(.\32xl\:grid-cols-5) {
