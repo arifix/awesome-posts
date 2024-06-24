@@ -1215,10 +1215,6 @@ video {
   margin-top: 1.25rem;
 }
 
-#afx-ap-app :is(.mb-2) {
-  margin-bottom: 0.5rem;
-}
-
 #afx-ap-app :is(.block) {
   display: block;
 }
@@ -1361,10 +1357,6 @@ video {
 
 #afx-ap-app :is(.max-w-7xl) {
   max-width: 80rem;
-}
-
-#afx-ap-app :is(.max-w-\[1450px\]) {
-  max-width: 1450px;
 }
 
 #afx-ap-app :is(.max-w-full) {
@@ -1527,20 +1519,12 @@ video {
   border-bottom-width: 2px;
 }
 
-#afx-ap-app :is(.border-r-\[1px\]) {
+#afx-ap-app :is(.border-r) {
   border-right-width: 1px;
 }
 
 #afx-ap-app :is(.border-t-4) {
   border-top-width: 4px;
-}
-
-#afx-ap-app :is(.border-r-2) {
-  border-right-width: 2px;
-}
-
-#afx-ap-app :is(.border-r) {
-  border-right-width: 1px;
 }
 
 #afx-ap-app :is(.border-gray-300) {
@@ -1835,10 +1819,6 @@ video {
 
 #afx-ap-app :is(.tracking-widest) {
   letter-spacing: 0.1em;
-}
-
-#afx-ap-app :is(.tracking-tighter) {
-  letter-spacing: -0.05em;
 }
 
 #afx-ap-app :is(.text-ap-primary) {
@@ -2228,10 +2208,6 @@ input[id^="rc-editable-input"] {
 
   #afx-ap-app :is(.lg\:text-left) {
     text-align: left;
-  }
-
-  #afx-ap-app :is(.lg\:tracking-\[5px\]) {
-    letter-spacing: 5px;
   }
 }
 

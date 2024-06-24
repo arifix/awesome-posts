@@ -168,7 +168,7 @@ class AFX_Shortcodes
             $html = '';
 
             $styles = require_once AFX_AP_PATH . 'templates/grid-styles.php';
-            $html .= $styles;
+            //$html .= $styles;
 
             if ($posts_query->have_posts()) {
                 $html .= '<div class="afx-ap-wrapper afx-ap-grid-' . $set->gridStyle . '">';
@@ -209,8 +209,8 @@ class AFX_Shortcodes
                         }
                     }
 
-                    $grid_style1 = require AFX_AP_PATH . 'templates/grid-' . $set->gridStyle . '.php';
-                    $html .= $grid_style1;
+                    $grid_layout = require AFX_AP_PATH . 'templates/grid-' . $set->gridStyle . '.php';
+                    $html .= $grid_layout;
                 }
                 $html .= '</div>';
                 if ($set->loadMoreBtn) {
@@ -267,8 +267,8 @@ class AFX_Shortcodes
                         }
                     }
 
-                    $grid_style1_ajax = require AFX_AP_PATH . 'templates/grid-' . $set->gridStyle . '.php';
-                    $html .= $grid_style1_ajax;
+                    $grid_ajax = require AFX_AP_PATH . 'templates/grid-' . $set->gridStyle . '.php';
+                    $html .= $grid_ajax;
                 }
             }
 
