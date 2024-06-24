@@ -209,7 +209,7 @@ class AFX_Shortcodes
                         }
                     }
 
-                    $grid_style1 = require AFX_AP_PATH . 'templates/grid-'. $set->gridStyle .'.php';
+                    $grid_style1 = require AFX_AP_PATH . 'templates/grid-' . $set->gridStyle . '.php';
                     $html .= $grid_style1;
                 }
                 $html .= '</div>';
@@ -236,6 +236,8 @@ class AFX_Shortcodes
             $set = !empty($_REQUEST['settings']) ? json_decode(str_replace("\'", "\"", $_REQUEST['settings'])) : [];
 
             $posts_query = new WP_Query($posts_args);
+
+            $taxonomy = isset($posts_args['tax_query']) ? $posts_args['tax_query'][0]['taxonomy'] : '';
 
             $html = '';
             if ($posts_query->have_posts()) {
@@ -265,7 +267,7 @@ class AFX_Shortcodes
                         }
                     }
 
-                    $grid_style1_ajax = require AFX_AP_PATH . 'templates/grid-'. $set->gridStyle .'.php';
+                    $grid_style1_ajax = require AFX_AP_PATH . 'templates/grid-' . $set->gridStyle . '.php';
                     $html .= $grid_style1_ajax;
                 }
             }
