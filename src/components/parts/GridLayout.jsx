@@ -19,7 +19,7 @@ const GridLayout = () => {
 
       {/* Shortcode Heading */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-0">Shortcode Heading</h3>
           <Toggle title="Display Shortcode Heading?" name="displaySCHeading" />
         </div>
@@ -56,7 +56,7 @@ const GridLayout = () => {
 
       {/* Post Title */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-0">Post Title</h3>
           <Toggle title="Display Post Title?" name="displayPostTitle" />
         </div>
@@ -124,7 +124,7 @@ const GridLayout = () => {
 
       {/* Post Category */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-0">Post Category</h3>
           <Toggle title="Display Post Category?" name="displayPostCategory" />
         </div>
@@ -161,7 +161,7 @@ const GridLayout = () => {
 
       {/* Post Excerpt */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-0">Post Excerpt</h3>
           <Toggle title="Display Post Excerpt?" name="displayPostExcerpt" />
         </div>
@@ -206,7 +206,7 @@ const GridLayout = () => {
 
       {/* Post Meta */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-0">Post Meta</h3>
           <Toggle title="Display Post Meta?" name="displayPostMeta" />
         </div>
@@ -223,7 +223,7 @@ const GridLayout = () => {
 
       {/* Post Image */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-0">
             Post Featured Image
           </h3>
@@ -265,7 +265,7 @@ const GridLayout = () => {
 
       {/* Post Button */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-0">Post Button</h3>
           <Toggle title="Display Read More Button?" name="displayReadBtn" />
         </div>
@@ -280,7 +280,7 @@ const GridLayout = () => {
 
       {/* Load More Button */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-0">Load More Button</h3>
           <Toggle title="Display Load More Button?" name="loadMoreBtn" />
         </div>

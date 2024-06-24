@@ -11,6 +11,7 @@ import Color from "../elements/Color.jsx";
 import InputGroup from "../elements/InputGroup.jsx";
 import Border from "../elements/Border.jsx";
 import { fontsUrlToName } from "../../utils/const.js";
+import Alert from "../elements/Alert.jsx";
 
 const GridStyling = () => {
   const { defaultSettings, setCssStyles } = useContext(gridContext);
@@ -267,9 +268,12 @@ const GridStyling = () => {
         dangerouslySetInnerHTML={{ __html: `<style>${styles}</style>` }}
       ></div>
 
+      <Alert text="Note: Some of the elements do not have any effect based on the grid style selection." />
+      <br />
+
       {/* Grid Styles */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-3">Grid</h3>
         </div>
 
@@ -283,7 +287,7 @@ const GridStyling = () => {
 
       {/* Shortcode Heading */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-3">Shortcode Heading</h3>
         </div>
 
@@ -315,7 +319,7 @@ const GridStyling = () => {
 
       {/* Post Title */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-3">Post Title</h3>
         </div>
 
@@ -353,7 +357,7 @@ const GridStyling = () => {
 
       {/* Post Excerpt */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-3">Post Excerpt</h3>
         </div>
 
@@ -399,7 +403,7 @@ const GridStyling = () => {
 
       {/* Post Featured Image */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-3">
             Post Featured Image
           </h3>
@@ -417,7 +421,7 @@ const GridStyling = () => {
 
       {/* Post Meta */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-3">Post Meta</h3>
         </div>
 
@@ -455,7 +459,7 @@ const GridStyling = () => {
 
       {/* Post Read More Button */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-3">
             Post Read More Button
           </h3>
@@ -501,7 +505,7 @@ const GridStyling = () => {
 
       {/* Load More Button */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-3">Load More Button</h3>
         </div>
 

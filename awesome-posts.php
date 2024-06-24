@@ -4,14 +4,18 @@
  *
  * Plugin Name: Awesome Posts
  * Plugin URI: https://madebyarif.com/app/awesome-posts
+ * Description: Transform Your Posts with Style - Your Ultimate WordPress Plugin for Showcasing Posts in a Grid Layout!
  * Author: Arif Khan
  * Author URI: https://www.arif-khan.net/
+ * License: GPL v2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Version: 1.0.0
- * Description: Awesome Posts
  * Text Domain: awesome-posts
- * Last Updated on: 01-25-2024, 01:07PM (GMT+0)
+ * Requires at least: 6.3
+ * Requires PHP: 7.4
  *
  */
+
 
 define('AFX_AP_PATH', trailingslashit(plugin_dir_path(__FILE__)));
 define('AFX_AP_TABLE_NAME', 'afx_ap_data');

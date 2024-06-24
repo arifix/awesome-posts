@@ -55,6 +55,11 @@ class AFX_Helper
 
         return $text;
     }
+
+    static function check_string_contains($haystack, $needle)
+    {
+        return strpos($haystack, $needle) !== false;
+    }
 }
 
 new AFX_Helper();

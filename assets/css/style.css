@@ -84,6 +84,7 @@
 .afx-ap-wrapper.afx-ap-grid-style2 .ap-post-single {
   background-color: transparent;
   position: relative;
+  box-shadow: none;
 }
 
 .afx-ap-wrapper.afx-ap-grid-style2 .ap-featured-img {
@@ -95,6 +96,9 @@
   background-color: transparent !important;
   height: auto;
   width: auto;
+  padding: 0;
+  top: 15px;
+  right: 15px;
 }
 
 .afx-ap-wrapper.afx-ap-grid-style2 .ap-post-content {
@@ -108,9 +112,13 @@
   background-color: transparent;
   margin-bottom: 10px;
   gap: 15px;
+  position: absolute;
+  top: 15px;
+  left: 15px;
 }
 
-.afx-ap-wrapper.afx-ap-grid-style2 .ap-btn {
+.afx-ap-wrapper.afx-ap-grid-style2 .ap-btn,
+.afx-ap-wrapper.afx-ap-grid-style3 .ap-btn {
   background-color: transparent !important;
   margin: 10px 0 0 !important;
   padding: 0 !important;
@@ -122,7 +130,39 @@
 }
 
 .afx-ap-wrapper.afx-ap-grid-style3 .ap-post-single {
+  background-color: #fff;
+  box-shadow: none;
+  border-radius: 0;
+}
 
+.afx-ap-wrapper.afx-ap-grid-style3 .ap-post-content {
+  padding: 25px;
+}
+
+.afx-ap-wrapper.afx-ap-grid-style3 .ap-featured-img {
+  border-radius: 0;
+}
+
+.afx-ap-wrapper.afx-ap-grid-style3 .ap-cats {
+  margin-top: 20px;
+}
+
+.afx-ap-wrapper.afx-ap-grid-style3 .ap-post-meta {
+  background-color: transparent;
+  padding: 10px 0;
+  justify-content: start;
+  gap: 15px;
+}
+
+.afx-ap-wrapper.afx-ap-grid-style3 .ap-post-meta a.ap-meta {
+  margin-left: auto;
+}
+
+.afx-ap-wrapper.afx-ap-grid-style3 .ap-date {
+  position: initial;
+  background-color: transparent;
+  width: auto;
+  height: auto;
 }
 
 @media screen and (max-width: 767px) {

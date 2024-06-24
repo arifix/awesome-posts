@@ -9,7 +9,6 @@ if ($set->displayPostImage) {
         $grid .= '<div class="ap-date">' . get_the_date('d M') . '</div>';
     }
 
-    $grid .= '<div class="ap-post-content">';
     if ($set->displayPostMeta) {
         $grid .= '<div class="ap-post-meta">';
 
@@ -40,11 +39,17 @@ if ($set->displayPostImage) {
                     d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
                     ></path>
                 </svg>
-                <span class="ap-meta">' . $comments['approved'] . ' Comments</span>
+                <span class="ap-meta">' . $comments['approved'] . '</span>
             </a>';
         }
 
         $grid .= '</div>';
+    }
+
+    $grid .= '<div class="ap-post-content">';
+
+    if ($set->displayPostCategory) {
+        $grid .= '<p class="ap-cats ap-meta">' . join(" $set->postCatSeparator ", $cats) . ' </p>';
     }
 
     if ($set->displayPostTitle) {

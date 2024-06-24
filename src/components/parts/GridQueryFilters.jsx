@@ -14,6 +14,7 @@ import {
   postStatusOptions,
   relationOptions,
 } from "../../utils/const.js";
+import Alert from "../elements/Alert.jsx";
 
 const GridQueryFilters = () => {
   const {
@@ -75,7 +76,7 @@ const GridQueryFilters = () => {
 
       {/* Taxnomy Filter */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-0">Taxonomy Filter</h3>
           <Toggle title="Apply Taxonomy Filter?" name="applyTaxonomyFilter" />
         </div>
@@ -193,7 +194,7 @@ const GridQueryFilters = () => {
 
       {/* Order Filter */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-0">Order Filter</h3>
           <Toggle title="Apply Order Filter?" name="applyOrderFilter" />
         </div>
@@ -254,7 +255,7 @@ const GridQueryFilters = () => {
 
       {/* Date Filter */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-0">Date Filter</h3>
           <Toggle title="Apply Date Filter?" name="applyDateFilter" />
         </div>
@@ -305,7 +306,7 @@ const GridQueryFilters = () => {
 
       {/* Status Filter */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-0">Status Filter</h3>
           <Toggle title="Apply Status Filter?" name="applyStatusFilter" />
         </div>
@@ -345,7 +346,7 @@ const GridQueryFilters = () => {
 
       {/* Author Filter */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-0">Author Filter</h3>
           <Toggle title="Apply Author Filter?" name="applyAuthorFilter" />
         </div>
@@ -391,7 +392,7 @@ const GridQueryFilters = () => {
 
       {/* Search Filter */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-0">Search Filter</h3>
           <Toggle title="Apply Search Filter?" name="applySearchFilter" />
         </div>
@@ -406,25 +407,18 @@ const GridQueryFilters = () => {
 
       {/* Posts Filter */}
       <div className="px-5 py-2">
-        <div className="flex justify-between max-w-[1450px] border-b-2 border-b-gray-300">
+        <div className="flex justify-between border-b-2 border-b-gray-300">
           <h3 className="heading-secondary text-xl pb-0">Posts Filter</h3>
           <Toggle title="Apply Posts Filter?" name="applyPostsFilter" />
         </div>
         {defaultSettings.applyPostsFilter ? (
           <>
-            <div className="flex items-center bg-blue-500 px-4 py-2 rounded-md text-lg max-w-7xl mt-3">
-              <svg viewBox="0 0 24 24" className="text-white w-5 h-5 mr-3">
-                <path
-                  fill="currentColor"
-                  d="M12,0A12,12,0,1,0,24,12,12.013,12.013,0,0,0,12,0Zm.25,5a1.5,1.5,0,1,1-1.5,1.5A1.5,1.5,0,0,1,12.25,5ZM14.5,18.5h-4a1,1,0,0,1,0-2h.75a.25.25,0,0,0,.25-.25v-4.5a.25.25,0,0,0-.25-.25H10.5a1,1,0,0,1,0-2h1a2,2,0,0,1,2,2v4.75a.25.25,0,0,0,.25.25h.75a1,1,0,1,1,0,2Z"
-                ></path>
-              </svg>
-              <span className="text-white">
-                Note: You cannot combine Post Include and Post Exclude in the
+            <br />
+            <Alert
+              text="Note: You cannot combine Post Include and Post Exclude in the
                 same query. Whenever possible, avoid using Post Exclude for
-                better performance.
-              </span>
-            </div>
+                better performance."
+            />
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
               <div className="afx-form-field flex-col !items-start">

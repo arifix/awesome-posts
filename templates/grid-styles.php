@@ -34,10 +34,10 @@ grid-template-columns: repeat(' . $set->gridColumnsD . ', 1fr);
 }';
 
 if ($set->shFont) {
-    $font = str_contains($set->shFont, "http")
+    $font = AFX_Helper::check_string_contains($set->shFont, "http")
         ? AFX_Helper::fonts_url_to_name($set->shFont)
         : $set->shFont;
-    $font_url = str_contains($set->shFont, "http")
+    $font_url = AFX_Helper::check_string_contains($set->shFont, "http")
         ? $set->shFont
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->shFont) . '&display=swap';
 
@@ -60,10 +60,10 @@ text-align: ' . $set->shAlignment . ';
 }';
 
 if ($set->titleFont) {
-    $font = str_contains($set->titleFont, "http")
+    $font = AFX_Helper::check_string_contains($set->titleFont, "http")
         ? AFX_Helper::fonts_url_to_name($set->titleFont)
         : $set->titleFont;
-    $font_url = str_contains($set->titleFont, "http")
+    $font_url = AFX_Helper::check_string_contains($set->titleFont, "http")
         ? $set->titleFont
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->titleFont) . '&display=swap';
 
@@ -88,10 +88,10 @@ text-align: ' . $set->titleAlignment . ';
 $css .= '.afx-ap-wrapper .ap-title:hover{color: ' . $set->titleHoverColor . ';}';
 
 if ($set->excerptFont) {
-    $font = str_contains($set->excerptFont, "http")
+    $font = AFX_Helper::check_string_contains($set->excerptFont, "http")
         ? AFX_Helper::fonts_url_to_name($set->excerptFont)
         : $set->excerptFont;
-    $font_url = str_contains($set->excerptFont, "http")
+    $font_url = AFX_Helper::check_string_contains($set->excerptFont, "http")
         ? $set->excerptFont
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->excerptFont) . '&display=swap';
 
@@ -116,10 +116,10 @@ text-align: ' . $set->excerptAlignment . ';
 $css .= '.afx-ap-wrapper .ap-featured-img{height: ' . $set->postImageHeight . 'px;}';
 
 if ($set->metaFont) {
-    $font = str_contains($set->metaFont, "http")
+    $font = AFX_Helper::check_string_contains($set->metaFont, "http")
         ? AFX_Helper::fonts_url_to_name($set->metaFont)
         : $set->metaFont;
-    $font_url = str_contains($set->metaFont, "http")
+    $font_url = AFX_Helper::check_string_contains($set->metaFont, "http")
         ? $set->metaFont
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->metaFont) . '&display=swap';
 
@@ -147,10 +147,10 @@ $css .= '.afx-ap-wrapper .ap-meta a {color: ' . $set->metaColor . ';}
 $css .= '.afx-ap-wrapper .ap-post-meta svg {color: ' . $set->metaColor . ';}';
 
 if ($set->btnFont) {
-    $font = str_contains($set->btnFont, "http")
+    $font = AFX_Helper::check_string_contains($set->btnFont, "http")
         ? AFX_Helper::fonts_url_to_name($set->btnFont)
         : $set->btnFont;
-    $font_url = str_contains($set->btnFont, "http")
+    $font_url = AFX_Helper::check_string_contains($set->btnFont, "http")
         ? $set->btnFont
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->btnFont) . '&display=swap';
 
@@ -186,10 +186,10 @@ color: ' . $set->btnHoverColor . ';
 }';
 
 if ($set->btnLmFont) {
-    $font = str_contains($set->btnLmFont, "http")
+    $font = AFX_Helper::check_string_contains($set->btnLmFont, "http")
         ? AFX_Helper::fonts_url_to_name($set->btnLmFont)
         : $set->btnLmFont;
-    $font_url = str_contains($set->btnLmFont, "http")
+    $font_url = AFX_Helper::check_string_contains($set->btnLmFont, "http")
         ? $set->btnLmFont
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->btnLmFont) . '&display=swap';
 

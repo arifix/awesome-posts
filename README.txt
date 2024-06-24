@@ -1,96 +1,68 @@
-=== Awesome Posts – Shortcode for Post Grid ===
-Contributors: Arif Khan
+=== Awesome Posts ===
+Contributors: arifkpi
 Donate link: https://buymeacoffee.com/arifix
-Tags: post shortcode, post dipplay, post grid, custom post grid
+Author URI: https://www.arif-khan.net/
+Plugin URI: https://madebyarif.com/app/awesome-posts
+Tags: post shortcode, post display, post grid, custom post grid
 Requires at least: 6.2
-Tested up to: 6.5.4
-Stable tag: trunk
-Requires PHP: 5.6
+Requires PHP: 7.4
+Tested up to: 6.5
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+Transform Your Posts with Style - Your Ultimate WordPress Plugin for Showcasing Posts in a Grid Layout!
 
 == Description ==
 
-This is the long description. No limit, and you can use Markdown (as well as in the following sections).
+The Awesome Posts plugin enables you to handle multiple post shortcodes. You can easily customize the format, query, filters, layouts, and styles using a simple editor. This versatile plugin supports both regular posts and custom posts.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+Plugin Documentation: [Plugin Docs](https://madebyarif.com/app/awesome-posts)
 
-A few notes about the sections above:
+*   [Live Demo](https://madebyarif.com/wp/awesome-posts/)	
+*   [Need Help?](https://madebyarif.com/app/awesome-posts#contact)		
+*   [About Author](https://www.arif-khan.net/)
 
-* "Contributors" is a comma separated list of wordpress.org usernames
-* "Tags" is a comma separated list of tags that apply to the plugin
-* "Requires at least" is the lowest version that the plugin will work on
-* "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-* Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
+==  Features ==
+*   Manage both standard posts and custom posts
+*   You can create unlimited shortcodes in the Customizer
+*   Offers a wide range of customization options
 
- Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin. In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer. Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
-
- If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
-
-Ordered list:
-
-1. Some feature
-1. Another feature
-1. Something else about the plugin
-
-Unordered list:
-
-* something
-* something else
-* third thing
-
-Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") and one to [Markdown's Syntax Documentation][markdown syntax].
-Titles are optional, naturally.
-
-[markdown syntax]: http://daringfireball.net/projects/markdown/syntax
-    "Markdown is what the parser uses to process much of the readme file"
-
-Markdown uses email style notation for blockquotes and I've been told:
-> Asterisks for *emphasis*. Double it up  for **strong**.
-
-`<?php code(); // goes in backticks ?>`
+You can make my day by submitting a positive review on <a href="https://wordpress.org/plugins/awesome-posts/" target="_blank"><strong>WordPress.org!</strong></a> or <a href="https://buymeacoffee.com/arifix" target="_blank"><strong>Buy me a Coffee</strong></a></p>
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
+1. Upload the entire `awesome-posts` folder to the `/wp-content/plugins/` directory.
+1. Activate the plugin through the **Plugins** screen (**Plugins > Installed Plugins**).
 
-e.g.
+You will find **Awesome Posts** menu in your WordPress admin screen.
 
-1. Upload the plugin files to the `/wp-content/plugins/plugin-name` directory, or install the plugin through the WordPress plugins screen directly.
-1. Activate the plugin through the 'Plugins' screen in WordPress
-1. Use the Settings -> Plugin Name screen to configure the plugin
-1. (Make your instructions match the desired user flow for activating and installing your plugin. Include any steps that might be needed for explanatory purposes)
+For basic usage, have a look at the [plugin's website](https://madebyarif.com/app/awesome-posts).
 
 == Frequently Asked Questions ==
 
-= How to use Awesome Posts =
+= Is Awesome Posts WP free plugin? =
+Yes, Its free WordPress Plugin. 
 
-Go to Awesome Posts > New Grid > Config > Save > Copy Shortcode,
-go to page or post editor and insert shortcode
+= Is it support custom posts? =
+Yes, Its supports custom posts. 
 
-= Need Any Help? =
-
-Please mail me at madebyarif@gmail.com
-
+[Support](https://madebyarif.com/app/awesome-posts#contact)
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif).
-2. This is the second screen shot
+1. screenshot-1.png
+2. screenshot-2.png
+3. screenshot-3.png
+4. screenshot-4.png
+5. screenshot-5.png
 
 == Changelog ==
 
+= 1.0.0 =
+
+* Initial version.=
 
 == Upgrade Notice ==
 
+N/A

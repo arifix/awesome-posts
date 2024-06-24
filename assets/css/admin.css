@@ -1215,6 +1215,10 @@ video {
   margin-top: 1.25rem;
 }
 
+#afx-ap-app :is(.mb-2) {
+  margin-bottom: 0.5rem;
+}
+
 #afx-ap-app :is(.block) {
   display: block;
 }
@@ -1531,6 +1535,14 @@ video {
   border-top-width: 4px;
 }
 
+#afx-ap-app :is(.border-r-2) {
+  border-right-width: 2px;
+}
+
+#afx-ap-app :is(.border-r) {
+  border-right-width: 1px;
+}
+
 #afx-ap-app :is(.border-gray-300) {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -1823,6 +1835,10 @@ video {
 
 #afx-ap-app :is(.tracking-widest) {
   letter-spacing: 0.1em;
+}
+
+#afx-ap-app :is(.tracking-tighter) {
+  letter-spacing: -0.05em;
 }
 
 #afx-ap-app :is(.text-ap-primary) {
