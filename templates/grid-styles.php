@@ -2,33 +2,33 @@
 
 $css = '<style>';
 
-$css .= '.afx-ap-wrapper {
+$css .= '.afx-ap-wrapper.afx-grid-' . $id . ' {
 background-color: ' . $set->gridBgColor . ';
 padding: ' . $set->gridPadding->top . 'px ' . $set->gridPadding->right . 'px ' . $set->gridPadding->bottom . 'px ' . $set->gridPadding->left . 'px;
 margin: ' . $set->gridMargin->top . 'px ' . $set->gridMargin->right . 'px ' . $set->gridMargin->bottom . 'px ' . $set->gridMargin->left . 'px;
 }
 
-.afx-ap-wrapper .afx-ap-posts {
+.afx-ap-wrapper.afx-grid-' . $id . ' .afx-ap-posts {
 gap: ' . $set->gridGap . 'px;
 }
 
-.afx-ap-wrapper .ap-date {
+.afx-ap-wrapper.afx-grid-' . $id . ' .ap-date {
 background-color: ' . $set->btnBgColor . ';
 color: ' . $set->btnColor . ';
 }
 
-.afx-ap-wrapper .afx-ap-posts {
+.afx-ap-wrapper.afx-grid-' . $id . ' .afx-ap-posts {
 grid-template-columns: repeat(' . $set->gridColumnsD . ', 1fr);
 }
 
 @media screen and (max-width: 991px) {
-.afx-ap-wrapper .afx-ap-posts {
+.afx-ap-wrapper.afx-grid-' . $id . ' .afx-ap-posts {
     grid-template-columns: repeat(' . $set->gridColumnsT . ', 1fr);
 }
 }
 
 @media screen and (max-width: 767px) {
-.afx-ap-wrapper .afx-ap-posts {
+.afx-ap-wrapper.afx-grid-' . $id . ' .afx-ap-posts {
     grid-template-columns: repeat(' . $set->gridColumnsM . ', 1fr);
 }
 }';
@@ -41,10 +41,10 @@ if ($set->shFont) {
         ? $set->shFont
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->shFont) . '&display=swap';
 
-    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.ap-grid-title{font-family: ' . $font . '}';
+    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.afx-ap-wrapper.afx-grid-' . $id . ' .ap-grid-title{font-family: ' . $font . '}';
 }
 
-$css .= '.afx-ap-wrapper .ap-grid-title{
+$css .= '.afx-ap-wrapper.afx-grid-' . $id . ' .ap-grid-title{
 font-size: ' . $set->shFontSize . 'px;
 font-weight: ' . $set->shFontWeight . ';
 font-style: ' . $set->shFontStyle . ';
@@ -67,10 +67,10 @@ if ($set->titleFont) {
         ? $set->titleFont
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->titleFont) . '&display=swap';
 
-    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.afx-ap-wrapper .ap-title{font-family: ' . $font . '}';
+    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.afx-ap-wrapper.afx-grid-' . $id . ' .ap-title{font-family: ' . $font . '}';
 }
 
-$css .= '.afx-ap-wrapper .ap-title{
+$css .= '.afx-ap-wrapper.afx-grid-' . $id . ' .ap-title{
 font-size: ' . $set->titleFontSize . 'px;
 font-weight: ' . $set->titleFontWeight . ';
 font-style: ' . $set->titleFontStyle . ';
@@ -85,7 +85,7 @@ word-spacing: ' . $set->titleWordSpacing . 'px;
 text-align: ' . $set->titleAlignment . ';
 }';
 
-$css .= '.afx-ap-wrapper .ap-title:hover{color: ' . $set->titleHoverColor . ';}';
+$css .= '.afx-ap-wrapper.afx-grid-' . $id . ' .ap-title:hover{color: ' . $set->titleHoverColor . ';}';
 
 if ($set->excerptFont) {
     $font = AFX_Helper::check_string_contains($set->excerptFont, "http")
@@ -95,10 +95,10 @@ if ($set->excerptFont) {
         ? $set->excerptFont
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->excerptFont) . '&display=swap';
 
-    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.afx-ap-wrapper .ap-excerpt{font-family: ' . $font . '}';
+    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.afx-ap-wrapper.afx-grid-' . $id . ' .ap-excerpt{font-family: ' . $font . '}';
 }
 
-$css .= '.afx-ap-wrapper .ap-excerpt{
+$css .= '.afx-ap-wrapper.afx-grid-' . $id . ' .ap-excerpt{
 font-size: ' . $set->excerptFontSize . 'px;
 font-weight: ' . $set->excerptFontWeight . ';
 font-style: ' . $set->excerptFontStyle . ';
@@ -113,7 +113,7 @@ word-spacing: ' . $set->excerptWordSpacing . 'px;
 text-align: ' . $set->excerptAlignment . ';
 }';
 
-$css .= '.afx-ap-wrapper .ap-featured-img{height: ' . $set->postImageHeight . 'px;}';
+$css .= '.afx-ap-wrapper.afx-grid-' . $id . ' .ap-featured-img{height: ' . $set->postImageHeight . 'px;}';
 
 if ($set->metaFont) {
     $font = AFX_Helper::check_string_contains($set->metaFont, "http")
@@ -123,10 +123,10 @@ if ($set->metaFont) {
         ? $set->metaFont
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->metaFont) . '&display=swap';
 
-    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.afx-ap-wrapper .ap-meta{font-family: ' . $font . '}';
+    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.afx-ap-wrapper.afx-grid-' . $id . ' .ap-meta{font-family: ' . $font . '}';
 }
 
-$css .= '.afx-ap-wrapper .ap-meta{
+$css .= '.afx-ap-wrapper.afx-grid-' . $id . ' .ap-meta{
 font-size: ' . $set->metaFontSize . 'px;
 font-weight: ' . $set->metaFontWeight . ';
 font-style: ' . $set->metaFontStyle . ';
@@ -141,10 +141,10 @@ word-spacing: ' . $set->metaWordSpacing . 'px;
 text-align: ' . $set->metaAlignment . ';
 }';
 
-$css .= '.afx-ap-wrapper .ap-meta a {color: ' . $set->metaColor . ';}
-.afx-ap-wrapper .ap-meta a:hover {color: ' . $set->metaHoverColor . ';}';
+$css .= '.afx-ap-wrapper.afx-grid-' . $id . ' .ap-meta a {color: ' . $set->metaColor . ';}
+.afx-ap-wrapper.afx-grid-' . $id . ' .ap-meta a:hover {color: ' . $set->metaHoverColor . ';}';
 
-$css .= '.afx-ap-wrapper .ap-post-meta svg {color: ' . $set->metaColor . ';}';
+$css .= '.afx-ap-wrapper.afx-grid-' . $id . ' .ap-post-meta svg {color: ' . $set->metaColor . ';}';
 
 if ($set->btnFont) {
     $font = AFX_Helper::check_string_contains($set->btnFont, "http")
@@ -154,10 +154,10 @@ if ($set->btnFont) {
         ? $set->btnFont
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->btnFont) . '&display=swap';
 
-    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.afx-ap-wrapper .ap-btn{font-family: ' . $font . '}';
+    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.afx-ap-wrapper.afx-grid-' . $id . ' .ap-btn{font-family: ' . $font . '}';
 }
 
-$css .= '.afx-ap-wrapper .ap-btn{
+$css .= '.afx-ap-wrapper.afx-grid-' . $id . ' .ap-btn{
 font-size: ' . $set->btnFontSize . 'px;
 font-weight: ' . $set->btnFontWeight . ';
 font-style: ' . $set->btnFontStyle . ';
@@ -180,7 +180,7 @@ border-bottom-width: ' . $set->btnBorder->bottom . 'px;
 border-left-width: ' . $set->btnBorder->left . 'px;
 }';
 
-$css .= '.afx-ap-wrapper .ap-btn:hover{
+$css .= '.afx-ap-wrapper.afx-grid-' . $id . ' .ap-btn:hover{
 background-color: ' . $set->btnBgHoverColor . ';
 color: ' . $set->btnHoverColor . ';
 }';
@@ -193,10 +193,10 @@ if ($set->btnLmFont) {
         ? $set->btnLmFont
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->btnLmFont) . '&display=swap';
 
-    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.afx-ap-wrapper .ap-more-btn{font-family: ' . $font . '}';
+    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.afx-ap-wrapper.afx-grid-' . $id . ' .ap-more-btn{font-family: ' . $font . '}';
 }
 
-$css .= '.afx-ap-wrapper .ap-more-btn{
+$css .= '.afx-ap-wrapper.afx-grid-' . $id . ' .ap-more-btn{
 font-size: ' . $set->btnLmFontSize . 'px;
 font-weight: ' . $set->btnLmFontWeight . ';
 font-style: ' . $set->btnLmFontStyle . ';
@@ -218,12 +218,12 @@ border-bottom-width: ' . $set->btnLmBorder->bottom . 'px;
 border-left-width: ' . $set->btnLmBorder->left . 'px;
 }';
 
-$css .= '.afx-ap-wrapper .ap-more-btn:hover{
+$css .= '.afx-ap-wrapper.afx-grid-' . $id . ' .ap-more-btn:hover{
 background-color: ' . $set->btnLmBgHoverColor . ';
 color: ' . $set->btnLmHoverColor . ';
 }';
 
-$css .= '.ap-loader div{background-color: ' . $set->btnLmBgColor . ';}';
+$css .= '.afx-ap-wrapper.afx-grid-' . $id . ' .ap-loader div{background-color: ' . $set->btnLmBgColor . ';}';
 
 $css .= '</style>';
 

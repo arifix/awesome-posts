@@ -54,7 +54,7 @@ if ($set->displayPostImage) {
 
     if ($set->displayPostTitle) {
         $grid .= '<a href="' . get_the_permalink() . '">
-                <' . $set->postTitleTag . ' class="ap-title">' . AFX_Helper::get_text_limit_by(get_the_title(), $set->postTitleLimit, $set->postTitleType, '') . '</' . $set->postTitleTag . '>
+                <' . strtolower($set->postTitleTag) . ' class="ap-title">' . AFX_Helper::get_text_limit_by(get_the_title(), $set->postTitleLimit, $set->postTitleType, '') . '</' . strtolower($set->postTitleTag) . '>
             </a>';
     }
 

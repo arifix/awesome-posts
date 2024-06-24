@@ -167,11 +167,11 @@ class AFX_Shortcodes
 
             $html = '';
 
-            $styles = require_once AFX_AP_PATH . 'templates/grid-styles.php';
-            //$html .= $styles;
+            $styles = require AFX_AP_PATH . 'templates/grid-styles.php';
+            $html .= $styles;
 
             if ($posts_query->have_posts()) {
-                $html .= '<div class="afx-ap-wrapper afx-ap-grid-' . $set->gridStyle . '">';
+                $html .= '<div class="afx-ap-wrapper afx-ap-grid-' . $set->gridStyle . ' afx-grid-' . $id . '">';
                 $html .= '<div class="ap-loader">
                     <div></div>
                     <div></div>
@@ -179,7 +179,7 @@ class AFX_Shortcodes
                 </div>';
 
                 if ($set->displaySCHeading) {
-                    $html .= '<' . $set->scHeadingTag . ' class="ap-grid-title">' . $grid_title . '</' . $set->scHeadingTag . '>';
+                    $html .= '<' . strtolower($set->scHeadingTag) . ' class="ap-grid-title">' . $grid_title . '</' . strtolower($set->scHeadingTag) . '>';
                 }
 
                 $html .= '<div class="afx-ap-posts">';
