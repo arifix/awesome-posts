@@ -15,6 +15,28 @@ if ($set->displayPostImage) {
     $grid .= '</div>';
 }
 
+$grid .= '<div class="ap-post-content">';
+
+if ($set->displayPostCategory) {
+    $grid .= '<p class="ap-cats ap-meta">' . join(" $set->postCatSeparator ", $cats) . ' </p>';
+}
+
+if ($set->displayPostTitle) {
+    $grid .= '<a href="' . get_the_permalink() . '">
+            <' . $set->postTitleTag . ' class="ap-title">' . AFX_Helper::get_text_limit_by(get_the_title(), $set->postTitleLimit, $set->postTitleType, '') . '</' . $set->postTitleTag . '>
+        </a>';
+}
+
+if ($set->displayPostExcerpt) {
+    $grid .= '<p class="ap-excerpt">' .  AFX_Helper::get_text_limit_by(get_the_excerpt(), $set->postExcerptLimit, $set->postExcerptType, $set->postExcerptText) . '</p>';
+}
+
+if ($set->displayReadBtn) {
+    $grid .= '<a href="' . get_the_permalink() . '" class="ap-btn">' . $set->postBtnText . '</a>';
+}
+
+
+
 if ($set->displayPostMeta) {
     $grid .= '<div class="ap-post-meta">';
 
@@ -50,26 +72,6 @@ if ($set->displayPostMeta) {
     }
 
     $grid .= '</div>';
-}
-
-$grid .= '<div class="ap-post-content">';
-
-if ($set->displayPostCategory) {
-    $grid .= '<p class="ap-cats ap-meta">' . join(" $set->postCatSeparator ", $cats) . ' </p>';
-}
-
-if ($set->displayPostTitle) {
-    $grid .= '<a href="' . get_the_permalink() . '">
-            <' . $set->postTitleTag . ' class="ap-title">' . AFX_Helper::get_text_limit_by(get_the_title(), $set->postTitleLimit, $set->postTitleType, '') . '</' . $set->postTitleTag . '>
-        </a>';
-}
-
-if ($set->displayPostExcerpt) {
-    $grid .= '<p class="ap-excerpt">' .  AFX_Helper::get_text_limit_by(get_the_excerpt(), $set->postExcerptLimit, $set->postExcerptType, $set->postExcerptText) . '</p>';
-}
-
-if ($set->displayReadBtn) {
-    $grid .= '<a href="' . get_the_permalink() . '" class="ap-btn">' . $set->postBtnText . '</a>';
 }
 
 $grid .= '</div></div>';

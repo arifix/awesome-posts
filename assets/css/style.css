@@ -121,6 +121,10 @@
   width: max-content;
 }
 
+.afx-ap-wrapper.afx-ap-grid-style3 .ap-post-single {
+
+}
+
 @media screen and (max-width: 767px) {
   .afx-ap-wrapper .ap-date {
     width: 70px;
