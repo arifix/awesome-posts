@@ -98,12 +98,6 @@ class AFX_Rest_Routes
             'callback' => [$this, 'afx_delete_grid'],
             'permission_callback' => [$this, 'afx_get_settings_permission']
         ]);
-
-        register_rest_route('afx-ap/v1', '/products', [
-            'methods' => 'GET',
-            'callback' => [$this, 'afx_get_products'],
-            'permission_callback' => [$this, 'afx_get_settings_permission']
-        ]);
     }
 
     public function afx_get_settings()
@@ -481,50 +475,6 @@ class AFX_Rest_Routes
         $wpdb->delete($table_name, array('id' => $req['del_id']));
 
         return ['message' => 'Grid Deleted Successfully'];
-    }
-
-    public function afx_get_products()
-    {
-        $categories = wp_verify_nonce($_GET['_wpnonce'], 'wp_rest') && isset($_GET['categories']) ? explode(",", $_GET['categories']) : [];
-
-        $product_args = array(
-            'post_type' => 'product',
-            'posts_per_page' => 12,
-            'order' => 'DESC',
-            'orderby' => 'date',
-            'post_status' => 'publish',
-        );
-
-        if (count($categories) > 0) {
-            $product_args['tax_query'] = array(
-                array(
-                    'taxonomy' => 'product_cat',
-                    'field'    => 'slug',
-                    'terms'    => $categories,
-                    'operator'  => 'IN'
-                ),
-            );
-        }
-
-        $products = [];
-        $product_query = new WP_Query($product_args);
-        if ($product_query->have_posts()) {
-            while ($product_query->have_posts()) : $product_query->the_post();
-                $price = get_post_meta(get_the_ID(), '_regular_price', true);
-                $image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), "full");
-
-                $products[] = [
-                    'title' => get_the_title(),
-                    'short_des' => get_the_excerpt(),
-                    'price' => $price,
-                    'image' => $image[0],
-                    'url' => get_the_permalink()
-                ];
-
-            endwhile;
-        }
-
-        return  wp_json_encode($products);
     }
 }
 
