@@ -23,10 +23,11 @@ class AFX_Activator
 
             $sql = "CREATE TABLE $table_name (
                 `id` int(11) NOT NULL AUTO_INCREMENT,
-                `title` varchar(200) NOT NULL,
-                `settings` text NOT NULL,
-                `timestamp` varchar(20) NOT NULL,
-                PRIMARY KEY (id) $charset_collate;";
+               `title` varchar(200) NOT NULL,
+               `settings` text NOT NULL,
+               `timestamp` varchar(20) NOT NULL,
+               PRIMARY KEY (id)
+           ) $charset_collate;";
 
             require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
