@@ -942,7 +942,9 @@ video {
 .afx-color-picker {
   display: block;
   height: 40px;
+  min-height: 40px;
   width: 40px;
+  min-width: 40px;
   cursor: pointer;
   border-radius: 9999px;
   --tw-bg-opacity: 1;
@@ -1441,10 +1443,6 @@ video {
 
 #afx-ap-app :is(.items-center) {
   align-items: center;
-}
-
-#afx-ap-app :is(.justify-start) {
-  justify-content: flex-start;
 }
 
 #afx-ap-app :is(.justify-center) {

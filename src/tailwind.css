@@ -132,7 +132,7 @@
   }
 
   .afx-color-picker {
-    @apply w-[40px] h-[40px] bg-gray-500 transition-all rounded-full block ring-gray-500 hover:ring-2 ring-offset-1 cursor-pointer;
+    @apply w-[40px] h-[40px] min-h-[40px] min-w-[40px] bg-gray-500 transition-all rounded-full block ring-gray-500 hover:ring-2 ring-offset-1 cursor-pointer;
   }
 
   .color-groups {
