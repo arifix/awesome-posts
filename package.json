@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "wp-scripts build",
-    "start": "wp-scripts start & tailwindcss -i ./src/tailwind.css -o ./assets/css/admin.css -w",
-    "tailwind": "tailwindcss -i ./src/tailwind.css -o ./assets/css/admin.css -w"
+    "start": "wp-scripts start & tailwindcss -i ./src/tailwind.css -o ./assets/css/admin.css -w --minify",
+    "tailwind": "tailwindcss -i ./src/tailwind.css -o ./assets/css/admin.css -w --minify"
   },
   "author": "Arif Khan",
   "license": "ISC",
