@@ -23,7 +23,7 @@ if ($set->displayPostExcerpt) {
 
 if ($set->displayReadBtn) {
     $grid .= '<a href="' . get_the_permalink() . '" class="ap-btn">' . $set->postBtnText . '<svg class="fill-stroke" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5.75 12.5L10.25 8L5.75 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M5.75 12.5L10.25 8L5.75 3.5" stroke="currentColor" strokeWidth="2" stroke-linecap="round" stroke-linejoin="round" />
               </svg></a>';
 }
 
@@ -68,7 +68,7 @@ if ($set->displayPostMeta) {
     if ($set->displayPostMeta && $set->postMetaDisDate) {
         $grid .= '<a href="' . get_the_permalink() . '" class="ap-meta">
            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                 <path stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
             </svg>
             <span class="ap-meta">' . get_the_date('d M') . '</span>
         </a>';

@@ -7,6 +7,7 @@ import Sidebar from "./global/Sidebar";
 import Container from "./global/Container";
 import SidebarToggle from "./global/SidebarToggle";
 import { Tooltip } from "react-tooltip";
+import { insertUrlParam, removeUrlParam } from "../utils/const";
 
 const App = () => {
   const [refreshSettings, setRefreshSettings] = useState(false);
@@ -100,6 +101,57 @@ const App = () => {
           <SidebarToggle />
           <div className="afx-ap-container">
             <Container />
+          </div>
+
+          <div className="group fixed bottom-0 right-0 p-3 flex items-end justify-end w-28 h-28">
+            <div
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveTab("grid-new");
+                insertUrlParam("tab", "grid-new");
+                removeUrlParam("grid_id");
+                setGridId(null);
+              }}
+              className="text-white shadow-xl flex items-center justify-center p-3 rounded-full bg-ap-primary z-50 absolute cursor-pointer"
+            >
+              <i className="dashicons-before dashicons-insert"></i>
+            </div>
+            <div
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveTab("brand-colors");
+                insertUrlParam("tab", "brand-colors");
+                removeUrlParam("grid_id");
+                setGridId(null);
+              }}
+              className="absolute cursor-pointer rounded-full transition-all duration-[0.2s] ease-out scale-y-0 group-hover:scale-y-100 group-hover:-translate-x-16 flex p-3 hover:p-3 bg-ap-secondary scale-100 hover:bg-ap-primary text-white"
+            >
+              <i className="dashicons-before dashicons-buddicons-topics"></i>
+            </div>
+            <div
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveTab("fonts-manager");
+                insertUrlParam("tab", "fonts-manager");
+                removeUrlParam("grid_id");
+                setGridId(null);
+              }}
+              className="absolute cursor-pointer rounded-full transition-all duration-[0.2s] ease-out scale-x-0 group-hover:scale-x-100 group-hover:-translate-y-16 flex p-3 hover:p-3 bg-ap-secondary hover:bg-ap-primary text-white"
+            >
+              <i className="dashicons-before dashicons-editor-textcolor"></i>
+            </div>
+            <div
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveTab("backup-restore");
+                insertUrlParam("tab", "backup-restore");
+                removeUrlParam("grid_id");
+                setGridId(null);
+              }}
+              className="absolute cursor-pointer rounded-full transition-all duration-[0.2s] ease-out scale-x-0 group-hover:scale-x-100 group-hover:-translate-y-14 group-hover:-translate-x-14 flex p-3 hover:p-3 bg-ap-secondary hover:bg-ap-primary text-white"
+            >
+              <i className="dashicons-before dashicons-backup"></i>
+            </div>
           </div>
 
           <Tooltip id="afx-ap-tooltip" />
