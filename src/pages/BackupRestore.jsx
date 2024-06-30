@@ -131,27 +131,24 @@ const BackupRestore = () => {
       <div className="p-5">
         <h3 className="heading-secondary">Backup &amp; Restore</h3>
         <div className="flex flex-col lg:flex-row justify-center items-center gap-20 lg:gap-16 bg-white rounded-lg shadow-lg p-5 lg:p-10">
-          <div className="w-1/2 flex justify-center items-center">
-            <button
-              type="button"
-              className="action-button primary"
-              onClick={() => downloadBackup()}
-            >
-              <i className="dashicons-before dashicons-yes"></i> Download Backup
-            </button>
+          <div className="w-1/2 flex flex-col justify-center items-center text-center">
+            <div className="flex w-full justify-center items-center bg-grey-lighter mb-5">
+              <label
+                onClick={() => downloadBackup()}
+                className="w-64 flex flex-col gap-7 items-center px-4 py-6 text-primary rounded-lg shadow-lg tracking-wide uppercase border border-primary cursor-pointer hover:bg-gray-200 hover:text-primary-500"
+              >
+                <i className="dashicons-before dashicons-cloud-saved dashicon-br"></i>
+                <span className="mt-2 text-base leading-normal">
+                  Click to Download the JSON Backup file
+                </span>
+              </label>
+            </div>
           </div>
 
           <form className="w-1/2 flex flex-col justify-center items-center text-center">
             <div className="flex w-full justify-center items-center bg-grey-lighter mb-5">
-              <label className="w-64 flex flex-col items-center px-4 py-6 text-primary rounded-lg shadow-lg tracking-wide uppercase border border-primary cursor-pointer hover:bg-gray-100 hover:text-primary-500">
-                <svg
-                  className="w-8 h-8"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"></path>
-                </svg>
+              <label className="w-64 flex flex-col gap-7 items-center px-4 py-6 text-primary rounded-lg shadow-lg tracking-wide uppercase border border-primary cursor-pointer hover:bg-gray-200 hover:text-primary-500">
+                <i className="dashicons-before dashicons-cloud-upload dashicon-br"></i>
                 <span className="mt-2 text-base leading-normal">
                   Click to Upload the JSON Backup file
                 </span>

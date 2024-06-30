@@ -214,6 +214,10 @@
   .block-section {
     @apply blur-md pointer-events-none select-none;
   }
+
+  .dashicon-br::before {
+    @apply text-5xl w-24;
+  }
 }
 
 /* Tools */

@@ -5,7 +5,7 @@ const Preview = ({ defaultSettings, cssStyles }) => {
     title: "Improve your customer experience",
     excerpt:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint harum rerum voluptatem quo recusandae magni placeat saepe molestiae, sed excepturi cumque corporis perferendis hic.",
-    image: "https://images.unsplash.com/photo-1547586696-ea22b4d4235d",
+    image: "https://placehold.co/900x600/ACA9A9/000000/png?text=Placeholder+Image",
     cats: ["Video", "Travel", "Place"],
   };
 

@@ -3,7 +3,7 @@
 $grid = '<div class="ap-post-single">';
 if ($set->displayPostImage) {
     $grid .= '<img
-        src="' . (is_array($featured_image) ? $featured_image[0] : 'https://placehold.co/900x600/orange/FFFFFF/png?text=Placeholder+Image') . '"
+        src="' . (is_array($featured_image) ? $featured_image[0] : 'https://placehold.co/900x600/ACA9A9/000000/png?text=Placeholder+Image') . '"
         alt="' . get_the_title() . '"
         class="ap-featured-img"
     />';
