@@ -5,11 +5,210 @@ const Preview = ({ defaultSettings, cssStyles }) => {
     title: "Improve your customer experience",
     excerpt:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint harum rerum voluptatem quo recusandae magni placeat saepe molestiae, sed excepturi cumque corporis perferendis hic.",
-    image: "https://placehold.co/900x600/ACA9A9/000000/png?text=Placeholder+Image",
+    image:
+      "https://placehold.co/900x600/ACA9A9/000000/png?text=Placeholder+Image",
     cats: ["Video", "Travel", "Place"],
   };
 
   let styles = `<style>
+    .afx-ap-wrapper {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+
+    .afx-ap-wrapper a {
+      text-decoration: none;
+    }
+
+    .afx-ap-wrapper .afx-ap-posts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 15px;
+    }
+
+    .afx-ap-wrapper .ap-post-single {
+      display: flex;
+      flex-direction: column;
+      box-shadow: 5px 5px 5px #ccc;
+      background-color: #fff;
+      border-radius: 5px;
+    }
+
+    .afx-ap-wrapper .ap-featured-img {
+      width: 100%;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .afx-ap-wrapper .ap-post-content {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 15px;
+    }
+
+    .afx-ap-wrapper .ap-image-cover {
+      position: relative;
+    }
+
+    .afx-ap-wrapper .ap-date {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      border-radius: 50%;
+      height: 75px;
+      width: 75px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+      padding: 10px;
+      text-align: center;
+      line-height: 20px;
+    }
+
+    .afx-ap-wrapper .ap-post-meta {
+      background-color: #f3f4f6;
+      display: flex;
+      justify-content: space-between;
+      padding: 15px;
+    }
+
+    .afx-ap-wrapper .ap-post-meta svg {
+      height: 25px;
+    }
+
+    .afx-ap-wrapper .ap-post-meta a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .afx-ap-wrapper .ap-btn {
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+
+    .afx-ap-wrapper.afx-ap-grid-style2 .ap-post-single {
+      background-color: transparent;
+      position: relative;
+      box-shadow: none;
+    }
+
+    .afx-ap-wrapper.afx-ap-grid-style2 .ap-featured-img {
+      filter: brightness(0.75);
+      border-radius: 10px;
+    }
+
+    .afx-ap-wrapper.afx-ap-grid-style2 .ap-date {
+      background-color: transparent !important;
+      height: auto;
+      width: auto;
+      padding: 0;
+      top: 15px;
+      right: 15px;
+    }
+
+    .afx-ap-wrapper.afx-ap-grid-style2 .ap-post-content {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+    }
+
+    .afx-ap-wrapper.afx-ap-grid-style2 .ap-post-meta {
+      padding: 0;
+      background-color: transparent;
+      margin-bottom: 10px;
+      gap: 15px;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+    }
+
+    .afx-ap-wrapper.afx-ap-grid-style2 .ap-btn,
+    .afx-ap-wrapper.afx-ap-grid-style3 .ap-btn {
+      background-color: transparent !important;
+      margin: 10px 0 0 !important;
+      padding: 0 !important;
+      text-align: left !important;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      width: max-content;
+    }
+
+    .afx-ap-wrapper.afx-ap-grid-style3 .ap-post-single {
+      background-color: #fff;
+      box-shadow: none;
+      border-radius: 0;
+    }
+
+    .afx-ap-wrapper.afx-ap-grid-style3 .ap-post-content {
+      padding: 25px;
+    }
+
+    .afx-ap-wrapper.afx-ap-grid-style3 .ap-featured-img {
+      border-radius: 0;
+    }
+
+    .afx-ap-wrapper.afx-ap-grid-style3 .ap-cats {
+      margin-top: 20px;
+    }
+
+    .afx-ap-wrapper.afx-ap-grid-style3 .ap-post-meta {
+      background-color: transparent;
+      padding: 10px 0;
+      justify-content: start;
+      gap: 15px;
+    }
+
+    .afx-ap-wrapper.afx-ap-grid-style3 .ap-post-meta a.ap-meta {
+      margin-left: auto;
+    }
+
+    .afx-ap-wrapper.afx-ap-grid-style3 .ap-date {
+      position: initial;
+      background-color: transparent;
+      width: auto;
+      height: auto;
+    }
+
+    @media screen and (max-width: 767px) {
+      .afx-ap-wrapper .ap-date {
+        width: 70px;
+        height: 70px;
+        font-size: 14px;
+        top: 5px;
+        right: 5px;
+      }
+    }
+
+    .ap-more-btn {
+      width: 200px;
+      background-color: #0da8e9;
+      color: #ffffff;
+      font-size: 18px;
+      padding: 15px 25px;
+      border: 0;
+      margin: 25px auto 0 !important;
+      cursor: pointer;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .ap-more-btn:hover {
+      background-color: #745ff1;
+    }
+
     .afx-ap-wrapper {
       width: 100%;
       max-width: 100%;
@@ -115,7 +314,9 @@ const Preview = ({ defaultSettings, cssStyles }) => {
     <div className="shortcode-preview">
       <div dangerouslySetInnerHTML={{ __html: styles }}></div>
 
-      <div className="afx-ap-wrapper">
+      <div
+        className={`afx-ap-wrapper afx-ap-grid-${defaultSettings.gridStyle}`}
+      >
         {defaultSettings.displaySCHeading && (
           <h2 className="ap-grid-title">{defaultSettings.gridTitle}</h2>
         )}
