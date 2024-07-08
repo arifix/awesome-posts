@@ -156,7 +156,7 @@ class AFX_Rest_Routes
         WP_Filesystem();
 
         $settings = get_option('afx_grid_settings');
-        $setting_obj =  json_decode($settings);
+        $setting_obj = json_decode($settings);
 
         $fonts = [];
         if (isset($setting_obj->fonts)) {
