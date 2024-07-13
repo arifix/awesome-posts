@@ -24,7 +24,7 @@ const GridLayout = () => {
           <Toggle title="Display Shortcode Heading?" name="displaySCHeading" />
         </div>
         {defaultSettings.displaySCHeading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-4">
             <div className="afx-form-field flex-col !items-start">
               <label htmlFor="">Tag:</label>
               <Select
@@ -61,7 +61,7 @@ const GridLayout = () => {
           <Toggle title="Display Post Title?" name="displayPostTitle" />
         </div>
         {defaultSettings.displayPostTitle ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-4">
             <div className="afx-form-field flex-col !items-start">
               <label htmlFor="">Tag:</label>
               <Select
@@ -129,7 +129,7 @@ const GridLayout = () => {
           <Toggle title="Display Post Category?" name="displayPostCategory" />
         </div>
         {defaultSettings.displayPostCategory ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-4">
             <div className="afx-form-field flex-col !items-start">
               <label htmlFor="">Separator:</label>
               <Select
@@ -166,7 +166,7 @@ const GridLayout = () => {
           <Toggle title="Display Post Excerpt?" name="displayPostExcerpt" />
         </div>
         {defaultSettings.displayPostExcerpt ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-4">
             <div className="afx-form-field flex-col !items-start">
               <label htmlFor="">Excerpt Type:</label>
               <Select
@@ -211,7 +211,7 @@ const GridLayout = () => {
           <Toggle title="Display Post Meta?" name="displayPostMeta" />
         </div>
         {defaultSettings.displayPostMeta ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5 max-w-4xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-4 max-w-4xl">
             <Toggle title="Display Date?" name="postMetaDisDate" />
             <Toggle title="Display Author?" name="postMetaDisAuthor" />
             <Toggle title="Display Comemnt Count?" name="postMetaDisCC" />
@@ -233,7 +233,7 @@ const GridLayout = () => {
           />
         </div>
         {defaultSettings.displayPostImage ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-4">
             <div className="afx-form-field flex-col !items-start">
               <label htmlFor="">Image Size:</label>
               <Select
@@ -270,7 +270,7 @@ const GridLayout = () => {
           <Toggle title="Display Read More Button?" name="displayReadBtn" />
         </div>
         {defaultSettings.displayReadBtn ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-4">
             <Input title="Button Text" name="postBtnText" />
           </div>
         ) : (
@@ -285,7 +285,7 @@ const GridLayout = () => {
           <Toggle title="Display Load More Button?" name="loadMoreBtn" />
         </div>
         {defaultSettings.loadMoreBtn ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-4">
             <Input title="Button Text" name="loadMoreBtnText" />
           </div>
         ) : (

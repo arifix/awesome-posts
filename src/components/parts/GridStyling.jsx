@@ -277,7 +277,7 @@ const GridStyling = () => {
           <h3 className="heading-secondary text-xl pb-3">Grid</h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-4">
           <Color title="Background" name="gridBgColor" />
           <Range title="Gap" name="gridGap" min={0} max={50} />
           <InputGroup title="Padding" name="gridPadding" min={0} max={50} />
@@ -291,7 +291,7 @@ const GridStyling = () => {
           <h3 className="heading-secondary text-xl pb-3">Shortcode Heading</h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-4">
           <FontFamily name="shFont" />
           <Range title="Font Size" name="shFontSize" min={14} max={100} />
           <FontWeight name="shFontWeight" />
@@ -323,7 +323,7 @@ const GridStyling = () => {
           <h3 className="heading-secondary text-xl pb-3">Post Title</h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-4">
           <FontFamily name="titleFont" />
           <Range title="Font Size" name="titleFontSize" min={14} max={100} />
           <FontWeight name="titleFontWeight" />
@@ -361,7 +361,7 @@ const GridStyling = () => {
           <h3 className="heading-secondary text-xl pb-3">Post Excerpt</h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-4">
           <FontFamily name="excerptFont" />
           <Range title="Font Size" name="excerptFontSize" min={14} max={100} />
           <FontWeight name="excerptFontWeight" />
@@ -409,7 +409,7 @@ const GridStyling = () => {
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-4">
           <Range
             title="Image Size"
             name="postImageHeight"
@@ -425,7 +425,7 @@ const GridStyling = () => {
           <h3 className="heading-secondary text-xl pb-3">Post Meta</h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-4">
           <FontFamily name="metaFont" />
           <Range title="Font Size" name="metaFontSize" min={14} max={100} />
           <FontWeight name="metaFontWeight" />
@@ -465,7 +465,7 @@ const GridStyling = () => {
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-4">
           <FontFamily name="btnFont" />
           <Range title="Font Size" name="btnFontSize" min={14} max={100} />
           <FontWeight name="btnFontWeight" />
@@ -509,7 +509,7 @@ const GridStyling = () => {
           <h3 className="heading-secondary text-xl pb-3">Load More Button</h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 p-4">
           <FontFamily name="btnLmFont" />
           <Range title="Font Size" name="btnLmFontSize" min={14} max={100} />
           <FontWeight name="btnLmFontWeight" />

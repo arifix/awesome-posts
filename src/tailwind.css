@@ -108,7 +108,7 @@
   }
 
   .afx-form-field {
-    @apply flex justify-start items-center gap-3 mb-5;
+    @apply flex justify-start items-center gap-3 mb-4;
   }
 
   .afx-form-field label {
@@ -215,8 +215,8 @@
     @apply blur-md pointer-events-none select-none;
   }
 
-  .dashicon-br::before {
-    @apply text-5xl w-24;
+  .dashicons-cus::before {
+    @apply text-2xl relative -top-1 -left-0.5;
   }
 }
 
