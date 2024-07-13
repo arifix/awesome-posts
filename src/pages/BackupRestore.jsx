@@ -137,7 +137,7 @@ const BackupRestore = () => {
                 onClick={() => downloadBackup()}
                 className="w-64 flex flex-col gap-7 items-center px-4 py-6 text-primary rounded-lg shadow-lg tracking-wide uppercase border border-primary cursor-pointer hover:bg-gray-200 hover:text-primary-500"
               >
-                <i className="dashicons-before dashicons-cloud-saved dashicon-br"></i>
+                <i className="dashicons-before dashicons-cloud-saved dashicons-br"></i>
                 <span className="mt-2 text-base leading-normal">
                   Click to Download the JSON Backup file
                 </span>
@@ -148,7 +148,7 @@ const BackupRestore = () => {
           <form className="w-1/2 flex flex-col justify-center items-center text-center">
             <div className="flex w-full justify-center items-center bg-grey-lighter mb-5">
               <label className="w-64 flex flex-col gap-7 items-center px-4 py-6 text-primary rounded-lg shadow-lg tracking-wide uppercase border border-primary cursor-pointer hover:bg-gray-200 hover:text-primary-500">
-                <i className="dashicons-before dashicons-cloud-upload dashicon-br"></i>
+                <i className="dashicons-before dashicons-cloud-upload dashicons-br"></i>
                 <span className="mt-2 text-base leading-normal">
                   Click to Upload the JSON Backup file
                 </span>

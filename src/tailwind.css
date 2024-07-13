@@ -215,6 +215,10 @@
     @apply blur-md pointer-events-none select-none;
   }
 
+  .dashicons-br::before {
+    @apply text-4xl;
+  }
+
   .dashicons-cus::before {
     @apply text-2xl relative -top-1 -left-0.5;
   }

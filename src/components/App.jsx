@@ -103,22 +103,24 @@ const App = () => {
             <Container />
           </div>
 
-          <div className="group fixed bottom-5 right-3 p-3 flex items-end justify-end w-28 h-28">
-            <div
-              onClick={(e) => {
-                e.preventDefault();
-                setActiveTab("grid-new");
-                insertUrlParam("tab", "grid-new");
-                removeUrlParam("grid_id");
-                setGridId(null);
-              }}
-              data-tooltip-id="afx-ap-tooltip"
-              data-tooltip-content="Add new Grid"
-              className="text-white shadow-xl flex items-center justify-center p-4 rounded-full bg-ap-primary hover:bg-ap-secondary z-50 absolute cursor-pointer"
-            >
-              <i className="dashicons-before dashicons-plus dashicons-cus"></i>
+          {activeTab != "grid-new" && (
+            <div className="group fixed bottom-5 right-3 p-3 flex items-end justify-end w-28 h-28">
+              <div
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveTab("grid-new");
+                  insertUrlParam("tab", "grid-new");
+                  removeUrlParam("grid_id");
+                  setGridId(null);
+                }}
+                data-tooltip-id="afx-ap-tooltip"
+                data-tooltip-content="Add new Grid"
+                className="text-white shadow-xl flex items-center justify-center p-4 rounded-full bg-ap-primary hover:bg-ap-secondary z-50 absolute cursor-pointer"
+              >
+                <i className="dashicons-before dashicons-plus dashicons-cus"></i>
+              </div>
             </div>
-          </div>
+          )}
 
           <Tooltip id="afx-ap-tooltip" />
           <Toaster
