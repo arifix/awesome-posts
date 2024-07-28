@@ -1,5 +1,7 @@
 <?php
 
+if (!defined('ABSPATH')) exit; // Exit if accessed directly 
+
 class ARIFIX_AP_Helper
 {
     public function __construct()

@@ -1,5 +1,7 @@
 <?php
 
+if (!defined('ABSPATH')) exit; // Exit if accessed directly 
+
 $grid = '<div class="ap-post-single">';
 if ($set->displayPostImage) {
     $grid .= '<div class="ap-image-cover">

@@ -1,5 +1,7 @@
 <?php
 
+if (!defined('ABSPATH')) exit; // Exit if accessed directly 
+
 $css = '<style>';
 
 $css .= '.afx-ap-wrapper.afx-grid-' . $id . ' {

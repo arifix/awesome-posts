@@ -1,5 +1,7 @@
 <?php
 
+if (!defined('ABSPATH')) exit; // Exit if accessed directly 
+
 class ARIFIX_AP_Rest_Routes
 {
     public function __construct()
