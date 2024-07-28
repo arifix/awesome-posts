@@ -10,7 +10,7 @@ class ARIFIX_AP_Helper
         add_filter('wp_check_filetype_and_ext', [$this, 'arifix_ap_add_allow_upload_extension_exception'], 99, 4);
     }
 
-    static function fonts_url_to_name($font_url)
+    static function arifix_ap_fonts_url_to_name($font_url)
     {
         $font_url_ar = explode("/", $font_url);
         $font_name = explode(".", $font_url_ar[count($font_url_ar) - 1]);

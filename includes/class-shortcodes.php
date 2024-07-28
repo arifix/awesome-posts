@@ -11,7 +11,7 @@ class ARIFIX_AP_Shortcodes
         add_action('wp_ajax_nopriv_get_awesome-posts', [$this, 'arifix_ap_posts_ajax']);
     }
 
-    function fonts_url_to_name($font_url)
+    function arifix_ap_fonts_url_to_name($font_url)
     {
         $font_url_ar = explode("/", $font_url);
         $font_name = explode(".", $font_url_ar[count($font_url_ar) - 1]);
@@ -170,8 +170,8 @@ class ARIFIX_AP_Shortcodes
             $html = '';
 
             $styles = require ARIFIX_AP_AP_PATH . 'templates/grid-styles.php';
-            wp_add_inline_style( 'custom-style', $custom_css );
-            $html .= $styles;
+            wp_add_inline_style('arifix-ap-frontend-style', $styles);
+            //$html .= $styles;
 
             if ($posts_query->have_posts()) {
                 $html .= '<div class="arifix-ap-wrapper arifix-ap-grid-' . $set->gridStyle . ' afx-grid-' . $id . '">';
@@ -189,7 +189,6 @@ class ARIFIX_AP_Shortcodes
                 while ($posts_query->have_posts()) {
                     $posts_query->the_post();
                     $featured_image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'full');
-
                     $author = get_the_author();
                     $comments = get_comment_count(get_the_ID());
 

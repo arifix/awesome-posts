@@ -2,7 +2,7 @@
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly 
 
-$css = '<style>';
+//$css = '<style>';
 
 $css .= '.arifix-ap-wrapper.afx-grid-' . $id . ' {
 background-color: ' . $set->gridBgColor . ';
@@ -37,7 +37,7 @@ grid-template-columns: repeat(' . $set->gridColumnsD . ', 1fr);
 
 if ($set->shFont) {
     $font = ARIFIX_AP_Helper::arifix_ap_check_string_contains($set->shFont, "http")
-        ? ARIFIX_AP_Helper::fonts_url_to_name($set->shFont)
+        ? ARIFIX_AP_Helper::arifix_ap_fonts_url_to_name($set->shFont)
         : $set->shFont;
     $font_url = ARIFIX_AP_Helper::arifix_ap_check_string_contains($set->shFont, "http")
         ? $set->shFont
@@ -63,7 +63,7 @@ text-align: ' . $set->shAlignment . ';
 
 if ($set->titleFont) {
     $font = ARIFIX_AP_Helper::arifix_ap_check_string_contains($set->titleFont, "http")
-        ? ARIFIX_AP_Helper::fonts_url_to_name($set->titleFont)
+        ? ARIFIX_AP_Helper::arifix_ap_fonts_url_to_name($set->titleFont)
         : $set->titleFont;
     $font_url = ARIFIX_AP_Helper::arifix_ap_check_string_contains($set->titleFont, "http")
         ? $set->titleFont
@@ -91,7 +91,7 @@ $css .= '.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-title:hover{color: ' . $set
 
 if ($set->excerptFont) {
     $font = ARIFIX_AP_Helper::arifix_ap_check_string_contains($set->excerptFont, "http")
-        ? ARIFIX_AP_Helper::fonts_url_to_name($set->excerptFont)
+        ? ARIFIX_AP_Helper::arifix_ap_fonts_url_to_name($set->excerptFont)
         : $set->excerptFont;
     $font_url = ARIFIX_AP_Helper::arifix_ap_check_string_contains($set->excerptFont, "http")
         ? $set->excerptFont
@@ -119,7 +119,7 @@ $css .= '.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-featured-img{height: ' . $s
 
 if ($set->metaFont) {
     $font = ARIFIX_AP_Helper::arifix_ap_check_string_contains($set->metaFont, "http")
-        ? ARIFIX_AP_Helper::fonts_url_to_name($set->metaFont)
+        ? ARIFIX_AP_Helper::arifix_ap_fonts_url_to_name($set->metaFont)
         : $set->metaFont;
     $font_url = ARIFIX_AP_Helper::arifix_ap_check_string_contains($set->metaFont, "http")
         ? $set->metaFont
@@ -150,7 +150,7 @@ $css .= '.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-post-meta svg {color: ' . $
 
 if ($set->btnFont) {
     $font = ARIFIX_AP_Helper::arifix_ap_check_string_contains($set->btnFont, "http")
-        ? ARIFIX_AP_Helper::fonts_url_to_name($set->btnFont)
+        ? ARIFIX_AP_Helper::arifix_ap_fonts_url_to_name($set->btnFont)
         : $set->btnFont;
     $font_url = ARIFIX_AP_Helper::arifix_ap_check_string_contains($set->btnFont, "http")
         ? $set->btnFont
@@ -189,7 +189,7 @@ color: ' . $set->btnHoverColor . ';
 
 if ($set->btnLmFont) {
     $font = ARIFIX_AP_Helper::arifix_ap_check_string_contains($set->btnLmFont, "http")
-        ? ARIFIX_AP_Helper::fonts_url_to_name($set->btnLmFont)
+        ? ARIFIX_AP_Helper::arifix_ap_fonts_url_to_name($set->btnLmFont)
         : $set->btnLmFont;
     $font_url = ARIFIX_AP_Helper::arifix_ap_check_string_contains($set->btnLmFont, "http")
         ? $set->btnLmFont
@@ -227,6 +227,6 @@ color: ' . $set->btnLmHoverColor . ';
 
 $css .= '.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-loader div{background-color: ' . $set->btnLmBgColor . ';}';
 
-$css .= '</style>';
+//$css .= '</style>';
 
 return $css;
