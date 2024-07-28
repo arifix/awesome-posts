@@ -13,7 +13,7 @@ class ARIFIX_AP_Activator
     public static function create_db()
     {
         global $wpdb;
-        $table_name = $wpdb->prefix . ARIFIX_AP_AP_TABLE_NAME;
+        $table_name = $wpdb->prefix . ARIFIX_AP_TABLE_NAME;
         $arifix_ap_db_version = get_option('arifix_ap_db_version', '1.0');
 
         if (

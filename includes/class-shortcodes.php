@@ -22,7 +22,7 @@ class ARIFIX_AP_Shortcodes
     {
         global $wpdb;
 
-        $table_name = $wpdb->prefix . ARIFIX_AP_AP_TABLE_NAME;
+        $table_name = $wpdb->prefix . ARIFIX_AP_TABLE_NAME;
 
         $atts = shortcode_atts(array(
             'id' => ""
@@ -169,7 +169,7 @@ class ARIFIX_AP_Shortcodes
 
             $html = '';
 
-            $styles = require ARIFIX_AP_AP_PATH . 'templates/grid-styles.php';
+            $styles = require ARIFIX_AP_PATH . 'templates/grid-styles.php';
             wp_add_inline_style('arifix-ap-frontend-style', $styles);
             //$html .= $styles;
 
@@ -211,7 +211,7 @@ class ARIFIX_AP_Shortcodes
                         }
                     }
 
-                    $grid_layout = require ARIFIX_AP_AP_PATH . 'templates/grid-' . $set->gridStyle . '.php';
+                    $grid_layout = require ARIFIX_AP_PATH . 'templates/grid-' . $set->gridStyle . '.php';
                     $html .= $grid_layout;
                 }
                 $html .= '</div>';
@@ -269,7 +269,7 @@ class ARIFIX_AP_Shortcodes
                         }
                     }
 
-                    $grid_ajax = require ARIFIX_AP_AP_PATH . 'templates/grid-' . $set->gridStyle . '.php';
+                    $grid_ajax = require ARIFIX_AP_PATH . 'templates/grid-' . $set->gridStyle . '.php';
                     $html .= $grid_ajax;
                 }
             }

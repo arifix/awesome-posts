@@ -142,7 +142,7 @@ class ARIFIX_AP_Rest_Routes
     public function arifix_ap_reset_settings($req)
     {
         global $wpdb;
-        $table_name = $wpdb->prefix . ARIFIX_AP_AP_TABLE_NAME;
+        $table_name = $wpdb->prefix . ARIFIX_AP_TABLE_NAME;
 
         $wpdb->query($wpdb->prepare("TRUNCATE TABLE %i", $table_name));
 
@@ -171,7 +171,7 @@ class ARIFIX_AP_Rest_Routes
             $setting_obj->fonts = $fonts;
         }
 
-        $table_name = $wpdb->prefix . ARIFIX_AP_AP_TABLE_NAME;
+        $table_name = $wpdb->prefix . ARIFIX_AP_TABLE_NAME;
         $results = $wpdb->get_results($wpdb->prepare("SELECT * FROM %i WHERE 1", $table_name));
 
         $grids = [];
@@ -195,7 +195,7 @@ class ARIFIX_AP_Rest_Routes
     public function arifix_ap_restore_settings($req)
     {
         global $wpdb;
-        $table_name = $wpdb->prefix . ARIFIX_AP_AP_TABLE_NAME;
+        $table_name = $wpdb->prefix . ARIFIX_AP_TABLE_NAME;
 
         $file_id = sanitize_text_field($req['file_id']);
         $json_url = sanitize_text_field($req['json_url']);
@@ -415,7 +415,7 @@ class ARIFIX_AP_Rest_Routes
     public function arifix_ap_get_grid_all()
     {
         global $wpdb;
-        $table_name = $wpdb->prefix . ARIFIX_AP_AP_TABLE_NAME;
+        $table_name = $wpdb->prefix . ARIFIX_AP_TABLE_NAME;
 
         $results = $wpdb->get_results($wpdb->prepare("SELECT * FROM %i WHERE 1", $table_name));
 
@@ -425,7 +425,7 @@ class ARIFIX_AP_Rest_Routes
     public function arifix_ap_get_grid_single($req)
     {
         global $wpdb;
-        $table_name = $wpdb->prefix . ARIFIX_AP_AP_TABLE_NAME;
+        $table_name = $wpdb->prefix . ARIFIX_AP_TABLE_NAME;
 
         $grid_id = $req['grid_id'];
         $results = $wpdb->get_results($wpdb->prepare("SELECT * FROM %i WHERE `id`= %d", $table_name, $grid_id));
@@ -437,7 +437,7 @@ class ARIFIX_AP_Rest_Routes
     {
         global $wpdb;
 
-        $table_name = $wpdb->prefix . ARIFIX_AP_AP_TABLE_NAME;
+        $table_name = $wpdb->prefix . ARIFIX_AP_TABLE_NAME;
 
         $grid_id = $req['grid_id'];
         $title = $req['grid_title'];
@@ -473,7 +473,7 @@ class ARIFIX_AP_Rest_Routes
     {
         global $wpdb;
 
-        $table_name = $wpdb->prefix . ARIFIX_AP_AP_TABLE_NAME;
+        $table_name = $wpdb->prefix . ARIFIX_AP_TABLE_NAME;
         $wpdb->delete($table_name, array('id' => $req['del_id']));
 
         return ['message' => 'Grid Deleted Successfully'];
