@@ -1,12 +1,12 @@
 import React from "react";
+import placeholder from "../../assets/placeholder.png";
 
 const Preview = ({ defaultSettings, cssStyles }) => {
   const demoPost = {
     title: "Improve your customer experience",
     excerpt:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint harum rerum voluptatem quo recusandae magni placeat saepe molestiae, sed excepturi cumque corporis perferendis hic.",
-    image:
-      "https://placehold.co/900x600/ACA9A9/000000/png?text=Placeholder+Image",
+    image: placeholder,
     cats: ["Video", "Travel", "Place"],
   };
 

@@ -1,12 +1,12 @@
 <?php
 
-class AFX_Shortcodes
+class ARIFIX_AP_Shortcodes
 {
     public function __construct()
     {
-        add_shortcode('awesome-posts', [$this, 'afx_posts']);
-        add_action('wp_ajax_get_awesome-posts', [$this, 'afx_posts_ajax']);
-        add_action('wp_ajax_nopriv_get_awesome-posts', [$this, 'afx_posts_ajax']);
+        add_shortcode('awesome-posts', [$this, 'arifix_ap_posts']);
+        add_action('wp_ajax_get_awesome-posts', [$this, 'arifix_ap_posts_ajax']);
+        add_action('wp_ajax_nopriv_get_awesome-posts', [$this, 'arifix_ap_posts_ajax']);
     }
 
     function fonts_url_to_name($font_url)
@@ -16,11 +16,11 @@ class AFX_Shortcodes
         return $font_name[0];
     }
 
-    function afx_posts($atts)
+    function arifix_ap_posts($atts)
     {
         global $wpdb;
 
-        $table_name = $wpdb->prefix . AFX_AP_TABLE_NAME;
+        $table_name = $wpdb->prefix . ARIFIX_AP_AP_TABLE_NAME;
 
         $atts = shortcode_atts(array(
             'id' => ""
@@ -167,7 +167,7 @@ class AFX_Shortcodes
 
             $html = '';
 
-            $styles = require AFX_AP_PATH . 'templates/grid-styles.php';
+            $styles = require ARIFIX_AP_AP_PATH . 'templates/grid-styles.php';
             $html .= $styles;
 
             if ($posts_query->have_posts()) {
@@ -209,7 +209,7 @@ class AFX_Shortcodes
                         }
                     }
 
-                    $grid_layout = require AFX_AP_PATH . 'templates/grid-' . $set->gridStyle . '.php';
+                    $grid_layout = require ARIFIX_AP_AP_PATH . 'templates/grid-' . $set->gridStyle . '.php';
                     $html .= $grid_layout;
                 }
                 $html .= '</div>';
@@ -228,7 +228,7 @@ class AFX_Shortcodes
         return "";
     }
 
-    function afx_posts_ajax()
+    function arifix_ap_posts_ajax()
     {
         if (wp_verify_nonce($_REQUEST['_wpnonce'], 'ajax_nonce')) {
             $posts_args = !empty($_REQUEST['query']) ? json_decode(str_replace("\'", "\"", $_REQUEST['query']), true) : [];
@@ -267,7 +267,7 @@ class AFX_Shortcodes
                         }
                     }
 
-                    $grid_ajax = require AFX_AP_PATH . 'templates/grid-' . $set->gridStyle . '.php';
+                    $grid_ajax = require ARIFIX_AP_AP_PATH . 'templates/grid-' . $set->gridStyle . '.php';
                     $html .= $grid_ajax;
                 }
             }
@@ -285,4 +285,4 @@ class AFX_Shortcodes
     }
 }
 
-new AFX_Shortcodes();
+new ARIFIX_AP_Shortcodes();

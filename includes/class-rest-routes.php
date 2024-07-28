@@ -1,108 +1,108 @@
 <?php
 
-class AFX_Rest_Routes
+class ARIFIX_AP_Rest_Routes
 {
     public function __construct()
     {
-        add_action('rest_api_init', [$this, 'afx_create_rest_routes']);
+        add_action('rest_api_init', [$this, 'arifix_ap_create_rest_routes']);
     }
 
-    public function afx_create_rest_routes()
+    public function arifix_ap_create_rest_routes()
     {
         register_rest_route('afx-ap/v1', '/settings', [
             'methods' => 'GET',
-            'callback' => [$this, 'afx_get_settings'],
-            'permission_callback' => [$this, 'afx_get_settings_permission']
+            'callback' => [$this, 'arifix_ap_get_settings'],
+            'permission_callback' => [$this, 'arifix_ap_get_settings_permission']
         ]);
 
         register_rest_route('afx-ap/v1', '/settings', [
             'methods' => 'POST',
-            'callback' => [$this, 'afx_save_settings'],
-            'permission_callback' => [$this, 'afx_save_settings_permission']
+            'callback' => [$this, 'arifix_ap_save_settings'],
+            'permission_callback' => [$this, 'arifix_ap_save_settings_permission']
         ]);
 
         register_rest_route('afx-ap/v1', '/settings/reset', [
             'methods' => 'POST',
-            'callback' => [$this, 'afx_reset_settings'],
-            'permission_callback' => [$this, 'afx_save_settings_permission']
+            'callback' => [$this, 'arifix_ap_reset_settings'],
+            'permission_callback' => [$this, 'arifix_ap_save_settings_permission']
         ]);
 
         register_rest_route('afx-ap/v1', '/settings/backup', [
             'methods' => 'POST',
-            'callback' => [$this, 'afx_backup_settings'],
-            'permission_callback' => [$this, 'afx_save_settings_permission']
+            'callback' => [$this, 'arifix_ap_backup_settings'],
+            'permission_callback' => [$this, 'arifix_ap_save_settings_permission']
         ]);
 
         register_rest_route('afx-ap/v1', '/settings/restore', [
             'methods' => 'POST',
-            'callback' => [$this, 'afx_restore_settings'],
-            'permission_callback' => [$this, 'afx_save_settings_permission']
+            'callback' => [$this, 'arifix_ap_restore_settings'],
+            'permission_callback' => [$this, 'arifix_ap_save_settings_permission']
         ]);
 
         register_rest_route('afx-ap/v1', '/post-types', [
             'methods' => 'GET',
-            'callback' => [$this, 'afx_ap_get_post_types'],
-            'permission_callback' => [$this, 'afx_get_settings_permission']
+            'callback' => [$this, 'arifix_ap_ap_get_post_types'],
+            'permission_callback' => [$this, 'arifix_ap_get_settings_permission']
         ]);
 
         register_rest_route('afx-ap/v1', '/authors', [
             'methods' => 'GET',
-            'callback' => [$this, 'afx_ap_get_authors'],
-            'permission_callback' => [$this, 'afx_get_settings_permission']
+            'callback' => [$this, 'arifix_ap_ap_get_authors'],
+            'permission_callback' => [$this, 'arifix_ap_get_settings_permission']
         ]);
 
         register_rest_route('afx-ap/v1', '/taxonomies', [
             'methods' => 'GET',
-            'callback' => [$this, 'afx_ap_get_taxonomies'],
-            'permission_callback' => [$this, 'afx_get_settings_permission']
+            'callback' => [$this, 'arifix_ap_ap_get_taxonomies'],
+            'permission_callback' => [$this, 'arifix_ap_get_settings_permission']
         ]);
 
         register_rest_route('afx-ap/v1', '/terms', [
             'methods' => 'GET',
-            'callback' => [$this, 'afx_ap_get_terms'],
-            'permission_callback' => [$this, 'afx_get_settings_permission']
+            'callback' => [$this, 'arifix_ap_ap_get_terms'],
+            'permission_callback' => [$this, 'arifix_ap_get_settings_permission']
         ]);
 
         register_rest_route('afx-ap/v1', '/posts', [
             'methods' => 'GET',
-            'callback' => [$this, 'afx_ap_get_posts'],
-            'permission_callback' => [$this, 'afx_get_settings_permission']
+            'callback' => [$this, 'arifix_ap_ap_get_posts'],
+            'permission_callback' => [$this, 'arifix_ap_get_settings_permission']
         ]);
 
         register_rest_route('afx-ap/v1', '/categories', [
             'methods' => 'GET',
-            'callback' => [$this, 'afx_get_categories'],
-            'permission_callback' => [$this, 'afx_get_settings_permission']
+            'callback' => [$this, 'arifix_ap_get_categories'],
+            'permission_callback' => [$this, 'arifix_ap_get_settings_permission']
         ]);
 
         register_rest_route('afx-ap/v1', '/grid/all', [
             'methods' => 'GET',
-            'callback' => [$this, 'afx_get_grid_all'],
-            'permission_callback' => [$this, 'afx_get_settings_permission']
+            'callback' => [$this, 'arifix_ap_get_grid_all'],
+            'permission_callback' => [$this, 'arifix_ap_get_settings_permission']
         ]);
 
         register_rest_route('afx-ap/v1', '/grid/get', [
             'methods' => 'POST',
-            'callback' => [$this, 'afx_get_grid_single'],
-            'permission_callback' => [$this, 'afx_get_settings_permission']
+            'callback' => [$this, 'arifix_ap_get_grid_single'],
+            'permission_callback' => [$this, 'arifix_ap_get_settings_permission']
         ]);
 
         register_rest_route('afx-ap/v1', '/grid/new', [
             'methods' => 'POST',
-            'callback' => [$this, 'afx_create_grid'],
-            'permission_callback' => [$this, 'afx_get_settings_permission']
+            'callback' => [$this, 'arifix_ap_create_grid'],
+            'permission_callback' => [$this, 'arifix_ap_get_settings_permission']
         ]);
 
         register_rest_route('afx-ap/v1', '/grid/delete', [
             'methods' => 'POST',
-            'callback' => [$this, 'afx_delete_grid'],
-            'permission_callback' => [$this, 'afx_get_settings_permission']
+            'callback' => [$this, 'arifix_ap_delete_grid'],
+            'permission_callback' => [$this, 'arifix_ap_get_settings_permission']
         ]);
     }
 
-    public function afx_get_settings()
+    public function arifix_ap_get_settings()
     {
-        $settings = get_option('afx_grid_settings');
+        $settings = get_option('arifix_ap_grid_settings');
         $response = [
             'settings' => $settings
         ];
@@ -110,12 +110,12 @@ class AFX_Rest_Routes
         return rest_ensure_response($response);
     }
 
-    public function afx_get_settings_permission()
+    public function arifix_ap_get_settings_permission()
     {
         return true;
     }
 
-    public function afx_save_settings($req)
+    public function arifix_ap_save_settings($req)
     {
         if (is_string($req)) {
             $data =  json_decode($req);
@@ -124,7 +124,7 @@ class AFX_Rest_Routes
             $settings = sanitize_text_field($req['settings']);
         }
 
-        $data = $this->afx_get_settings();
+        $data = $this->arifix_ap_get_settings();
         if ($data->data['settings']) {
             $existing_setting = $data->data['settings'];
             $new_settings =  wp_json_encode(array_merge(json_decode($existing_setting, true),  json_decode($settings, true)));
@@ -132,30 +132,30 @@ class AFX_Rest_Routes
             $new_settings = $settings;
         }
 
-        update_option('afx_grid_settings', $new_settings);
+        update_option('arifix_ap_grid_settings', $new_settings);
 
         return ['message' => 'Setting Saved Successfully'];
     }
 
-    public function afx_reset_settings($req)
+    public function arifix_ap_reset_settings($req)
     {
         global $wpdb;
-        $table_name = $wpdb->prefix . AFX_AP_TABLE_NAME;
+        $table_name = $wpdb->prefix . ARIFIX_AP_AP_TABLE_NAME;
 
         $wpdb->query($wpdb->prepare("TRUNCATE TABLE %i", $table_name));
 
-        update_option('afx_grid_settings', "");
+        update_option('arifix_ap_grid_settings', "");
 
         return ['message' => 'Setting Reset Successfully'];
     }
 
-    public function afx_backup_settings()
+    public function arifix_ap_backup_settings()
     {
         global $wpdb, $wp_filesystem;
         include_once ABSPATH . 'wp-admin/includes/file.php';
         WP_Filesystem();
 
-        $settings = get_option('afx_grid_settings');
+        $settings = get_option('arifix_ap_grid_settings');
         $setting_obj = json_decode($settings);
 
         $fonts = [];
@@ -169,7 +169,7 @@ class AFX_Rest_Routes
             $setting_obj->fonts = $fonts;
         }
 
-        $table_name = $wpdb->prefix . AFX_AP_TABLE_NAME;
+        $table_name = $wpdb->prefix . ARIFIX_AP_AP_TABLE_NAME;
         $results = $wpdb->get_results($wpdb->prepare("SELECT * FROM %i WHERE 1", $table_name));
 
         $grids = [];
@@ -190,10 +190,10 @@ class AFX_Rest_Routes
         return ['message' => 'Setting Reset Successfully', 'file_name' => $file_name, 'file_url' => $file_url];
     }
 
-    public function afx_restore_settings($req)
+    public function arifix_ap_restore_settings($req)
     {
         global $wpdb;
-        $table_name = $wpdb->prefix . AFX_AP_TABLE_NAME;
+        $table_name = $wpdb->prefix . ARIFIX_AP_AP_TABLE_NAME;
 
         $file_id = sanitize_text_field($req['file_id']);
         $json_url = sanitize_text_field($req['json_url']);
@@ -217,13 +217,13 @@ class AFX_Rest_Routes
             }
         }
 
-        update_option('afx_grid_settings',  wp_json_encode($settings_obj));
+        update_option('arifix_ap_grid_settings',  wp_json_encode($settings_obj));
 
         wp_delete_attachment($file_id);
         return ['message' => 'Setting Restored Successfully'];
     }
 
-    public function afx_ap_get_post_types()
+    public function arifix_ap_ap_get_post_types()
     {
         $args = array(
             'public'   => true,
@@ -246,7 +246,7 @@ class AFX_Rest_Routes
         return $types;
     }
 
-    public function afx_ap_get_authors()
+    public function arifix_ap_ap_get_authors()
     {
         $users = get_users();
 
@@ -258,7 +258,7 @@ class AFX_Rest_Routes
         return $authors;
     }
 
-    public function afx_ap_get_taxonomies()
+    public function arifix_ap_ap_get_taxonomies()
     {
 
         if (wp_verify_nonce($_GET['_wpnonce'], 'wp_rest') && $_GET['post-type']) {
@@ -279,7 +279,7 @@ class AFX_Rest_Routes
         return [];
     }
 
-    public function afx_ap_get_terms()
+    public function arifix_ap_ap_get_terms()
     {
         if (wp_verify_nonce($_GET['_wpnonce'], 'wp_rest') && $_GET['post-type'] && $_GET['taxonomy']) {
             $args = array(
@@ -301,7 +301,7 @@ class AFX_Rest_Routes
         return [];
     }
 
-    public function afx_ap_get_posts()
+    public function arifix_ap_ap_get_posts()
     {
         if (wp_verify_nonce($_GET['_wpnonce'], 'wp_rest')) {
             $terms = !empty($_GET['terms']) ? explode(",", $_GET['terms']) : [];
@@ -384,12 +384,12 @@ class AFX_Rest_Routes
         return [];
     }
 
-    public function afx_save_settings_permission()
+    public function arifix_ap_save_settings_permission()
     {
         return current_user_can('manage_options');
     }
 
-    public function afx_get_categories()
+    public function arifix_ap_get_categories()
     {
         $pro_args = array(
             'taxonomy' => 'product_cat',
@@ -410,20 +410,20 @@ class AFX_Rest_Routes
         return $pro_cats;
     }
 
-    public function afx_get_grid_all()
+    public function arifix_ap_get_grid_all()
     {
         global $wpdb;
-        $table_name = $wpdb->prefix . AFX_AP_TABLE_NAME;
+        $table_name = $wpdb->prefix . ARIFIX_AP_AP_TABLE_NAME;
 
         $results = $wpdb->get_results($wpdb->prepare("SELECT * FROM %i WHERE 1", $table_name));
 
         return $results;
     }
 
-    public function afx_get_grid_single($req)
+    public function arifix_ap_get_grid_single($req)
     {
         global $wpdb;
-        $table_name = $wpdb->prefix . AFX_AP_TABLE_NAME;
+        $table_name = $wpdb->prefix . ARIFIX_AP_AP_TABLE_NAME;
 
         $grid_id = $req['grid_id'];
         $results = $wpdb->get_results($wpdb->prepare("SELECT * FROM %i WHERE `id`= %d", $table_name, $grid_id));
@@ -431,11 +431,11 @@ class AFX_Rest_Routes
         return $results[0];
     }
 
-    public function afx_create_grid($req)
+    public function arifix_ap_create_grid($req)
     {
         global $wpdb;
 
-        $table_name = $wpdb->prefix . AFX_AP_TABLE_NAME;
+        $table_name = $wpdb->prefix . ARIFIX_AP_AP_TABLE_NAME;
 
         $grid_id = $req['grid_id'];
         $title = $req['grid_title'];
@@ -467,15 +467,15 @@ class AFX_Rest_Routes
         return ['grid_id' => $grid_id, 'message' => $message];
     }
 
-    public function afx_delete_grid($req)
+    public function arifix_ap_delete_grid($req)
     {
         global $wpdb;
 
-        $table_name = $wpdb->prefix . AFX_AP_TABLE_NAME;
+        $table_name = $wpdb->prefix . ARIFIX_AP_AP_TABLE_NAME;
         $wpdb->delete($table_name, array('id' => $req['del_id']));
 
         return ['message' => 'Grid Deleted Successfully'];
     }
 }
 
-new AFX_Rest_Routes();
+new ARIFIX_AP_Rest_Routes();

@@ -1,11 +1,11 @@
 <?php
 
-class AFX_Helper
+class ARIFIX_AP_Helper
 {
     public function __construct()
     {
-        add_filter('upload_mimes', [$this, 'afx_add_font_upload_mimes']);
-        add_filter('wp_check_filetype_and_ext', [$this, 'afx_add_allow_upload_extension_exception'], 99, 4);
+        add_filter('upload_mimes', [$this, 'arifix_ap_add_font_upload_mimes']);
+        add_filter('wp_check_filetype_and_ext', [$this, 'arifix_ap_add_allow_upload_extension_exception'], 99, 4);
     }
 
     static function fonts_url_to_name($font_url)
@@ -15,7 +15,7 @@ class AFX_Helper
         return $font_name[0];
     }
 
-    function afx_add_font_upload_mimes($existing_mimes)
+    function arifix_ap_add_font_upload_mimes($existing_mimes)
     {
         $existing_mimes['ttf'] = 'font/ttf';
         $existing_mimes['otf'] = 'font/otf';
@@ -26,7 +26,7 @@ class AFX_Helper
         return $existing_mimes;
     }
 
-    function afx_add_allow_upload_extension_exception($types, $file, $filename, $mimes)
+    function arifix_ap_add_allow_upload_extension_exception($types, $file, $filename, $mimes)
     {
         $wp_filetype = wp_check_filetype($filename, $mimes);
         $ext         = $wp_filetype['ext'];
@@ -38,7 +38,7 @@ class AFX_Helper
         return $types;
     }
 
-    static function get_text_limit_by($text, $limit, $type = 'character', $rest = '...')
+    static function arifix_ap_get_text_limit_by($text, $limit, $type = 'character', $rest = '...')
     {
         if ($limit) {
             if ($type === 'word') {
@@ -56,10 +56,10 @@ class AFX_Helper
         return $text;
     }
 
-    static function check_string_contains($haystack, $needle)
+    static function arifix_ap_check_string_contains($haystack, $needle)
     {
         return strpos($haystack, $needle) !== false;
     }
 }
 
-new AFX_Helper();
+new ARIFIX_AP_Helper();

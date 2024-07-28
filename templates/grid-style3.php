@@ -3,7 +3,7 @@
 $grid = '<div class="ap-post-single">';
 if ($set->displayPostImage) {
     $grid .= '<img
-        src="' . (is_array($featured_image) ? $featured_image[0] : 'https://placehold.co/900x600/ACA9A9/000000/png?text=Placeholder+Image') . '"
+        src="' . (is_array($featured_image) ? $featured_image[0] : plugins_url() . '/awesome-posts/assets/images/placeholder.png') . '"
         alt="' . get_the_title() . '"
         class="ap-featured-img"
     />';
@@ -13,12 +13,12 @@ $grid .= '<div class="ap-post-content">';
 
 if ($set->displayPostTitle) {
     $grid .= '<a href="' . get_the_permalink() . '">
-            <' . strtolower($set->postTitleTag) . ' class="ap-title">' . AFX_Helper::get_text_limit_by(get_the_title(), $set->postTitleLimit, $set->postTitleType, '') . '</' . strtolower($set->postTitleTag) . '>
+            <' . strtolower($set->postTitleTag) . ' class="ap-title">' . ARIFIX_AP_Helper::arifix_ap_get_text_limit_by(get_the_title(), $set->postTitleLimit, $set->postTitleType, '') . '</' . strtolower($set->postTitleTag) . '>
         </a>';
 }
 
 if ($set->displayPostExcerpt) {
-    $grid .= '<p class="ap-excerpt">' .  AFX_Helper::get_text_limit_by(get_the_excerpt(), $set->postExcerptLimit, $set->postExcerptType, $set->postExcerptText) . '</p>';
+    $grid .= '<p class="ap-excerpt">' .  ARIFIX_AP_Helper::arifix_ap_get_text_limit_by(get_the_excerpt(), $set->postExcerptLimit, $set->postExcerptType, $set->postExcerptText) . '</p>';
 }
 
 if ($set->displayReadBtn) {

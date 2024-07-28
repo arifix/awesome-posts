@@ -1,6 +1,6 @@
 <?php
 
-class AFX_Activator
+class ARIFIX_AP_Activator
 {
 
     public static function activate()
@@ -11,12 +11,12 @@ class AFX_Activator
     public static function create_db()
     {
         global $wpdb;
-        $table_name = $wpdb->prefix . AFX_AP_TABLE_NAME;
-        $afx_db_version = get_option('afx_db_version', '1.0');
+        $table_name = $wpdb->prefix . ARIFIX_AP_AP_TABLE_NAME;
+        $arifix_ap_db_version = get_option('arifix_ap_db_version', '1.0');
 
         if (
             $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_name)) != $table_name ||
-            version_compare($afx_db_version, '1.0') < 0
+            version_compare($arifix_ap_db_version, '1.0') < 0
         ) {
 
             $charset_collate = $wpdb->get_charset_collate();
@@ -39,7 +39,7 @@ class AFX_Activator
              */
             dbDelta($sql);
 
-            add_option('afx_db_version', $afx_db_version);
+            add_option('arifix_ap_db_version', $arifix_ap_db_version);
         }
     }
 }

@@ -1,14 +1,14 @@
 <?php
 
-class AFX_Enqueues
+class ARIFIX_AP_Enqueues
 {
     public function __construct()
     {
-        add_action('admin_enqueue_scripts', [$this, 'afx_admin_enqueue']);
-        add_action('wp_enqueue_scripts', [$this, 'afx_frontend_enqueue']);
+        add_action('admin_enqueue_scripts', [$this, 'arifix_ap_admin_enqueue']);
+        add_action('wp_enqueue_scripts', [$this, 'arifix_ap_frontend_enqueue']);
     }
 
-    function afx_admin_enqueue($hook)
+    function arifix_ap_admin_enqueue($hook)
     {
         if ($hook == 'toplevel_page_awesome-posts') {
             wp_enqueue_script('afx-ap-admin-build', plugin_dir_url(__FILE__) . '../build/index.js', ['jquery', 'wp-element'], wp_rand(), true);
@@ -21,7 +21,7 @@ class AFX_Enqueues
         }
     }
 
-    function afx_frontend_enqueue()
+    function arifix_ap_frontend_enqueue()
     {
         global $post;
         if (is_a($post, 'WP_Post') && has_shortcode($post->post_content, 'awesome-posts')) {
@@ -31,4 +31,4 @@ class AFX_Enqueues
     }
 }
 
-new AFX_Enqueues();
+new ARIFIX_AP_Enqueues();
