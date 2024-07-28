@@ -82,10 +82,14 @@ const GridManager = () => {
 
       {loading ? (
         <SkeletonTheme baseColor="#CCC" highlightColor="#DDD">
-          <p>
+          <p
+            style={{
+              margin: "20px 0 0 20px",
+            }}
+          >
             <Skeleton
               count={8}
-              style={{ height: 100, padding: 10, margin: "20px 10px" }}
+              style={{ height: 70, padding: 10, margin: "10px" }}
             />
           </p>
         </SkeletonTheme>

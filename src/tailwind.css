@@ -196,7 +196,7 @@
   }
 
   .arifix-ap-single-grid {
-    @apply flex justify-between items-center p-4;
+    @apply flex justify-between items-center p-3;
   }
 
   .arifix-ap-single-grid h4 {
