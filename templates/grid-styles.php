@@ -4,33 +4,33 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
 $css = '<style>';
 
-$css .= '.arifix-ap--wrapper.afx-grid-' . $id . ' {
+$css .= '.arifix-ap-wrapper.afx-grid-' . $id . ' {
 background-color: ' . $set->gridBgColor . ';
 padding: ' . $set->gridPadding->top . 'px ' . $set->gridPadding->right . 'px ' . $set->gridPadding->bottom . 'px ' . $set->gridPadding->left . 'px;
 margin: ' . $set->gridMargin->top . 'px ' . $set->gridMargin->right . 'px ' . $set->gridMargin->bottom . 'px ' . $set->gridMargin->left . 'px;
 }
 
-.arifix-ap--wrapper.afx-grid-' . $id . ' .arifix-ap--posts {
+.arifix-ap-wrapper.afx-grid-' . $id . ' .arifix-ap-posts {
 gap: ' . $set->gridGap . 'px;
 }
 
-.arifix-ap--wrapper.afx-grid-' . $id . ' .ap-date {
+.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-date {
 background-color: ' . $set->btnBgColor . ';
 color: ' . $set->btnColor . ';
 }
 
-.arifix-ap--wrapper.afx-grid-' . $id . ' .arifix-ap--posts {
+.arifix-ap-wrapper.afx-grid-' . $id . ' .arifix-ap-posts {
 grid-template-columns: repeat(' . $set->gridColumnsD . ', 1fr);
 }
 
 @media screen and (max-width: 991px) {
-.arifix-ap--wrapper.afx-grid-' . $id . ' .arifix-ap--posts {
+.arifix-ap-wrapper.afx-grid-' . $id . ' .arifix-ap-posts {
     grid-template-columns: repeat(' . $set->gridColumnsT . ', 1fr);
 }
 }
 
 @media screen and (max-width: 767px) {
-.arifix-ap--wrapper.afx-grid-' . $id . ' .arifix-ap--posts {
+.arifix-ap-wrapper.afx-grid-' . $id . ' .arifix-ap-posts {
     grid-template-columns: repeat(' . $set->gridColumnsM . ', 1fr);
 }
 }';
@@ -43,10 +43,10 @@ if ($set->shFont) {
         ? $set->shFont
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->shFont) . '&display=swap';
 
-    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.arifix-ap--wrapper.afx-grid-' . $id . ' .ap-grid-title{font-family: ' . $font . '}';
+    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-grid-title{font-family: ' . $font . '}';
 }
 
-$css .= '.arifix-ap--wrapper.afx-grid-' . $id . ' .ap-grid-title{
+$css .= '.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-grid-title{
 font-size: ' . $set->shFontSize . 'px;
 font-weight: ' . $set->shFontWeight . ';
 font-style: ' . $set->shFontStyle . ';
@@ -69,10 +69,10 @@ if ($set->titleFont) {
         ? $set->titleFont
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->titleFont) . '&display=swap';
 
-    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.arifix-ap--wrapper.afx-grid-' . $id . ' .ap-title{font-family: ' . $font . '}';
+    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-title{font-family: ' . $font . '}';
 }
 
-$css .= '.arifix-ap--wrapper.afx-grid-' . $id . ' .ap-title{
+$css .= '.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-title{
 font-size: ' . $set->titleFontSize . 'px;
 font-weight: ' . $set->titleFontWeight . ';
 font-style: ' . $set->titleFontStyle . ';
@@ -87,7 +87,7 @@ word-spacing: ' . $set->titleWordSpacing . 'px;
 text-align: ' . $set->titleAlignment . ';
 }';
 
-$css .= '.arifix-ap--wrapper.afx-grid-' . $id . ' .ap-title:hover{color: ' . $set->titleHoverColor . ';}';
+$css .= '.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-title:hover{color: ' . $set->titleHoverColor . ';}';
 
 if ($set->excerptFont) {
     $font = ARIFIX_AP_Helper::arifix_ap_check_string_contains($set->excerptFont, "http")
@@ -97,10 +97,10 @@ if ($set->excerptFont) {
         ? $set->excerptFont
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->excerptFont) . '&display=swap';
 
-    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.arifix-ap--wrapper.afx-grid-' . $id . ' .ap-excerpt{font-family: ' . $font . '}';
+    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-excerpt{font-family: ' . $font . '}';
 }
 
-$css .= '.arifix-ap--wrapper.afx-grid-' . $id . ' .ap-excerpt{
+$css .= '.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-excerpt{
 font-size: ' . $set->excerptFontSize . 'px;
 font-weight: ' . $set->excerptFontWeight . ';
 font-style: ' . $set->excerptFontStyle . ';
@@ -115,7 +115,7 @@ word-spacing: ' . $set->excerptWordSpacing . 'px;
 text-align: ' . $set->excerptAlignment . ';
 }';
 
-$css .= '.arifix-ap--wrapper.afx-grid-' . $id . ' .ap-featured-img{height: ' . $set->postImageHeight . 'px;}';
+$css .= '.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-featured-img{height: ' . $set->postImageHeight . 'px;}';
 
 if ($set->metaFont) {
     $font = ARIFIX_AP_Helper::arifix_ap_check_string_contains($set->metaFont, "http")
@@ -125,10 +125,10 @@ if ($set->metaFont) {
         ? $set->metaFont
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->metaFont) . '&display=swap';
 
-    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.arifix-ap--wrapper.afx-grid-' . $id . ' .ap-meta{font-family: ' . $font . '}';
+    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-meta{font-family: ' . $font . '}';
 }
 
-$css .= '.arifix-ap--wrapper.afx-grid-' . $id . ' .ap-meta{
+$css .= '.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-meta{
 font-size: ' . $set->metaFontSize . 'px;
 font-weight: ' . $set->metaFontWeight . ';
 font-style: ' . $set->metaFontStyle . ';
@@ -143,10 +143,10 @@ word-spacing: ' . $set->metaWordSpacing . 'px;
 text-align: ' . $set->metaAlignment . ';
 }';
 
-$css .= '.arifix-ap--wrapper.afx-grid-' . $id . ' .ap-meta a {color: ' . $set->metaColor . ';}
-.arifix-ap--wrapper.afx-grid-' . $id . ' .ap-meta a:hover {color: ' . $set->metaHoverColor . ';}';
+$css .= '.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-meta a {color: ' . $set->metaColor . ';}
+.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-meta a:hover {color: ' . $set->metaHoverColor . ';}';
 
-$css .= '.arifix-ap--wrapper.afx-grid-' . $id . ' .ap-post-meta svg {color: ' . $set->metaColor . ';}';
+$css .= '.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-post-meta svg {color: ' . $set->metaColor . ';}';
 
 if ($set->btnFont) {
     $font = ARIFIX_AP_Helper::arifix_ap_check_string_contains($set->btnFont, "http")
@@ -156,10 +156,10 @@ if ($set->btnFont) {
         ? $set->btnFont
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->btnFont) . '&display=swap';
 
-    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.arifix-ap--wrapper.afx-grid-' . $id . ' .ap-btn{font-family: ' . $font . '}';
+    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-btn{font-family: ' . $font . '}';
 }
 
-$css .= '.arifix-ap--wrapper.afx-grid-' . $id . ' .ap-btn{
+$css .= '.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-btn{
 font-size: ' . $set->btnFontSize . 'px;
 font-weight: ' . $set->btnFontWeight . ';
 font-style: ' . $set->btnFontStyle . ';
@@ -182,7 +182,7 @@ border-bottom-width: ' . $set->btnBorder->bottom . 'px;
 border-left-width: ' . $set->btnBorder->left . 'px;
 }';
 
-$css .= '.arifix-ap--wrapper.afx-grid-' . $id . ' .ap-btn:hover{
+$css .= '.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-btn:hover{
 background-color: ' . $set->btnBgHoverColor . ';
 color: ' . $set->btnHoverColor . ';
 }';
@@ -195,10 +195,10 @@ if ($set->btnLmFont) {
         ? $set->btnLmFont
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', $set->btnLmFont) . '&display=swap';
 
-    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.arifix-ap--wrapper.afx-grid-' . $id . ' .ap-more-btn{font-family: ' . $font . '}';
+    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-more-btn{font-family: ' . $font . '}';
 }
 
-$css .= '.arifix-ap--wrapper.afx-grid-' . $id . ' .ap-more-btn{
+$css .= '.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-more-btn{
 font-size: ' . $set->btnLmFontSize . 'px;
 font-weight: ' . $set->btnLmFontWeight . ';
 font-style: ' . $set->btnLmFontStyle . ';
@@ -220,12 +220,12 @@ border-bottom-width: ' . $set->btnLmBorder->bottom . 'px;
 border-left-width: ' . $set->btnLmBorder->left . 'px;
 }';
 
-$css .= '.arifix-ap--wrapper.afx-grid-' . $id . ' .ap-more-btn:hover{
+$css .= '.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-more-btn:hover{
 background-color: ' . $set->btnLmBgHoverColor . ';
 color: ' . $set->btnLmHoverColor . ';
 }';
 
-$css .= '.arifix-ap--wrapper.afx-grid-' . $id . ' .ap-loader div{background-color: ' . $set->btnLmBgColor . ';}';
+$css .= '.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-loader div{background-color: ' . $set->btnLmBgColor . ';}';
 
 $css .= '</style>';
 

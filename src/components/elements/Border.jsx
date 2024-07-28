@@ -201,7 +201,7 @@ const Border = ({ name, min, max }) => {
               },
             });
           }}
-          data-tooltip-id="arifix-ap--tooltip"
+          data-tooltip-id="arifix-ap-tooltip"
           data-tooltip-content={grouped ? "Ungroup Values" : "Group Values"}
         >
           {grouped ? (

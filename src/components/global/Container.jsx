@@ -11,7 +11,7 @@ const Container = () => {
   const { activeTab } = useContext(appContext);
 
   return (
-    <div className="arifix-ap--container">
+    <div className="arifix-ap-container">
       {activeTab === "grid-manager" ? <GridManager /> : ""}
       {activeTab === "grid-new" ? <GridNew /> : ""}
       {activeTab === "brand-colors" ? <BrandColors /> : ""}

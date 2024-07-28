@@ -90,10 +90,10 @@ const GridManager = () => {
           </p>
         </SkeletonTheme>
       ) : (
-        <div className="arifix-ap--grids">
+        <div className="arifix-ap-grids">
           {grids.length ? (
             grids.map((s, key) => (
-              <div className="arifix-ap--single-grid" key={key}>
+              <div className="arifix-ap-single-grid" key={key}>
                 <h4
                   onClick={() => {
                     setActiveTab("grid-new");
@@ -111,7 +111,7 @@ const GridManager = () => {
                       insertUrlParam("tab", "grid-new");
                       insertUrlParam("grid_id", s.id);
                     }}
-                    data-tooltip-id="arifix-ap--tooltip"
+                    data-tooltip-id="arifix-ap-tooltip"
                     data-tooltip-content="Edit Grid"
                   >
                     <i className="dashicons-before dashicons-edit hover:text-ap-primary"></i>
@@ -124,7 +124,7 @@ const GridManager = () => {
                       );
                       toast.success("Shortcode Copied Successfully");
                     }}
-                    data-tooltip-id="arifix-ap--tooltip"
+                    data-tooltip-id="arifix-ap-tooltip"
                     data-tooltip-content="Copy Shortcode"
                   >
                     <i className="dashicons-before dashicons-shortcode hover:text-ap-primary"></i>
@@ -135,7 +135,7 @@ const GridManager = () => {
                       setDelId(s.id);
                       setShowModal(true);
                     }}
-                    data-tooltip-id="arifix-ap--tooltip"
+                    data-tooltip-id="arifix-ap-tooltip"
                     data-tooltip-content="Delete Grid"
                   >
                     <i className="dashicons-before dashicons-trash hover:text-ap-primary"></i>

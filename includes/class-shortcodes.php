@@ -174,7 +174,7 @@ class ARIFIX_AP_Shortcodes
             $html .= $styles;
 
             if ($posts_query->have_posts()) {
-                $html .= '<div class="arifix-ap--wrapper arifix-ap--grid-' . $set->gridStyle . ' afx-grid-' . $id . '">';
+                $html .= '<div class="arifix-ap-wrapper arifix-ap-grid-' . $set->gridStyle . ' afx-grid-' . $id . '">';
                 $html .= '<div class="ap-loader">
                     <div></div>
                     <div></div>
@@ -185,7 +185,7 @@ class ARIFIX_AP_Shortcodes
                     $html .= '<' . strtolower($set->scHeadingTag) . ' class="ap-grid-title">' . $grid_title . '</' . strtolower($set->scHeadingTag) . '>';
                 }
 
-                $html .= '<div class="arifix-ap--posts">';
+                $html .= '<div class="arifix-ap-posts">';
                 while ($posts_query->have_posts()) {
                     $posts_query->the_post();
                     $featured_image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'full');

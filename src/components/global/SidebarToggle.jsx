@@ -10,7 +10,7 @@ const SidebarToggle = () => {
       onClick={() => {
         setShowSidebar(!showSidebar);
       }}
-      data-tooltip-id="arifix-ap--tooltip"
+      data-tooltip-id="arifix-ap-tooltip"
       data-tooltip-content={showSidebar ? "Hide Sidebar" : "Show Sidebar"}
       data-tooltip-place="right"
     >

@@ -11,24 +11,24 @@ const Preview = ({ defaultSettings, cssStyles }) => {
   };
 
   let styles = `<style>
-    .arifix-ap--wrapper {
+    .arifix-ap-wrapper {
       width: 100% !important;
       max-width: 100% !important;
       margin-left: auto !important;
       margin-right: auto !important;
     }
 
-    .arifix-ap--wrapper a {
+    .arifix-ap-wrapper a {
       text-decoration: none;
     }
 
-    .arifix-ap--wrapper .arifix-ap--posts {
+    .arifix-ap-wrapper .arifix-ap-posts {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       margin-top: 15px;
     }
 
-    .arifix-ap--wrapper .ap-post-single {
+    .arifix-ap-wrapper .ap-post-single {
       display: flex;
       flex-direction: column;
       box-shadow: 5px 5px 5px #ccc;
@@ -36,7 +36,7 @@ const Preview = ({ defaultSettings, cssStyles }) => {
       border-radius: 5px;
     }
 
-    .arifix-ap--wrapper .ap-featured-img {
+    .arifix-ap-wrapper .ap-featured-img {
       width: 100%;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
@@ -44,18 +44,18 @@ const Preview = ({ defaultSettings, cssStyles }) => {
       object-fit: cover;
     }
 
-    .arifix-ap--wrapper .ap-post-content {
+    .arifix-ap-wrapper .ap-post-content {
       display: flex;
       flex-direction: column;
       gap: 10px;
       padding: 15px;
     }
 
-    .arifix-ap--wrapper .ap-image-cover {
+    .arifix-ap-wrapper .ap-image-cover {
       position: relative;
     }
 
-    .arifix-ap--wrapper .ap-date {
+    .arifix-ap-wrapper .ap-date {
       position: absolute;
       top: 12px;
       right: 12px;
@@ -71,41 +71,41 @@ const Preview = ({ defaultSettings, cssStyles }) => {
       line-height: 20px;
     }
 
-    .arifix-ap--wrapper .ap-post-meta {
+    .arifix-ap-wrapper .ap-post-meta {
       background-color: #f3f4f6;
       display: flex;
       justify-content: space-between;
       padding: 15px;
     }
 
-    .arifix-ap--wrapper .ap-post-meta svg {
+    .arifix-ap-wrapper .ap-post-meta svg {
       height: 25px;
     }
 
-    .arifix-ap--wrapper .ap-post-meta a {
+    .arifix-ap-wrapper .ap-post-meta a {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 5px;
     }
 
-    .arifix-ap--wrapper .ap-btn {
+    .arifix-ap-wrapper .ap-btn {
       margin-left: auto !important;
       margin-right: auto !important;
     }
 
-    .arifix-ap--wrapper.arifix-ap--grid-style2 .ap-post-single {
+    .arifix-ap-wrapper.arifix-ap-grid-style2 .ap-post-single {
       background-color: transparent;
       position: relative;
       box-shadow: none;
     }
 
-    .arifix-ap--wrapper.arifix-ap--grid-style2 .ap-featured-img {
+    .arifix-ap-wrapper.arifix-ap-grid-style2 .ap-featured-img {
       filter: brightness(0.75);
       border-radius: 10px;
     }
 
-    .arifix-ap--wrapper.arifix-ap--grid-style2 .ap-date {
+    .arifix-ap-wrapper.arifix-ap-grid-style2 .ap-date {
       background-color: transparent !important;
       height: auto;
       width: auto;
@@ -114,13 +114,13 @@ const Preview = ({ defaultSettings, cssStyles }) => {
       right: 15px;
     }
 
-    .arifix-ap--wrapper.arifix-ap--grid-style2 .ap-post-content {
+    .arifix-ap-wrapper.arifix-ap-grid-style2 .ap-post-content {
       position: absolute;
       bottom: 10px;
       left: 10px;
     }
 
-    .arifix-ap--wrapper.arifix-ap--grid-style2 .ap-post-meta {
+    .arifix-ap-wrapper.arifix-ap-grid-style2 .ap-post-meta {
       padding: 0;
       background-color: transparent;
       margin-bottom: 10px;
@@ -130,8 +130,8 @@ const Preview = ({ defaultSettings, cssStyles }) => {
       left: 15px;
     }
 
-    .arifix-ap--wrapper.arifix-ap--grid-style2 .ap-btn,
-    .arifix-ap--wrapper.arifix-ap--grid-style3 .ap-btn {
+    .arifix-ap-wrapper.arifix-ap-grid-style2 .ap-btn,
+    .arifix-ap-wrapper.arifix-ap-grid-style3 .ap-btn {
       background-color: transparent !important;
       margin: 10px 0 0 !important;
       padding: 0 !important;
@@ -142,36 +142,36 @@ const Preview = ({ defaultSettings, cssStyles }) => {
       width: max-content;
     }
 
-    .arifix-ap--wrapper.arifix-ap--grid-style3 .ap-post-single {
+    .arifix-ap-wrapper.arifix-ap-grid-style3 .ap-post-single {
       background-color: #fff;
       box-shadow: none;
       border-radius: 0;
     }
 
-    .arifix-ap--wrapper.arifix-ap--grid-style3 .ap-post-content {
+    .arifix-ap-wrapper.arifix-ap-grid-style3 .ap-post-content {
       padding: 25px;
     }
 
-    .arifix-ap--wrapper.arifix-ap--grid-style3 .ap-featured-img {
+    .arifix-ap-wrapper.arifix-ap-grid-style3 .ap-featured-img {
       border-radius: 0;
     }
 
-    .arifix-ap--wrapper.arifix-ap--grid-style3 .ap-cats {
+    .arifix-ap-wrapper.arifix-ap-grid-style3 .ap-cats {
       margin-top: 20px;
     }
 
-    .arifix-ap--wrapper.arifix-ap--grid-style3 .ap-post-meta {
+    .arifix-ap-wrapper.arifix-ap-grid-style3 .ap-post-meta {
       background-color: transparent;
       padding: 10px 0;
       justify-content: start;
       gap: 15px;
     }
 
-    .arifix-ap--wrapper.arifix-ap--grid-style3 .ap-post-meta a.ap-meta {
+    .arifix-ap-wrapper.arifix-ap-grid-style3 .ap-post-meta a.ap-meta {
       margin-left: auto;
     }
 
-    .arifix-ap--wrapper.arifix-ap--grid-style3 .ap-date {
+    .arifix-ap-wrapper.arifix-ap-grid-style3 .ap-date {
       position: initial;
       background-color: transparent;
       width: auto;
@@ -179,7 +179,7 @@ const Preview = ({ defaultSettings, cssStyles }) => {
     }
 
     @media screen and (max-width: 767px) {
-      .arifix-ap--wrapper .ap-date {
+      .arifix-ap-wrapper .ap-date {
         width: 70px;
         height: 70px;
         font-size: 14px;
@@ -209,7 +209,7 @@ const Preview = ({ defaultSettings, cssStyles }) => {
       background-color: #745ff1;
     }
 
-    .arifix-ap--wrapper {
+    .arifix-ap-wrapper {
       width: 100%;
       max-width: 100%;
       background-color: ${defaultSettings.gridBgColor};
@@ -217,7 +217,7 @@ const Preview = ({ defaultSettings, cssStyles }) => {
       margin: ${defaultSettings.gridMargin.top}px ${defaultSettings.gridMargin.right}px ${defaultSettings.gridMargin.bottom}px ${defaultSettings.gridMargin.left}px;
     }
 
-    .arifix-ap--posts {
+    .arifix-ap-posts {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: ${defaultSettings.gridGap}px;
@@ -293,18 +293,18 @@ const Preview = ({ defaultSettings, cssStyles }) => {
       margin-top: 10px;
     }
 
-    .arifix-ap--posts {
+    .arifix-ap-posts {
       grid-template-columns: repeat(${defaultSettings.gridColumnsD}, 1fr);
     }
 
     @media screen and (max-width: 991px) {
-      .arifix-ap--posts {
+      .arifix-ap-posts {
         grid-template-columns: repeat(${defaultSettings.gridColumnsT}, 1fr);
       }
     }
 
     @media screen and (max-width: 767px) {
-      .arifix-ap--posts {
+      .arifix-ap-posts {
         grid-template-columns: repeat(${defaultSettings.gridColumnsM}, 1fr);
       }
     }
@@ -315,13 +315,13 @@ const Preview = ({ defaultSettings, cssStyles }) => {
       <div dangerouslySetInnerHTML={{ __html: styles }}></div>
 
       <div
-        className={`arifix-ap--wrapper arifix-ap--grid-${defaultSettings.gridStyle}`}
+        className={`arifix-ap-wrapper arifix-ap-grid-${defaultSettings.gridStyle}`}
       >
         {defaultSettings.displaySCHeading && (
           <h2 className="ap-grid-title">{defaultSettings.gridTitle}</h2>
         )}
 
-        <div className="arifix-ap--posts">
+        <div className="arifix-ap-posts">
           {new Array(9).fill(0).map((val, key) => (
             <div className="ap-post-single" key={key}>
               {defaultSettings.displayPostImage && (
