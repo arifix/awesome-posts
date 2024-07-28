@@ -171,7 +171,7 @@ class ARIFIX_AP_Shortcodes
 
             $styles = require ARIFIX_AP_PATH . 'templates/grid-styles.php';
             wp_add_inline_style('arifix-ap-frontend-style', $styles);
-            //$html .= $styles;
+            //$html .= '<style>' . $styles . '</style>';
 
             if ($posts_query->have_posts()) {
                 $html .= '<div class="arifix-ap-wrapper arifix-ap-grid-' . $set->gridStyle . ' afx-grid-' . $id . '">';

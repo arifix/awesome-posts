@@ -2,7 +2,7 @@
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly 
 
-//$css = '<style>';
+$css = '';
 
 $css .= '.arifix-ap-wrapper.afx-grid-' . $id . ' {
 background-color: ' . $set->gridBgColor . ';
@@ -226,7 +226,5 @@ color: ' . $set->btnLmHoverColor . ';
 }';
 
 $css .= '.arifix-ap-wrapper.afx-grid-' . $id . ' .ap-loader div{background-color: ' . $set->btnLmBgColor . ';}';
-
-//$css .= '</style>';
 
 return $css;
