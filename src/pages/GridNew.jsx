@@ -638,7 +638,7 @@ const GridNew = () => {
         </ul>
 
         <div className="flex justify-center lg:justify-between items-center pr-5 gap-5">
-          <div className="afx-ap-btngroup flex-col lg:flex-row">
+          <div className="arifix-ap--btngroup flex-col lg:flex-row">
             {gridId ? (
               <button
                 type="button"

@@ -36,11 +36,11 @@
     const total_posts = parseInt($(this).attr("data-total-posts"));
     const offset =
       parseInt(
-        $(this).parents(".afx-ap-wrapper").find(".ap-post-single").length
+        $(this).parents(".arifix-ap--wrapper").find(".ap-post-single").length
       ) + parseInt($(this).attr("data-query-offset"));
     const _wpnonce = $(this).attr("data-wp-nonce");
 
-    const parent_block = $(this).parents(".afx-ap-wrapper");
+    const parent_block = $(this).parents(".arifix-ap--wrapper");
 
     sendAjax(
       admin_url,

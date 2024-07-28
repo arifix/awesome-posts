@@ -5,7 +5,7 @@ const Tooltip = ({ text }) => {
     <svg
       viewBox="0 0 24 24"
       className="text-gray-500 w-5 h-5"
-      data-tooltip-id="afx-ap-tooltip"
+      data-tooltip-id="arifix-ap--tooltip"
       data-tooltip-content={text}
     >
       <path

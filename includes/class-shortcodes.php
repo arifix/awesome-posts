@@ -170,10 +170,11 @@ class ARIFIX_AP_Shortcodes
             $html = '';
 
             $styles = require ARIFIX_AP_AP_PATH . 'templates/grid-styles.php';
+            wp_add_inline_style( 'custom-style', $custom_css );
             $html .= $styles;
 
             if ($posts_query->have_posts()) {
-                $html .= '<div class="afx-ap-wrapper afx-ap-grid-' . $set->gridStyle . ' afx-grid-' . $id . '">';
+                $html .= '<div class="arifix-ap--wrapper arifix-ap--grid-' . $set->gridStyle . ' afx-grid-' . $id . '">';
                 $html .= '<div class="ap-loader">
                     <div></div>
                     <div></div>
@@ -184,7 +185,7 @@ class ARIFIX_AP_Shortcodes
                     $html .= '<' . strtolower($set->scHeadingTag) . ' class="ap-grid-title">' . $grid_title . '</' . strtolower($set->scHeadingTag) . '>';
                 }
 
-                $html .= '<div class="afx-ap-posts">';
+                $html .= '<div class="arifix-ap--posts">';
                 while ($posts_query->have_posts()) {
                     $posts_query->the_post();
                     $featured_image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'full');
@@ -232,10 +233,10 @@ class ARIFIX_AP_Shortcodes
 
     function arifix_ap_posts_ajax()
     {
-        if (wp_verify_nonce($_REQUEST['_wpnonce'], 'ajax_nonce')) {
-            $posts_args = !empty($_REQUEST['query']) ? json_decode(str_replace("\'", "\"", $_REQUEST['query']), true) : [];
-            $posts_args['offset'] = isset($_REQUEST['offset']) ? $posts_args->offset + $_REQUEST['offset'] : 0;
-            $set = !empty($_REQUEST['settings']) ? json_decode(str_replace("\'", "\"", $_REQUEST['settings'])) : [];
+        if (wp_verify_nonce(sanitize_text_field($_REQUEST['_wpnonce']), 'ajax_nonce')) {
+            $posts_args = !empty($_REQUEST['query']) ? json_decode(str_replace("\'", "\"", sanitize_text_field($_REQUEST['query'])), true) : [];
+            $posts_args['offset'] = isset($_REQUEST['offset']) ? $posts_args->offset + sanitize_text_field($_REQUEST['offset']) : 0;
+            $set = !empty($_REQUEST['settings']) ? json_decode(str_replace("\'", "\"", sanitize_text_field($_REQUEST['settings']))) : [];
 
             $posts_query = new WP_Query($posts_args);
 

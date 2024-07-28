@@ -11,91 +11,91 @@ class ARIFIX_AP_Rest_Routes
 
     public function arifix_ap_create_rest_routes()
     {
-        register_rest_route('afx-ap/v1', '/settings', [
+        register_rest_route('arifix-ap-/v1', '/settings', [
             'methods' => 'GET',
             'callback' => [$this, 'arifix_ap_get_settings'],
             'permission_callback' => [$this, 'arifix_ap_get_settings_permission']
         ]);
 
-        register_rest_route('afx-ap/v1', '/settings', [
+        register_rest_route('arifix-ap-/v1', '/settings', [
             'methods' => 'POST',
             'callback' => [$this, 'arifix_ap_save_settings'],
             'permission_callback' => [$this, 'arifix_ap_save_settings_permission']
         ]);
 
-        register_rest_route('afx-ap/v1', '/settings/reset', [
+        register_rest_route('arifix-ap-/v1', '/settings/reset', [
             'methods' => 'POST',
             'callback' => [$this, 'arifix_ap_reset_settings'],
             'permission_callback' => [$this, 'arifix_ap_save_settings_permission']
         ]);
 
-        register_rest_route('afx-ap/v1', '/settings/backup', [
+        register_rest_route('arifix-ap-/v1', '/settings/backup', [
             'methods' => 'POST',
             'callback' => [$this, 'arifix_ap_backup_settings'],
             'permission_callback' => [$this, 'arifix_ap_save_settings_permission']
         ]);
 
-        register_rest_route('afx-ap/v1', '/settings/restore', [
+        register_rest_route('arifix-ap-/v1', '/settings/restore', [
             'methods' => 'POST',
             'callback' => [$this, 'arifix_ap_restore_settings'],
             'permission_callback' => [$this, 'arifix_ap_save_settings_permission']
         ]);
 
-        register_rest_route('afx-ap/v1', '/post-types', [
+        register_rest_route('arifix-ap-/v1', '/post-types', [
             'methods' => 'GET',
             'callback' => [$this, 'arifix_ap_ap_get_post_types'],
             'permission_callback' => [$this, 'arifix_ap_get_settings_permission']
         ]);
 
-        register_rest_route('afx-ap/v1', '/authors', [
+        register_rest_route('arifix-ap-/v1', '/authors', [
             'methods' => 'GET',
             'callback' => [$this, 'arifix_ap_ap_get_authors'],
             'permission_callback' => [$this, 'arifix_ap_get_settings_permission']
         ]);
 
-        register_rest_route('afx-ap/v1', '/taxonomies', [
+        register_rest_route('arifix-ap-/v1', '/taxonomies', [
             'methods' => 'GET',
             'callback' => [$this, 'arifix_ap_ap_get_taxonomies'],
             'permission_callback' => [$this, 'arifix_ap_get_settings_permission']
         ]);
 
-        register_rest_route('afx-ap/v1', '/terms', [
+        register_rest_route('arifix-ap-/v1', '/terms', [
             'methods' => 'GET',
             'callback' => [$this, 'arifix_ap_ap_get_terms'],
             'permission_callback' => [$this, 'arifix_ap_get_settings_permission']
         ]);
 
-        register_rest_route('afx-ap/v1', '/posts', [
+        register_rest_route('arifix-ap-/v1', '/posts', [
             'methods' => 'GET',
             'callback' => [$this, 'arifix_ap_ap_get_posts'],
             'permission_callback' => [$this, 'arifix_ap_get_settings_permission']
         ]);
 
-        register_rest_route('afx-ap/v1', '/categories', [
+        register_rest_route('arifix-ap-/v1', '/categories', [
             'methods' => 'GET',
             'callback' => [$this, 'arifix_ap_get_categories'],
             'permission_callback' => [$this, 'arifix_ap_get_settings_permission']
         ]);
 
-        register_rest_route('afx-ap/v1', '/grid/all', [
+        register_rest_route('arifix-ap-/v1', '/grid/all', [
             'methods' => 'GET',
             'callback' => [$this, 'arifix_ap_get_grid_all'],
             'permission_callback' => [$this, 'arifix_ap_get_settings_permission']
         ]);
 
-        register_rest_route('afx-ap/v1', '/grid/get', [
+        register_rest_route('arifix-ap-/v1', '/grid/get', [
             'methods' => 'POST',
             'callback' => [$this, 'arifix_ap_get_grid_single'],
             'permission_callback' => [$this, 'arifix_ap_get_settings_permission']
         ]);
 
-        register_rest_route('afx-ap/v1', '/grid/new', [
+        register_rest_route('arifix-ap-/v1', '/grid/new', [
             'methods' => 'POST',
             'callback' => [$this, 'arifix_ap_create_grid'],
             'permission_callback' => [$this, 'arifix_ap_get_settings_permission']
         ]);
 
-        register_rest_route('afx-ap/v1', '/grid/delete', [
+        register_rest_route('arifix-ap-/v1', '/grid/delete', [
             'methods' => 'POST',
             'callback' => [$this, 'arifix_ap_delete_grid'],
             'permission_callback' => [$this, 'arifix_ap_get_settings_permission']
@@ -263,8 +263,8 @@ class ARIFIX_AP_Rest_Routes
     public function arifix_ap_ap_get_taxonomies()
     {
 
-        if (wp_verify_nonce($_GET['_wpnonce'], 'wp_rest') && $_GET['post-type']) {
-            $taxonomies = get_object_taxonomies($_GET['post-type'], 'names');
+        if (wp_verify_nonce(sanitize_text_field($_GET['_wpnonce']), 'wp_rest') && $_GET['post-type']) {
+            $taxonomies = get_object_taxonomies(sanitize_text_field($_GET['post-type']), 'names');
             $taxs = [];
             if (count($taxonomies) > 0) {
                 foreach ($taxonomies as $tax) {
@@ -283,10 +283,10 @@ class ARIFIX_AP_Rest_Routes
 
     public function arifix_ap_ap_get_terms()
     {
-        if (wp_verify_nonce($_GET['_wpnonce'], 'wp_rest') && $_GET['post-type'] && $_GET['taxonomy']) {
+        if (wp_verify_nonce(sanitize_text_field($_GET['_wpnonce']), 'wp_rest') && $_GET['post-type'] && $_GET['taxonomy']) {
             $args = array(
-                'post_type' => $_GET['post-type'],
-                'taxonomy'  => $_GET['taxonomy']
+                'post_type' => sanitize_text_field($_GET['post-type']),
+                'taxonomy'  => sanitize_text_field($_GET['taxonomy'])
             );
             $terms = get_terms($args);
 
@@ -305,13 +305,13 @@ class ARIFIX_AP_Rest_Routes
 
     public function arifix_ap_ap_get_posts()
     {
-        if (wp_verify_nonce($_GET['_wpnonce'], 'wp_rest')) {
-            $terms = !empty($_GET['terms']) ? explode(",", $_GET['terms']) : [];
-            $post_status = !empty($_GET['post_status']) ? explode(",", $_GET['post_status']) : [];
-            $authors = !empty($_GET['authors']) ? $_GET['authors'] : "";
+        if (wp_verify_nonce(sanitize_text_field($_GET['_wpnonce']), 'wp_rest')) {
+            $terms = !empty($_GET['terms']) ? explode(",", sanitize_text_field($_GET['terms'])) : [];
+            $post_status = !empty($_GET['post_status']) ? explode(",", sanitize_text_field($_GET['post_status'])) : [];
+            $authors = !empty($_GET['authors']) ? sanitize_text_field($_GET['authors']) : "";
 
             $posts_args = array(
-                'post_type' => $_GET['post-type'],
+                'post_type' => sanitize_text_field($_GET['post-type']),
                 'posts_per_page' => -1,
                 'post_status' => 'publish',
                 'orderby' => 'title',
@@ -320,16 +320,16 @@ class ARIFIX_AP_Rest_Routes
 
             if (!empty($_GET['taxonomy']) && count($terms) > 0) {
                 $tax_query = [];
-                $tax_query['relation'] = $_GET['relation'];
+                $tax_query['relation'] = sanitize_text_field($_GET['relation']);
 
                 foreach ($terms as $term) {
                     array_push(
                         $tax_query,
                         array(
-                            'taxonomy' => $_GET['taxonomy'],
+                            'taxonomy' => sanitize_text_field($_GET['taxonomy']),
                             'field' => 'slug',
                             'terms' => $term,
-                            'operator' => $_GET['operator']
+                            'operator' => sanitize_text_field($_GET['operator'])
                         )
                     );
                 }
@@ -340,18 +340,18 @@ class ARIFIX_AP_Rest_Routes
             }
 
             if (!empty($_GET['orderby'])) {
-                $posts_args['orderby'] = $_GET['orderby'];
+                $posts_args['orderby'] = sanitize_text_field($_GET['orderby']);
             }
 
             if (!empty($_GET['order'])) {
-                $posts_args['order'] = $_GET['order'];
+                $posts_args['order'] = sanitize_text_field($_GET['order']);
             }
 
             if (!empty($_GET['startDate'])) {
                 $posts_args['date_query'] = array(
                     array(
-                        'after' => $_GET['startDate'],
-                        'before' => !empty($_GET['endDate']) ? $_GET['endDate'] : gmdate('Y-m-d'),
+                        'after' => sanitize_text_field($_GET['startDate']),
+                        'before' => !empty($_GET['endDate']) ? sanitize_text_field($_GET['endDate']) : gmdate('Y-m-d'),
                         'inclusive' => true,
                     )
                 );
@@ -366,7 +366,7 @@ class ARIFIX_AP_Rest_Routes
             }
 
             if (!empty($_GET['search'])) {
-                $posts_args['s'] = $_GET['search'];
+                $posts_args['s'] = sanitize_text_field($_GET['search']);
             }
 
             $posts_query = new WP_Query($posts_args);

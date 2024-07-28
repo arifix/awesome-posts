@@ -5,7 +5,7 @@
 @layer components {
   @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap");
 
-  #afx-ap-app {
+  #arifix-ap--app {
     font-family: "Outfit", sans-serif;
     width: 100%;
     max-width: 100%;
@@ -139,23 +139,23 @@
     @apply grid grid-cols-4 lg:flex;
   }
 
-  .afx-ap-btngroup {
+  .arifix-ap--btngroup {
     @apply flex gap-2;
   }
 
-  .afx-ap-backup {
+  .arifix-ap--backup {
     @apply w-full max-w-[100%] h-40 text-gray-700 text-sm font-thin border-gray-700;
   }
 
-  .afx-ap-form-section {
+  .arifix-ap--form-section {
     @apply grid grid-cols-3 gap-10 mb-3;
   }
 
-  .afx-ap-style-group {
+  .arifix-ap--style-group {
     @apply bg-gray-300 p-3 mb-5 rounded;
   }
 
-  .afx-ap-shortcode {
+  .arifix-ap--shortcode {
     @apply mt-5 mb-5 text-base overflow-scroll break-words block p-5 w-full h-auto min-h-[100px] rounded;
   }
 
@@ -191,19 +191,19 @@
     @apply w-8 h-8 absolute top-0 right-0 cursor-pointer;
   }
 
-  .afx-ap-grids {
+  .arifix-ap--grids {
     @apply flex flex-col gap-3 mx-0 lg:m-3 p-5 divide-y-2 divide-gray-300;
   }
 
-  .afx-ap-single-grid {
+  .arifix-ap--single-grid {
     @apply flex justify-between items-center p-4;
   }
 
-  .afx-ap-single-grid h4 {
+  .arifix-ap--single-grid h4 {
     @apply text-xl font-medium cursor-pointer hover:text-ap-primary;
   }
 
-  .afx-ap-single-grid div button {
+  .arifix-ap--single-grid div button {
     @apply w-10;
   }
 

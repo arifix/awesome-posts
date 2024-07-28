@@ -17,7 +17,7 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   const [gridId, setGridId] = useState(null);
 
-  const baseUrl = `${afxApApp.apiUrl}/afx-ap/v1/`;
+  const baseUrl = `${afxApApp.apiUrl}/arifix-ap-/v1/`;
   const mediaUrl = `${afxApApp.apiUrl}/wp/v2/media/`;
 
   const pages = [
@@ -99,7 +99,7 @@ const App = () => {
 
         <div className={`${showSidebar ? "w-5/6" : "w-full"}`}>
           <SidebarToggle />
-          <div className="afx-ap-container">
+          <div className="arifix-ap--container">
             <Container />
           </div>
 
@@ -113,7 +113,7 @@ const App = () => {
                   removeUrlParam("grid_id");
                   setGridId(null);
                 }}
-                data-tooltip-id="afx-ap-tooltip"
+                data-tooltip-id="arifix-ap--tooltip"
                 data-tooltip-content="Add new Grid"
                 className="text-white shadow-xl flex items-center justify-center p-4 rounded-full bg-ap-primary hover:bg-ap-secondary z-50 absolute cursor-pointer"
               >
@@ -122,7 +122,7 @@ const App = () => {
             </div>
           )}
 
-          <Tooltip id="afx-ap-tooltip" />
+          <Tooltip id="arifix-ap--tooltip" />
           <Toaster
             position="bottom-right"
             reverseOrder={false}
