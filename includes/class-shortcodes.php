@@ -223,7 +223,7 @@ class ARIFIX_AP_Shortcodes
 
             wp_register_style('arifix-ap-frontend-inline-style', false);
             wp_enqueue_style('arifix-ap-frontend-inline-style');
-            wp_add_inline_style('arifix-ap-frontend-inline-style', wp_kses_post($styles));
+            wp_add_inline_style('arifix-ap-frontend-inline-style', $styles);
 
             wp_reset_query();
             wp_reset_postdata();
