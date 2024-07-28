@@ -26,7 +26,7 @@ class ARIFIX_AP_Admin_Menu
 
     public function arifix_ap_menu_page_template()
     {
-        echo '<div id="arifix-ap-app"></div>';
+        echo wp_kses_post('<div id="arifix-ap-app"></div>');
     }
 }
 new ARIFIX_AP_Admin_Menu();

@@ -35,9 +35,9 @@ if ($set->displayPostImage) {
             $grid .= '<a href="' . get_the_permalink() . '">
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
                     d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
                     ></path>
                 </svg>
@@ -66,7 +66,7 @@ if ($set->displayPostImage) {
 
     if ($set->displayReadBtn) {
         $grid .= '<a href="' . get_the_permalink() . '" class="ap-btn">' . $set->postBtnText . '<svg class="fill-stroke" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.75 12.5L10.25 8L5.75 3.5" stroke="currentColor" strokeWidth="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M5.75 12.5L10.25 8L5.75 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                   </svg></a>';
     }
     $grid .= '</div>';

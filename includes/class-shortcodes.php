@@ -228,7 +228,7 @@ class ARIFIX_AP_Shortcodes
             wp_reset_query();
             wp_reset_postdata();
 
-            return $html;
+            return wp_kses_post($html);
         }
 
         return "";
@@ -279,7 +279,7 @@ class ARIFIX_AP_Shortcodes
             }
 
             echo wp_json_encode([
-                'result' => $html,
+                'result' => wp_kses_post($html),
             ]);
 
             wp_reset_query();

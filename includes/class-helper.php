@@ -6,8 +6,37 @@ class ARIFIX_AP_Helper
 {
     public function __construct()
     {
+        add_filter('wp_kses_allowed_html', [$this, 'arifix_ap_allow_svg_in_wp_kses']);
         add_filter('upload_mimes', [$this, 'arifix_ap_add_font_upload_mimes']);
         add_filter('wp_check_filetype_and_ext', [$this, 'arifix_ap_add_allow_upload_extension_exception'], 99, 4);
+    }
+
+    function arifix_ap_allow_svg_in_wp_kses($allowed_tags)
+    {
+        $allowed_tags['svg'] = array(
+            'fill' => true,
+            'stroke' => true,
+            'class' => true,
+            'aria-hidden' => true,
+            'aria-labelledby' => true,
+            'role' => true,
+            'xmlns' => true,
+            'width' => true,
+            'height' => true,
+            'viewbox' => true,
+        );
+
+        $allowed_tags['g'] = array('fill' => true);
+        $allowed_tags['title'] = array('title' => true);
+        $allowed_tags['path'] = array(
+            'd' => true,
+            'fill' => true,
+            'stroke-linecap' => true,
+            'stroke-linejoin' => true,
+            'stroke-width' => true,
+        );
+
+        return $allowed_tags;
     }
 
     static function arifix_ap_fonts_url_to_name($font_url)
