@@ -32,6 +32,8 @@ class ARIFIX_AP_Shortcodes
 
         $result = $wpdb->get_row($wpdb->prepare("SELECT * FROM %i WHERE id = %d", $table_name, $id));
 
+        $styles = '';
+
         if ($result !== null) {
             $grid_title = $result->title;
             $settings = $result->settings;
@@ -170,8 +172,6 @@ class ARIFIX_AP_Shortcodes
             $html = '';
 
             $styles = require ARIFIX_AP_PATH . 'templates/grid-styles.php';
-            wp_add_inline_style('arifix-ap-frontend-style', $styles);
-            //$html .= '<style>' . $styles . '</style>';
 
             if ($posts_query->have_posts()) {
                 $html .= '<div class="arifix-ap-wrapper arifix-ap-grid-' . $set->gridStyle . ' afx-grid-' . $id . '">';
@@ -220,6 +220,10 @@ class ARIFIX_AP_Shortcodes
                 }
                 $html .= '</div>';
             }
+
+            wp_register_style('arifix-ap-frontend-inline-style', false);
+            wp_enqueue_style('arifix-ap-frontend-inline-style');
+            wp_add_inline_style('arifix-ap-frontend-inline-style', $styles);
 
             wp_reset_query();
             wp_reset_postdata();
