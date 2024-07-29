@@ -215,8 +215,21 @@ class ARIFIX_AP_Shortcodes
                     $html .= $grid_layout;
                 }
                 $html .= '</div>';
+
                 if ($set->loadMoreBtn) {
-                    $html .= '<p style="text-align: center;"><button type="button" class="ap-more-btn" data-wp-nonce="' . wp_create_nonce('ajax_nonce') . '" data-admin-ajax="' . admin_url("admin-ajax.php") . '" data-query="' . str_replace('"', '\'', wp_json_encode($posts_args)) . '" data-settings="' .  str_replace('"', '\'', wp_json_encode($set)) . '" data-query-offset="' . $offset . '" data-total-posts="' . $total_posts . '"' . ($post_per_page >= $total_posts ? 'style="display: none;"' : '') . '>' . $set->loadMoreBtnText . '</button></p>';
+                    if ($post_per_page <= $total_posts) {
+                        $html .= '<p style="text-align: center;">
+                            <button type="button" 
+                                class="ap-more-btn" 
+                                data-wp-nonce="' . wp_create_nonce('ajax_nonce') . '" 
+                                data-admin-ajax="' . admin_url("admin-ajax.php") . '" 
+                                data-query="' . str_replace('"', '\'', wp_json_encode($posts_args)) . '" 
+                                data-settings="' .  str_replace('"', '\'', wp_json_encode($set)) . '" 
+                                data-query-offset="' . $offset . '" 
+                                data-total-posts="' . $total_posts . '">' . $set->loadMoreBtnText . '
+                            </button>
+                        </p>';
+                    }
                 }
                 $html .= '</div>';
             }

@@ -3,30 +3,35 @@ Contributors: arifkpi
 Donate link: https://buymeacoffee.com/arifix
 Author URI: https://www.arif-khan.net/
 Plugin URI: https://madebyarif.com/app/awesome-posts
-Tags: post shortcode, post display, post grid, custom post grid
+Tags: custom post, post display, post grid, custom post grid, display posts
 Requires at least: 6.2
 Requires PHP: 7.4
-Tested up to: 6.5
-Stable tag: 1.0.0
+Tested up to: 6.6.1
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
+== Awesome Posts ==
 Transform Your Posts with Style - Your Ultimate WordPress Plugin for Showcasing Posts in a Grid Layout!
 
 == Description ==
+The Awesome Posts plugin allows you to manage various post shortcodes effortlessly. You can conveniently adjust the format, query, filters, layouts, and styles through an intuitive editor. This adaptable plugin is compatible with both standard posts and custom posts.
 
-The Awesome Posts plugin enables you to handle multiple post shortcodes. You can easily customize the format, query, filters, layouts, and styles using a simple editor. This versatile plugin supports both regular posts and custom posts.
+== Key Features ==
+*  Unlimited Grids: Say goodbye to limits. Add as many grids as you need to keep your audience engaged.
+*  Custom Posts Support: Showcase your posts & custom posts in stunning custom grids with an easy-to-use shortcode, perfect for any layout.
+*  Versatile Filters: Display your posts and custom posts using a comprehensive range of filters, including: Post Type, Taxonomy, Terms, Post Status, Date Range, Include/Exclude, Author, Keyword, Order & Orderby, Offset etc
+*  Live Preview: See changes in real-time with the live preview feature, making design adjustments quick and easy.
+*  Extensive Font/Text Settings: Customize every aspect of your text with a wide array of font and text settings, from size and style to color and spacing.
+*  Content Settings: Fine-tune your content with advanced settings, giving you complete control over how your posts appear.
+*  Brand Customization: Personalize your posts with your brand colors, custom fonts, and even access to all Google Fonts.
+*  Backup & Restore: Safeguard your content with built-in backup and restore options, ensuring your data is always secure.
 
 Plugin Documentation: [Plugin Docs](https://madebyarif.com/app/awesome-posts)
 
 *   [Live Demo](https://madebyarif.com/wp/awesome-posts/)	
 *   [Need Help?](https://madebyarif.com/app/awesome-posts#contact)		
 *   [About Author](https://www.arif-khan.net/)
-
-==  Features ==
-*   Manage both standard posts and custom posts
-*   You can create unlimited shortcodes in the Customizer
-*   Offers a wide range of customization options
 
 You can make my day by submitting a positive review on <a href="https://wordpress.org/plugins/awesome-posts/" target="_blank"><strong>WordPress.org!</strong></a> or <a href="https://buymeacoffee.com/arifix" target="_blank"><strong>Buy me a Coffee</strong></a></p>
 
@@ -51,15 +56,20 @@ Yes, Its supports custom posts.
 
 == Screenshots ==
 
-1. screenshot-1.png
-2. screenshot-2.png
-3. screenshot-3.png
+1. Unlimited Grids
+2. Custom Posts Support
+3. Customization Options
+
+== Source Code ==
+Source code is available here: [GitHub Repository](https://github.com/arifix/awesome-posts)
 
 == Changelog ==
 
-= 1.0.0 =
+= 1.0.1 =
+* Load More button issue fixed
 
-* Initial version.=
+= 1.0.0 =
+* Initial Version
 
 == Upgrade Notice ==
 
