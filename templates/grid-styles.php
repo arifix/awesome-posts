@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
 $css = '';
 
-$css .= '.arifix-ap-wrapper.afx-grid-' . esc_html($set->$id) . ' {
+$css .= '.arifix-ap-wrapper.afx-grid-' . esc_html($id) . ' {
 background-color: ' . esc_html($set->gridBgColor) . ';
 padding: ' . esc_html($set->gridPadding->top) . 'px ' . esc_html($set->gridPadding->right) . 'px ' . esc_html($set->gridPadding->bottom) . 'px ' . esc_html($set->gridPadding->left) . 'px;
 margin: ' . esc_html($set->gridMargin->top) . 'px ' . esc_html($set->gridMargin->right) . 'px ' . esc_html($set->gridMargin->bottom) . 'px ' . esc_html($set->gridMargin->left) . 'px;
@@ -43,7 +43,7 @@ if (esc_html($set->shFont)) {
         ? esc_html($set->shFont)
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', esc_html($set->shFont)) . '&display=swap';
 
-    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.arifix-ap-wrapper.afx-grid-' .  esc_html($id) . ' .ap-grid-title{font-family: ' . $font . '}';
+    $css .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}.arifix-ap-wrapper.afx-grid-' .  esc_html($id) . ' .ap-grid-title{font-family: "' . $font . '"}';
 }
 
 $css .= '.arifix-ap-wrapper.afx-grid-' . esc_html($id) . ' .ap-grid-title{
@@ -69,7 +69,7 @@ if (esc_html($set->titleFont)) {
         ? esc_html($set->titleFont)
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', esc_html($set->titleFont)) . '&display=swap';
 
-    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.arifix-ap-wrapper.afx-grid-' .  esc_html($id) . ' .ap-title{font-family: ' . $font . '}';
+    $css .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}.arifix-ap-wrapper.afx-grid-' .  esc_html($id) . ' .ap-title{font-family: "' . $font . '"}';
 }
 
 $css .= '.arifix-ap-wrapper.afx-grid-' .  esc_html($id) . ' .ap-title{
@@ -97,7 +97,7 @@ if (esc_html($set->excerptFont)) {
         ? esc_html($set->excerptFont)
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', esc_html($set->excerptFont)) . '&display=swap';
 
-    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.arifix-ap-wrapper.afx-grid-' .  esc_html($id) . ' .ap-excerpt{font-family: ' . $font . '}';
+    $css .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}.arifix-ap-wrapper.afx-grid-' .  esc_html($id) . ' .ap-excerpt{font-family: "' . $font . '"}';
 }
 
 $css .= '.arifix-ap-wrapper.afx-grid-' .  esc_html($id) . ' .ap-excerpt{
@@ -125,7 +125,7 @@ if (esc_html($set->metaFont)) {
         ? esc_html($set->metaFont)
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', esc_html($set->metaFont)) . '&display=swap';
 
-    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.arifix-ap-wrapper.afx-grid-' .  esc_html($id) . ' .ap-meta{font-family: ' . $font . '}';
+    $css .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}.arifix-ap-wrapper.afx-grid-' .  esc_html($id) . ' .ap-meta{font-family: "' . $font . '"}';
 }
 
 $css .= '.arifix-ap-wrapper.afx-grid-' .  esc_html($id) . ' .ap-meta{
@@ -156,7 +156,7 @@ if (esc_html($set->btnFont)) {
         ? esc_html($set->btnFont)
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', esc_html($set->btnFont)) . '&display=swap';
 
-    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.arifix-ap-wrapper.afx-grid-' .  esc_html($id) . ' .ap-btn{font-family: ' . $font . '}';
+    $css .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}.arifix-ap-wrapper.afx-grid-' .  esc_html($id) . ' .ap-btn{font-family: "' . $font . '"}';
 }
 
 $css .= '.arifix-ap-wrapper.afx-grid-' .  esc_html($id) . ' .ap-btn{
@@ -195,7 +195,7 @@ if (esc_html($set->btnLmFont)) {
         ? esc_html($set->btnLmFont)
         : 'https://fonts.googleapis.com/css?family=' . str_replace(" ", '+', esc_html($set->btnLmFont)) . '&display=swap';
 
-    $css .= '@font-face {font-family: ' . $font . ';src: url("' . $font_url . '");}.arifix-ap-wrapper.afx-grid-' .  esc_html($id) . ' .ap-more-btn{font-family: ' . $font . '}';
+    $css .= '@font-face {font-family: "' . $font . '";src: url("' . $font_url . '");}.arifix-ap-wrapper.afx-grid-' .  esc_html($id) . ' .ap-more-btn{font-family: "' . $font . '"}';
 }
 
 $css .= '.arifix-ap-wrapper.afx-grid-' .  esc_html($id) . ' .ap-more-btn{
