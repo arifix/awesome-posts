@@ -11,6 +11,8 @@ Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
+Transform Your Posts with Style - Your Ultimate WordPress Plugin for Showcasing Posts in a Grid Layout!
+
 == Awesome Posts ==
 Transform Your Posts with Style - Your Ultimate WordPress Plugin for Showcasing Posts in a Grid Layout!
 
