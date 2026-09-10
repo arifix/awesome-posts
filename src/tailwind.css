@@ -1,0 +1,266 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap");
+
+  #arifix-ap-app {
+    font-family: "Outfit", sans-serif;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .heading-primary {
+    @apply text-2xl mb-5 pt-6 pl-16;
+  }
+
+  .heading-secondary {
+    @apply text-xl font-medium pb-8;
+  }
+
+  .heading-sub {
+    @apply text-lg mb-3 text-ap-text mt-1;
+  }
+
+  .action-button {
+    @apply border-2 rounded-md px-5 py-1 text-lg hover:text-white flex justify-center items-center gap-2;
+  }
+
+  .action-button i {
+    @apply relative top-1;
+  }
+
+  .action-button.primary {
+    @apply border-ap-primary bg-ap-primary text-white hover:text-ap-primary hover:bg-white;
+  }
+
+  .action-button.primary.active {
+    @apply bg-ap-primary text-white;
+  }
+
+  .action-button.secondary {
+    @apply border-ap-secondary text-ap-secondary hover:bg-ap-secondary hover:text-white;
+  }
+
+  .action-button.secondary.active {
+    @apply bg-ap-secondary text-white;
+  }
+
+  .navigation li {
+    @apply mb-0 lg:mb-1.5 relative rounded-lg hover:cursor-pointer;
+  }
+
+  .navigation > .menu > li > a {
+    @apply hidden lg:flex;
+  }
+
+  .navigation a {
+    @apply w-full items-center text-lg lg:inline-flex py-2 px-3 hover:text-ap-primary focus:shadow-none;
+  }
+
+  .navigation a span {
+    @apply hidden lg:block;
+  }
+
+  .navigation a.active {
+    @apply text-ap-primary;
+  }
+
+  .navigation a i {
+    @apply mr-2 relative top-1;
+  }
+
+  .navigation .sub-menu {
+    @apply ml-0 lg:ml-7 mt-1;
+  }
+
+  .navigation .sub-menu li {
+    @apply mb-5 lg:mb-1.5;
+  }
+
+  .navigation .sub-menu a {
+    @apply py-1;
+  }
+
+  .navigation .dashicons,
+  .navigation .dashicons-before:before {
+    @apply text-3xl lg:text-[20px] lg:leading-[20px];
+  }
+
+  .filters {
+    @apply mx-5 mt-5;
+  }
+
+  .filters li {
+    @apply text-center w-auto p-3 mb-0;
+  }
+
+  .filters a {
+    @apply text-lg text-gray-700 font-medium py-3 relative bottom-2.5 hover:text-ap-primary hover:border-b-4 hover:border-b-ap-primary focus:shadow-none;
+  }
+  .filters li a i {
+    @apply relative top-1 mr-2;
+  }
+
+  .filters li.active a {
+    @apply text-ap-primary border-b-4 border-b-ap-primary;
+  }
+
+  .afx-form-field {
+    @apply flex justify-start items-center gap-3 mb-4;
+  }
+
+  .afx-form-field label {
+    @apply block text-lg font-medium w-36;
+  }
+
+  .afx-form-field label:not(.select-none) {
+    @apply !w-auto;
+  }
+
+  .afx-input {
+    @apply w-full max-w-[300px] h-11 rounded-md border border-gray-100 bg-white py-3 px-6 text-base text-gray-400 outline-none focus:border-ap-primary focus:shadow-md;
+  }
+
+  .arrow-hidden {
+    @apply [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none;
+  }
+
+  .afx-switch:checked ~ .dot {
+    @apply !bg-ap-primary translate-x-full;
+  }
+
+  .afx-color-picker {
+    @apply w-[40px] h-[40px] min-h-[40px] min-w-[40px] bg-gray-500 transition-all rounded-full block ring-1 ring-gray-500 hover:ring-2 ring-offset-1 cursor-pointer;
+  }
+
+  .color-groups {
+    @apply grid grid-cols-4 lg:flex;
+  }
+
+  .arifix-ap-btngroup {
+    @apply flex gap-2;
+  }
+
+  .arifix-ap-backup {
+    @apply w-full max-w-[100%] h-40 text-gray-700 text-sm font-thin border-gray-700;
+  }
+
+  .arifix-ap-form-section {
+    @apply grid grid-cols-3 gap-10 mb-3;
+  }
+
+  .arifix-ap-style-group {
+    @apply bg-gray-300 p-3 mb-5 rounded;
+  }
+
+  .arifix-ap-shortcode {
+    @apply mt-5 mb-5 text-base overflow-scroll break-words block p-5 w-full h-auto min-h-[100px] rounded;
+  }
+
+  .shortcode-preview {
+    @apply mt-5;
+  }
+
+  .display-block {
+    @apply block;
+  }
+
+  .display-none {
+    @apply hidden;
+  }
+
+  .modal {
+    @apply fixed top-0 left-0 w-full h-full bg-black bg-opacity-60 z-[9999];
+  }
+
+  .modal-main {
+    @apply fixed bg-gray-200 w-full h-auto top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] p-5 max-w-[1300px] max-h-[700px] overflow-y-scroll;
+  }
+
+  .modal-main::-webkit-scrollbar {
+    @apply bg-gray-600 rounded-lg w-3 h-5;
+  }
+
+  .modal-main::-webkit-scrollbar-thumb {
+    @apply bg-gray-100 rounded-lg;
+  }
+
+  .cancel-modal {
+    @apply w-8 h-8 absolute top-0 right-0 cursor-pointer;
+  }
+
+  .arifix-ap-grids {
+    @apply flex flex-col gap-3 mx-0 lg:m-3 p-5 divide-y-2 divide-gray-300;
+  }
+
+  .arifix-ap-single-grid {
+    @apply flex justify-between items-center p-3;
+  }
+
+  .arifix-ap-single-grid h4 {
+    @apply text-xl font-medium cursor-pointer hover:text-ap-primary;
+  }
+
+  .arifix-ap-single-grid div button {
+    @apply w-10;
+  }
+
+  .afx-input-error {
+    @apply !border-2 !border-red-500;
+  }
+
+  .block-section {
+    @apply blur-md pointer-events-none select-none;
+  }
+
+  .dashicons-br::before {
+    @apply text-4xl;
+  }
+
+  .dashicons-cus::before {
+    @apply text-2xl relative -top-1 -left-0.5;
+  }
+}
+
+/* Tools */
+.cp-popover {
+  position: absolute;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.cp-cover {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.css-b62m3t-container {
+  width: 90%;
+  max-width: 400px;
+}
+
+input[id^="rc-editable-input"] {
+  display: none !important;
+}
+
+#rc-editable-input-1 {
+  display: block !important;
+}
+
+/* Plugin Page Config */
+@media screen and (min-width: 961px) {
+  .toplevel_page_awesome-posts #wpcontent {
+    margin-left: 140px;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .toplevel_page_awesome-posts #wpcontent {
+    padding-left: 0;
+  }
+}
